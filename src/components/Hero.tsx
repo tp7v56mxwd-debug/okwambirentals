@@ -24,20 +24,24 @@ const Hero = () => {
           </div>
         </div>
         
-        <h1 className="text-6xl md:text-8xl font-black mb-6 animate-in fade-in slide-in-from-bottom-4 duration-1000 delay-100 leading-tight">
-          <span className="block">Okwambi</span>
-          <span className="block text-accent">Rentals</span>
+        <h1 className="text-6xl md:text-8xl lg:text-9xl font-black mb-8 animate-in fade-in slide-in-from-bottom-4 duration-1000 delay-100 leading-[0.9] tracking-tight">
+          <span className="block text-white">Okwambi</span>
+          <span className="block bg-gradient-to-r from-accent via-accent-glow to-accent bg-clip-text text-transparent">Rentals</span>
         </h1>
         
-        <p className="text-2xl md:text-3xl mb-12 max-w-3xl mx-auto font-bold text-white drop-shadow-lg animate-in fade-in slide-in-from-bottom-4 duration-1000 delay-200">
-          Be Fearless. Conquer Land & Sea at Mussulo
+        <p className="text-2xl md:text-4xl lg:text-5xl mb-4 font-black text-white drop-shadow-2xl animate-in fade-in slide-in-from-bottom-4 duration-1000 delay-200 tracking-tight">
+          Be Wambi. Live Fearless.
         </p>
         
-        <div className="flex flex-col sm:flex-row gap-4 justify-center animate-in fade-in slide-in-from-bottom-4 duration-1000 delay-300">
+        <p className="text-lg md:text-xl mb-12 max-w-2xl mx-auto font-medium text-white/90 drop-shadow-lg animate-in fade-in slide-in-from-bottom-4 duration-1000 delay-300">
+          Unleash your brave spirit on Mussulo's epic terrain
+        </p>
+        
+        <div className="flex flex-col sm:flex-row gap-5 justify-center animate-in fade-in slide-in-from-bottom-4 duration-1000 delay-400">
           <Button 
             size="lg" 
             onClick={scrollToFleet}
-            className="text-lg px-8 py-6 bg-primary hover:bg-primary/90 shadow-lg hover:shadow-xl transition-all hover:-translate-y-1"
+            className="text-lg px-10 py-7 bg-gradient-to-r from-accent to-accent-glow hover:from-accent-glow hover:to-accent text-accent-foreground font-bold shadow-accent hover:shadow-glow transition-all hover:-translate-y-1 hover:scale-105"
           >
             View Our Fleet
           </Button>
@@ -45,7 +49,7 @@ const Hero = () => {
             size="lg" 
             variant="outline" 
             onClick={scrollToFleet}
-            className="text-lg px-8 py-6 bg-white/10 backdrop-blur-md border-2 border-white text-white hover:bg-white hover:text-primary shadow-lg hover:shadow-xl transition-all hover:-translate-y-1"
+            className="text-lg px-10 py-7 bg-white/5 backdrop-blur-md border-2 border-white/80 text-white hover:bg-white hover:text-primary font-bold shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 hover:scale-105"
           >
             Book Now
           </Button>
