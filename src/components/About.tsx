@@ -1,66 +1,101 @@
-import { MapPin, Waves, Zap, Shield } from "lucide-react";
+import { Award, Shield, Users, Zap } from "lucide-react";
 
 const About = () => {
+  const features = [
+    {
+      icon: Award,
+      title: "Premium Fleet",
+      description: "Meticulously maintained collection of top-tier adventure vehicles, ensuring an exceptional experience every time."
+    },
+    {
+      icon: Shield,
+      title: "Safety Excellence",
+      description: "Comprehensive safety protocols, professional-grade equipment, and expert guidance for complete peace of mind."
+    },
+    {
+      icon: Zap,
+      title: "Instant Booking",
+      description: "Seamless reservation system with real-time availability and instant confirmation for your convenience."
+    },
+    {
+      icon: Users,
+      title: "Expert Team",
+      description: "Passionate professionals dedicated to delivering unforgettable adventures with personalized service."
+    }
+  ];
+
   return (
-    <section id="about" className="py-24 relative overflow-hidden" style={{ background: 'var(--gradient-subtle)' }}>
-      {/* Decorative elements */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
-      <div className="absolute bottom-0 left-0 w-96 h-96 bg-accent/5 rounded-full blur-3xl" />
+    <section id="about" className="py-32 relative overflow-hidden bg-gradient-to-b from-background via-muted/20 to-background">
+      {/* Elegant Background Elements */}
+      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-accent/5 rounded-full blur-3xl" />
+      <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-primary/5 rounded-full blur-3xl" />
       
-      <div className="container mx-auto px-4 relative">
-        <div className="text-center mb-20 animate-in fade-in slide-in-from-bottom-4 duration-700">
-          <div className="inline-block mb-4">
-            <span className="px-4 py-2 bg-primary/10 text-primary font-bold text-sm tracking-wider rounded-full border border-primary/20">
-              THE WAMBI EXPERIENCE
-            </span>
+      <div className="container mx-auto px-6 lg:px-8 relative">
+        {/* Section Header */}
+        <div className="max-w-3xl mx-auto text-center mb-20">
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/5 border border-primary/10 rounded-full mb-6">
+            <span className="text-primary text-sm font-semibold tracking-widest uppercase">Why Choose Us</span>
           </div>
-          <h2 className="text-5xl md:text-7xl font-black mb-6 text-foreground leading-tight">
-            Adventure on Land & Sea
+          
+          <h2 className="font-display text-5xl md:text-6xl lg:text-7xl font-bold mb-6 text-foreground leading-tight">
+            Crafted for
+            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-primary via-primary-light to-accent">Adventure</span>
           </h2>
-          <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto font-medium">
-            Experience the thrill of Mussulo Peninsula with our premium fleet of adventure vehicles
+          
+          <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
+            We combine premium vehicles, exceptional service, and the stunning Mussulo Peninsula 
+            to create unforgettable adventure experiences.
           </p>
         </div>
         
-        <div className="grid md:grid-cols-3 gap-10">
-          <div className="relative group">
-            <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-accent/10 rounded-3xl transform rotate-2 group-hover:rotate-3 transition-all duration-500 blur-sm" />
-            <div className="relative bg-card p-10 rounded-3xl shadow-soft hover:shadow-elegant transition-all duration-500 border border-border/50 hover:border-primary/30 hover:-translate-y-3 backdrop-blur-sm">
-              <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary to-primary-glow flex items-center justify-center mb-6 transform group-hover:scale-110 group-hover:rotate-12 transition-all duration-500 shadow-soft">
-                <Zap className="w-8 h-8 text-primary-foreground" />
+        {/* Features Grid */}
+        <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+          {features.map((feature, index) => (
+            <div 
+              key={index}
+              className="group relative"
+            >
+              {/* Subtle Background Glow */}
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-accent/5 rounded-2xl transform transition-all duration-500 group-hover:scale-105 opacity-0 group-hover:opacity-100" />
+              
+              {/* Card Content */}
+              <div className="relative bg-card/50 backdrop-blur-sm p-8 rounded-2xl border border-border/50 hover:border-primary/20 transition-all duration-500 hover:shadow-premium">
+                {/* Icon */}
+                <div className="inline-flex items-center justify-center w-14 h-14 rounded-xl bg-gradient-to-br from-primary to-primary-light text-primary-foreground mb-6 shadow-premium group-hover:shadow-luxury transition-all group-hover:-translate-y-1">
+                  <feature.icon className="w-7 h-7" strokeWidth={1.5} />
+                </div>
+                
+                {/* Title */}
+                <h3 className="font-display text-2xl font-bold mb-3 text-foreground">
+                  {feature.title}
+                </h3>
+                
+                {/* Description */}
+                <p className="text-muted-foreground leading-relaxed">
+                  {feature.description}
+                </p>
               </div>
-              <h3 className="text-2xl font-black mb-4 text-foreground">Premium Vehicles</h3>
-              <p className="text-muted-foreground leading-relaxed font-medium">
-                Top-tier ATVs, UTVs, and Jet Skis maintained to perfection for your ultimate adventure experience
-              </p>
             </div>
-          </div>
-
-          <div className="relative group">
-            <div className="absolute inset-0 bg-gradient-to-br from-accent/10 to-primary/10 rounded-3xl transform -rotate-2 group-hover:-rotate-3 transition-all duration-500 blur-sm" />
-            <div className="relative bg-card p-10 rounded-3xl shadow-soft hover:shadow-elegant transition-all duration-500 border border-border/50 hover:border-accent/30 hover:-translate-y-3 backdrop-blur-sm">
-              <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-accent to-accent-glow flex items-center justify-center mb-6 transform group-hover:scale-110 group-hover:rotate-12 transition-all duration-500 shadow-soft">
-                <Shield className="w-8 h-8 text-accent-foreground" />
+          ))}
+        </div>
+        
+        {/* Bottom Stats */}
+        <div className="mt-24 grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto">
+          {[
+            { value: "500+", label: "Adventures" },
+            { value: "98%", label: "Satisfaction" },
+            { value: "15+", label: "Vehicles" },
+            { value: "24/7", label: "Support" }
+          ].map((stat, index) => (
+            <div key={index} className="text-center">
+              <div className="font-display text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-primary to-accent mb-2">
+                {stat.value}
               </div>
-              <h3 className="text-2xl font-black mb-4 text-foreground">Safety First</h3>
-              <p className="text-muted-foreground leading-relaxed font-medium">
-                Professional safety briefings, quality gear, and experienced guides ensure your adventure is thrilling yet secure
-              </p>
-            </div>
-          </div>
-
-          <div className="relative group">
-            <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-accent/10 rounded-3xl transform rotate-2 group-hover:rotate-3 transition-all duration-500 blur-sm" />
-            <div className="relative bg-card p-10 rounded-3xl shadow-soft hover:shadow-elegant transition-all duration-500 border border-border/50 hover:border-primary/30 hover:-translate-y-3 backdrop-blur-sm">
-              <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary to-primary-glow flex items-center justify-center mb-6 transform group-hover:scale-110 group-hover:rotate-12 transition-all duration-500 shadow-soft">
-                <MapPin className="w-8 h-8 text-primary-foreground" />
+              <div className="text-sm text-muted-foreground font-semibold tracking-wider uppercase">
+                {stat.label}
               </div>
-              <h3 className="text-2xl font-black mb-4 text-foreground">Epic Location</h3>
-              <p className="text-muted-foreground leading-relaxed font-medium">
-                Explore Mussulo's stunning beaches, dunes, and waters - Angola's premier adventure destination
-              </p>
             </div>
-          </div>
+          ))}
         </div>
       </div>
     </section>
