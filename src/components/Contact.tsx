@@ -1,9 +1,61 @@
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Mail, Phone, MapPin } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
+import { z } from "zod";
+
+const contactSchema = z.object({
+  name: z.string().trim().min(2, "Name must be at least 2 characters").max(100, "Name is too long"),
+  email: z.string().trim().email("Invalid email address").max(255, "Email is too long"),
+  subject: z.string().trim().min(3, "Subject must be at least 3 characters").max(200, "Subject is too long"),
+  message: z.string().trim().min(10, "Message must be at least 10 characters").max(1000, "Message is too long")
+});
 
 const Contact = () => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const { toast } = useToast();
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    try {
+      const formData = new FormData(e.currentTarget);
+      const data = {
+        name: formData.get("name") as string,
+        email: formData.get("email") as string,
+        subject: formData.get("subject") as string,
+        message: formData.get("message") as string
+      };
+
+      contactSchema.parse(data);
+
+      toast({
+        title: "Message Sent!",
+        description: "We'll get back to you as soon as possible."
+      });
+
+      e.currentTarget.reset();
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        toast({
+          title: "Validation Error",
+          description: error.errors[0].message,
+          variant: "destructive"
+        });
+      } else {
+        toast({
+          title: "Error",
+          description: "Something went wrong. Please try again.",
+          variant: "destructive"
+        });
+      }
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
   return (
     <section id="contact" className="py-24 relative overflow-hidden" style={{ background: 'var(--gradient-subtle)' }}>
       <div className="absolute top-0 left-0 w-96 h-96 bg-accent/5 rounded-full blur-3xl" />
@@ -65,24 +117,26 @@ const Contact = () => {
               </div>
             </div>
             
-            <form className="space-y-5 bg-card p-8 rounded-2xl shadow-xl border-2 border-border/50">
+            <form className="space-y-5 bg-card p-8 rounded-2xl shadow-xl border-2 border-border/50" onSubmit={handleSubmit}>
               <div>
                 <label className="block text-sm font-semibold mb-2 text-foreground">Your Name</label>
-                <Input placeholder="John Doe" className="bg-background h-12 text-base" />
+                <Input name="name" placeholder="John Doe" className="bg-background h-12 text-base" required maxLength={100} />
               </div>
               <div>
                 <label className="block text-sm font-semibold mb-2 text-foreground">Your Email</label>
-                <Input type="email" placeholder="john@example.com" className="bg-background h-12 text-base" />
+                <Input name="email" type="email" placeholder="john@example.com" className="bg-background h-12 text-base" required maxLength={255} />
               </div>
               <div>
                 <label className="block text-sm font-semibold mb-2 text-foreground">Subject</label>
-                <Input placeholder="Rental Inquiry" className="bg-background h-12 text-base" />
+                <Input name="subject" placeholder="Rental Inquiry" className="bg-background h-12 text-base" required maxLength={200} />
               </div>
               <div>
                 <label className="block text-sm font-semibold mb-2 text-foreground">Your Message</label>
-                <Textarea placeholder="Tell us about your adventure plans..." rows={5} className="bg-background text-base" />
+                <Textarea name="message" placeholder="Tell us about your adventure plans..." rows={5} className="bg-background text-base" required maxLength={1000} />
               </div>
-              <Button className="w-full h-12 text-base font-semibold" size="lg">Send Message</Button>
+              <Button type="submit" className="w-full h-12 text-base font-semibold" size="lg" disabled={isSubmitting}>
+                {isSubmitting ? "Sending..." : "Send Message"}
+              </Button>
             </form>
           </div>
         </div>
