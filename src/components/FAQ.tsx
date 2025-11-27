@@ -6,9 +6,11 @@ import {
 } from "@/components/ui/accordion";
 import { HelpCircle } from "lucide-react";
 import { useTranslation } from 'react-i18next';
+import { useIntersectionObserver } from '@/hooks/useIntersectionObserver';
 
 const FAQ = () => {
   const { t } = useTranslation();
+  const { ref, isVisible } = useIntersectionObserver();
 
   return (
     <section id="faq" className="py-32 relative overflow-hidden bg-gradient-to-b from-muted/20 via-background to-muted/20">
@@ -16,7 +18,7 @@ const FAQ = () => {
       <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-accent/5 rounded-full blur-3xl" />
       <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-primary/5 rounded-full blur-3xl" />
       
-      <div className="container mx-auto px-6 lg:px-8 relative">
+      <div ref={ref} className={`container mx-auto px-6 lg:px-8 relative transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
         {/* Section Header */}
         <div className="max-w-3xl mx-auto text-center mb-20">
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-accent/5 border border-accent/10 rounded-full mb-6">

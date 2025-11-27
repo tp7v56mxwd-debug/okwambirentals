@@ -47,17 +47,22 @@ const Navigation = () => {
   ];
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-500 ${
-      isScrolled || isOpen
-        ? 'bg-background/95 backdrop-blur-xl shadow-luxury border-b border-border/50' 
-        : 'bg-gradient-to-b from-background/80 via-background/40 to-transparent'
-    }`}>
+    <nav 
+      role="navigation" 
+      aria-label="Main navigation"
+      className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-500 ${
+        isScrolled || isOpen
+          ? 'bg-background/95 backdrop-blur-xl shadow-luxury border-b border-border/50' 
+          : 'bg-gradient-to-b from-background/80 via-background/40 to-transparent'
+      }`}
+    >
       <div className="container mx-auto px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <button 
             onClick={() => scrollToSection('hero')} 
             className="flex items-center gap-2 group relative"
+            aria-label="Go to homepage"
           >
             <div className="relative">
               <div className="absolute inset-0 bg-primary/20 blur-xl rounded-full group-hover:bg-primary/30 transition-all duration-300" />
@@ -72,11 +77,14 @@ const Navigation = () => {
           </button>
 
           {/* Desktop Menu */}
-          <div className="hidden lg:flex items-center gap-2">
+          <div className="hidden lg:flex items-center gap-2" role="menubar" aria-label="Desktop navigation menu">
             {navLinks.map((link) => (
               <button
                 key={link.id}
                 onClick={() => scrollToSection(link.id)}
+                role="menuitem"
+                aria-label={`Navigate to ${link.label}`}
+                aria-current={activeSection === link.id ? 'page' : undefined}
                 className={`relative px-5 py-2.5 text-sm font-semibold tracking-wide transition-all duration-300 group ${
                   activeSection === link.id
                     ? 'text-primary'
