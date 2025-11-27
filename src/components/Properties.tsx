@@ -17,23 +17,7 @@ const Properties = () => {
       speed: "110 km/h",
       features: ["Premium life jackets included", "Full fuel tank included", "Professional safety briefing", "GPS tracking enabled"],
       price: "30.000 Kz",
-      basePricePerHalfHour: 30000,
-      safetyRules: [
-        "Must be 16+ years old with valid ID or driver's license",
-        "Parental consent required for ages 16-17 or without driver's license",
-        "Life jacket must be worn at all times",
-        "Stay within designated water zones",
-        "No reckless driving or dangerous maneuvers",
-        "Maximum 2 riders per jet ski"
-      ],
-      inclusions: [
-        "Premium quality life jackets",
-        "Full fuel for rental duration",
-        "Comprehensive safety instructions",
-        "GPS tracking device",
-        "Waterproof storage compartment"
-      ],
-      depositPolicy: "Refundable 50.000 Kz security deposit required. Returned within 24 hours after safe return of equipment. Deposit covers any damages or late returns."
+      basePricePerHalfHour: 30000
     },
     {
       category: "LAND ADVENTURE", 
@@ -42,23 +26,7 @@ const Properties = () => {
       speed: "80 km/h", 
       features: ["Professional helmet included", "Full protective gear set", "Off-road terrain ready", "Expert guidance"],
       price: "35.000 Kz",
-      basePricePerHalfHour: 35000,
-      safetyRules: [
-        "Must be 16+ years old with valid ID or driver's license",
-        "Parental consent required for ages 16-17 or without driver's license",
-        "Helmet and protective gear mandatory at all times",
-        "Follow designated beach and dune trails only",
-        "No dangerous stunts or racing",
-        "Single rider only - no passengers"
-      ],
-      inclusions: [
-        "Professional grade helmet",
-        "Elbow and knee pads",
-        "Full fuel for rental period",
-        "Expert terrain briefing",
-        "Emergency contact support"
-      ],
-      depositPolicy: "Refundable 60.000 Kz security deposit required. Covers equipment damage, late return, or reckless use. Refunded within 24 hours."
+      basePricePerHalfHour: 35000
     },
     {
       category: "PREMIUM EXPERIENCE",
@@ -67,23 +35,7 @@ const Properties = () => {
       speed: "90 km/h",
       features: ["Full roll cage protection", "Premium off-road tires", "Comfortable seating", "Group adventure ready"],
       price: "45.000 Kz",
-      basePricePerHalfHour: 45000,
-      safetyRules: [
-        "Driver must be 16+ with valid ID or driver's license",
-        "Parental consent required for ages 16-17 or without driver's license",
-        "Maximum 4 passengers - seatbelts required",
-        "Stay on approved off-road routes",
-        "No alcohol before or during rental",
-        "Follow speed limits in populated areas"
-      ],
-      inclusions: [
-        "Helmets for all passengers",
-        "Safety harnesses and seatbelts",
-        "Full fuel tank",
-        "Route map and safety zones guide",
-        "24/7 emergency support line"
-      ],
-      depositPolicy: "Refundable 80.000 Kz security deposit required. Covers vehicle damage, fuel, late fees, and violations. Full refund within 24 hours of safe return."
+      basePricePerHalfHour: 45000
     }
   ];
 
