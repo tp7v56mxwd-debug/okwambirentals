@@ -13,10 +13,11 @@ const Footer = () => {
   };
 
   return (
-    <footer className="relative bg-primary text-primary-foreground overflow-hidden" role="contentinfo" aria-label="Footer">
-      {/* Decorative Elements */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-accent/10 rounded-full blur-3xl" />
-      <div className="absolute bottom-0 left-0 w-96 h-96 bg-accent/5 rounded-full blur-3xl" />
+    <footer className="relative bg-gradient-to-br from-primary via-primary to-primary-dark text-primary-foreground overflow-hidden" role="contentinfo" aria-label="Footer">
+      {/* Enhanced Decorative Elements */}
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-accent/15 rounded-full blur-3xl" />
+      <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-accent/10 rounded-full blur-3xl" />
+      <div className="absolute inset-0 bg-gradient-to-t from-background/10 to-transparent" />
       
       <div className="container mx-auto px-6 lg:px-8 py-16 relative">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
@@ -35,19 +36,19 @@ const Footer = () => {
                 href="https://facebook.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 rounded-full bg-primary-foreground/10 hover:bg-accent flex items-center justify-center transition-all hover:scale-110 group"
+                className="w-11 h-11 rounded-xl bg-primary-foreground/10 hover:bg-accent backdrop-blur-sm flex items-center justify-center transition-all duration-300 hover:scale-110 hover:-translate-y-1 hover:shadow-lg group border border-primary-foreground/5"
                 aria-label="Facebook"
               >
-                <Facebook className="w-4 h-4 group-hover:text-accent-foreground transition-colors" />
+                <Facebook className="w-5 h-5 group-hover:text-accent-foreground transition-colors" />
               </a>
               <a
                 href="https://instagram.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 rounded-full bg-primary-foreground/10 hover:bg-accent flex items-center justify-center transition-all hover:scale-110 group"
+                className="w-11 h-11 rounded-xl bg-primary-foreground/10 hover:bg-accent backdrop-blur-sm flex items-center justify-center transition-all duration-300 hover:scale-110 hover:-translate-y-1 hover:shadow-lg group border border-primary-foreground/5"
                 aria-label="Instagram"
               >
-                <Instagram className="w-4 h-4 group-hover:text-accent-foreground transition-colors" />
+                <Instagram className="w-5 h-5 group-hover:text-accent-foreground transition-colors" />
               </a>
             </div>
           </div>
@@ -135,7 +136,7 @@ const Footer = () => {
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-8 border-t border-primary-foreground/10">
+        <div className="pt-8 mt-4 border-t border-primary-foreground/20">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <p className="text-sm text-primary-foreground/60 font-light">
               &copy; {new Date().getFullYear()} Okwambi Rentals. {t('footer.rights')}

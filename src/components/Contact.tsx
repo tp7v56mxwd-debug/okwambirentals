@@ -86,8 +86,11 @@ const Contact = () => {
 
         <div className="max-w-2xl mx-auto">
           {/* Contact Form */}
-          <div className="bg-card/50 backdrop-blur-sm rounded-2xl p-8 border border-border/50">
-            <form onSubmit={handleSubmit} className="space-y-6">
+          <div className="relative bg-gradient-to-br from-card/70 to-card/40 backdrop-blur-xl rounded-3xl p-10 border border-border/40 shadow-[0_20px_60px_rgba(0,0,0,0.1)]">
+            {/* Subtle gradient overlay */}
+            <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-primary/5 via-transparent to-accent/5 pointer-events-none" />
+            
+            <form onSubmit={handleSubmit} className="relative z-10 space-y-6">
               <div>
                 <label htmlFor="name" className="block text-sm font-semibold text-foreground mb-2">
                   {t('contact.form.name')}
@@ -98,7 +101,7 @@ const Contact = () => {
                   placeholder={t('contact.form.namePlaceholder')}
                   required
                   maxLength={100}
-                  className="bg-background/50"
+                  className="bg-background/60 backdrop-blur-sm border-border/50 focus:border-primary/50 focus:ring-2 focus:ring-primary/20 transition-all rounded-xl py-6"
                 />
               </div>
 
@@ -113,7 +116,7 @@ const Contact = () => {
                   placeholder={t('contact.form.emailPlaceholder')}
                   required
                   maxLength={255}
-                  className="bg-background/50"
+                  className="bg-background/60 backdrop-blur-sm border-border/50 focus:border-primary/50 focus:ring-2 focus:ring-primary/20 transition-all rounded-xl py-6"
                 />
               </div>
 
@@ -127,7 +130,7 @@ const Contact = () => {
                   placeholder={t('contact.form.subjectPlaceholder')}
                   required
                   maxLength={200}
-                  className="bg-background/50"
+                  className="bg-background/60 backdrop-blur-sm border-border/50 focus:border-primary/50 focus:ring-2 focus:ring-primary/20 transition-all rounded-xl py-6"
                 />
               </div>
 
@@ -141,18 +144,21 @@ const Contact = () => {
                   placeholder={t('contact.form.messagePlaceholder')}
                   required
                   maxLength={1000}
-                  rows={5}
-                  className="bg-background/50 resize-none"
+                  rows={6}
+                  className="bg-background/60 backdrop-blur-sm border-border/50 focus:border-primary/50 focus:ring-2 focus:ring-primary/20 transition-all resize-none rounded-xl"
                 />
               </div>
 
               <Button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full bg-primary hover:bg-primary-light text-primary-foreground font-semibold tracking-wide shadow-premium hover:shadow-luxury transition-all group"
+                className="w-full bg-gradient-to-r from-primary to-primary-light hover:from-primary-light hover:to-primary text-primary-foreground font-bold tracking-wide shadow-[0_8px_30px_rgba(var(--primary),0.3)] hover:shadow-[0_12px_40px_rgba(var(--primary),0.5)] transition-all duration-300 hover:-translate-y-1 py-7 rounded-xl group relative overflow-hidden"
               >
-                {isSubmitting ? t('contact.form.sending') : t('contact.form.submit')}
-                <Send className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" strokeWidth={2} />
+                <span className="relative z-10 flex items-center justify-center gap-2">
+                  {isSubmitting ? t('contact.form.sending') : t('contact.form.submit')}
+                  <Send className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-0.5 transition-transform" strokeWidth={2} />
+                </span>
+                <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700" />
               </Button>
             </form>
           </div>

@@ -18,24 +18,27 @@ const Hero = () => {
 
   return (
     <section id="hero" className="relative h-screen flex items-center justify-center overflow-hidden">
-      {/* Background Image with Parallax Effect and Lazy Loading */}
+      {/* Background Image with Enhanced Overlay */}
       <div 
-        className="absolute inset-0 bg-cover bg-center"
+        className="absolute inset-0 bg-cover bg-center transition-transform duration-700"
         style={{ 
           backgroundImage: `url(${heroImage})`,
-          transform: 'scale(1.1)',
+          transform: 'scale(1.05)',
         }}
         role="img"
         aria-label="Mussulo Beach panoramic view"
       />
       
-      {/* Premium Gradient Overlay */}
-      <div className="absolute inset-0" style={{ background: 'var(--gradient-overlay)' }} />
+      {/* Enhanced Gradient Overlay */}
+      <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-background/60 to-background/80 backdrop-blur-[2px]" />
+      
+      {/* Animated Gradient Accent */}
+      <div className="absolute inset-0 bg-gradient-to-tr from-primary/20 via-transparent to-accent/20 animate-pulse" style={{ animationDuration: '4s' }} />
       
       {/* Subtle Pattern Overlay */}
-      <div className="absolute inset-0 opacity-10" style={{
-        backgroundImage: 'radial-gradient(circle at 1px 1px, white 1px, transparent 0)',
-        backgroundSize: '40px 40px'
+      <div className="absolute inset-0 opacity-5" style={{
+        backgroundImage: 'radial-gradient(circle at 2px 2px, currentColor 1px, transparent 0)',
+        backgroundSize: '48px 48px'
       }} />
       
       <div className="relative z-10 container mx-auto px-6 lg:px-8 text-center">
@@ -58,22 +61,25 @@ const Hero = () => {
         </div>
         
         {/* CTA Buttons */}
-        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-in fade-in slide-in-from-bottom-4 duration-1000 delay-400">
+        <div className="flex flex-col sm:flex-row gap-5 justify-center items-center animate-in fade-in slide-in-from-bottom-4 duration-1000 delay-400">
           <Button 
             size="lg" 
             onClick={scrollToFleet}
-            className="group bg-accent hover:bg-accent-glow text-accent-foreground font-semibold tracking-wide shadow-glow hover:shadow-luxury transition-all hover:-translate-y-0.5 px-10 py-6 text-base"
+            className="group relative overflow-hidden bg-gradient-to-r from-accent to-accent-glow hover:from-accent-glow hover:to-accent text-accent-foreground font-bold tracking-wide shadow-[0_8px_30px_rgba(var(--accent),0.4)] hover:shadow-[0_12px_40px_rgba(var(--accent),0.6)] transition-all duration-300 hover:-translate-y-1 hover:scale-105 px-12 py-7 text-base rounded-xl"
           >
-            <span>{t('hero.exploreFleet')}</span>
-            <ChevronDown className="ml-2 w-4 h-4 group-hover:translate-y-1 transition-transform" />
+            <span className="relative z-10 flex items-center gap-2">
+              {t('hero.exploreFleet')}
+              <ChevronDown className="w-5 h-5 group-hover:translate-y-1 transition-transform" />
+            </span>
+            <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700" />
           </Button>
           <Button 
             size="lg" 
-            variant="outline"
             onClick={() => setBookingOpen(true)}
-            className="bg-white/5 backdrop-blur-md border-2 border-white/30 text-white hover:bg-white hover:text-primary font-semibold tracking-wide shadow-premium hover:shadow-luxury transition-all hover:-translate-y-0.5 px-10 py-6 text-base"
+            className="group relative overflow-hidden bg-background/10 backdrop-blur-xl border-2 border-white/40 text-white hover:bg-white hover:text-primary hover:border-white font-bold tracking-wide shadow-[0_8px_30px_rgba(0,0,0,0.3)] hover:shadow-[0_12px_40px_rgba(255,255,255,0.4)] transition-all duration-300 hover:-translate-y-1 hover:scale-105 px-12 py-7 text-base rounded-xl"
           >
-            {t('hero.reserveNow')}
+            <span className="relative z-10">{t('hero.reserveNow')}</span>
+            <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/10 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700" />
           </Button>
         </div>
       </div>
