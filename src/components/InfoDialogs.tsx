@@ -14,9 +14,9 @@ import {
 import { Button } from "@/components/ui/button";
 import { HelpCircle, FileCheck, Shield, ChevronDown } from "lucide-react";
 import { useTranslation } from "react-i18next";
-import FAQ from "./FAQ";
-import Requirements from "./Requirements";
-import SafetyPolicies from "./SafetyPolicies";
+import DialogFAQ from "./DialogFAQ";
+import DialogRequirements from "./DialogRequirements";
+import DialogSafety from "./DialogSafety";
 
 type DialogType = "faq" | "requirements" | "safety" | null;
 
@@ -74,40 +74,37 @@ export const InfoDialogs = () => {
 
       {/* FAQ Dialog */}
       <Dialog open={openDialog === "faq"} onOpenChange={(open) => {
-        console.log("FAQ Dialog change:", open);
         if (!open) setOpenDialog(null);
       }}>
-        <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
+        <DialogContent className="max-w-3xl max-h-[85vh] overflow-y-auto">
           <DialogHeader>
-            <DialogTitle>{t('nav.faq')}</DialogTitle>
+            <DialogTitle className="sr-only">{t('nav.faq')}</DialogTitle>
           </DialogHeader>
-          <FAQ />
+          <DialogFAQ />
         </DialogContent>
       </Dialog>
 
       {/* Requirements Dialog */}
       <Dialog open={openDialog === "requirements"} onOpenChange={(open) => {
-        console.log("Requirements Dialog change:", open);
         if (!open) setOpenDialog(null);
       }}>
-        <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
+        <DialogContent className="max-w-3xl max-h-[85vh] overflow-y-auto">
           <DialogHeader>
-            <DialogTitle>{t('nav.requirements')}</DialogTitle>
+            <DialogTitle className="sr-only">{t('nav.requirements')}</DialogTitle>
           </DialogHeader>
-          <Requirements />
+          <DialogRequirements />
         </DialogContent>
       </Dialog>
 
       {/* Safety Dialog */}
       <Dialog open={openDialog === "safety"} onOpenChange={(open) => {
-        console.log("Safety Dialog change:", open);
         if (!open) setOpenDialog(null);
       }}>
-        <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
+        <DialogContent className="max-w-3xl max-h-[85vh] overflow-y-auto">
           <DialogHeader>
-            <DialogTitle>{t('nav.safety')}</DialogTitle>
+            <DialogTitle className="sr-only">{t('nav.safety')}</DialogTitle>
           </DialogHeader>
-          <SafetyPolicies />
+          <DialogSafety />
         </DialogContent>
       </Dialog>
     </>
@@ -158,38 +155,35 @@ export const MobileInfoDialogs = ({ onClose }: { onClose: () => void }) => {
 
       {/* Dialogs */}
       <Dialog open={openDialog === "faq"} onOpenChange={(open) => {
-        console.log("Mobile FAQ Dialog change:", open);
         if (!open) setOpenDialog(null);
       }}>
-        <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
+        <DialogContent className="max-w-3xl max-h-[85vh] overflow-y-auto">
           <DialogHeader>
-            <DialogTitle>{t('nav.faq')}</DialogTitle>
+            <DialogTitle className="sr-only">{t('nav.faq')}</DialogTitle>
           </DialogHeader>
-          <FAQ />
+          <DialogFAQ />
         </DialogContent>
       </Dialog>
 
       <Dialog open={openDialog === "requirements"} onOpenChange={(open) => {
-        console.log("Mobile Requirements Dialog change:", open);
         if (!open) setOpenDialog(null);
       }}>
-        <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
+        <DialogContent className="max-w-3xl max-h-[85vh] overflow-y-auto">
           <DialogHeader>
-            <DialogTitle>{t('nav.requirements')}</DialogTitle>
+            <DialogTitle className="sr-only">{t('nav.requirements')}</DialogTitle>
           </DialogHeader>
-          <Requirements />
+          <DialogRequirements />
         </DialogContent>
       </Dialog>
 
       <Dialog open={openDialog === "safety"} onOpenChange={(open) => {
-        console.log("Mobile Safety Dialog change:", open);
         if (!open) setOpenDialog(null);
       }}>
-        <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
+        <DialogContent className="max-w-3xl max-h-[85vh] overflow-y-auto">
           <DialogHeader>
-            <DialogTitle>{t('nav.safety')}</DialogTitle>
+            <DialogTitle className="sr-only">{t('nav.safety')}</DialogTitle>
           </DialogHeader>
-          <SafetyPolicies />
+          <DialogSafety />
         </DialogContent>
       </Dialog>
     </>
