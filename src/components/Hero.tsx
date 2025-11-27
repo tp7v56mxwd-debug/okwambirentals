@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import heroImage from "@/assets/mussulo-hero.jpg";
+import heroImage from "@/assets/adventure-hero.jpg";
 
 const Hero = () => {
   return (
@@ -15,14 +15,14 @@ const Hero = () => {
           Okwambi Rentals
         </h1>
         <p className="text-xl md:text-2xl mb-8 max-w-2xl mx-auto text-white/90 animate-in fade-in slide-in-from-bottom-4 duration-1000 delay-150">
-          Experience paradise at Mussulo, Angola's premier coastal destination
+          Adventure awaits! Rent ATVs, UTVs & Jet Skis at Mussulo
         </p>
         <div className="flex gap-4 justify-center animate-in fade-in slide-in-from-bottom-4 duration-1000 delay-300">
           <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground">
-            View Properties
+            View Rentals
           </Button>
           <Button size="lg" variant="outline" className="bg-white/10 backdrop-blur-sm border-white text-white hover:bg-white/20">
-            Contact Us
+            Book Now
           </Button>
         </div>
       </div>

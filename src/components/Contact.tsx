@@ -9,9 +9,9 @@ const Contact = () => {
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold mb-4 text-foreground">Get In Touch</h2>
+            <h2 className="text-4xl font-bold mb-4 text-foreground">Book Your Adventure</h2>
             <p className="text-lg text-muted-foreground">
-              Ready to book your Mussulo escape? Contact us today
+              Ready to experience Mussulo? Contact us to reserve your rental today
             </p>
           </div>
           

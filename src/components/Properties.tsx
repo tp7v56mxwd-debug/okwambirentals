@@ -1,29 +1,29 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Users, BedDouble, Waves } from "lucide-react";
+import { Users, Gauge, Waves } from "lucide-react";
 
 const Properties = () => {
-  const properties = [
+  const rentals = [
     {
-      title: "Beachfront Villa",
-      description: "Luxurious oceanfront property with private beach access",
-      guests: 8,
-      bedrooms: 4,
-      features: "Direct beach access",
+      title: "Jet Skis",
+      description: "High-performance watercraft for ocean adventures",
+      capacity: "1-2 riders",
+      speed: "Up to 65 mph",
+      features: "Life jackets included",
     },
     {
-      title: "Coastal Apartment",
-      description: "Modern apartment with stunning sea views",
-      guests: 4,
-      bedrooms: 2,
-      features: "Ocean view terrace",
+      title: "ATVs",
+      description: "All-terrain vehicles for beach and dune exploration",
+      capacity: "1 rider",
+      speed: "Variable speeds",
+      features: "Safety gear provided",
     },
     {
-      title: "Island Retreat",
-      description: "Secluded paradise perfect for relaxation",
-      guests: 6,
-      bedrooms: 3,
-      features: "Private pool",
+      title: "UTVs",
+      description: "Side-by-side utility vehicles for group adventures",
+      capacity: "2-4 passengers",
+      speed: "Off-road capable",
+      features: "Roll cage & harnesses",
     },
   ];
 
@@ -31,36 +31,36 @@ const Properties = () => {
     <section className="py-20 bg-background">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold mb-4 text-foreground">Featured Properties</h2>
+          <h2 className="text-4xl font-bold mb-4 text-foreground">Our Fleet</h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Choose from our collection of carefully curated rental properties
+            Choose your adventure with our premium selection of vehicles and watercraft
           </p>
         </div>
         
         <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-          {properties.map((property, index) => (
+          {rentals.map((rental, index) => (
             <Card key={index} className="overflow-hidden hover:shadow-lg transition-shadow">
               <div className="h-48 bg-gradient-to-br from-primary to-accent" />
               <CardHeader>
-                <CardTitle>{property.title}</CardTitle>
-                <CardDescription>{property.description}</CardDescription>
+                <CardTitle>{rental.title}</CardTitle>
+                <CardDescription>{rental.description}</CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="flex gap-4 mb-4 text-sm text-muted-foreground">
-                  <div className="flex items-center gap-1">
+                <div className="space-y-2 mb-4 text-sm text-muted-foreground">
+                  <div className="flex items-center gap-2">
                     <Users className="w-4 h-4" />
-                    <span>{property.guests} guests</span>
+                    <span>{rental.capacity}</span>
                   </div>
-                  <div className="flex items-center gap-1">
-                    <BedDouble className="w-4 h-4" />
-                    <span>{property.bedrooms} beds</span>
+                  <div className="flex items-center gap-2">
+                    <Gauge className="w-4 h-4" />
+                    <span>{rental.speed}</span>
                   </div>
-                  <div className="flex items-center gap-1">
+                  <div className="flex items-center gap-2">
                     <Waves className="w-4 h-4" />
-                    <span>{property.features}</span>
+                    <span>{rental.features}</span>
                   </div>
                 </div>
-                <Button className="w-full">View Details</Button>
+                <Button className="w-full">Book Now</Button>
               </CardContent>
             </Card>
           ))}
