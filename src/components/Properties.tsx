@@ -10,6 +10,8 @@ const Properties = () => {
       capacity: "1-2 riders",
       speed: "Up to 65 mph",
       features: "Life jackets included",
+      price: "45.000 Kz",
+      duration: "30 minutes",
     },
     {
       title: "ATVs",
@@ -17,6 +19,8 @@ const Properties = () => {
       capacity: "1 rider",
       speed: "Variable speeds",
       features: "Safety gear provided",
+      price: "30.000 Kz",
+      duration: "30 minutes",
     },
     {
       title: "UTVs",
@@ -24,6 +28,8 @@ const Properties = () => {
       capacity: "2-4 passengers",
       speed: "Off-road capable",
       features: "Roll cage & harnesses",
+      price: "50.000 Kz",
+      duration: "30 minutes",
     },
   ];
 
@@ -60,7 +66,13 @@ const Properties = () => {
                     <span>{rental.features}</span>
                   </div>
                 </div>
-                <Button className="w-full">Book Now</Button>
+                <div className="mb-4 p-4 bg-primary/5 rounded-lg border border-primary/10">
+                  <div className="flex items-baseline justify-between">
+                    <span className="text-3xl font-bold text-primary">{rental.price}</span>
+                    <span className="text-sm text-muted-foreground">/ {rental.duration}</span>
+                  </div>
+                </div>
+                <Button className="w-full" size="lg">Book Now</Button>
               </CardContent>
             </Card>
           ))}
