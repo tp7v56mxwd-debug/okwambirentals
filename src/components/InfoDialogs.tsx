@@ -69,7 +69,7 @@ export const InfoDialogs = () => {
 
       {/* FAQ Dialog */}
       <Dialog open={openDialog === "faq"} onOpenChange={(open) => !open && setOpenDialog(null)}>
-        <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
+        <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto bg-background z-[200]">
           <DialogHeader>
             <DialogTitle className="sr-only">{t('nav.faq')}</DialogTitle>
           </DialogHeader>
@@ -79,7 +79,7 @@ export const InfoDialogs = () => {
 
       {/* Requirements Dialog */}
       <Dialog open={openDialog === "requirements"} onOpenChange={(open) => !open && setOpenDialog(null)}>
-        <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
+        <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto bg-background z-[200]">
           <DialogHeader>
             <DialogTitle className="sr-only">{t('nav.requirements')}</DialogTitle>
           </DialogHeader>
@@ -89,7 +89,7 @@ export const InfoDialogs = () => {
 
       {/* Safety Dialog */}
       <Dialog open={openDialog === "safety"} onOpenChange={(open) => !open && setOpenDialog(null)}>
-        <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
+        <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto bg-background z-[200]">
           <DialogHeader>
             <DialogTitle className="sr-only">{t('nav.safety')}</DialogTitle>
           </DialogHeader>
@@ -143,7 +143,7 @@ export const MobileInfoDialogs = ({ onClose }: { onClose: () => void }) => {
 
       {/* Dialogs */}
       <Dialog open={openDialog === "faq"} onOpenChange={(open) => !open && setOpenDialog(null)}>
-        <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
+        <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto bg-background z-[200]">
           <DialogHeader>
             <DialogTitle className="sr-only">{t('nav.faq')}</DialogTitle>
           </DialogHeader>
@@ -152,7 +152,7 @@ export const MobileInfoDialogs = ({ onClose }: { onClose: () => void }) => {
       </Dialog>
 
       <Dialog open={openDialog === "requirements"} onOpenChange={(open) => !open && setOpenDialog(null)}>
-        <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
+        <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto bg-background z-[200]">
           <DialogHeader>
             <DialogTitle className="sr-only">{t('nav.requirements')}</DialogTitle>
           </DialogHeader>
@@ -161,7 +161,7 @@ export const MobileInfoDialogs = ({ onClose }: { onClose: () => void }) => {
       </Dialog>
 
       <Dialog open={openDialog === "safety"} onOpenChange={(open) => !open && setOpenDialog(null)}>
-        <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
+        <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto bg-background z-[200]">
           <DialogHeader>
             <DialogTitle className="sr-only">{t('nav.safety')}</DialogTitle>
           </DialogHeader>
