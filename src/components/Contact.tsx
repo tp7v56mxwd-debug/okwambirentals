@@ -5,55 +5,82 @@ import { Mail, Phone, MapPin } from "lucide-react";
 
 const Contact = () => {
   return (
-    <section className="py-20 bg-muted">
-      <div className="container mx-auto px-4">
-        <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold mb-4 text-foreground">Book Your Adventure</h2>
-            <p className="text-lg text-muted-foreground">
+    <section id="contact" className="py-24 relative overflow-hidden" style={{ background: 'var(--gradient-subtle)' }}>
+      <div className="absolute top-0 left-0 w-96 h-96 bg-accent/5 rounded-full blur-3xl" />
+      
+      <div className="container mx-auto px-4 relative">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-16">
+            <div className="inline-block px-4 py-1 rounded-full bg-accent/10 text-accent text-sm font-semibold mb-4">
+              GET IN TOUCH
+            </div>
+            <h2 className="text-5xl md:text-6xl font-bold mb-6 text-foreground">
+              Book Your <span className="text-gradient">Adventure</span>
+            </h2>
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
               Ready to experience Mussulo? Contact us to reserve your rental today
             </p>
           </div>
           
-          <div className="grid md:grid-cols-2 gap-8">
-            <div className="space-y-6">
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
-                  <MapPin className="w-6 h-6 text-primary" />
+          <div className="grid md:grid-cols-2 gap-12">
+            <div className="space-y-8">
+              <div className="flex items-start gap-5 group">
+                <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary to-primary/50 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+                  <MapPin className="w-8 h-8 text-white" />
                 </div>
                 <div>
-                  <h3 className="font-semibold mb-1 text-foreground">Location</h3>
-                  <p className="text-muted-foreground">Mussulo Peninsula, Luanda, Angola</p>
+                  <h3 className="text-xl font-bold mb-2 text-foreground">Location</h3>
+                  <p className="text-muted-foreground text-lg">Mussulo Peninsula, Luanda, Angola</p>
                 </div>
               </div>
               
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
-                  <Phone className="w-6 h-6 text-primary" />
+              <div className="flex items-start gap-5 group">
+                <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-accent to-accent/50 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+                  <Phone className="w-8 h-8 text-white" />
                 </div>
                 <div>
-                  <h3 className="font-semibold mb-1 text-foreground">Phone</h3>
-                  <p className="text-muted-foreground">+244 XXX XXX XXX</p>
+                  <h3 className="text-xl font-bold mb-2 text-foreground">Phone</h3>
+                  <p className="text-muted-foreground text-lg">+244 XXX XXX XXX</p>
                 </div>
               </div>
               
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
-                  <Mail className="w-6 h-6 text-primary" />
+              <div className="flex items-start gap-5 group">
+                <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary to-primary/50 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+                  <Mail className="w-8 h-8 text-white" />
                 </div>
                 <div>
-                  <h3 className="font-semibold mb-1 text-foreground">Email</h3>
-                  <p className="text-muted-foreground">info@okwambirentals.com</p>
+                  <h3 className="text-xl font-bold mb-2 text-foreground">Email</h3>
+                  <p className="text-muted-foreground text-lg">info@okwambirentals.com</p>
+                </div>
+              </div>
+              
+              <div className="mt-8 p-6 rounded-2xl bg-card border-2 border-border/50">
+                <h4 className="font-bold text-lg mb-3 text-foreground">Operating Hours</h4>
+                <div className="space-y-2 text-muted-foreground">
+                  <p>Monday - Sunday: 8:00 AM - 6:00 PM</p>
+                  <p className="text-sm">Peak season hours may vary</p>
                 </div>
               </div>
             </div>
             
-            <form className="space-y-4 bg-card p-6 rounded-lg shadow-sm">
-              <Input placeholder="Your Name" className="bg-background" />
-              <Input type="email" placeholder="Your Email" className="bg-background" />
-              <Input placeholder="Subject" className="bg-background" />
-              <Textarea placeholder="Your Message" rows={4} className="bg-background" />
-              <Button className="w-full">Send Message</Button>
+            <form className="space-y-5 bg-card p-8 rounded-2xl shadow-xl border-2 border-border/50">
+              <div>
+                <label className="block text-sm font-semibold mb-2 text-foreground">Your Name</label>
+                <Input placeholder="John Doe" className="bg-background h-12 text-base" />
+              </div>
+              <div>
+                <label className="block text-sm font-semibold mb-2 text-foreground">Your Email</label>
+                <Input type="email" placeholder="john@example.com" className="bg-background h-12 text-base" />
+              </div>
+              <div>
+                <label className="block text-sm font-semibold mb-2 text-foreground">Subject</label>
+                <Input placeholder="Rental Inquiry" className="bg-background h-12 text-base" />
+              </div>
+              <div>
+                <label className="block text-sm font-semibold mb-2 text-foreground">Your Message</label>
+                <Textarea placeholder="Tell us about your adventure plans..." rows={5} className="bg-background text-base" />
+              </div>
+              <Button className="w-full h-12 text-base font-semibold" size="lg">Send Message</Button>
             </form>
           </div>
         </div>
