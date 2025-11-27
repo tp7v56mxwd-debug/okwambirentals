@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { ChevronDown } from "lucide-react";
-import heroImage from "@/assets/adventure-hero.jpg";
+import heroImage from "@/assets/mussulo-beach.jpg";
 
 const Hero = () => {
   const scrollToFleet = () => {
@@ -44,8 +44,8 @@ const Hero = () => {
         </h1>
         
         {/* Subtitle */}
-        <p className="text-xl md:text-2xl mb-4 text-white/90 font-light max-w-3xl mx-auto animate-in fade-in slide-in-from-bottom-4 duration-1000 delay-200 leading-relaxed">
-          Discover unparalleled adventure with our curated collection of premium ATVs, UTVs, and jet skis
+        <p className="text-lg md:text-xl lg:text-2xl text-primary-foreground/90 mb-12 max-w-2xl mx-auto leading-relaxed font-light tracking-wide">
+          Your gateway to unforgettable adventures at Mussulo Peninsula. Professional equipment, expert guidance, and unmatched safety standards.
         </p>
         
         {/* Luxury Divider */}

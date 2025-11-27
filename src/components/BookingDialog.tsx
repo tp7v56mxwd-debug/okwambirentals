@@ -165,11 +165,16 @@ export const BookingDialog = ({ open, onOpenChange, vehicleName, vehiclePrice, b
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-[600px] max-h-[90vh] overflow-y-auto">
+      <DialogContent className="sm:max-w-[650px] max-h-[90vh] overflow-y-auto">
         <DialogHeader>
           <DialogTitle className="text-3xl font-black text-foreground">
             Book Your {vehicleName}
           </DialogTitle>
+          <div className="bg-muted/50 rounded-lg p-4 mt-4 border border-border/30">
+            <h4 className="text-sm font-bold text-foreground mb-2">📍 Meeting Location & Hours</h4>
+            <p className="text-sm text-muted-foreground mb-1"><strong>Location:</strong> Okwambi Rentals Beach Station, Mussulo Peninsula, Luanda</p>
+            <p className="text-sm text-muted-foreground"><strong>Operating Hours:</strong> Daily 9:00 AM - 6:00 PM (Last rental at 5:30 PM)</p>
+          </div>
         </DialogHeader>
 
         <form onSubmit={handleSubmit} className="space-y-6">
@@ -303,6 +308,28 @@ export const BookingDialog = ({ open, onOpenChange, vehicleName, vehiclePrice, b
                 </div>
               </div>
             </div>
+
+            <div className="bg-muted/30 rounded-lg p-4 border border-border/30">
+              <h4 className="text-xs font-bold text-foreground uppercase tracking-wider mb-3">Important Information</h4>
+              <ul className="space-y-2 text-xs text-muted-foreground">
+                <li className="flex items-start gap-2">
+                  <span className="text-accent mt-0.5">•</span>
+                  <span>Security deposit required at check-in (refunded after safe return)</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-accent mt-0.5">•</span>
+                  <span>Valid ID and driver's license required (age restrictions apply)</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-accent mt-0.5">•</span>
+                  <span>Late returns charged at 2x hourly rate after 15-minute grace period</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-accent mt-0.5">•</span>
+                  <span>Free cancellation up to 24 hours before booking time</span>
+                </li>
+              </ul>
+            </div>
           </div>
 
           <Button
@@ -310,7 +337,7 @@ export const BookingDialog = ({ open, onOpenChange, vehicleName, vehiclePrice, b
             className="w-full text-base py-7 font-bold"
             disabled={isSubmitting}
           >
-            {isSubmitting ? "Processing..." : "Confirm Booking"}
+            {isSubmitting ? "Processing Booking..." : "Confirm Booking"}
           </Button>
         </form>
       </DialogContent>
