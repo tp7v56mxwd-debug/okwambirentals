@@ -1,0 +1,201 @@
+{
+  "nav": {
+    "home": "HOME",
+    "about": "ABOUT",
+    "fleet": "FLEET",
+    "faq": "FAQ",
+    "contact": "CONTACT",
+    "reserve": "RESERVE NOW"
+  },
+  "hero": {
+    "title": "PREMIUM ADVENTURE IN MUSSULO",
+    "subtitle": "Experience the crystal-clear waters of Mussulo Island with our premium jet skis, ATVs, and UTVs. Freedom meets luxury.",
+    "exploreFleet": "EXPLORE FLEET",
+    "reserveNow": "RESERVE NOW"
+  },
+  "about": {
+    "subtitle": "About Us",
+    "title": "Where Adventure Meets Luxury",
+    "description": "At Okwambi Rentals, we offer premium adventure experiences on the stunning Mussulo Island. Our top-tier fleet of jet skis, ATVs, and UTVs is maintained to the highest standards, ensuring your safety and enjoyment.",
+    "highlight1": "High-quality equipment",
+    "highlight2": "Scenic ocean routes",
+    "highlight3": "Experienced guides",
+    "highlight4": "Flexible pricing",
+    "cta": "Discover Mussulo"
+  },
+  "fleet": {
+    "subtitle": "Our Fleet",
+    "title": "Choose Your Adventure",
+    "description": "Experience the thrill of our high-performance jet skis, rugged ATVs, or comfortable UTVs."
+  },
+  "requirements": {
+    "subtitle": "Before You Start",
+    "title": "Quick Requirements",
+    "age": {
+      "title": "Age & ID",
+      "items": [
+        "16+ years with valid ID",
+        "Driver's license required for ATVs/UTVs",
+        "Parental consent if under 18"
+      ]
+    },
+    "safety": {
+      "title": "Safety First",
+      "items": [
+        "Helmet and life jacket provided",
+        "Safety briefing mandatory",
+        "Weather conditions checked"
+      ]
+    },
+    "booking": {
+      "title": "Booking",
+      "items": [
+        "Book online or on-site",
+        "Refundable deposit required",
+        "24h cancellation policy"
+      ]
+    }
+  },
+  "safety": {
+    "subtitle": "Your Safety",
+    "title": "Safety Policies",
+    "rules": {
+      "title": "Rental Rules",
+      "description": "Clear rules to keep everyone safe while maximizing your adventure experience.",
+      "items": [
+        "16+ with valid ID (parental consent if under 18)",
+        "Driver's license required for ATVs/UTVs",
+        "No alcohol or drugs before/during rental",
+        "Stay within designated zones and routes",
+        "Follow all staff instructions and briefings",
+        "Respect other users and the environment"
+      ]
+    },
+    "equipment": {
+      "title": "Safety Equipment",
+      "description": "Top-tier protective gear provided and checked before each rental.",
+      "items": [
+        "Certified helmets (mandatory for ATVs/UTVs)",
+        "High-quality life jackets (mandatory for jet skis)",
+        "First aid kit in all vehicles",
+        "Communication devices for emergencies",
+        "GPS tracking for your safety",
+        "Backup safety equipment available"
+      ]
+    },
+    "weather": {
+      "title": "Weather Guidelines",
+      "description": "We monitor conditions closely to ensure safe and enjoyable experiences.",
+      "items": [
+        "Operations suspended during storms",
+        "Jet skis limited to calm sea conditions",
+        "Pre and post-rental inspections",
+        "Full refund for weather cancellations",
+        "Weather forecasts shared during booking",
+        "Staff available 24/7 for changing conditions"
+      ]
+    }
+  },
+  "testimonials": {
+    "subtitle": "Testimonials",
+    "title": "What Our Clients Say",
+    "description": "Read about the amazing experiences from our customers"
+  },
+  "faq": {
+    "subtitle": "Frequently Asked",
+    "title": "Common Questions",
+    "questions": {
+      "what": {
+        "q": "What vehicles are available for rent?",
+        "a": "We offer premium jet skis, ATVs (all-terrain vehicles), and UTVs (side-by-side vehicles). Each vehicle is maintained to the highest standards and suitable for different experience levels."
+      },
+      "age": {
+        "q": "What is the age requirement?",
+        "a": "You must be at least 16 years old with valid identification. Parental consent is required for those under 18. Driver's license is required for ATVs and UTVs."
+      },
+      "book": {
+        "q": "How do I book a rental?",
+        "a": "You can book online through our website or contact us directly. We recommend booking in advance, especially during peak season."
+      },
+      "safety": {
+        "q": "What safety measures are in place?",
+        "a": "We provide all necessary safety equipment including helmets and life jackets. Safety briefing is mandatory before each rental. Our vehicles are regularly maintained and GPS tracked."
+      },
+      "cancel": {
+        "q": "What is the cancellation policy?",
+        "a": "We offer a 24-hour cancellation policy. Cancellations due to bad weather receive a full refund."
+      },
+      "duration": {
+        "q": "How long can I rent for?",
+        "a": "We offer flexible rental periods starting from 1 hour. Half-day and full-day packages are also available with discounted rates."
+      }
+    }
+  },
+  "contact": {
+    "subtitle": "Get In Touch",
+    "title": "Ready to Start Your Adventure?",
+    "description": "Have questions or want to make a booking? Reach out and we'll get back to you soon!",
+    "form": {
+      "name": "Name",
+      "email": "Email",
+      "subject": "Subject",
+      "message": "Message",
+      "submit": "Send Message",
+      "sending": "Sending..."
+    },
+    "toast": {
+      "success": "Success!",
+      "successDesc": "Your message has been sent successfully.",
+      "error": "Error",
+      "errorDesc": "There was an error sending your message. Please try again."
+    }
+  },
+  "location": {
+    "subtitle": "Find Us",
+    "title": "Visit Us at Mussulo",
+    "description": "Located on the stunning Mussulo Island, Luanda, Angola",
+    "cta": "Get Directions"
+  },
+  "footer": {
+    "description": "Experience the thrill of premium adventure in Mussulo with our top-tier jet skis, ATVs, and UTVs.",
+    "quickLinks": "Quick Links",
+    "links": {
+      "home": "Home",
+      "about": "About Us",
+      "fleet": "Fleet",
+      "faq": "FAQ",
+      "contact": "Contact"
+    },
+    "contact": "Contact",
+    "hours": "Opening Hours",
+    "hoursValue": "Daily: 8AM - 6PM",
+    "legal": "Legal",
+    "terms": "Terms of Service",
+    "privacy": "Privacy Policy",
+    "rights": "All rights reserved."
+  },
+  "whatsapp": {
+    "chat": "Chat with us"
+  },
+  "booking": {
+    "title": "Book Your Adventure",
+    "vehicle": "Vehicle",
+    "name": "Full Name",
+    "email": "Email",
+    "phone": "Phone",
+    "date": "Date",
+    "time": "Time",
+    "duration": "Duration",
+    "hours": "hours",
+    "requests": "Special Requests",
+    "total": "Total",
+    "reserve": "Confirm Reservation",
+    "reserving": "Reserving...",
+    "toast": {
+      "success": "Booking Confirmed!",
+      "successDesc": "Your booking has been successfully placed. You'll receive a confirmation email shortly.",
+      "error": "Booking Error",
+      "errorDesc": "There was an error processing your booking. Please try again."
+    }
+  }
+}

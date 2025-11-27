@@ -1,8 +1,11 @@
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 import { useState, useEffect } from "react";
+import { useTranslation } from 'react-i18next';
+import LanguageSwitcher from "./LanguageSwitcher";
 
 const Navigation = () => {
+  const { t } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -49,38 +52,39 @@ const Navigation = () => {
               onClick={() => scrollToSection('hero')} 
               className="px-5 py-2.5 text-sm font-semibold text-foreground/70 hover:text-foreground transition-colors tracking-wide"
             >
-              HOME
+              {t('nav.home')}
             </button>
             <button 
               onClick={() => scrollToSection('about')} 
               className="px-5 py-2.5 text-sm font-semibold text-foreground/70 hover:text-foreground transition-colors tracking-wide"
             >
-              ABOUT
+              {t('nav.about')}
             </button>
             <button 
               onClick={() => scrollToSection('fleet')} 
               className="px-5 py-2.5 text-sm font-semibold text-foreground/70 hover:text-foreground transition-colors tracking-wide"
             >
-              FLEET
+              {t('nav.fleet')}
             </button>
             <button 
               onClick={() => scrollToSection('faq')} 
               className="px-5 py-2.5 text-sm font-semibold text-foreground/70 hover:text-foreground transition-colors tracking-wide"
             >
-              FAQ
+              {t('nav.faq')}
             </button>
             <button 
               onClick={() => scrollToSection('contact')} 
               className="px-5 py-2.5 text-sm font-semibold text-foreground/70 hover:text-foreground transition-colors tracking-wide"
             >
-              CONTACT
+              {t('nav.contact')}
             </button>
-            <div className="ml-4">
+            <LanguageSwitcher />
+            <div className="ml-2">
               <Button 
                 onClick={() => scrollToSection('fleet')}
                 className="bg-primary hover:bg-primary-light text-primary-foreground font-semibold tracking-wide shadow-premium hover:shadow-luxury transition-all px-8 py-2.5 text-sm"
               >
-                RESERVE NOW
+                {t('nav.reserve')}
               </Button>
             </div>
           </div>
@@ -102,37 +106,40 @@ const Navigation = () => {
               onClick={() => scrollToSection('hero')} 
               className="block w-full text-left py-3 px-4 text-sm font-semibold text-foreground/70 hover:text-foreground hover:bg-muted/50 rounded-lg transition-all tracking-wide"
             >
-              HOME
+              {t('nav.home')}
             </button>
             <button 
               onClick={() => scrollToSection('about')} 
               className="block w-full text-left py-3 px-4 text-sm font-semibold text-foreground/70 hover:text-foreground hover:bg-muted/50 rounded-lg transition-all tracking-wide"
             >
-              ABOUT
+              {t('nav.about')}
             </button>
             <button 
               onClick={() => scrollToSection('fleet')} 
               className="block w-full text-left py-3 px-4 text-sm font-semibold text-foreground/70 hover:text-foreground hover:bg-muted/50 rounded-lg transition-all tracking-wide"
             >
-              FLEET
+              {t('nav.fleet')}
             </button>
             <button 
               onClick={() => scrollToSection('faq')} 
               className="block w-full text-left py-3 px-4 text-sm font-semibold text-foreground/70 hover:text-foreground hover:bg-muted/50 rounded-lg transition-all tracking-wide"
             >
-              FAQ
+              {t('nav.faq')}
             </button>
             <button 
               onClick={() => scrollToSection('contact')} 
               className="block w-full text-left py-3 px-4 text-sm font-semibold text-foreground/70 hover:text-foreground hover:bg-muted/50 rounded-lg transition-all tracking-wide"
             >
-              CONTACT
+              {t('nav.contact')}
             </button>
+            <div className="px-4 pt-2">
+              <LanguageSwitcher />
+            </div>
             <Button 
               className="w-full mt-4 bg-primary hover:bg-primary-light text-primary-foreground font-semibold tracking-wide shadow-premium" 
               onClick={() => scrollToSection('fleet')}
             >
-              RESERVE NOW
+              {t('nav.reserve')}
             </Button>
           </div>
         )}
