@@ -4,38 +4,34 @@ const Requirements = () => {
   const requirements = [
     {
       icon: FileCheck,
-      title: "Valid Documentation",
+      title: "Valid ID",
       items: [
-        "Valid driver's license or government-issued ID",
-        "Minimum age: 16 years",
-        "Parental/guardian consent form for ages 16-17 or without driver's license"
+        "16+ years old",
+        "Driver's license or government ID"
       ]
     },
     {
       icon: CreditCard,
       title: "Security Deposit",
       items: [
-        "Refundable deposit required",
-        "Credit card or cash accepted",
+        "Refundable deposit",
         "Returned within 24 hours"
       ]
     },
     {
       icon: Clock,
-      title: "Booking Policy",
+      title: "Booking",
       items: [
-        "Free cancellation up to 24 hours",
-        "Flexible rental durations",
-        "Instant confirmation available"
+        "Free cancellation up to 24h",
+        "Flexible durations"
       ]
     },
     {
       icon: Shield,
-      title: "Safety Standards",
+      title: "Safety First",
       items: [
-        "Comprehensive safety briefing",
-        "Premium protective equipment",
-        "Professional guidance included"
+        "Full safety briefing",
+        "Premium equipment included"
       ]
     }
   ];
@@ -54,12 +50,12 @@ const Requirements = () => {
           </div>
           
           <h2 className="font-display text-5xl md:text-6xl lg:text-7xl font-bold mb-6 text-foreground leading-tight">
-            Simple & Clear
+            Quick
             <span className="block text-transparent bg-clip-text bg-gradient-to-r from-primary via-accent to-accent-glow">Requirements</span>
           </h2>
           
           <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
-            Everything you need to know before embarking on your adventure
+            What you need to get started
           </p>
         </div>
 
