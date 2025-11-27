@@ -6,9 +6,9 @@ const Requirements = () => {
       icon: FileCheck,
       title: "Valid Documentation",
       items: [
-        "Driver's license (held for 2+ years)",
+        "Valid driver's license",
         "Government-issued ID or passport",
-        "Minimum age: 21 years"
+        "Minimum age: 16 years"
       ]
     },
     {
