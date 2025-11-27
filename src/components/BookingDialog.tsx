@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -13,6 +13,7 @@ import { cn } from "@/lib/utils";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import { z } from "zod";
+import { useTranslation } from 'react-i18next';
 
 const bookingSchema = z.object({
   customer_name: z.string().trim().min(2, "Name must be at least 2 characters").max(100, "Name is too long"),
@@ -21,6 +22,7 @@ const bookingSchema = z.object({
   booking_date: z.date({ required_error: "Please select a date" }),
   booking_time: z.string().min(1, "Please select a time"),
   duration: z.number().min(30, "Minimum duration is 30 minutes"),
+  vehicle_type: z.string().min(1, "Please select a vehicle"),
   special_requests: z.string().max(500, "Special requests must be less than 500 characters").optional()
 });
 
@@ -48,16 +50,41 @@ const durationOptions = [
   { label: "Full day (6 hours)", value: 360, multiplier: 12 }
 ];
 
+const vehicles = [
+  { name: "Jet Ski Premium", price: "30.000 Kz", basePricePerHalfHour: 30000 },
+  { name: "ATV Premium", price: "35.000 Kz", basePricePerHalfHour: 35000 },
+  { name: "UTV Premium", price: "45.000 Kz", basePricePerHalfHour: 45000 }
+];
+
 export const BookingDialog = ({ open, onOpenChange, vehicleName, vehiclePrice, basePricePerHalfHour }: BookingDialogProps) => {
+  const { t } = useTranslation();
   const [date, setDate] = useState<Date>();
   const [duration, setDuration] = useState(30);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showConfirmation, setShowConfirmation] = useState(false);
+  const [selectedVehicle, setSelectedVehicle] = useState<string>(vehicleName || "");
+  const [currentPrice, setCurrentPrice] = useState(basePricePerHalfHour);
   const { toast } = useToast();
+
+  // Update selected vehicle and price when props change
+  useEffect(() => {
+    if (vehicleName) {
+      setSelectedVehicle(vehicleName);
+      setCurrentPrice(basePricePerHalfHour);
+    }
+  }, [vehicleName, basePricePerHalfHour]);
+
+  const handleVehicleChange = (value: string) => {
+    setSelectedVehicle(value);
+    const vehicle = vehicles.find(v => v.name === value);
+    if (vehicle) {
+      setCurrentPrice(vehicle.basePricePerHalfHour);
+    }
+  };
 
   const calculateTotalPrice = (durationMinutes: number) => {
     const multiplier = durationOptions.find(d => d.value === durationMinutes)?.multiplier || 1;
-    return (basePricePerHalfHour * multiplier).toLocaleString('en-US', { 
+    return (currentPrice * multiplier).toLocaleString('en-US', { 
       minimumFractionDigits: 3,
       maximumFractionDigits: 3
     });
@@ -76,6 +103,7 @@ export const BookingDialog = ({ open, onOpenChange, vehicleName, vehiclePrice, b
         booking_date: date,
         booking_time: formData.get("booking_time") as string,
         duration: duration,
+        vehicle_type: selectedVehicle,
         special_requests: formData.get("special_requests") as string
       };
 
@@ -87,7 +115,7 @@ export const BookingDialog = ({ open, onOpenChange, vehicleName, vehiclePrice, b
         customer_name: validated.customer_name,
         customer_email: validated.customer_email,
         customer_phone: validated.customer_phone,
-        vehicle_type: vehicleName,
+        vehicle_type: validated.vehicle_type,
         booking_date: format(validated.booking_date, "yyyy-MM-dd"),
         booking_time: validated.booking_time,
         duration: validated.duration,
@@ -104,7 +132,7 @@ export const BookingDialog = ({ open, onOpenChange, vehicleName, vehiclePrice, b
           body: {
             customerName: validated.customer_name,
             customerEmail: validated.customer_email,
-            vehicleType: vehicleName,
+            vehicleType: validated.vehicle_type,
             bookingDate: format(validated.booking_date, "MMM dd, yyyy"),
             bookingTime: validated.booking_time,
             duration: validated.duration,
@@ -168,7 +196,7 @@ export const BookingDialog = ({ open, onOpenChange, vehicleName, vehiclePrice, b
       <DialogContent className="sm:max-w-[650px] max-h-[90vh] overflow-y-auto">
         <DialogHeader>
           <DialogTitle className="text-3xl font-black text-foreground">
-            Book Your {vehicleName}
+            {selectedVehicle ? `Book Your ${selectedVehicle}` : t('fleet.bookNow')}
           </DialogTitle>
           <div className="bg-muted/50 rounded-lg p-4 mt-4 border border-border/30">
             <h4 className="text-sm font-bold text-foreground mb-2">📍 Meeting Location & Hours</h4>
@@ -179,6 +207,25 @@ export const BookingDialog = ({ open, onOpenChange, vehicleName, vehiclePrice, b
 
         <form onSubmit={handleSubmit} className="space-y-6">
           <div className="space-y-4">
+            {/* Vehicle Selector - Only show if no vehicle pre-selected */}
+            {!vehicleName && (
+              <div>
+                <Label htmlFor="vehicle_select">Select Vehicle *</Label>
+                <Select value={selectedVehicle} onValueChange={handleVehicleChange} required>
+                  <SelectTrigger id="vehicle_select">
+                    <SelectValue placeholder="Choose your vehicle" />
+                  </SelectTrigger>
+                  <SelectContent className="bg-background z-[200]">
+                    {vehicles.map((vehicle) => (
+                      <SelectItem key={vehicle.name} value={vehicle.name}>
+                        {vehicle.name} - {vehicle.price} per 30min
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+            )}
+
             <div>
               <Label htmlFor="customer_name">Full Name</Label>
               <Input
@@ -248,7 +295,7 @@ export const BookingDialog = ({ open, onOpenChange, vehicleName, vehiclePrice, b
                 <SelectTrigger>
                   <SelectValue placeholder="Select time" />
                 </SelectTrigger>
-                <SelectContent>
+                <SelectContent className="bg-background z-[200]">
                   {timeSlots.map((time) => (
                     <SelectItem key={time} value={time}>
                       {time}
@@ -269,7 +316,7 @@ export const BookingDialog = ({ open, onOpenChange, vehicleName, vehiclePrice, b
                 <SelectTrigger>
                   <SelectValue placeholder="Select duration" />
                 </SelectTrigger>
-                <SelectContent>
+                <SelectContent className="bg-background z-[200]">
                   {durationOptions.map((option) => (
                     <SelectItem key={option.value} value={option.value.toString()}>
                       {option.label}
@@ -294,7 +341,9 @@ export const BookingDialog = ({ open, onOpenChange, vehicleName, vehiclePrice, b
               <div className="space-y-3">
                 <div className="flex justify-between items-center">
                   <span className="text-sm text-muted-foreground font-bold">Base Rate (30 min)</span>
-                  <span className="text-foreground font-bold">{vehiclePrice}</span>
+                  <span className="text-foreground font-bold">
+                    {currentPrice > 0 ? `${currentPrice.toLocaleString('en-US', { minimumFractionDigits: 3 })} Kz` : '---'}
+                  </span>
                 </div>
                 <div className="flex justify-between items-center">
                   <span className="text-sm text-muted-foreground font-bold">Duration</span>
@@ -303,7 +352,9 @@ export const BookingDialog = ({ open, onOpenChange, vehicleName, vehiclePrice, b
                 <div className="border-t border-border/30 pt-3">
                   <div className="flex justify-between items-center">
                     <p className="text-sm text-muted-foreground font-bold uppercase">Total Price</p>
-                    <p className="text-3xl font-black text-primary">{calculateTotalPrice(duration)} Kz</p>
+                    <p className="text-3xl font-black text-primary">
+                      {currentPrice > 0 ? `${calculateTotalPrice(duration)} Kz` : '---'}
+                    </p>
                   </div>
                 </div>
               </div>
