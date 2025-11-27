@@ -1,7 +1,9 @@
 import { MapPin, Phone, Mail, Clock } from "lucide-react";
 import { useEffect, useRef } from "react";
+import { useTranslation } from 'react-i18next';
 
 const Location = () => {
+  const { t } = useTranslation();
   const mapContainer = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -43,16 +45,16 @@ const Location = () => {
         <div className="max-w-3xl mx-auto text-center mb-20">
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/5 border border-primary/10 rounded-full mb-6">
             <MapPin className="w-5 h-5 text-primary" strokeWidth={1.5} />
-            <span className="text-primary text-sm font-semibold tracking-widest uppercase">Location</span>
+            <span className="text-primary text-sm font-semibold tracking-widest uppercase">{t('location.badge')}</span>
           </div>
           
           <h2 className="font-display text-5xl md:text-6xl lg:text-7xl font-bold mb-6 text-foreground leading-tight">
-            Visit Us at
-            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-primary via-accent to-accent-glow">Mussulo</span>
+            {t('location.title1')}
+            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-primary via-accent to-accent-glow">{t('location.title2')}</span>
           </h2>
           
           <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
-            Located at the stunning Mussulo Peninsula, where your adventure begins
+            {t('location.description')}
           </p>
         </div>
 
@@ -68,10 +70,10 @@ const Location = () => {
                     <MapPin className="w-8 h-8 text-primary" strokeWidth={1.5} />
                   </div>
                   <p className="font-display text-lg font-semibold text-foreground mb-2">
-                    Map Preview
+                    {t('location.map')}
                   </p>
                   <p className="text-muted-foreground text-sm">
-                    Mussulo Peninsula, Luanda, Angola
+                    {t('location.mapLocation')}
                   </p>
                 </div>
               </div>
@@ -86,10 +88,10 @@ const Location = () => {
                   <MapPin className="w-6 h-6 text-primary-foreground" strokeWidth={1.5} />
                 </div>
                 <div>
-                  <h3 className="font-display text-lg font-bold text-foreground mb-2">Address</h3>
+                  <h3 className="font-display text-lg font-bold text-foreground mb-2">{t('location.address.title')}</h3>
                   <p className="text-muted-foreground">
-                    Mussulo Peninsula<br />
-                    Luanda, Angola
+                    {t('location.address.line1')}<br />
+                    {t('location.address.line2')}
                   </p>
                 </div>
               </div>
@@ -101,9 +103,9 @@ const Location = () => {
                   <Phone className="w-6 h-6 text-primary-foreground" strokeWidth={1.5} />
                 </div>
                 <div>
-                  <h3 className="font-display text-lg font-bold text-foreground mb-2">Phone</h3>
-                  <p className="text-muted-foreground">+244 923 456 789</p>
-                  <p className="text-sm text-muted-foreground/70 mt-1">Available 24/7</p>
+                  <h3 className="font-display text-lg font-bold text-foreground mb-2">{t('location.phone.title')}</h3>
+                  <p className="text-muted-foreground">{t('location.phone.number')}</p>
+                  <p className="text-sm text-muted-foreground/70 mt-1">{t('location.phone.availability')}</p>
                 </div>
               </div>
             </div>
@@ -114,9 +116,9 @@ const Location = () => {
                   <Mail className="w-6 h-6 text-primary-foreground" strokeWidth={1.5} />
                 </div>
                 <div>
-                  <h3 className="font-display text-lg font-bold text-foreground mb-2">Email</h3>
-                  <p className="text-muted-foreground">info@okwambi.ao</p>
-                  <p className="text-sm text-muted-foreground/70 mt-1">Response within 24 hours</p>
+                  <h3 className="font-display text-lg font-bold text-foreground mb-2">{t('location.email.title')}</h3>
+                  <p className="text-muted-foreground">{t('location.email.address')}</p>
+                  <p className="text-sm text-muted-foreground/70 mt-1">{t('location.email.response')}</p>
                 </div>
               </div>
             </div>
@@ -127,10 +129,10 @@ const Location = () => {
                   <Clock className="w-6 h-6 text-primary-foreground" strokeWidth={1.5} />
                 </div>
                 <div>
-                  <h3 className="font-display text-lg font-bold text-foreground mb-2">Hours</h3>
+                  <h3 className="font-display text-lg font-bold text-foreground mb-2">{t('location.hours.title')}</h3>
                   <p className="text-muted-foreground">
-                    Monday - Sunday<br />
-                    8:00 AM - 6:00 PM
+                    {t('location.hours.days')}<br />
+                    {t('location.hours.time')}
                   </p>
                 </div>
               </div>

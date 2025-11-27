@@ -8,7 +8,7 @@
   },
   "hero": {
     "title": "AVENTURA PREMIUM EM MUSSULO",
-    "subtitle": "Explore as águas cristalinas da Ilha de Mussulo com os nossos jet skis, ATVs e UTVs premium. Liberdade encontra luxo.",
+    "subtitle": "A sua porta de entrada para aventuras inesquecíveis na Península de Mussulo. Equipamento profissional, orientação especializada e padrões de segurança incomparáveis.",
     "exploreFleet": "EXPLORAR FROTA",
     "reserveNow": "RESERVAR AGORA"
   },
@@ -118,78 +118,160 @@
     }
   },
   "safety": {
-    "subtitle": "A Sua Segurança",
-    "title": "Políticas de Segurança",
-    "rules": {
-      "title": "Regras de Aluguer",
-      "description": "Regras claras para manter todos em segurança enquanto maximiza a sua experiência de aventura.",
-      "items": [
-        "16+ com identificação válida (consentimento parental se menor de 18)",
-        "Carta de condução exigida para ATVs/UTVs",
-        "Sem álcool ou drogas antes/durante o aluguer",
-        "Permaneça dentro das zonas e rotas designadas",
-        "Siga todas as instruções e briefings da equipa",
-        "Respeite outros utilizadores e o ambiente"
-      ]
-    },
+    "badge": "A Sua Segurança",
+    "title1": "As Nossas Políticas &",
+    "title2": "Padrões de Segurança",
+    "description": "Políticas cristalinas desenhadas para a sua segurança, proteção e tranquilidade",
     "equipment": {
       "title": "Equipamento de Segurança",
-      "description": "Equipamento de proteção de topo fornecido e verificado antes de cada aluguer.",
+      "description": "Todos os alugueres incluem equipamento de segurança premium para garantir que a sua aventura seja emocionante e segura.",
       "items": [
-        "Capacetes certificados (obrigatórios para ATVs/UTVs)",
-        "Coletes salva-vidas de alta qualidade (obrigatórios para jet skis)",
-        "Kit de primeiros socorros em todos os veículos",
-        "Dispositivos de comunicação para emergências",
-        "Rastreamento GPS para a sua segurança",
-        "Equipamento de segurança de reserva disponível"
+        "Capacetes profissionais (todos os tamanhos)",
+        "Coletes salva-vidas premium (jet skis)",
+        "Equipamento de proteção (ATVs & UTVs)",
+        "Rastreamento GPS em todos os veículos",
+        "Dispositivos de comunicação de emergência",
+        "Kits de primeiros socorros no local"
       ]
     },
-    "weather": {
-      "title": "Diretrizes Meteorológicas",
-      "description": "Monitorizamos as condições de perto para garantir experiências seguras e agradáveis.",
+    "rules": {
+      "title": "Regras de Aluguer",
+      "description": "Regras claras para manter todos seguros maximizando a sua experiência de aventura.",
       "items": [
-        "Operações suspensas durante tempestades",
-        "Jet skis limitados a condições de mar calmo",
-        "Inspeções antes e depois do aluguer",
-        "Reembolso total para cancelamentos meteorológicos",
-        "Previsões meteorológicas partilhadas durante a reserva",
-        "Equipa disponível 24/7 para condições em mudança"
+        "16+ com ID válido (consentimento parental se menor de 18)",
+        "Carta de condução exigida para ATVs/UTVs",
+        "Sem álcool ou drogas antes/durante o aluguer",
+        "Permanecer dentro das zonas e rotas designadas",
+        "Seguir todas as instruções e briefings da equipa",
+        "Reportar quaisquer problemas imediatamente"
       ]
+    },
+    "deposit": {
+      "title": "Depósito & Pagamento",
+      "description": "Preços transparentes e depósitos reembolsáveis para a sua tranquilidade.",
+      "items": [
+        "Jet Ski: depósito reembolsável de 50.000 Kz",
+        "ATV: depósito reembolsável de 60.000 Kz",
+        "UTV: depósito reembolsável de 80.000 Kz",
+        "Depósitos devolvidos dentro de 24 horas",
+        "Cartão de crédito ou dinheiro aceite",
+        "Reembolso total se equipamento devolvido em segurança no prazo"
+      ]
+    },
+    "timing": {
+      "title": "Horários & Devoluções",
+      "description": "Durações de aluguer flexíveis com políticas claras sobre horários e devoluções tardias.",
+      "items": [
+        "Horário de funcionamento: 9h - 18h diariamente",
+        "Último aluguer começa às 17h30",
+        "Período de tolerância de 15 minutos para devoluções",
+        "Devoluções tardias cobradas a 2x a tarifa horária",
+        "Devoluções antecipadas: Sem reembolsos parciais",
+        "Reagendamento gratuito até 24 horas antes"
+      ]
+    },
+    "damage": {
+      "title": "Política de Danos",
+      "description": "Políticas de danos justas e transparentes que protegem tanto você como o nosso equipamento.",
+      "items": [
+        "Inspeção pré-aluguer documentada com fotos",
+        "Desgaste normal é esperado",
+        "Danos por imprudência: Depósito perdido + custos de reparação",
+        "Arranhões menores: Sem custo",
+        "Equipamento perdido/roubado: Custo total de substituição",
+        "Opções de seguro disponíveis (recomendado)"
+      ]
+    },
+    "emergency": {
+      "title": "Apoio de Emergência",
+      "description": "Apoio 24/7 e assistência de emergência para total tranquilidade.",
+      "items": [
+        "Linha de emergência 24/7: +244 923 456 789",
+        "Equipa no local durante horário de funcionamento",
+        "Pessoal treinado em primeiros socorros",
+        "Equipa de resposta rápida para avarias",
+        "Linha direta para autoridades locais se necessário",
+        "Veículos de substituição imediatos quando disponíveis"
+      ]
+    },
+    "cta": {
+      "title": "Perguntas Sobre as Nossas Políticas?",
+      "description": "A nossa equipa está aqui para responder a qualquer questão sobre segurança, depósitos ou termos de aluguer.",
+      "button": "Contacte-nos"
     }
   },
-  "testimonials": {
-    "subtitle": "Testemunhos",
-    "title": "O Que Dizem os Nossos Clientes",
-    "description": "Leia sobre as experiências incríveis dos nossos clientes"
-  },
   "faq": {
-    "subtitle": "Perguntas Frequentes",
-    "title": "Perguntas Frequentes",
-    "questions": {
-      "what": {
-        "q": "Que veículos estão disponíveis para aluguer?",
-        "a": "Oferecemos jet skis premium, ATVs (quadriciclos) e UTVs (veículos side-by-side). Cada veículo é mantido nos mais altos padrões e adequado para diferentes níveis de experiência."
+    "badge": "Perguntas Frequentes",
+    "title1": "Perguntas &",
+    "title2": "Respostas",
+    "description": "Tudo o que precisa saber sobre alugar connosco",
+    "questions": [
+      {
+        "q": "Que documentos preciso para alugar um veículo?",
+        "a": "Precisará de uma carta de condução válida ou ID/passaporte emitido pelo governo, e um cartão de crédito para o depósito de segurança. Se tiver 16-17 anos ou não tiver carta de condução, é necessário um formulário de consentimento parental/tutor."
       },
-      "age": {
-        "q": "Qual é o requisito de idade?",
-        "a": "Deve ter pelo menos 16 anos de idade com identificação válida. É necessário consentimento parental para menores de 18 anos. É exigida carta de condução para ATVs e UTVs."
+      {
+        "q": "Qual é a idade mínima para alugar?",
+        "a": "A idade mínima é 16 anos. No entanto, se tiver 16-17 anos ou não tiver carta de condução, deve fornecer um formulário de consentimento parental/tutor assinado."
       },
-      "book": {
-        "q": "Como faço para reservar um aluguer?",
-        "a": "Pode reservar online através do nosso site ou contactar-nos diretamente. Recomendamos reservar com antecedência, especialmente durante a época alta."
+      {
+        "q": "Posso cancelar a minha reserva?",
+        "a": "Sim, cancelamento gratuito está disponível até 24 horas antes do horário da reserva. Cancelamentos dentro de 24 horas estão sujeitos a uma taxa de 50%."
       },
-      "safety": {
-        "q": "Que medidas de segurança estão implementadas?",
-        "a": "Fornecemos todo o equipamento de segurança necessário incluindo capacetes e coletes salva-vidas. É obrigatório um briefing de segurança antes de cada aluguer. Os nossos veículos são mantidos regularmente e rastreados por GPS."
+      {
+        "q": "O combustível está incluído no preço de aluguer?",
+        "a": "Sim, todos os nossos veículos vêm com tanque cheio incluído no preço de aluguer."
       },
-      "cancel": {
-        "q": "Qual é a política de cancelamento?",
-        "a": "Oferecemos uma política de cancelamento de 24 horas. Cancelamentos devido ao mau tempo recebem reembolso total."
+      {
+        "q": "O que acontece se o veículo avariar?",
+        "a": "Todos os nossos veículos são mantidos regularmente. No improvável evento de uma avaria, contacte-nos imediatamente e forneceremos assistência na estrada ou um veículo de substituição."
       },
-      "duration": {
-        "q": "Quanto tempo posso alugar?",
-        "a": "Oferecemos períodos de aluguer flexíveis começando a partir de 1 hora. Pacotes meio-dia e dia completo também estão disponíveis com tarifas com desconto."
+      {
+        "q": "Posso estender o meu período de aluguer?",
+        "a": "Sim, pode estender o seu aluguer sujeito a disponibilidade. Por favor, contacte-nos pelo menos 2 horas antes do horário de devolução agendado."
+      },
+      {
+        "q": "Capacetes e equipamento de segurança são fornecidos?",
+        "a": "Sim, fornecemos capacetes e equipamento de segurança básico para todos os nossos veículos sem custo adicional."
+      },
+      {
+        "q": "O que é coberto pelo seguro?",
+        "a": "O seguro básico cobre danos ao veículo e responsabilidade civil. Seguro de acidentes pessoais está disponível por uma taxa adicional."
       }
+    ]
+  },
+  "testimonials": {
+    "badge": "Testemunhos",
+    "title1": "Experiências",
+    "title2": "de Clientes",
+    "description": "Histórias reais de aventureiros que experienciaram a diferença Okwambi"
+  },
+  "location": {
+    "badge": "Encontre-nos",
+    "title1": "Visite-nos em",
+    "title2": "Mussulo",
+    "description": "Localizado na deslumbrante Península de Mussulo, onde a sua aventura começa",
+    "map": "Pré-visualização do Mapa",
+    "mapLocation": "Península de Mussulo, Luanda, Angola",
+    "address": {
+      "title": "Morada",
+      "line1": "Península de Mussulo",
+      "line2": "Luanda, Angola"
+    },
+    "phone": {
+      "title": "Telefone",
+      "number": "+244 923 456 789",
+      "availability": "Disponível 24/7"
+    },
+    "email": {
+      "title": "Email",
+      "address": "info@okwambi.ao",
+      "response": "Resposta dentro de 24 horas"
+    },
+    "hours": {
+      "title": "Horário",
+      "days": "Segunda - Domingo",
+      "time": "8h - 18h"
     }
   },
   "contact": {
@@ -225,12 +307,6 @@
       "messageMin": "Mensagem deve ter pelo menos 10 caracteres",
       "messageMax": "Mensagem muito longa"
     }
-  },
-  "location": {
-    "subtitle": "Encontre-nos",
-    "title": "Visite-nos em Mussulo",
-    "description": "Localizado na deslumbrante Ilha de Mussulo, Luanda, Angola",
-    "cta": "Obter Direções"
   },
   "footer": {
     "description": "Experiências de aventura premium na Península de Mussulo",
