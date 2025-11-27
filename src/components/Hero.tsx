@@ -15,7 +15,7 @@ const Hero = () => {
           Okwambi Rentals
         </h1>
         <p className="text-xl md:text-2xl mb-8 max-w-2xl mx-auto text-white/90 animate-in fade-in slide-in-from-bottom-4 duration-1000 delay-150">
-          Adventure awaits! Rent ATVs, UTVs & Jet Skis at Mussulo
+          Be Fearless. Conquer Land & Sea at Mussulo
         </p>
         <div className="flex gap-4 justify-center animate-in fade-in slide-in-from-bottom-4 duration-1000 delay-300">
           <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground">
