@@ -2,20 +2,22 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Mail, Phone, MapPin, Send } from "lucide-react";
+import { Send } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { z } from "zod";
-
-const contactSchema = z.object({
-  name: z.string().trim().min(2, "Name must be at least 2 characters").max(100, "Name is too long"),
-  email: z.string().trim().email("Invalid email address").max(255, "Email is too long"),
-  subject: z.string().trim().min(3, "Subject must be at least 3 characters").max(200, "Subject is too long"),
-  message: z.string().trim().min(10, "Message must be at least 10 characters").max(1000, "Message is too long")
-});
+import { useTranslation } from 'react-i18next';
 
 const Contact = () => {
+  const { t } = useTranslation();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
+  
+  const contactSchema = z.object({
+    name: z.string().trim().min(2, t('contact.validation.nameMin')).max(100, t('contact.validation.nameMax')),
+    email: z.string().trim().email(t('contact.validation.emailInvalid')).max(255, t('contact.validation.emailMax')),
+    subject: z.string().trim().min(3, t('contact.validation.subjectMin')).max(200, t('contact.validation.subjectMax')),
+    message: z.string().trim().min(10, t('contact.validation.messageMin')).max(1000, t('contact.validation.messageMax'))
+  });
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -33,22 +35,22 @@ const Contact = () => {
       contactSchema.parse(data);
 
       toast({
-        title: "Message Sent",
-        description: "We'll get back to you within 24 hours."
+        title: t('contact.toast.success'),
+        description: t('contact.toast.successDesc')
       });
 
       e.currentTarget.reset();
     } catch (error) {
       if (error instanceof z.ZodError) {
         toast({
-          title: "Validation Error",
+          title: t('contact.toast.error'),
           description: error.errors[0].message,
           variant: "destructive"
         });
       } else {
         toast({
-          title: "Error",
-          description: "Something went wrong. Please try again.",
+          title: t('contact.toast.error'),
+          description: t('contact.toast.errorDesc'),
           variant: "destructive"
         });
       }
@@ -67,16 +69,16 @@ const Contact = () => {
         {/* Section Header */}
         <div className="max-w-3xl mx-auto text-center mb-20">
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-accent/5 border border-accent/10 rounded-full mb-6">
-            <span className="text-accent text-sm font-semibold tracking-widest uppercase">Get In Touch</span>
+            <span className="text-accent text-sm font-semibold tracking-widest uppercase">{t('contact.badge')}</span>
           </div>
           
           <h2 className="font-display text-5xl md:text-6xl lg:text-7xl font-bold mb-6 text-foreground leading-tight">
-            Start Your
-            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-primary via-accent to-accent-glow">Adventure</span>
+            {t('contact.title1')}
+            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-primary via-accent to-accent-glow">{t('contact.title2')}</span>
           </h2>
           
           <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
-            Ready to experience the ultimate adventure? Reach out and let's make it happen.
+            {t('contact.description')}
           </p>
         </div>
 
@@ -86,12 +88,12 @@ const Contact = () => {
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
                 <label htmlFor="name" className="block text-sm font-semibold text-foreground mb-2">
-                  Name
+                  {t('contact.form.name')}
                 </label>
                 <Input
                   id="name"
                   name="name"
-                  placeholder="Your name"
+                  placeholder={t('contact.form.namePlaceholder')}
                   required
                   maxLength={100}
                   className="bg-background/50"
@@ -100,13 +102,13 @@ const Contact = () => {
 
               <div>
                 <label htmlFor="email" className="block text-sm font-semibold text-foreground mb-2">
-                  Email
+                  {t('contact.form.email')}
                 </label>
                 <Input
                   id="email"
                   name="email"
                   type="email"
-                  placeholder="your.email@example.com"
+                  placeholder={t('contact.form.emailPlaceholder')}
                   required
                   maxLength={255}
                   className="bg-background/50"
@@ -115,12 +117,12 @@ const Contact = () => {
 
               <div>
                 <label htmlFor="subject" className="block text-sm font-semibold text-foreground mb-2">
-                  Subject
+                  {t('contact.form.subject')}
                 </label>
                 <Input
                   id="subject"
                   name="subject"
-                  placeholder="How can we help?"
+                  placeholder={t('contact.form.subjectPlaceholder')}
                   required
                   maxLength={200}
                   className="bg-background/50"
@@ -129,12 +131,12 @@ const Contact = () => {
 
               <div>
                 <label htmlFor="message" className="block text-sm font-semibold text-foreground mb-2">
-                  Message
+                  {t('contact.form.message')}
                 </label>
                 <Textarea
                   id="message"
                   name="message"
-                  placeholder="Tell us about your adventure plans..."
+                  placeholder={t('contact.form.messagePlaceholder')}
                   required
                   maxLength={1000}
                   rows={5}
@@ -147,7 +149,7 @@ const Contact = () => {
                 disabled={isSubmitting}
                 className="w-full bg-primary hover:bg-primary-light text-primary-foreground font-semibold tracking-wide shadow-premium hover:shadow-luxury transition-all group"
               >
-                {isSubmitting ? "SENDING..." : "SEND MESSAGE"}
+                {isSubmitting ? t('contact.form.sending') : t('contact.form.submit')}
                 <Send className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" strokeWidth={2} />
               </Button>
             </form>

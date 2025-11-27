@@ -1,7 +1,10 @@
 import { Facebook, Instagram, Mail, MapPin, Phone } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useTranslation } from 'react-i18next';
 
 const Footer = () => {
+  const { t } = useTranslation();
+  
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
@@ -22,7 +25,7 @@ const Footer = () => {
             <div className="mb-6">
               <span className="font-display text-2xl font-bold tracking-tight">OKWAMBI</span>
               <p className="text-sm text-primary-foreground/60 mt-2 font-light">
-                Premium adventure experiences in Mussulo Peninsula
+                {t('footer.description')}
               </p>
             </div>
             
@@ -51,14 +54,14 @@ const Footer = () => {
 
           {/* Quick Links */}
           <div>
-            <h3 className="font-display text-sm font-bold tracking-wider uppercase mb-4">Navigate</h3>
+            <h3 className="font-display text-sm font-bold tracking-wider uppercase mb-4">{t('footer.quickLinks')}</h3>
             <ul className="space-y-3">
               <li>
                 <button
                   onClick={() => scrollToSection('about')}
                   className="text-primary-foreground/70 hover:text-primary-foreground transition-colors text-sm font-light"
                 >
-                  About
+                  {t('footer.links.about')}
                 </button>
               </li>
               <li>
@@ -66,7 +69,7 @@ const Footer = () => {
                   onClick={() => scrollToSection('fleet')}
                   className="text-primary-foreground/70 hover:text-primary-foreground transition-colors text-sm font-light"
                 >
-                  Fleet
+                  {t('footer.links.fleet')}
                 </button>
               </li>
               <li>
@@ -74,7 +77,7 @@ const Footer = () => {
                   onClick={() => scrollToSection('faq')}
                   className="text-primary-foreground/70 hover:text-primary-foreground transition-colors text-sm font-light"
                 >
-                  FAQ
+                  {t('footer.links.faq')}
                 </button>
               </li>
               <li>
@@ -82,7 +85,7 @@ const Footer = () => {
                   onClick={() => scrollToSection('contact')}
                   className="text-primary-foreground/70 hover:text-primary-foreground transition-colors text-sm font-light"
                 >
-                  Contact
+                  {t('footer.links.contact')}
                 </button>
               </li>
             </ul>
@@ -90,14 +93,14 @@ const Footer = () => {
 
           {/* Legal */}
           <div>
-            <h3 className="font-display text-sm font-bold tracking-wider uppercase mb-4">Legal</h3>
+            <h3 className="font-display text-sm font-bold tracking-wider uppercase mb-4">{t('footer.legal')}</h3>
             <ul className="space-y-3">
               <li>
                 <Link
                   to="/terms"
                   className="text-primary-foreground/70 hover:text-primary-foreground transition-colors text-sm font-light"
                 >
-                  Terms of Service
+                  {t('footer.terms')}
                 </Link>
               </li>
               <li>
@@ -105,7 +108,7 @@ const Footer = () => {
                   to="/privacy"
                   className="text-primary-foreground/70 hover:text-primary-foreground transition-colors text-sm font-light"
                 >
-                  Privacy Policy
+                  {t('footer.privacy')}
                 </Link>
               </li>
             </ul>
@@ -113,7 +116,7 @@ const Footer = () => {
 
           {/* Contact */}
           <div>
-            <h3 className="font-display text-sm font-bold tracking-wider uppercase mb-4">Contact</h3>
+            <h3 className="font-display text-sm font-bold tracking-wider uppercase mb-4">{t('footer.contact')}</h3>
             <ul className="space-y-3">
               <li className="flex items-start gap-3 text-sm">
                 <MapPin className="w-4 h-4 text-accent flex-shrink-0 mt-0.5" strokeWidth={1.5} />
@@ -135,10 +138,10 @@ const Footer = () => {
         <div className="pt-8 border-t border-primary-foreground/10">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <p className="text-sm text-primary-foreground/60 font-light">
-              &copy; {new Date().getFullYear()} Okwambi Rentals. All rights reserved.
+              &copy; {new Date().getFullYear()} Okwambi Rentals. {t('footer.rights')}
             </p>
             <p className="text-sm text-primary-foreground/60 font-light">
-              Crafted with excellence in Angola
+              {t('footer.madeIn')}
             </p>
           </div>
         </div>

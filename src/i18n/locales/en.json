@@ -84,30 +84,36 @@
     }
   },
   "requirements": {
-    "subtitle": "Before You Start",
-    "title": "Quick Requirements",
-    "age": {
-      "title": "Age & ID",
+    "badge": "Before You Start",
+    "title1": "Quick",
+    "title2": "Requirements",
+    "description": "What you need to get started",
+    "validId": {
+      "title": "Valid ID",
       "items": [
-        "16+ years with valid ID",
-        "Driver's license required for ATVs/UTVs",
-        "Parental consent if under 18"
+        "16+ years old",
+        "Driver's license or government ID"
       ]
     },
-    "safety": {
-      "title": "Safety First",
+    "deposit": {
+      "title": "Security Deposit",
       "items": [
-        "Helmet and life jacket provided",
-        "Safety briefing mandatory",
-        "Weather conditions checked"
+        "Refundable deposit",
+        "Returned within 24 hours"
       ]
     },
     "booking": {
       "title": "Booking",
       "items": [
-        "Book online or on-site",
-        "Refundable deposit required",
-        "24h cancellation policy"
+        "Free cancellation up to 24h",
+        "Flexible durations"
+      ]
+    },
+    "safety": {
+      "title": "Safety First",
+      "items": [
+        "Full safety briefing",
+        "Premium equipment included"
       ]
     }
   },
@@ -187,22 +193,37 @@
     }
   },
   "contact": {
-    "subtitle": "Get In Touch",
-    "title": "Ready to Start Your Adventure?",
-    "description": "Have questions or want to make a booking? Reach out and we'll get back to you soon!",
+    "badge": "Get In Touch",
+    "title1": "Start Your",
+    "title2": "Adventure",
+    "description": "Ready to experience the ultimate adventure? Reach out and let's make it happen.",
     "form": {
       "name": "Name",
+      "namePlaceholder": "Your name",
       "email": "Email",
+      "emailPlaceholder": "your.email@example.com",
       "subject": "Subject",
+      "subjectPlaceholder": "How can we help?",
       "message": "Message",
-      "submit": "Send Message",
-      "sending": "Sending..."
+      "messagePlaceholder": "Tell us about your adventure plans...",
+      "submit": "SEND MESSAGE",
+      "sending": "SENDING..."
     },
     "toast": {
-      "success": "Success!",
-      "successDesc": "Your message has been sent successfully.",
+      "success": "Message Sent",
+      "successDesc": "We'll get back to you within 24 hours.",
       "error": "Error",
-      "errorDesc": "There was an error sending your message. Please try again."
+      "errorDesc": "Something went wrong. Please try again."
+    },
+    "validation": {
+      "nameMin": "Name must be at least 2 characters",
+      "nameMax": "Name is too long",
+      "emailInvalid": "Invalid email address",
+      "emailMax": "Email is too long",
+      "subjectMin": "Subject must be at least 3 characters",
+      "subjectMax": "Subject is too long",
+      "messageMin": "Message must be at least 10 characters",
+      "messageMax": "Message is too long"
     }
   },
   "location": {
@@ -212,22 +233,20 @@
     "cta": "Get Directions"
   },
   "footer": {
-    "description": "Experience the thrill of premium adventure in Mussulo with our top-tier jet skis, ATVs, and UTVs.",
-    "quickLinks": "Quick Links",
+    "description": "Premium adventure experiences in Mussulo Peninsula",
+    "quickLinks": "Navigate",
     "links": {
-      "home": "Home",
-      "about": "About Us",
+      "about": "About",
       "fleet": "Fleet",
       "faq": "FAQ",
       "contact": "Contact"
     },
     "contact": "Contact",
-    "hours": "Opening Hours",
-    "hoursValue": "Daily: 8AM - 6PM",
     "legal": "Legal",
     "terms": "Terms of Service",
     "privacy": "Privacy Policy",
-    "rights": "All rights reserved."
+    "rights": "All rights reserved.",
+    "madeIn": "Crafted with excellence in Angola"
   },
   "whatsapp": {
     "chat": "Chat with us"
