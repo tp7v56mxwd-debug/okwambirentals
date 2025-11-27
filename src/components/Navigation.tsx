@@ -26,8 +26,8 @@ const Navigation = () => {
   };
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-      isScrolled 
+    <nav className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-500 ${
+      isScrolled || isOpen
         ? 'bg-background/95 backdrop-blur-xl shadow-luxury border-b border-border/50' 
         : 'bg-transparent'
     }`}>
@@ -93,7 +93,7 @@ const Navigation = () => {
 
         {/* Mobile Menu */}
         {isOpen && (
-          <div className="lg:hidden py-6 space-y-2 animate-in fade-in slide-in-from-top-2 duration-200 border-t border-border/50">
+          <div className="lg:hidden py-6 space-y-2 animate-in fade-in slide-in-from-top-2 duration-200 border-t border-border/50 bg-background/95 backdrop-blur-xl">
             <button 
               onClick={() => scrollToSection('hero')} 
               className="block w-full text-left py-3 px-4 text-sm font-semibold text-foreground/70 hover:text-foreground hover:bg-muted/50 rounded-lg transition-all tracking-wide"
