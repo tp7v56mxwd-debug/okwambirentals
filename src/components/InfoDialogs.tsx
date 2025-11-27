@@ -24,6 +24,11 @@ export const InfoDialogs = () => {
   const { t } = useTranslation();
   const [openDialog, setOpenDialog] = useState<DialogType>(null);
 
+  const handleDialogOpen = (type: DialogType) => {
+    console.log("Opening dialog:", type);
+    setOpenDialog(type);
+  };
+
   return (
     <>
       <DropdownMenu>
@@ -41,24 +46,24 @@ export const InfoDialogs = () => {
         </DropdownMenuTrigger>
         <DropdownMenuContent 
           align="end" 
-          className="w-64 bg-background/98 backdrop-blur-2xl border border-border/30 shadow-[0_8px_32px_rgba(0,0,0,0.12)] rounded-xl p-2 z-[150]"
+          className="w-64 bg-background border border-border shadow-lg rounded-xl p-2 z-[150]"
         >
           <DropdownMenuItem 
-            onClick={() => setOpenDialog("faq")} 
+            onClick={() => handleDialogOpen("faq")} 
             className="cursor-pointer rounded-lg py-3 px-4 text-sm font-medium transition-all hover:bg-primary/10 hover:text-primary focus:bg-primary/10 focus:text-primary"
           >
             <HelpCircle className="w-4 h-4 mr-3" />
             <span>{t('nav.faq')}</span>
           </DropdownMenuItem>
           <DropdownMenuItem 
-            onClick={() => setOpenDialog("requirements")} 
+            onClick={() => handleDialogOpen("requirements")} 
             className="cursor-pointer rounded-lg py-3 px-4 text-sm font-medium transition-all hover:bg-primary/10 hover:text-primary focus:bg-primary/10 focus:text-primary"
           >
             <FileCheck className="w-4 h-4 mr-3" />
             <span>{t('nav.requirements')}</span>
           </DropdownMenuItem>
           <DropdownMenuItem 
-            onClick={() => setOpenDialog("safety")} 
+            onClick={() => handleDialogOpen("safety")} 
             className="cursor-pointer rounded-lg py-3 px-4 text-sm font-medium transition-all hover:bg-primary/10 hover:text-primary focus:bg-primary/10 focus:text-primary"
           >
             <Shield className="w-4 h-4 mr-3" />
@@ -68,30 +73,39 @@ export const InfoDialogs = () => {
       </DropdownMenu>
 
       {/* FAQ Dialog */}
-      <Dialog open={openDialog === "faq"} onOpenChange={(open) => !open && setOpenDialog(null)}>
+      <Dialog open={openDialog === "faq"} onOpenChange={(open) => {
+        console.log("FAQ Dialog change:", open);
+        if (!open) setOpenDialog(null);
+      }}>
         <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto bg-background z-[200]">
           <DialogHeader>
-            <DialogTitle className="sr-only">{t('nav.faq')}</DialogTitle>
+            <DialogTitle>{t('nav.faq')}</DialogTitle>
           </DialogHeader>
           <FAQ />
         </DialogContent>
       </Dialog>
 
       {/* Requirements Dialog */}
-      <Dialog open={openDialog === "requirements"} onOpenChange={(open) => !open && setOpenDialog(null)}>
+      <Dialog open={openDialog === "requirements"} onOpenChange={(open) => {
+        console.log("Requirements Dialog change:", open);
+        if (!open) setOpenDialog(null);
+      }}>
         <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto bg-background z-[200]">
           <DialogHeader>
-            <DialogTitle className="sr-only">{t('nav.requirements')}</DialogTitle>
+            <DialogTitle>{t('nav.requirements')}</DialogTitle>
           </DialogHeader>
           <Requirements />
         </DialogContent>
       </Dialog>
 
       {/* Safety Dialog */}
-      <Dialog open={openDialog === "safety"} onOpenChange={(open) => !open && setOpenDialog(null)}>
+      <Dialog open={openDialog === "safety"} onOpenChange={(open) => {
+        console.log("Safety Dialog change:", open);
+        if (!open) setOpenDialog(null);
+      }}>
         <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto bg-background z-[200]">
           <DialogHeader>
-            <DialogTitle className="sr-only">{t('nav.safety')}</DialogTitle>
+            <DialogTitle>{t('nav.safety')}</DialogTitle>
           </DialogHeader>
           <SafetyPolicies />
         </DialogContent>
@@ -105,6 +119,7 @@ export const MobileInfoDialogs = ({ onClose }: { onClose: () => void }) => {
   const [openDialog, setOpenDialog] = useState<DialogType>(null);
 
   const handleOpenDialog = (type: DialogType) => {
+    console.log("Mobile opening dialog:", type);
     setOpenDialog(type);
     onClose();
   };
@@ -142,28 +157,37 @@ export const MobileInfoDialogs = ({ onClose }: { onClose: () => void }) => {
       </div>
 
       {/* Dialogs */}
-      <Dialog open={openDialog === "faq"} onOpenChange={(open) => !open && setOpenDialog(null)}>
+      <Dialog open={openDialog === "faq"} onOpenChange={(open) => {
+        console.log("Mobile FAQ Dialog change:", open);
+        if (!open) setOpenDialog(null);
+      }}>
         <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto bg-background z-[200]">
           <DialogHeader>
-            <DialogTitle className="sr-only">{t('nav.faq')}</DialogTitle>
+            <DialogTitle>{t('nav.faq')}</DialogTitle>
           </DialogHeader>
           <FAQ />
         </DialogContent>
       </Dialog>
 
-      <Dialog open={openDialog === "requirements"} onOpenChange={(open) => !open && setOpenDialog(null)}>
+      <Dialog open={openDialog === "requirements"} onOpenChange={(open) => {
+        console.log("Mobile Requirements Dialog change:", open);
+        if (!open) setOpenDialog(null);
+      }}>
         <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto bg-background z-[200]">
           <DialogHeader>
-            <DialogTitle className="sr-only">{t('nav.requirements')}</DialogTitle>
+            <DialogTitle>{t('nav.requirements')}</DialogTitle>
           </DialogHeader>
           <Requirements />
         </DialogContent>
       </Dialog>
 
-      <Dialog open={openDialog === "safety"} onOpenChange={(open) => !open && setOpenDialog(null)}>
+      <Dialog open={openDialog === "safety"} onOpenChange={(open) => {
+        console.log("Mobile Safety Dialog change:", open);
+        if (!open) setOpenDialog(null);
+      }}>
         <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto bg-background z-[200]">
           <DialogHeader>
-            <DialogTitle className="sr-only">{t('nav.safety')}</DialogTitle>
+            <DialogTitle>{t('nav.safety')}</DialogTitle>
           </DialogHeader>
           <SafetyPolicies />
         </DialogContent>
