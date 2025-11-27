@@ -3,7 +3,7 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { BookingDialog } from "./BookingDialog";
-import { Users, Gauge, Shield } from "lucide-react";
+import { Users, Gauge, Shield, ChevronDown } from "lucide-react";
 import { useTranslation } from 'react-i18next';
 import { useIntersectionObserver } from '@/hooks/useIntersectionObserver';
 
@@ -84,11 +84,18 @@ const Properties = () => {
             {fleet.map((vehicle, index) => (
               <Card 
                 key={index}
-                className="group relative overflow-hidden bg-card/50 backdrop-blur-sm border-border/50 hover:border-primary/30 transition-all duration-500 hover:shadow-luxury flex flex-col"
+                className="group relative overflow-hidden bg-gradient-to-br from-card/60 to-card/40 backdrop-blur-md border border-border/40 hover:border-primary/50 transition-all duration-500 hover:shadow-[0_20px_60px_rgba(0,0,0,0.15)] hover:-translate-y-2 flex flex-col rounded-2xl"
               >
+                {/* Animated gradient border effect */}
+                <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-primary/0 via-primary/5 to-accent/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                
+                {/* Shine effect on hover */}
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700">
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
+                </div>
                 {/* Content */}
-                <div className="p-8 flex-1 flex flex-col">
-                  <Badge className="w-fit mb-4 bg-primary/90 backdrop-blur-sm border-primary-foreground/20 text-primary-foreground font-bold tracking-wider">
+                <div className="relative z-10 p-8 flex-1 flex flex-col">
+                  <Badge className="w-fit mb-4 bg-gradient-to-r from-primary to-primary-light backdrop-blur-sm border border-primary-foreground/10 text-primary-foreground font-bold tracking-wider shadow-md">
                     {vehicle.category}
                   </Badge>
                   <h3 className="font-display text-3xl font-bold mb-4 text-foreground">
@@ -142,9 +149,10 @@ const Properties = () => {
                           setSelectedVehicle(vehicle);
                           setBookingOpen(true);
                         }}
-                        className="font-bold text-sm px-6"
+                        className="font-bold text-sm px-8 py-6 bg-gradient-to-r from-primary to-primary-light hover:from-primary-light hover:to-primary shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5 hover:scale-105 rounded-xl group"
                       >
-                        {t('fleet.bookNow')}
+                        <span>{t('fleet.bookNow')}</span>
+                        <ChevronDown className="ml-1 w-4 h-4 rotate-[-90deg] group-hover:translate-x-1 transition-transform" />
                       </Button>
                     </div>
                   </div>

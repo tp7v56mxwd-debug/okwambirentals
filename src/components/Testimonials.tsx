@@ -65,12 +65,20 @@ const Testimonials = () => {
           {testimonials.map((testimonial, index) => (
             <Card
               key={index}
-              className="bg-card/50 backdrop-blur-sm border border-border/50 hover:border-primary/20 hover:shadow-luxury transition-all duration-500 hover:-translate-y-2"
+              className="group relative bg-gradient-to-br from-card/70 to-card/40 backdrop-blur-lg border border-border/40 hover:border-primary/40 hover:shadow-[0_20px_60px_rgba(0,0,0,0.15)] transition-all duration-500 hover:-translate-y-3 rounded-2xl overflow-hidden"
+              style={{ animationDelay: `${index * 100}ms` }}
             >
-              <CardContent className="p-6 relative">
+              {/* Hover glow effect */}
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/0 via-primary/5 to-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              
+              {/* Shine effect */}
+              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700">
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
+              </div>
+              <CardContent className="relative z-10 p-7">
                 {/* Quote Icon */}
-                <div className="absolute top-4 right-4 w-8 h-8 rounded-full bg-accent/10 flex items-center justify-center">
-                  <Quote className="w-4 h-4 text-accent" strokeWidth={2} />
+                <div className="absolute top-5 right-5 w-10 h-10 rounded-full bg-gradient-to-br from-accent/20 to-accent/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                  <Quote className="w-5 h-5 text-accent" strokeWidth={2.5} />
                 </div>
                 
                 {/* Rating */}
