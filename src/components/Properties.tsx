@@ -56,7 +56,7 @@ const Properties = () => {
               CHOOSE YOUR ADVENTURE
             </span>
           </div>
-          <h2 className="text-5xl md:text-7xl font-black mb-6 bg-gradient-to-r from-primary via-primary-glow to-accent bg-clip-text text-transparent leading-tight">
+          <h2 className="text-5xl md:text-7xl font-black mb-6 text-foreground leading-tight">
             Our Fleet
           </h2>
           <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto font-medium">
@@ -98,7 +98,7 @@ const Properties = () => {
                   <div className="bg-gradient-to-br from-primary/10 to-accent/10 rounded-2xl p-6 mb-6 border border-primary/20 relative overflow-hidden group-hover:border-primary/40 transition-colors duration-300">
                     <div className="absolute top-0 right-0 w-32 h-32 bg-accent/10 rounded-full blur-3xl" />
                     <div className="relative">
-                      <div className="text-4xl font-black bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent mb-2">{vehicle.price}</div>
+                      <div className="text-4xl font-black text-primary mb-2">{vehicle.price}</div>
                       <div className="text-sm text-muted-foreground font-bold uppercase tracking-wide">Per 30 minutes</div>
                     </div>
                   </div>

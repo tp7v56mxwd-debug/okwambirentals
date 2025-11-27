@@ -14,7 +14,7 @@ const About = () => {
               THE WAMBI EXPERIENCE
             </span>
           </div>
-          <h2 className="text-5xl md:text-7xl font-black mb-6 bg-gradient-to-r from-primary via-primary-glow to-accent bg-clip-text text-transparent leading-tight">
+          <h2 className="text-5xl md:text-7xl font-black mb-6 text-foreground leading-tight">
             Adventure on Land & Sea
           </h2>
           <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto font-medium">

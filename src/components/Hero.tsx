@@ -26,7 +26,7 @@ const Hero = () => {
         
         <h1 className="text-6xl md:text-8xl lg:text-9xl font-black mb-8 animate-in fade-in slide-in-from-bottom-4 duration-1000 delay-100 leading-[0.9] tracking-tight">
           <span className="block text-white">Okwambi</span>
-          <span className="block bg-gradient-to-r from-accent via-accent-glow to-accent bg-clip-text text-transparent">Rentals</span>
+          <span className="block text-white">Rentals</span>
         </h1>
         
         <p className="text-2xl md:text-4xl lg:text-5xl mb-4 font-black text-white drop-shadow-2xl animate-in fade-in slide-in-from-bottom-4 duration-1000 delay-200 tracking-tight">
