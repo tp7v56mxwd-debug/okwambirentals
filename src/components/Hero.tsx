@@ -31,12 +31,6 @@ const Hero = () => {
       }} />
       
       <div className="relative z-10 container mx-auto px-6 lg:px-8 text-center">
-        {/* Premium Badge */}
-        <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-md border border-white/20 rounded-full mb-8 animate-in fade-in duration-1000">
-          <span className="w-2 h-2 bg-accent rounded-full animate-pulse" />
-          <span className="text-white/90 text-sm font-semibold tracking-wider uppercase">Premium Adventure Rentals</span>
-        </div>
-        
         {/* Main Headline */}
         <h1 className="font-display text-6xl md:text-7xl lg:text-8xl font-bold mb-6 animate-in fade-in slide-in-from-bottom-4 duration-1000 leading-[1.1] tracking-tight">
           <span className="block text-white">Experience</span>
