@@ -18,13 +18,15 @@ const Hero = () => {
 
   return (
     <section id="hero" className="relative h-screen flex items-center justify-center overflow-hidden">
-      {/* Background Image with Parallax Effect */}
+      {/* Background Image with Parallax Effect and Lazy Loading */}
       <div 
         className="absolute inset-0 bg-cover bg-center"
         style={{ 
           backgroundImage: `url(${heroImage})`,
           transform: 'scale(1.1)',
         }}
+        role="img"
+        aria-label="Mussulo Beach panoramic view"
       />
       
       {/* Premium Gradient Overlay */}

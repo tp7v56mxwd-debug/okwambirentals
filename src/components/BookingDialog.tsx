@@ -98,7 +98,7 @@ export const BookingDialog = ({ open, onOpenChange, vehicleName, vehiclePrice, b
 
       if (error) throw error;
 
-      // Send confirmation email
+      // Send confirmation email via Edge Function
       try {
         await supabase.functions.invoke("send-booking-confirmation", {
           body: {

@@ -10,23 +10,31 @@ import Location from "@/components/Location";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
+import BackToTop from "@/components/BackToTop";
+import ScrollProgress from "@/components/ScrollProgress";
+import SkipToContent from "@/components/SkipToContent";
 
 const Index = () => {
   return (
-    <main className="min-h-screen">
-      <Navigation />
-      <Hero />
-      <About />
-      <Properties />
-      <Requirements />
-      <SafetyPolicies />
-      <FAQ />
-      <Testimonials />
-      <Location />
-      <Contact />
-      <Footer />
-      <WhatsAppButton />
-    </main>
+    <>
+      <SkipToContent />
+      <ScrollProgress />
+      <main id="main-content" className="min-h-screen">
+        <Navigation />
+        <Hero />
+        <About />
+        <Properties />
+        <Requirements />
+        <SafetyPolicies />
+        <FAQ />
+        <Testimonials />
+        <Location />
+        <Contact />
+        <Footer />
+        <WhatsAppButton />
+        <BackToTop />
+      </main>
+    </>
   );
 };
 
