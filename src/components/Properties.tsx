@@ -1,7 +1,11 @@
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Users, Gauge } from "lucide-react";
+import { BookingDialog } from "./BookingDialog";
 
 const Properties = () => {
+  const [bookingOpen, setBookingOpen] = useState(false);
+  const [selectedVehicle, setSelectedVehicle] = useState({ name: "", price: "" });
   const fleet = [
     {
       name: "Jet Ski",
@@ -108,7 +112,13 @@ const Properties = () => {
                     ))}
                   </ul>
 
-                  <Button className="w-full text-base py-7 font-bold shadow-soft hover:shadow-accent transition-all duration-300 bg-gradient-to-r from-primary to-primary-glow hover:from-primary-glow hover:to-primary">
+                  <Button 
+                    className="w-full text-base py-7 font-bold shadow-soft hover:shadow-accent transition-all duration-300 bg-gradient-to-r from-primary to-primary-glow hover:from-primary-glow hover:to-primary"
+                    onClick={() => {
+                      setSelectedVehicle({ name: vehicle.name, price: vehicle.price });
+                      setBookingOpen(true);
+                    }}
+                  >
                     Book Your Adventure
                   </Button>
                 </div>
@@ -117,6 +127,13 @@ const Properties = () => {
           ))}
         </div>
       </div>
+
+      <BookingDialog
+        open={bookingOpen}
+        onOpenChange={setBookingOpen}
+        vehicleName={selectedVehicle.name}
+        vehiclePrice={selectedVehicle.price}
+      />
     </section>
   );
 };
