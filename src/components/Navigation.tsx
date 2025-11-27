@@ -3,6 +3,7 @@ import { Menu, X, Waves } from "lucide-react";
 import { useState, useEffect } from "react";
 import { useTranslation } from 'react-i18next';
 import LanguageSwitcher from "./LanguageSwitcher";
+import { InfoDialogs, MobileInfoDialogs } from "./InfoDialogs";
 
 const Navigation = () => {
   const { t } = useTranslation();
@@ -15,7 +16,7 @@ const Navigation = () => {
       setIsScrolled(window.scrollY > 50);
       
       // Detect active section
-      const sections = ['hero', 'about', 'fleet', 'faq', 'contact'];
+      const sections = ['hero', 'about', 'fleet', 'contact'];
       const current = sections.find(section => {
         const element = document.getElementById(section);
         if (element) {
@@ -42,7 +43,6 @@ const Navigation = () => {
     { id: 'hero', label: t('nav.home') },
     { id: 'about', label: t('nav.about') },
     { id: 'fleet', label: t('nav.fleet') },
-    { id: 'faq', label: t('nav.faq') },
     { id: 'contact', label: t('nav.contact') },
   ];
 
@@ -100,6 +100,7 @@ const Navigation = () => {
                 }`} />
               </button>
             ))}
+            <InfoDialogs />
             <div className="ml-2 pl-2 border-l border-border/50">
               <LanguageSwitcher />
             </div>
@@ -142,6 +143,9 @@ const Navigation = () => {
                 <span className="absolute inset-0 bg-gradient-to-r from-primary/10 to-accent/10 translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-300" />
               </button>
             ))}
+            <div className="mt-4 pt-4 border-t border-border/30">
+              <MobileInfoDialogs onClose={() => setIsOpen(false)} />
+            </div>
             <div className="px-4 pt-4 mt-4 border-t border-border/30">
               <LanguageSwitcher />
             </div>
