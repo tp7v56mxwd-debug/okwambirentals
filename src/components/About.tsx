@@ -86,25 +86,6 @@ const About = () => {
             </div>
           ))}
         </div>
-        
-        {/* Bottom Stats */}
-        <div className="mt-24 grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto">
-          {[
-            { value: "500+", label: "Adventures" },
-            { value: "98%", label: "Satisfaction" },
-            { value: "15+", label: "Vehicles" },
-            { value: "24/7", label: "Support" }
-          ].map((stat, index) => (
-            <div key={index} className="text-center">
-              <div className="font-display text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-primary to-accent mb-2">
-                {stat.value}
-              </div>
-              <div className="text-sm text-muted-foreground font-semibold tracking-wider uppercase">
-                {stat.label}
-              </div>
-            </div>
-          ))}
-        </div>
       </div>
     </section>
   );
