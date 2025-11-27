@@ -10,11 +10,11 @@ const FAQ = () => {
   const faqs = [
     {
       question: "What documents do I need to rent a vehicle?",
-      answer: "You'll need a valid driver's license, a valid ID or passport, and a credit card for the security deposit."
+      answer: "You'll need a valid driver's license or government-issued ID/passport, and a credit card for the security deposit. If you're 16-17 years old or don't have a driver's license, a parental/guardian consent form is required."
     },
     {
       question: "What is the minimum age to rent?",
-      answer: "The minimum age is 16 years old with a valid ID or driver's license."
+      answer: "The minimum age is 16 years old. However, if you're 16-17 or don't have a driver's license, you must provide a signed parental/guardian consent form."
     },
     {
       question: "Can I cancel my booking?",

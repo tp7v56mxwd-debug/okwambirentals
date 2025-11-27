@@ -23,7 +23,8 @@ const Properties = () => {
       price: "30.000 Kz",
       basePricePerHalfHour: 30000,
       safetyRules: [
-        "Must be 16+ years old with valid ID",
+        "Must be 16+ years old with valid ID or driver's license",
+        "Parental consent required for ages 16-17 or without driver's license",
         "Life jacket must be worn at all times",
         "Stay within designated water zones",
         "No reckless driving or dangerous maneuvers",
@@ -48,7 +49,8 @@ const Properties = () => {
       price: "35.000 Kz",
       basePricePerHalfHour: 35000,
       safetyRules: [
-        "Must be 16+ years old with valid driver's license",
+        "Must be 16+ years old with valid ID or driver's license",
+        "Parental consent required for ages 16-17 or without driver's license",
         "Helmet and protective gear mandatory at all times",
         "Follow designated beach and dune trails only",
         "No dangerous stunts or racing",
@@ -73,7 +75,8 @@ const Properties = () => {
       price: "45.000 Kz",
       basePricePerHalfHour: 45000,
       safetyRules: [
-        "Driver must be 16+ with valid driver's license",
+        "Driver must be 16+ with valid ID or driver's license",
+        "Parental consent required for ages 16-17 or without driver's license",
         "Maximum 4 passengers - seatbelts required",
         "Stay on approved off-road routes",
         "No alcohol before or during rental",
