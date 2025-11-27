@@ -57,10 +57,10 @@ const Properties = () => {
 
   return (
     <>
-      <section id="fleet" className="py-32 relative overflow-hidden bg-gradient-to-b from-background via-muted/10 to-background">
+      <section id="fleet" className="py-32 relative overflow-hidden bg-gradient-to-b from-background via-muted/20 to-background">
         {/* Elegant Background Elements */}
-        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-accent/5 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-primary/5 rounded-full blur-3xl" />
+        <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-accent/10 rounded-full blur-[120px] animate-pulse" style={{ animationDuration: '6s' }} />
+        <div className="absolute bottom-0 left-0 w-[800px] h-[800px] bg-primary/10 rounded-full blur-[120px] animate-pulse" style={{ animationDuration: '8s', animationDelay: '1s' }} />
         
         <div ref={ref} className={`container mx-auto px-6 lg:px-8 relative transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           {/* Section Header */}
@@ -80,25 +80,26 @@ const Properties = () => {
           </div>
 
           {/* Vehicle Cards */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
             {fleet.map((vehicle, index) => (
               <Card 
                 key={index}
-                className="group relative overflow-hidden bg-gradient-to-br from-card/60 to-card/40 backdrop-blur-md border border-border/40 hover:border-primary/50 transition-all duration-500 hover:shadow-[0_20px_60px_rgba(0,0,0,0.15)] hover:-translate-y-2 flex flex-col rounded-2xl"
+                className={`group relative overflow-hidden bg-gradient-to-br from-card/70 to-card/50 backdrop-blur-md border-2 border-border/40 hover:border-primary/60 transition-all duration-700 hover:shadow-[0_25px_70px_rgba(0,0,0,0.2)] flex flex-col rounded-3xl animate-in fade-in slide-in-from-bottom-6 ${isVisible ? 'opacity-100' : 'opacity-0'}`}
+                style={{ animationDelay: `${index * 150}ms`, animationDuration: '800ms' }}
               >
                 {/* Animated gradient border effect */}
-                <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-primary/0 via-primary/5 to-accent/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-primary/0 via-primary/10 to-accent/15 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
                 
-                {/* Shine effect on hover */}
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700">
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
+                {/* Enhanced shine effect on hover */}
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-1000">
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1500 ease-in-out" />
                 </div>
                 {/* Content */}
-                <div className="relative z-10 p-8 flex-1 flex flex-col">
-                  <Badge className="w-fit mb-4 bg-gradient-to-r from-primary to-primary-light backdrop-blur-sm border border-primary-foreground/10 text-primary-foreground font-bold tracking-wider shadow-md">
+                <div className="relative z-10 p-10 flex-1 flex flex-col">
+                  <Badge className="w-fit mb-5 bg-gradient-to-r from-primary via-primary-light to-accent backdrop-blur-sm border border-primary-foreground/10 text-primary-foreground font-bold tracking-wider shadow-lg text-xs px-4 py-1.5">
                     {vehicle.category}
                   </Badge>
-                  <h3 className="font-display text-3xl font-bold mb-4 text-foreground">
+                  <h3 className="font-display text-4xl font-bold mb-6 text-foreground group-hover:text-primary transition-colors duration-300">
                     {vehicle.name}
                   </h3>
 
@@ -136,25 +137,32 @@ const Properties = () => {
                     </div>
                   </div>
 
-                  {/* Price & CTA */}
+                  {/* Price & CTA - More Prominent */}
                   <div className="mt-auto">
-                    <div className="flex items-center justify-between pt-6 border-t border-border/50">
-                      <div>
-                        <div className="text-xs text-muted-foreground uppercase tracking-wider mb-1 font-semibold">{t('fleet.priceLabel')}</div>
-                        <div className="text-2xl font-black text-primary">{vehicle.price}</div>
-                        <div className="text-xs text-muted-foreground">{t('fleet.per30min')}</div>
+                    {/* Prominent Price Display */}
+                    <div className="bg-gradient-to-br from-primary/15 via-primary/10 to-accent/10 rounded-2xl p-6 mb-6 border-2 border-primary/20 group-hover:border-primary/40 transition-all duration-300 group-hover:shadow-[0_8px_30px_rgba(var(--primary),0.2)]">
+                      <div className="flex items-baseline justify-center gap-2 mb-2">
+                        <span className="text-sm text-muted-foreground uppercase tracking-wider font-bold">{t('fleet.priceLabel')}</span>
                       </div>
-                      <Button
-                        onClick={() => {
-                          setSelectedVehicle(vehicle);
-                          setBookingOpen(true);
-                        }}
-                        className="font-bold text-sm px-8 py-6 bg-gradient-to-r from-primary to-primary-light hover:from-primary-light hover:to-primary shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5 hover:scale-105 rounded-xl group"
-                      >
-                        <span>{t('fleet.bookNow')}</span>
-                        <ChevronDown className="ml-1 w-4 h-4 rotate-[-90deg] group-hover:translate-x-1 transition-transform" />
-                      </Button>
+                      <div className="text-center">
+                        <div className="text-5xl font-black text-primary mb-1 tracking-tight">{vehicle.price}</div>
+                        <div className="text-sm text-muted-foreground font-semibold">{t('fleet.per30min')}</div>
+                      </div>
                     </div>
+                    
+                    <Button
+                      onClick={() => {
+                        setSelectedVehicle(vehicle);
+                        setBookingOpen(true);
+                      }}
+                      className="w-full font-bold text-base px-8 py-7 bg-gradient-to-r from-primary via-primary-light to-accent hover:from-accent hover:via-primary-light hover:to-primary shadow-[0_8px_30px_rgba(var(--primary),0.4)] hover:shadow-[0_12px_40px_rgba(var(--primary),0.6)] transition-all duration-300 hover:scale-[1.02] rounded-xl group/btn relative overflow-hidden"
+                    >
+                      <span className="relative z-10 flex items-center justify-center gap-2">
+                        {t('fleet.bookNow')}
+                        <ChevronDown className="w-5 h-5 rotate-[-90deg] group-hover/btn:translate-x-1 transition-transform" />
+                      </span>
+                      <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 translate-x-[-100%] group-hover/btn:translate-x-[100%] transition-transform duration-1000" />
+                    </Button>
                   </div>
                 </div>
               </Card>
