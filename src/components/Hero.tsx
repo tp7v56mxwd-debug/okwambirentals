@@ -44,8 +44,8 @@ const Hero = () => {
       <div className="relative z-10 container mx-auto px-6 lg:px-8 text-center">
         {/* Main Headline */}
         <h1 className="font-display text-6xl md:text-7xl lg:text-8xl font-bold mb-6 animate-in fade-in slide-in-from-bottom-4 duration-1000 leading-[1.1] tracking-tight">
-          <span className="block text-white">Experience</span>
-          <span className="block text-transparent bg-clip-text bg-gradient-to-r from-white via-accent-glow to-accent">Mussulo</span>
+          <span className="block text-white drop-shadow-[0_4px_12px_rgba(0,0,0,0.9)]">Dare to be</span>
+          <span className="block text-transparent bg-clip-text bg-gradient-to-r from-accent via-accent-glow to-white drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)]">Fearless</span>
         </h1>
         
         {/* Subtitle */}
