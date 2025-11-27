@@ -98,6 +98,24 @@ export const BookingDialog = ({ open, onOpenChange, vehicleName, vehiclePrice, b
 
       if (error) throw error;
 
+      // Send confirmation email
+      try {
+        await supabase.functions.invoke("send-booking-confirmation", {
+          body: {
+            customerName: validated.customer_name,
+            customerEmail: validated.customer_email,
+            vehicleType: vehicleName,
+            bookingDate: format(validated.booking_date, "MMM dd, yyyy"),
+            bookingTime: validated.booking_time,
+            duration: validated.duration,
+            totalPrice: totalPrice,
+          },
+        });
+      } catch (emailError) {
+        console.error("Error sending confirmation email:", emailError);
+        // Don't fail the booking if email fails
+      }
+
       setShowConfirmation(true);
       toast({
         title: "Booking Confirmed!",
