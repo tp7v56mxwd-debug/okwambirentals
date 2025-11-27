@@ -1,55 +1,93 @@
 import { useState } from "react";
+import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Users, Gauge, Check } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
 import { BookingDialog } from "./BookingDialog";
+import { Users, Gauge, Waves, Calendar, Shield, Droplet, CheckCircle2 } from "lucide-react";
+import jetskiImg from "@/assets/jetski-premium.jpg";
+import atvImg from "@/assets/atv-premium.jpg";
+import utvImg from "@/assets/utv-premium.jpg";
 
 const Properties = () => {
   const [bookingOpen, setBookingOpen] = useState(false);
-  const [selectedVehicle, setSelectedVehicle] = useState({ name: "", price: "", basePrice: 0 });
+  const [selectedVehicle, setSelectedVehicle] = useState<any>(null);
   
   const fleet = [
     {
+      category: "WATER SPORTS",
       name: "Jet Ski",
-      category: "Water Adventure",
-      capacity: "1-2 Riders",
-      speed: "Up to 65 mph",
-      price: "45.000 Kz",
-      basePrice: 45000,
-      features: [
-        "Professional life jackets included",
-        "Ocean and coastline access",
-        "Safety briefing & training",
-        "Fuel included in rental"
-      ]
-    },
-    {
-      name: "ATV",
-      category: "Land Exploration",
-      capacity: "1 Rider",
-      speed: "Variable speeds",
+      image: jetskiImg,
+      capacity: "1-2 riders",
+      speed: "110 km/h",
+      features: ["Premium life jackets included", "Full fuel tank included", "Professional safety briefing", "GPS tracking enabled"],
       price: "30.000 Kz",
-      basePrice: 30000,
-      features: [
-        "Premium safety gear provided",
-        "Beach & dune exploration",
-        "Easy to ride for beginners",
-        "Guided route suggestions"
-      ]
+      basePricePerHalfHour: 30000,
+      safetyRules: [
+        "Must be 18+ years old with valid ID",
+        "Life jacket must be worn at all times",
+        "Stay within designated water zones",
+        "No reckless driving or dangerous maneuvers",
+        "Maximum 2 riders per jet ski"
+      ],
+      inclusions: [
+        "Premium quality life jackets",
+        "Full fuel for rental duration",
+        "Comprehensive safety instructions",
+        "GPS tracking device",
+        "Waterproof storage compartment"
+      ],
+      depositPolicy: "Refundable 50.000 Kz security deposit required. Returned within 24 hours after safe return of equipment. Deposit covers any damages or late returns."
     },
     {
-      name: "UTV",
-      category: "Family Experience",
-      capacity: "2-4 Passengers",
-      speed: "Off-road capable",
-      price: "50.000 Kz",
-      basePrice: 50000,
-      features: [
-        "Roll cage & safety harnesses",
-        "Perfect for groups & families",
-        "All-terrain capability",
-        "Comfortable seating"
-      ]
+      category: "LAND ADVENTURE", 
+      name: "ATV",
+      image: atvImg,
+      capacity: "1 rider",
+      speed: "80 km/h", 
+      features: ["Professional helmet included", "Full protective gear set", "Off-road terrain ready", "Expert guidance"],
+      price: "35.000 Kz",
+      basePricePerHalfHour: 35000,
+      safetyRules: [
+        "Must be 18+ years old with valid driver's license",
+        "Helmet and protective gear mandatory at all times",
+        "Follow designated beach and dune trails only",
+        "No dangerous stunts or racing",
+        "Single rider only - no passengers"
+      ],
+      inclusions: [
+        "Professional grade helmet",
+        "Elbow and knee pads",
+        "Full fuel for rental period",
+        "Expert terrain briefing",
+        "Emergency contact support"
+      ],
+      depositPolicy: "Refundable 60.000 Kz security deposit required. Covers equipment damage, late return, or reckless use. Refunded within 24 hours."
     },
+    {
+      category: "PREMIUM EXPERIENCE",
+      name: "UTV",
+      image: utvImg,
+      capacity: "2-4 passengers",
+      speed: "90 km/h",
+      features: ["Full roll cage protection", "Premium off-road tires", "Comfortable seating", "Group adventure ready"],
+      price: "45.000 Kz",
+      basePricePerHalfHour: 45000,
+      safetyRules: [
+        "Driver must be 21+ with 2+ years driving experience",
+        "Maximum 4 passengers - seatbelts required",
+        "Stay on approved off-road routes",
+        "No alcohol before or during rental",
+        "Follow speed limits in populated areas"
+      ],
+      inclusions: [
+        "Helmets for all passengers",
+        "Safety harnesses and seatbelts",
+        "Full fuel tank",
+        "Route map and safety zones guide",
+        "24/7 emergency support line"
+      ],
+      depositPolicy: "Refundable 80.000 Kz security deposit required. Covers vehicle damage, fuel, late fees, and violations. Full refund within 24 hours of safe return."
+    }
   ];
 
   return (
@@ -76,88 +114,87 @@ const Properties = () => {
             </p>
           </div>
 
-          {/* Fleet Grid */}
-          <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          {/* Vehicle Cards */}
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {fleet.map((vehicle, index) => (
-              <div
-                key={vehicle.name}
-                className="group relative"
+              <Card 
+                key={index}
+                className="group relative overflow-hidden bg-card/50 backdrop-blur-sm border-border/50 hover:border-primary/30 transition-all duration-500 hover:shadow-luxury flex flex-col"
               >
-                {/* Hover Glow Effect */}
-                <div className="absolute -inset-px bg-gradient-to-br from-primary/20 via-accent/20 to-primary/20 rounded-2xl blur opacity-0 group-hover:opacity-100 transition-all duration-500" />
-                
-                {/* Card */}
-                <div className="relative bg-card/50 backdrop-blur-sm rounded-2xl border border-border/50 hover:border-primary/20 transition-all duration-500 overflow-hidden hover:shadow-luxury">
-                  {/* Image Placeholder with Category Badge */}
-                  <div className="relative aspect-[4/3] bg-gradient-to-br from-primary/10 via-accent/5 to-primary/10 flex items-center justify-center overflow-hidden">
-                    <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent" />
-                    <span className="relative font-display text-6xl font-bold text-foreground/10 group-hover:text-foreground/20 transition-colors">
-                      {vehicle.name}
-                    </span>
-                    
-                    {/* Category Badge */}
-                    <div className="absolute top-4 left-4 px-3 py-1.5 bg-background/90 backdrop-blur-sm border border-border/50 rounded-full">
-                      <span className="text-xs font-semibold text-foreground tracking-wide">{vehicle.category}</span>
+                {/* Image Container */}
+                <div className="relative h-72 overflow-hidden">
+                  <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent z-10" />
+                  <img 
+                    src={vehicle.image} 
+                    alt={`${vehicle.name} - Premium rental at Mussulo Peninsula, Luanda, Angola`}
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                  />
+                  <Badge className="absolute top-4 left-4 z-20 bg-primary/90 backdrop-blur-sm border-primary-foreground/20 text-primary-foreground font-bold tracking-wider">
+                    {vehicle.category}
+                  </Badge>
+                </div>
+
+                {/* Content */}
+                <div className="p-8 flex-1 flex flex-col">
+                  <h3 className="font-display text-3xl font-bold mb-4 text-foreground">
+                    {vehicle.name}
+                  </h3>
+
+                  {/* Specs Grid */}
+                  <div className="grid grid-cols-2 gap-4 mb-6">
+                    <div className="flex items-center gap-2 text-sm">
+                      <Users className="w-4 h-4 text-primary" strokeWidth={1.5} />
+                      <span className="text-muted-foreground font-medium">{vehicle.capacity}</span>
+                    </div>
+                    <div className="flex items-center gap-2 text-sm">
+                      <Gauge className="w-4 h-4 text-primary" strokeWidth={1.5} />
+                      <span className="text-muted-foreground font-medium">{vehicle.speed}</span>
                     </div>
                   </div>
 
-                  {/* Content */}
-                  <div className="p-8">
-                    {/* Title */}
-                    <h3 className="font-display text-3xl font-bold text-foreground mb-2">
-                      {vehicle.name}
-                    </h3>
+                  {/* Key Features */}
+                  <div className="space-y-3 mb-6">
+                    <h4 className="text-xs font-bold text-muted-foreground uppercase tracking-wider flex items-center gap-2">
+                      <CheckCircle2 className="w-3.5 h-3.5 text-accent" />
+                      What's Included
+                    </h4>
+                    {vehicle.features.slice(0, 3).map((feature, idx) => (
+                      <div key={idx} className="flex items-start gap-2">
+                        <div className="w-1.5 h-1.5 rounded-full bg-accent flex-shrink-0 mt-2" />
+                        <span className="text-sm text-muted-foreground leading-relaxed">{feature}</span>
+                      </div>
+                    ))}
+                  </div>
 
-                    {/* Specs */}
-                    <div className="flex items-center gap-4 mb-6 text-sm text-muted-foreground">
-                      <div className="flex items-center gap-1.5">
-                        <Users className="w-4 h-4" strokeWidth={1.5} />
-                        <span>{vehicle.capacity}</span>
-                      </div>
-                      <div className="w-px h-4 bg-border" />
-                      <div className="flex items-center gap-1.5">
-                        <Gauge className="w-4 h-4" strokeWidth={1.5} />
-                        <span>{vehicle.speed}</span>
-                      </div>
+                  {/* Safety Badge */}
+                  <div className="bg-muted/30 rounded-xl p-3 mb-6 border border-border/30">
+                    <div className="flex items-center gap-2 text-xs">
+                      <Shield className="w-4 h-4 text-accent" />
+                      <span className="text-muted-foreground font-semibold">Full Safety Equipment & GPS Tracking Included</span>
                     </div>
+                  </div>
 
-                    {/* Features */}
-                    <ul className="space-y-3 mb-8">
-                      {vehicle.features.map((feature, idx) => (
-                        <li key={idx} className="flex items-start gap-2 text-sm text-muted-foreground">
-                          <Check className="w-4 h-4 text-accent flex-shrink-0 mt-0.5" strokeWidth={2} />
-                          <span>{feature}</span>
-                        </li>
-                      ))}
-                    </ul>
-
-                    {/* Price and CTA */}
-                    <div className="pt-6 border-t border-border/50">
-                      <div className="flex items-end justify-between mb-4">
-                        <div>
-                          <div className="text-xs text-muted-foreground font-medium tracking-wide uppercase mb-1">Starting from</div>
-                          <div className="font-display text-3xl font-bold text-foreground">{vehicle.price}</div>
-                          <div className="text-xs text-muted-foreground">per 30 minutes</div>
-                        </div>
+                  {/* Price & CTA */}
+                  <div className="mt-auto">
+                    <div className="flex items-center justify-between pt-6 border-t border-border/50">
+                      <div>
+                        <div className="text-xs text-muted-foreground uppercase tracking-wider mb-1 font-semibold">Starting From</div>
+                        <div className="text-2xl font-black text-primary">{vehicle.price}</div>
+                        <div className="text-xs text-muted-foreground">per 30 minutes</div>
                       </div>
-                      
                       <Button
                         onClick={() => {
-                          setSelectedVehicle({ 
-                            name: vehicle.name, 
-                            price: vehicle.price, 
-                            basePrice: vehicle.basePrice 
-                          });
+                          setSelectedVehicle(vehicle);
                           setBookingOpen(true);
                         }}
-                        className="w-full bg-primary hover:bg-primary-light text-primary-foreground font-semibold tracking-wide shadow-premium hover:shadow-luxury transition-all"
+                        className="font-bold text-sm px-6"
                       >
-                        RESERVE NOW
+                        BOOK NOW
                       </Button>
                     </div>
                   </div>
                 </div>
-              </div>
+              </Card>
             ))}
           </div>
         </div>
@@ -166,9 +203,9 @@ const Properties = () => {
       <BookingDialog
         open={bookingOpen}
         onOpenChange={setBookingOpen}
-        vehicleName={selectedVehicle.name}
-        vehiclePrice={selectedVehicle.price}
-        basePricePerHalfHour={selectedVehicle.basePrice}
+        vehicleName={selectedVehicle?.name || ""}
+        vehiclePrice={selectedVehicle?.price || ""}
+        basePricePerHalfHour={selectedVehicle?.basePricePerHalfHour || 0}
       />
     </>
   );

@@ -42,9 +42,17 @@ const About = () => {
             <span className="block text-transparent bg-clip-text bg-gradient-to-r from-primary via-primary-light to-accent">Adventure</span>
           </h2>
           
+          <p className="text-lg md:text-xl text-muted-foreground leading-relaxed mb-8">
+            Located at the pristine Mussulo Peninsula, Okwambi Rentals is Luanda's premier destination 
+            for water and land adventures. We combine top-quality equipment with professional service 
+            to deliver safe, thrilling experiences for adventure seekers of all levels.
+          </p>
+          
           <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
-            We combine premium vehicles, exceptional service, and the stunning Mussulo Peninsula 
-            to create unforgettable adventure experiences.
+            Every vehicle in our fleet is rigorously maintained and includes comprehensive safety equipment. 
+            Our experienced team provides thorough briefings, GPS tracking, and on-site support. Whether you're 
+            a first-timer or an experienced rider, we ensure your adventure at Mussulo is unforgettable, 
+            safe, and perfectly tailored to your skill level.
           </p>
         </div>
         
