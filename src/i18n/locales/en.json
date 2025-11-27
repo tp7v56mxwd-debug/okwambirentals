@@ -8,7 +8,7 @@
   },
   "hero": {
     "title": "PREMIUM ADVENTURE IN MUSSULO",
-    "subtitle": "Experience the crystal-clear waters of Mussulo Island with our premium jet skis, ATVs, and UTVs. Freedom meets luxury.",
+    "subtitle": "Your gateway to unforgettable adventures at Mussulo Peninsula. Professional equipment, expert guidance, and unmatched safety standards.",
     "exploreFleet": "EXPLORE FLEET",
     "reserveNow": "RESERVE NOW"
   },
@@ -118,8 +118,22 @@
     }
   },
   "safety": {
-    "subtitle": "Your Safety",
-    "title": "Safety Policies",
+    "badge": "Your Safety",
+    "title1": "Our Policies &",
+    "title2": "Safety Standards",
+    "description": "Crystal clear policies designed for your safety, security, and peace of mind",
+    "equipment": {
+      "title": "Safety Equipment",
+      "description": "All rentals include premium safety equipment to ensure your adventure is both thrilling and secure.",
+      "items": [
+        "Professional grade helmets (all sizes)",
+        "Premium life jackets (jet skis)",
+        "Protective gear (ATVs & UTVs)",
+        "GPS tracking on all vehicles",
+        "Emergency communication devices",
+        "First aid kits on-site"
+      ]
+    },
     "rules": {
       "title": "Rental Rules",
       "description": "Clear rules to keep everyone safe while maximizing your adventure experience.",
@@ -129,67 +143,135 @@
         "No alcohol or drugs before/during rental",
         "Stay within designated zones and routes",
         "Follow all staff instructions and briefings",
-        "Respect other users and the environment"
+        "Report any issues immediately"
       ]
     },
-    "equipment": {
-      "title": "Safety Equipment",
-      "description": "Top-tier protective gear provided and checked before each rental.",
+    "deposit": {
+      "title": "Deposit & Payment",
+      "description": "Transparent pricing and refundable deposits for your peace of mind.",
       "items": [
-        "Certified helmets (mandatory for ATVs/UTVs)",
-        "High-quality life jackets (mandatory for jet skis)",
-        "First aid kit in all vehicles",
-        "Communication devices for emergencies",
-        "GPS tracking for your safety",
-        "Backup safety equipment available"
+        "Jet Ski: 50,000 Kz refundable deposit",
+        "ATV: 60,000 Kz refundable deposit",
+        "UTV: 80,000 Kz refundable deposit",
+        "Deposits returned within 24 hours",
+        "Credit card or cash accepted",
+        "Full refund if equipment returned safely on time"
       ]
     },
-    "weather": {
-      "title": "Weather Guidelines",
-      "description": "We monitor conditions closely to ensure safe and enjoyable experiences.",
+    "timing": {
+      "title": "Timing & Returns",
+      "description": "Flexible rental durations with clear policies on timing and late returns.",
       "items": [
-        "Operations suspended during storms",
-        "Jet skis limited to calm sea conditions",
-        "Pre and post-rental inspections",
-        "Full refund for weather cancellations",
-        "Weather forecasts shared during booking",
-        "Staff available 24/7 for changing conditions"
+        "Operating hours: 9:00 AM - 6:00 PM daily",
+        "Last rental starts at 5:30 PM",
+        "15-minute grace period for returns",
+        "Late returns charged at 2x hourly rate",
+        "Early returns: No partial refunds",
+        "Free rescheduling up to 24 hours before"
       ]
+    },
+    "damage": {
+      "title": "Damage Policy",
+      "description": "Fair and transparent damage policies that protect both you and our equipment.",
+      "items": [
+        "Pre-rental inspection documented with photos",
+        "Normal wear and tear is expected",
+        "Reckless damage: Deposit forfeited + repair costs",
+        "Minor scratches: No charge",
+        "Lost/stolen equipment: Full replacement cost",
+        "Insurance options available (recommended)"
+      ]
+    },
+    "emergency": {
+      "title": "Emergency Support",
+      "description": "24/7 support and emergency assistance for complete peace of mind.",
+      "items": [
+        "24/7 emergency hotline: +244 923 456 789",
+        "Staff on-site during operating hours",
+        "First aid trained personnel",
+        "Quick response team for breakdowns",
+        "Direct line to local authorities if needed",
+        "Immediate replacement vehicles when available"
+      ]
+    },
+    "cta": {
+      "title": "Questions About Our Policies?",
+      "description": "Our team is here to answer any questions you have about safety, deposits, or rental terms.",
+      "button": "Contact Us"
     }
   },
-  "testimonials": {
-    "subtitle": "Testimonials",
-    "title": "What Our Clients Say",
-    "description": "Read about the amazing experiences from our customers"
-  },
   "faq": {
-    "subtitle": "Frequently Asked",
-    "title": "Common Questions",
-    "questions": {
-      "what": {
-        "q": "What vehicles are available for rent?",
-        "a": "We offer premium jet skis, ATVs (all-terrain vehicles), and UTVs (side-by-side vehicles). Each vehicle is maintained to the highest standards and suitable for different experience levels."
+    "badge": "Frequently Asked",
+    "title1": "Questions &",
+    "title2": "Answers",
+    "description": "Everything you need to know about renting with us",
+    "questions": [
+      {
+        "q": "What documents do I need to rent a vehicle?",
+        "a": "You'll need a valid driver's license or government-issued ID/passport, and a credit card for the security deposit. If you're 16-17 years old or don't have a driver's license, a parental/guardian consent form is required."
       },
-      "age": {
-        "q": "What is the age requirement?",
-        "a": "You must be at least 16 years old with valid identification. Parental consent is required for those under 18. Driver's license is required for ATVs and UTVs."
+      {
+        "q": "What is the minimum age to rent?",
+        "a": "The minimum age is 16 years old. However, if you're 16-17 or don't have a driver's license, you must provide a signed parental/guardian consent form."
       },
-      "book": {
-        "q": "How do I book a rental?",
-        "a": "You can book online through our website or contact us directly. We recommend booking in advance, especially during peak season."
+      {
+        "q": "Can I cancel my booking?",
+        "a": "Yes, free cancellation is available up to 24 hours before your booking time. Cancellations within 24 hours are subject to a 50% fee."
       },
-      "safety": {
-        "q": "What safety measures are in place?",
-        "a": "We provide all necessary safety equipment including helmets and life jackets. Safety briefing is mandatory before each rental. Our vehicles are regularly maintained and GPS tracked."
+      {
+        "q": "Is fuel included in the rental price?",
+        "a": "Yes, all our vehicles come with a full fuel tank included in the rental price."
       },
-      "cancel": {
-        "q": "What is the cancellation policy?",
-        "a": "We offer a 24-hour cancellation policy. Cancellations due to bad weather receive a full refund."
+      {
+        "q": "What happens if the vehicle breaks down?",
+        "a": "All our vehicles are regularly maintained. In the unlikely event of a breakdown, contact us immediately and we'll provide roadside assistance or a replacement vehicle."
       },
-      "duration": {
-        "q": "How long can I rent for?",
-        "a": "We offer flexible rental periods starting from 1 hour. Half-day and full-day packages are also available with discounted rates."
+      {
+        "q": "Can I extend my rental period?",
+        "a": "Yes, you can extend your rental subject to availability. Please contact us at least 2 hours before your scheduled return time."
+      },
+      {
+        "q": "Are helmets and safety gear provided?",
+        "a": "Yes, we provide helmets and basic safety gear for all our vehicles at no additional cost."
+      },
+      {
+        "q": "What is covered by insurance?",
+        "a": "Basic insurance covers damage to the vehicle and third-party liability. Personal accident insurance is available for an additional fee."
       }
+    ]
+  },
+  "testimonials": {
+    "badge": "Testimonials",
+    "title1": "Client",
+    "title2": "Experiences",
+    "description": "Real stories from adventurers who've experienced the Okwambi difference"
+  },
+  "location": {
+    "badge": "Find Us",
+    "title1": "Visit Us at",
+    "title2": "Mussulo",
+    "description": "Located at the stunning Mussulo Peninsula, where your adventure begins",
+    "map": "Map Preview",
+    "mapLocation": "Mussulo Peninsula, Luanda, Angola",
+    "address": {
+      "title": "Address",
+      "line1": "Mussulo Peninsula",
+      "line2": "Luanda, Angola"
+    },
+    "phone": {
+      "title": "Phone",
+      "number": "+244 923 456 789",
+      "availability": "Available 24/7"
+    },
+    "email": {
+      "title": "Email",
+      "address": "info@okwambi.ao",
+      "response": "Response within 24 hours"
+    },
+    "hours": {
+      "title": "Hours",
+      "days": "Monday - Sunday",
+      "time": "8:00 AM - 6:00 PM"
     }
   },
   "contact": {
@@ -225,12 +307,6 @@
       "messageMin": "Message must be at least 10 characters",
       "messageMax": "Message is too long"
     }
-  },
-  "location": {
-    "subtitle": "Find Us",
-    "title": "Visit Us at Mussulo",
-    "description": "Located on the stunning Mussulo Island, Luanda, Angola",
-    "cta": "Get Directions"
   },
   "footer": {
     "description": "Premium adventure experiences in Mussulo Peninsula",
