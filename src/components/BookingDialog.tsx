@@ -20,6 +20,7 @@ const bookingSchema = z.object({
   customer_phone: z.string().trim().min(9, "Phone number is too short").max(20, "Phone number is too long"),
   booking_date: z.date({ required_error: "Please select a date" }),
   booking_time: z.string().min(1, "Please select a time"),
+  duration: z.number().min(30, "Minimum duration is 30 minutes"),
   special_requests: z.string().max(500, "Special requests must be less than 500 characters").optional()
 });
 
@@ -28,6 +29,7 @@ interface BookingDialogProps {
   onOpenChange: (open: boolean) => void;
   vehicleName: string;
   vehiclePrice: string;
+  basePricePerHalfHour: number;
 }
 
 const timeSlots = [
@@ -36,11 +38,30 @@ const timeSlots = [
   "15:00", "15:30", "16:00", "16:30", "17:00", "17:30"
 ];
 
-export const BookingDialog = ({ open, onOpenChange, vehicleName, vehiclePrice }: BookingDialogProps) => {
+const durationOptions = [
+  { label: "30 minutes", value: 30, multiplier: 1 },
+  { label: "1 hour", value: 60, multiplier: 2 },
+  { label: "1.5 hours", value: 90, multiplier: 3 },
+  { label: "2 hours", value: 120, multiplier: 4 },
+  { label: "3 hours", value: 180, multiplier: 6 },
+  { label: "4 hours", value: 240, multiplier: 8 },
+  { label: "Full day (6 hours)", value: 360, multiplier: 12 }
+];
+
+export const BookingDialog = ({ open, onOpenChange, vehicleName, vehiclePrice, basePricePerHalfHour }: BookingDialogProps) => {
   const [date, setDate] = useState<Date>();
+  const [duration, setDuration] = useState(30);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showConfirmation, setShowConfirmation] = useState(false);
   const { toast } = useToast();
+
+  const calculateTotalPrice = (durationMinutes: number) => {
+    const multiplier = durationOptions.find(d => d.value === durationMinutes)?.multiplier || 1;
+    return (basePricePerHalfHour * multiplier).toLocaleString('en-US', { 
+      minimumFractionDigits: 3,
+      maximumFractionDigits: 3
+    });
+  };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -54,10 +75,13 @@ export const BookingDialog = ({ open, onOpenChange, vehicleName, vehiclePrice }:
         customer_phone: formData.get("customer_phone") as string,
         booking_date: date,
         booking_time: formData.get("booking_time") as string,
+        duration: duration,
         special_requests: formData.get("special_requests") as string
       };
 
       const validated = bookingSchema.parse(data);
+
+      const totalPrice = calculateTotalPrice(duration);
 
       const { error } = await supabase.from("bookings").insert({
         customer_name: validated.customer_name,
@@ -66,8 +90,8 @@ export const BookingDialog = ({ open, onOpenChange, vehicleName, vehiclePrice }:
         vehicle_type: vehicleName,
         booking_date: format(validated.booking_date, "yyyy-MM-dd"),
         booking_time: validated.booking_time,
-        duration: 30,
-        total_price: vehiclePrice,
+        duration: validated.duration,
+        total_price: `${totalPrice} Kz`,
         special_requests: validated.special_requests || "",
         status: "pending"
       });
@@ -212,6 +236,27 @@ export const BookingDialog = ({ open, onOpenChange, vehicleName, vehiclePrice }:
             </div>
 
             <div>
+              <Label htmlFor="duration">Duration</Label>
+              <Select 
+                name="duration" 
+                value={duration.toString()} 
+                onValueChange={(value) => setDuration(parseInt(value))}
+                required
+              >
+                <SelectTrigger>
+                  <SelectValue placeholder="Select duration" />
+                </SelectTrigger>
+                <SelectContent>
+                  {durationOptions.map((option) => (
+                    <SelectItem key={option.value} value={option.value.toString()}>
+                      {option.label}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+
+            <div>
               <Label htmlFor="special_requests">Special Requests (Optional)</Label>
               <Textarea
                 id="special_requests"
@@ -223,11 +268,20 @@ export const BookingDialog = ({ open, onOpenChange, vehicleName, vehiclePrice }:
             </div>
 
             <div className="bg-gradient-to-br from-primary/10 to-accent/10 rounded-2xl p-6 border border-primary/20">
-              <div className="flex justify-between items-center">
-                <div>
-                  <p className="text-sm text-muted-foreground font-bold uppercase">Total Price</p>
-                  <p className="text-3xl font-black text-primary">{vehiclePrice}</p>
-                  <p className="text-xs text-muted-foreground mt-1">30 minutes rental</p>
+              <div className="space-y-3">
+                <div className="flex justify-between items-center">
+                  <span className="text-sm text-muted-foreground font-bold">Base Rate (30 min)</span>
+                  <span className="text-foreground font-bold">{vehiclePrice}</span>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span className="text-sm text-muted-foreground font-bold">Duration</span>
+                  <span className="text-foreground font-bold">{durationOptions.find(d => d.value === duration)?.label}</span>
+                </div>
+                <div className="border-t border-border/30 pt-3">
+                  <div className="flex justify-between items-center">
+                    <p className="text-sm text-muted-foreground font-bold uppercase">Total Price</p>
+                    <p className="text-3xl font-black text-primary">{calculateTotalPrice(duration)} Kz</p>
+                  </div>
                 </div>
               </div>
             </div>

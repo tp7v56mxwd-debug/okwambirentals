@@ -5,13 +5,14 @@ import { BookingDialog } from "./BookingDialog";
 
 const Properties = () => {
   const [bookingOpen, setBookingOpen] = useState(false);
-  const [selectedVehicle, setSelectedVehicle] = useState({ name: "", price: "" });
+  const [selectedVehicle, setSelectedVehicle] = useState({ name: "", price: "", basePrice: 0 });
   const fleet = [
     {
       name: "Jet Ski",
       capacity: "1-2 Riders",
       speed: "Up to 65 mph",
       price: "45.000 Kz",
+      basePrice: 45000,
       features: [
         "Professional life jackets included",
         "Ocean and coastline access",
@@ -24,6 +25,7 @@ const Properties = () => {
       capacity: "1 Rider",
       speed: "Variable speeds",
       price: "30.000 Kz",
+      basePrice: 30000,
       features: [
         "Premium safety gear provided",
         "Beach & dune exploration",
@@ -36,6 +38,7 @@ const Properties = () => {
       capacity: "2-4 Passengers",
       speed: "Off-road capable",
       price: "50.000 Kz",
+      basePrice: 50000,
       features: [
         "Roll cage & safety harnesses",
         "Perfect for groups & families",
@@ -115,7 +118,7 @@ const Properties = () => {
                   <Button 
                     className="w-full text-base py-7 font-bold shadow-soft hover:shadow-accent transition-all duration-300 bg-gradient-to-r from-primary to-primary-glow hover:from-primary-glow hover:to-primary"
                     onClick={() => {
-                      setSelectedVehicle({ name: vehicle.name, price: vehicle.price });
+                      setSelectedVehicle({ name: vehicle.name, price: vehicle.price, basePrice: vehicle.basePrice });
                       setBookingOpen(true);
                     }}
                   >
@@ -133,6 +136,7 @@ const Properties = () => {
         onOpenChange={setBookingOpen}
         vehicleName={selectedVehicle.name}
         vehiclePrice={selectedVehicle.price}
+        basePricePerHalfHour={selectedVehicle.basePrice}
       />
     </section>
   );

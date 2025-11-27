@@ -2,6 +2,7 @@ import Navigation from "@/components/Navigation";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
 import Properties from "@/components/Properties";
+import Requirements from "@/components/Requirements";
 import Contact from "@/components/Contact";
 
 const Index = () => {
@@ -11,6 +12,7 @@ const Index = () => {
       <Hero />
       <About />
       <Properties />
+      <Requirements />
       <Contact />
       
       <footer className="bg-gradient-to-br from-foreground to-foreground/90 text-background py-12">
