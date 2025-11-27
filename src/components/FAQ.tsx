@@ -10,11 +10,11 @@ const FAQ = () => {
   const faqs = [
     {
       question: "What documents do I need to rent a vehicle?",
-      answer: "You'll need a valid driver's license (held for at least 2 years), a valid ID or passport, and a credit card for the security deposit."
+      answer: "You'll need a valid driver's license, a valid ID or passport, and a credit card for the security deposit."
     },
     {
       question: "What is the minimum age to rent?",
-      answer: "The minimum age is 21 years old. Drivers under 25 may be subject to additional fees."
+      answer: "The minimum age is 16 years old with a valid ID or driver's license."
     },
     {
       question: "Can I cancel my booking?",
@@ -22,7 +22,7 @@ const FAQ = () => {
     },
     {
       question: "Is fuel included in the rental price?",
-      answer: "No, fuel is not included. Vehicles are provided with a full tank and should be returned with a full tank to avoid refueling charges."
+      answer: "Yes, all our vehicles come with a full fuel tank included in the rental price."
     },
     {
       question: "What happens if the vehicle breaks down?",
