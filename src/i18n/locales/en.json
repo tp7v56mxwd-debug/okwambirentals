@@ -4,8 +4,7 @@
     "about": "ABOUT",
     "fleet": "FLEET",
     "faq": "FAQ",
-    "contact": "CONTACT",
-    "reserve": "RESERVE NOW"
+    "contact": "CONTACT"
   },
   "hero": {
     "title": "PREMIUM ADVENTURE IN MUSSULO",
@@ -14,19 +13,75 @@
     "reserveNow": "RESERVE NOW"
   },
   "about": {
-    "subtitle": "About Us",
-    "title": "Where Adventure Meets Luxury",
-    "description": "At Okwambi Rentals, we offer premium adventure experiences on the stunning Mussulo Island. Our top-tier fleet of jet skis, ATVs, and UTVs is maintained to the highest standards, ensuring your safety and enjoyment.",
-    "highlight1": "High-quality equipment",
-    "highlight2": "Scenic ocean routes",
-    "highlight3": "Experienced guides",
-    "highlight4": "Flexible pricing",
-    "cta": "Discover Mussulo"
+    "badge": "Why Choose Us",
+    "title1": "Crafted for",
+    "title2": "Adventure",
+    "description1": "Located at the pristine Mussulo Peninsula, Okwambi Rentals is Luanda's premier destination for water and land adventures. We combine top-quality equipment with professional service to deliver safe, thrilling experiences for adventure seekers of all levels.",
+    "description2": "Every vehicle in our fleet is rigorously maintained and includes comprehensive safety equipment. Our experienced team provides thorough briefings, GPS tracking, and on-site support. Whether you're a first-timer or an experienced rider, we ensure your adventure at Mussulo is unforgettable, safe, and perfectly tailored to your skill level.",
+    "features": {
+      "premium": {
+        "title": "Premium Fleet",
+        "description": "Meticulously maintained collection of top-tier adventure vehicles, ensuring an exceptional experience every time."
+      },
+      "safety": {
+        "title": "Safety Excellence",
+        "description": "Comprehensive safety protocols, professional-grade equipment, and expert guidance for complete peace of mind."
+      },
+      "booking": {
+        "title": "Instant Booking",
+        "description": "Seamless reservation system with real-time availability and instant confirmation for your convenience."
+      },
+      "team": {
+        "title": "Expert Team",
+        "description": "Passionate professionals dedicated to delivering unforgettable adventures with personalized service."
+      }
+    }
   },
   "fleet": {
-    "subtitle": "Our Fleet",
-    "title": "Choose Your Adventure",
-    "description": "Experience the thrill of our high-performance jet skis, rugged ATVs, or comfortable UTVs."
+    "badge": "Our Fleet",
+    "title1": "Choose Your",
+    "title2": "Adventure",
+    "description": "Premium vehicles meticulously maintained for your ultimate adventure experience",
+    "included": "What's Included",
+    "safety": "Full Safety Equipment & GPS Tracking Included",
+    "priceLabel": "Starting From",
+    "per30min": "per 30 minutes",
+    "bookNow": "BOOK NOW",
+    "vehicles": {
+      "jetski": {
+        "category": "WATER SPORTS",
+        "name": "Jet Ski",
+        "capacity": "1-2 riders",
+        "speed": "110 km/h",
+        "features": [
+          "Premium life jackets included",
+          "Full fuel tank included",
+          "Professional safety briefing"
+        ]
+      },
+      "atv": {
+        "category": "LAND ADVENTURE",
+        "name": "ATV",
+        "capacity": "1 rider",
+        "speed": "80 km/h",
+        "features": [
+          "Professional helmet included",
+          "Full protective gear set",
+          "Off-road terrain ready"
+        ]
+      },
+      "utv": {
+        "category": "PREMIUM EXPERIENCE",
+        "name": "UTV",
+        "capacity": "2-4 passengers",
+        "speed": "90 km/h",
+        "features": [
+          "Full roll cage protection",
+          "Premium off-road tires",
+          "Comfortable seating"
+        ]
+      }
+    }
   },
   "requirements": {
     "subtitle": "Before You Start",

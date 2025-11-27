@@ -1,26 +1,29 @@
 import { Award, Shield, Users, Zap } from "lucide-react";
+import { useTranslation } from 'react-i18next';
 
 const About = () => {
+  const { t } = useTranslation();
+  
   const features = [
     {
       icon: Award,
-      title: "Premium Fleet",
-      description: "Meticulously maintained collection of top-tier adventure vehicles, ensuring an exceptional experience every time."
+      title: t('about.features.premium.title'),
+      description: t('about.features.premium.description')
     },
     {
       icon: Shield,
-      title: "Safety Excellence",
-      description: "Comprehensive safety protocols, professional-grade equipment, and expert guidance for complete peace of mind."
+      title: t('about.features.safety.title'),
+      description: t('about.features.safety.description')
     },
     {
       icon: Zap,
-      title: "Instant Booking",
-      description: "Seamless reservation system with real-time availability and instant confirmation for your convenience."
+      title: t('about.features.booking.title'),
+      description: t('about.features.booking.description')
     },
     {
       icon: Users,
-      title: "Expert Team",
-      description: "Passionate professionals dedicated to delivering unforgettable adventures with personalized service."
+      title: t('about.features.team.title'),
+      description: t('about.features.team.description')
     }
   ];
 
@@ -34,25 +37,20 @@ const About = () => {
         {/* Section Header */}
         <div className="max-w-3xl mx-auto text-center mb-20">
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/5 border border-primary/10 rounded-full mb-6">
-            <span className="text-primary text-sm font-semibold tracking-widest uppercase">Why Choose Us</span>
+            <span className="text-primary text-sm font-semibold tracking-widest uppercase">{t('about.badge')}</span>
           </div>
           
           <h2 className="font-display text-5xl md:text-6xl lg:text-7xl font-bold mb-6 text-foreground leading-tight">
-            Crafted for
-            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-primary via-primary-light to-accent">Adventure</span>
+            {t('about.title1')}
+            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-primary via-primary-light to-accent">{t('about.title2')}</span>
           </h2>
           
           <p className="text-lg md:text-xl text-muted-foreground leading-relaxed mb-8">
-            Located at the pristine Mussulo Peninsula, Okwambi Rentals is Luanda's premier destination 
-            for water and land adventures. We combine top-quality equipment with professional service 
-            to deliver safe, thrilling experiences for adventure seekers of all levels.
+            {t('about.description1')}
           </p>
           
           <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
-            Every vehicle in our fleet is rigorously maintained and includes comprehensive safety equipment. 
-            Our experienced team provides thorough briefings, GPS tracking, and on-site support. Whether you're 
-            a first-timer or an experienced rider, we ensure your adventure at Mussulo is unforgettable, 
-            safe, and perfectly tailored to your skill level.
+            {t('about.description2')}
           </p>
         </div>
         

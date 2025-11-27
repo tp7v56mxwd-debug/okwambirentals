@@ -4,8 +4,7 @@
     "about": "SOBRE",
     "fleet": "FROTA",
     "faq": "PERGUNTAS",
-    "contact": "CONTACTO",
-    "reserve": "RESERVAR AGORA"
+    "contact": "CONTACTO"
   },
   "hero": {
     "title": "AVENTURA PREMIUM EM MUSSULO",
@@ -14,19 +13,75 @@
     "reserveNow": "RESERVAR AGORA"
   },
   "about": {
-    "subtitle": "Sobre Nós",
-    "title": "Onde a Aventura Encontra o Luxo",
-    "description": "Na Okwambi Rentals, oferecemos experiências de aventura premium na deslumbrante Ilha de Mussulo. A nossa frota de topo de jet skis, ATVs e UTVs é mantida nos mais altos padrões, garantindo a sua segurança e prazer.",
-    "highlight1": "Equipamento de alta qualidade",
-    "highlight2": "Rotas com vista para o mar",
-    "highlight3": "Guias experientes",
-    "highlight4": "Preços flexíveis",
-    "cta": "Descubra Mussulo"
+    "badge": "Porquê Escolher-nos",
+    "title1": "Criado para",
+    "title2": "Aventura",
+    "description1": "Localizada na pristina Península de Mussulo, a Okwambi Rentals é o destino premium de Luanda para aventuras aquáticas e terrestres. Combinamos equipamento de qualidade superior com serviço profissional para proporcionar experiências seguras e emocionantes para aventureiros de todos os níveis.",
+    "description2": "Cada veículo na nossa frota é rigorosamente mantido e inclui equipamento de segurança abrangente. A nossa equipa experiente fornece briefings completos, rastreamento GPS e apoio no local. Seja iniciante ou piloto experiente, garantimos que a sua aventura em Mussulo seja inesquecível, segura e perfeitamente adaptada ao seu nível de habilidade.",
+    "features": {
+      "premium": {
+        "title": "Frota Premium",
+        "description": "Coleção meticulosamente mantida de veículos de aventura de topo, garantindo uma experiência excecional todas as vezes."
+      },
+      "safety": {
+        "title": "Excelência em Segurança",
+        "description": "Protocolos de segurança abrangentes, equipamento profissional e orientação especializada para total tranquilidade."
+      },
+      "booking": {
+        "title": "Reserva Instantânea",
+        "description": "Sistema de reserva sem complicações com disponibilidade em tempo real e confirmação instantânea para sua comodidade."
+      },
+      "team": {
+        "title": "Equipa Especializada",
+        "description": "Profissionais apaixonados dedicados a proporcionar aventuras inesquecíveis com serviço personalizado."
+      }
+    }
   },
   "fleet": {
-    "subtitle": "A Nossa Frota",
-    "title": "Escolha a Sua Aventura",
-    "description": "Experimente a emoção das nossas motos de água de alta performance, ATVs robustos ou UTVs confortáveis."
+    "badge": "A Nossa Frota",
+    "title1": "Escolha a Sua",
+    "title2": "Aventura",
+    "description": "Veículos premium meticulosamente mantidos para a sua experiência de aventura definitiva",
+    "included": "O Que Está Incluído",
+    "safety": "Equipamento de Segurança Completo & Rastreamento GPS Incluído",
+    "priceLabel": "A Partir de",
+    "per30min": "por 30 minutos",
+    "bookNow": "RESERVAR",
+    "vehicles": {
+      "jetski": {
+        "category": "DESPORTOS AQUÁTICOS",
+        "name": "Jet Ski",
+        "capacity": "1-2 pilotos",
+        "speed": "110 km/h",
+        "features": [
+          "Coletes salva-vidas premium incluídos",
+          "Tanque cheio incluído",
+          "Briefing de segurança profissional"
+        ]
+      },
+      "atv": {
+        "category": "AVENTURA TERRESTRE",
+        "name": "ATV",
+        "capacity": "1 piloto",
+        "speed": "80 km/h",
+        "features": [
+          "Capacete profissional incluído",
+          "Equipamento de proteção completo",
+          "Pronto para terreno off-road"
+        ]
+      },
+      "utv": {
+        "category": "EXPERIÊNCIA PREMIUM",
+        "name": "UTV",
+        "capacity": "2-4 passageiros",
+        "speed": "90 km/h",
+        "features": [
+          "Proteção de gaiola completa",
+          "Pneus off-road premium",
+          "Assentos confortáveis"
+        ]
+      }
+    }
   },
   "requirements": {
     "subtitle": "Antes de Começar",
