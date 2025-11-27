@@ -52,8 +52,8 @@ const Navigation = () => {
       aria-label="Main navigation"
       className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-500 ${
         isScrolled || isOpen
-          ? 'bg-background/95 backdrop-blur-xl shadow-luxury border-b border-border/50' 
-          : 'bg-gradient-to-b from-background/80 via-background/40 to-transparent'
+          ? 'bg-background/98 backdrop-blur-2xl shadow-[0_8px_32px_rgba(0,0,0,0.12)] border-b border-border/30' 
+          : 'bg-gradient-to-b from-background/90 via-background/50 to-transparent backdrop-blur-sm'
       }`}
     >
       <div className="container mx-auto px-6 lg:px-8">
@@ -108,45 +108,49 @@ const Navigation = () => {
 
           {/* Mobile Menu Button */}
           <button 
-            className="lg:hidden text-foreground p-2 hover:bg-muted/50 rounded-lg transition-all duration-300 hover:scale-110 active:scale-95"
+            className="lg:hidden text-foreground p-2.5 hover:bg-primary/10 rounded-xl transition-all duration-300 hover:scale-110 active:scale-95 relative group"
             onClick={() => setIsOpen(!isOpen)}
             aria-label="Toggle menu"
           >
+            <span className="absolute inset-0 rounded-xl bg-gradient-to-br from-primary/5 to-accent/5 opacity-0 group-hover:opacity-100 transition-opacity" />
             {isOpen ? (
-              <X className="w-6 h-6 animate-in spin-in-180 duration-200" />
+              <X className="w-6 h-6 relative z-10 transition-transform rotate-0 group-hover:rotate-90" />
             ) : (
-              <Menu className="w-6 h-6 animate-in fade-in duration-200" />
+              <Menu className="w-6 h-6 relative z-10" />
             )}
           </button>
         </div>
 
         {/* Mobile Menu */}
         {isOpen && (
-          <div className="lg:hidden py-6 space-y-1 animate-in fade-in slide-in-from-top-2 duration-300 border-t border-border/50 bg-background/95 backdrop-blur-xl">
-            {navLinks.map((link, index) => (
-              <button
-                key={link.id}
-                onClick={() => scrollToSection(link.id)}
-                className={`block w-full text-left py-3 px-4 text-sm font-semibold rounded-lg transition-all tracking-wide relative overflow-hidden group ${
-                  activeSection === link.id
-                    ? 'text-primary bg-primary/10'
-                    : 'text-foreground/70 hover:text-foreground hover:bg-muted/50'
-                }`}
-                style={{ animationDelay: `${index * 50}ms` }}
-              >
-                <span className="relative z-10 flex items-center gap-2">
-                  {link.label}
-                  {activeSection === link.id && (
-                    <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
-                  )}
-                </span>
-                <span className="absolute inset-0 bg-gradient-to-r from-primary/10 to-accent/10 translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-300" />
-              </button>
-            ))}
-            <div className="mt-4 pt-4 border-t border-border/30">
-              <MobileInfoDialogs onClose={() => setIsOpen(false)} />
+          <div className="lg:hidden py-4 space-y-1 animate-in fade-in slide-in-from-top-2 duration-300">
+            <div className="max-h-[70vh] overflow-y-auto px-2">
+              {navLinks.map((link, index) => (
+                <button
+                  key={link.id}
+                  onClick={() => scrollToSection(link.id)}
+                  className={`block w-full text-left py-3.5 px-5 text-sm font-semibold rounded-xl transition-all tracking-wide relative overflow-hidden group mb-2 ${
+                    activeSection === link.id
+                      ? 'text-primary bg-gradient-to-r from-primary/15 to-primary/5 shadow-sm'
+                      : 'text-foreground/70 hover:text-foreground hover:bg-gradient-to-r hover:from-muted/80 hover:to-muted/40'
+                  }`}
+                  style={{ animationDelay: `${index * 50}ms` }}
+                >
+                  <span className="relative z-10 flex items-center justify-between">
+                    <span>{link.label}</span>
+                    {activeSection === link.id && (
+                      <span className="w-2 h-2 rounded-full bg-primary shadow-[0_0_8px_rgba(var(--primary),0.6)] animate-pulse" />
+                    )}
+                  </span>
+                </button>
+              ))}
+              
+              <div className="mt-4 pt-4 border-t border-border/20">
+                <MobileInfoDialogs onClose={() => setIsOpen(false)} />
+              </div>
             </div>
-            <div className="px-4 pt-4 mt-4 border-t border-border/30">
+            
+            <div className="px-6 pt-4 mt-2 border-t border-border/20">
               <LanguageSwitcher />
             </div>
           </div>
