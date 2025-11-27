@@ -10,15 +10,17 @@ const Contact = () => {
       
       <div className="container mx-auto px-4 relative">
         <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <div className="inline-block px-4 py-1 rounded-full bg-accent/10 text-accent text-sm font-semibold mb-4">
-              GET IN TOUCH
+          <div className="text-center mb-20 animate-in fade-in slide-in-from-bottom-4 duration-700">
+            <div className="inline-block mb-4">
+              <span className="px-4 py-2 bg-primary/10 text-primary font-bold text-sm tracking-wider rounded-full border border-primary/20">
+                START YOUR ADVENTURE
+              </span>
             </div>
-            <h2 className="text-5xl md:text-6xl font-bold mb-6 text-foreground">
-              Book Your <span className="text-gradient">Adventure</span>
+            <h2 className="text-5xl md:text-7xl font-black mb-6 bg-gradient-to-r from-primary via-primary-glow to-accent bg-clip-text text-transparent leading-tight">
+              Book Your Adventure
             </h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-              Ready to experience Mussulo? Contact us to reserve your rental today
+            <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto font-medium">
+              Ready to unleash your Wambi spirit? Let's make it happen
             </p>
           </div>
           
