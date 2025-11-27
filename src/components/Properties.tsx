@@ -3,37 +3,51 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { BookingDialog } from "./BookingDialog";
-import { Users, Gauge, Waves, Calendar, Shield, Droplet, CheckCircle2 } from "lucide-react";
+import { Users, Gauge, Shield } from "lucide-react";
+import { useTranslation } from 'react-i18next';
 
 const Properties = () => {
+  const { t } = useTranslation();
   const [bookingOpen, setBookingOpen] = useState(false);
   const [selectedVehicle, setSelectedVehicle] = useState<any>(null);
   
   const fleet = [
     {
-      category: "WATER SPORTS",
-      name: "Jet Ski",
-      capacity: "1-2 riders",
-      speed: "110 km/h",
-      features: ["Premium life jackets included", "Full fuel tank included", "Professional safety briefing", "GPS tracking enabled"],
+      category: t('fleet.vehicles.jetski.category'),
+      name: t('fleet.vehicles.jetski.name'),
+      capacity: t('fleet.vehicles.jetski.capacity'),
+      speed: t('fleet.vehicles.jetski.speed'),
+      features: [
+        t('fleet.vehicles.jetski.features.0'),
+        t('fleet.vehicles.jetski.features.1'),
+        t('fleet.vehicles.jetski.features.2')
+      ],
       price: "30.000 Kz",
       basePricePerHalfHour: 30000
     },
     {
-      category: "LAND ADVENTURE", 
-      name: "ATV",
-      capacity: "1 rider",
-      speed: "80 km/h", 
-      features: ["Professional helmet included", "Full protective gear set", "Off-road terrain ready", "Expert guidance"],
+      category: t('fleet.vehicles.atv.category'),
+      name: t('fleet.vehicles.atv.name'),
+      capacity: t('fleet.vehicles.atv.capacity'),
+      speed: t('fleet.vehicles.atv.speed'),
+      features: [
+        t('fleet.vehicles.atv.features.0'),
+        t('fleet.vehicles.atv.features.1'),
+        t('fleet.vehicles.atv.features.2')
+      ],
       price: "35.000 Kz",
       basePricePerHalfHour: 35000
     },
     {
-      category: "PREMIUM EXPERIENCE",
-      name: "UTV",
-      capacity: "2-4 passengers",
-      speed: "90 km/h",
-      features: ["Full roll cage protection", "Premium off-road tires", "Comfortable seating", "Group adventure ready"],
+      category: t('fleet.vehicles.utv.category'),
+      name: t('fleet.vehicles.utv.name'),
+      capacity: t('fleet.vehicles.utv.capacity'),
+      speed: t('fleet.vehicles.utv.speed'),
+      features: [
+        t('fleet.vehicles.utv.features.0'),
+        t('fleet.vehicles.utv.features.1'),
+        t('fleet.vehicles.utv.features.2')
+      ],
       price: "45.000 Kz",
       basePricePerHalfHour: 45000
     }
@@ -50,16 +64,16 @@ const Properties = () => {
           {/* Section Header */}
           <div className="max-w-3xl mx-auto text-center mb-20">
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-accent/5 border border-accent/10 rounded-full mb-6">
-              <span className="text-accent text-sm font-semibold tracking-widest uppercase">Our Fleet</span>
+              <span className="text-accent text-sm font-semibold tracking-widest uppercase">{t('fleet.badge')}</span>
             </div>
             
             <h2 className="font-display text-5xl md:text-6xl lg:text-7xl font-bold mb-6 text-foreground leading-tight">
-              Choose Your
-              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-primary via-accent to-accent-glow">Adventure</span>
+              {t('fleet.title1')}
+              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-primary via-accent to-accent-glow">{t('fleet.title2')}</span>
             </h2>
             
             <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
-              Premium vehicles meticulously maintained for your ultimate adventure experience
+              {t('fleet.description')}
             </p>
           </div>
 
@@ -94,8 +108,8 @@ const Properties = () => {
                   {/* Key Features */}
                   <div className="space-y-3 mb-6">
                     <h4 className="text-xs font-bold text-muted-foreground uppercase tracking-wider flex items-center gap-2">
-                      <CheckCircle2 className="w-3.5 h-3.5 text-accent" />
-                      What's Included
+                      <Shield className="w-3.5 h-3.5 text-accent" />
+                      {t('fleet.included')}
                     </h4>
                     {vehicle.features.slice(0, 3).map((feature, idx) => (
                       <div key={idx} className="flex items-start gap-2">
@@ -109,7 +123,7 @@ const Properties = () => {
                   <div className="bg-muted/30 rounded-xl p-3 mb-6 border border-border/30">
                     <div className="flex items-center gap-2 text-xs">
                       <Shield className="w-4 h-4 text-accent" />
-                      <span className="text-muted-foreground font-semibold">Full Safety Equipment & GPS Tracking Included</span>
+                      <span className="text-muted-foreground font-semibold">{t('fleet.safety')}</span>
                     </div>
                   </div>
 
@@ -117,9 +131,9 @@ const Properties = () => {
                   <div className="mt-auto">
                     <div className="flex items-center justify-between pt-6 border-t border-border/50">
                       <div>
-                        <div className="text-xs text-muted-foreground uppercase tracking-wider mb-1 font-semibold">Starting From</div>
+                        <div className="text-xs text-muted-foreground uppercase tracking-wider mb-1 font-semibold">{t('fleet.priceLabel')}</div>
                         <div className="text-2xl font-black text-primary">{vehicle.price}</div>
-                        <div className="text-xs text-muted-foreground">per 30 minutes</div>
+                        <div className="text-xs text-muted-foreground">{t('fleet.per30min')}</div>
                       </div>
                       <Button
                         onClick={() => {
@@ -128,7 +142,7 @@ const Properties = () => {
                         }}
                         className="font-bold text-sm px-6"
                       >
-                        BOOK NOW
+                        {t('fleet.bookNow')}
                       </Button>
                     </div>
                   </div>

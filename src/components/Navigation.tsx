@@ -79,14 +79,6 @@ const Navigation = () => {
               {t('nav.contact')}
             </button>
             <LanguageSwitcher />
-            <div className="ml-2">
-              <Button 
-                onClick={() => scrollToSection('fleet')}
-                className="bg-primary hover:bg-primary-light text-primary-foreground font-semibold tracking-wide shadow-premium hover:shadow-luxury transition-all px-8 py-2.5 text-sm"
-              >
-                {t('nav.reserve')}
-              </Button>
-            </div>
           </div>
 
           {/* Mobile Menu Button */}
@@ -135,12 +127,6 @@ const Navigation = () => {
             <div className="px-4 pt-2">
               <LanguageSwitcher />
             </div>
-            <Button 
-              className="w-full mt-4 bg-primary hover:bg-primary-light text-primary-foreground font-semibold tracking-wide shadow-premium" 
-              onClick={() => scrollToSection('fleet')}
-            >
-              {t('nav.reserve')}
-            </Button>
           </div>
         )}
       </div>
