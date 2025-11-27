@@ -1,37 +1,40 @@
 import { Shield, FileCheck, CreditCard, Clock } from "lucide-react";
+import { useTranslation } from 'react-i18next';
 
 const Requirements = () => {
+  const { t } = useTranslation();
+  
   const requirements = [
     {
       icon: FileCheck,
-      title: "Valid ID",
+      title: t('requirements.validId.title'),
       items: [
-        "16+ years old",
-        "Driver's license or government ID"
+        t('requirements.validId.items.0'),
+        t('requirements.validId.items.1')
       ]
     },
     {
       icon: CreditCard,
-      title: "Security Deposit",
+      title: t('requirements.deposit.title'),
       items: [
-        "Refundable deposit",
-        "Returned within 24 hours"
+        t('requirements.deposit.items.0'),
+        t('requirements.deposit.items.1')
       ]
     },
     {
       icon: Clock,
-      title: "Booking",
+      title: t('requirements.booking.title'),
       items: [
-        "Free cancellation up to 24h",
-        "Flexible durations"
+        t('requirements.booking.items.0'),
+        t('requirements.booking.items.1')
       ]
     },
     {
       icon: Shield,
-      title: "Safety First",
+      title: t('requirements.safety.title'),
       items: [
-        "Full safety briefing",
-        "Premium equipment included"
+        t('requirements.safety.items.0'),
+        t('requirements.safety.items.1')
       ]
     }
   ];
@@ -46,16 +49,16 @@ const Requirements = () => {
         {/* Section Header */}
         <div className="max-w-3xl mx-auto text-center mb-20">
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/5 border border-primary/10 rounded-full mb-6">
-            <span className="text-primary text-sm font-semibold tracking-widest uppercase">Before You Start</span>
+            <span className="text-primary text-sm font-semibold tracking-widest uppercase">{t('requirements.badge')}</span>
           </div>
           
           <h2 className="font-display text-5xl md:text-6xl lg:text-7xl font-bold mb-6 text-foreground leading-tight">
-            Quick
-            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-primary via-accent to-accent-glow">Requirements</span>
+            {t('requirements.title1')}
+            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-primary via-accent to-accent-glow">{t('requirements.title2')}</span>
           </h2>
           
           <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
-            What you need to get started
+            {t('requirements.description')}
           </p>
         </div>
 

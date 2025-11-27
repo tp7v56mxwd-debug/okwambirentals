@@ -2,9 +2,12 @@ import { Button } from "@/components/ui/button";
 import { ChevronDown } from "lucide-react";
 import heroImage from "@/assets/mussulo-beach.jpg";
 import { useTranslation } from 'react-i18next';
+import { useState } from "react";
+import { BookingDialog } from "./BookingDialog";
 
 const Hero = () => {
   const { t } = useTranslation();
+  const [bookingOpen, setBookingOpen] = useState(false);
   
   const scrollToFleet = () => {
     const element = document.getElementById('fleet');
@@ -65,13 +68,21 @@ const Hero = () => {
           <Button 
             size="lg" 
             variant="outline"
-            onClick={scrollToFleet}
+            onClick={() => setBookingOpen(true)}
             className="bg-white/5 backdrop-blur-md border-2 border-white/30 text-white hover:bg-white hover:text-primary font-semibold tracking-wide shadow-premium hover:shadow-luxury transition-all hover:-translate-y-0.5 px-10 py-6 text-base"
           >
             {t('hero.reserveNow')}
           </Button>
         </div>
       </div>
+      
+      <BookingDialog
+        open={bookingOpen}
+        onOpenChange={setBookingOpen}
+        vehicleName=""
+        vehiclePrice=""
+        basePricePerHalfHour={0}
+      />
     </section>
   );
 };

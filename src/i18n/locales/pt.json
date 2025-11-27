@@ -84,30 +84,36 @@
     }
   },
   "requirements": {
-    "subtitle": "Antes de Começar",
-    "title": "Requisitos Rápidos",
-    "age": {
-      "title": "Idade & Identificação",
+    "badge": "Antes de Começar",
+    "title1": "Requisitos",
+    "title2": "Rápidos",
+    "description": "O que precisa para começar",
+    "validId": {
+      "title": "ID Válido",
       "items": [
-        "16+ anos com identificação válida",
-        "Carta de condução exigida para ATVs/UTVs",
-        "Consentimento parental se menor de 18"
+        "16+ anos de idade",
+        "Carta de condução ou ID governamental"
       ]
     },
-    "safety": {
-      "title": "Segurança em Primeiro",
+    "deposit": {
+      "title": "Depósito de Segurança",
       "items": [
-        "Capacete e colete salva-vidas fornecidos",
-        "Briefing de segurança obrigatório",
-        "Condições meteorológicas verificadas"
+        "Depósito reembolsável",
+        "Devolvido dentro de 24 horas"
       ]
     },
     "booking": {
       "title": "Reserva",
       "items": [
-        "Reserve online ou no local",
-        "Depósito reembolsável necessário",
-        "Política de cancelamento de 24h"
+        "Cancelamento gratuito até 24h",
+        "Durações flexíveis"
+      ]
+    },
+    "safety": {
+      "title": "Segurança em Primeiro",
+      "items": [
+        "Briefing de segurança completo",
+        "Equipamento premium incluído"
       ]
     }
   },
@@ -187,22 +193,37 @@
     }
   },
   "contact": {
-    "subtitle": "Contacte-nos",
-    "title": "Pronto para Começar a Sua Aventura?",
-    "description": "Tem perguntas ou quer fazer uma reserva? Entre em contacto e responderemos em breve!",
+    "badge": "Fale Connosco",
+    "title1": "Comece a Sua",
+    "title2": "Aventura",
+    "description": "Pronto para experienciar a aventura definitiva? Entre em contacto e vamos fazer acontecer.",
     "form": {
       "name": "Nome",
+      "namePlaceholder": "O seu nome",
       "email": "Email",
+      "emailPlaceholder": "seuemail@exemplo.com",
       "subject": "Assunto",
+      "subjectPlaceholder": "Como podemos ajudar?",
       "message": "Mensagem",
-      "submit": "Enviar Mensagem",
-      "sending": "A enviar..."
+      "messagePlaceholder": "Conte-nos sobre os seus planos de aventura...",
+      "submit": "ENVIAR MENSAGEM",
+      "sending": "A ENVIAR..."
     },
     "toast": {
-      "success": "Sucesso!",
-      "successDesc": "A sua mensagem foi enviada com sucesso.",
+      "success": "Mensagem Enviada",
+      "successDesc": "Responderemos dentro de 24 horas.",
       "error": "Erro",
-      "errorDesc": "Ocorreu um erro ao enviar a sua mensagem. Por favor, tente novamente."
+      "errorDesc": "Algo correu mal. Por favor, tente novamente."
+    },
+    "validation": {
+      "nameMin": "Nome deve ter pelo menos 2 caracteres",
+      "nameMax": "Nome muito longo",
+      "emailInvalid": "Endereço de email inválido",
+      "emailMax": "Email muito longo",
+      "subjectMin": "Assunto deve ter pelo menos 3 caracteres",
+      "subjectMax": "Assunto muito longo",
+      "messageMin": "Mensagem deve ter pelo menos 10 caracteres",
+      "messageMax": "Mensagem muito longa"
     }
   },
   "location": {
@@ -212,22 +233,20 @@
     "cta": "Obter Direções"
   },
   "footer": {
-    "description": "Experimente a emoção da aventura premium em Mussulo com os nossos jet skis, ATVs e UTVs de topo.",
-    "quickLinks": "Links Rápidos",
+    "description": "Experiências de aventura premium na Península de Mussulo",
+    "quickLinks": "Navegação",
     "links": {
-      "home": "Início",
-      "about": "Sobre Nós",
+      "about": "Sobre",
       "fleet": "Frota",
       "faq": "Perguntas",
       "contact": "Contacto"
     },
     "contact": "Contacto",
-    "hours": "Horário de Funcionamento",
-    "hoursValue": "Todos os dias: 8h - 18h",
     "legal": "Legal",
     "terms": "Termos de Serviço",
     "privacy": "Política de Privacidade",
-    "rights": "Todos os direitos reservados."
+    "rights": "Todos os direitos reservados.",
+    "madeIn": "Criado com excelência em Angola"
   },
   "whatsapp": {
     "chat": "Fale connosco"
