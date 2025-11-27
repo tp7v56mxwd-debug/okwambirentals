@@ -68,32 +68,7 @@ const Hero = () => {
             RESERVE NOW
           </Button>
         </div>
-        
-        {/* Trust Indicators */}
-        <div className="mt-16 flex flex-wrap items-center justify-center gap-8 text-white/60 text-sm animate-in fade-in duration-1000 delay-500">
-          <div className="flex items-center gap-2">
-            <div className="w-8 h-px bg-white/30" />
-            <span className="font-medium tracking-wide">PREMIUM FLEET</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <div className="w-8 h-px bg-white/30" />
-            <span className="font-medium tracking-wide">CERTIFIED SAFETY</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <div className="w-8 h-px bg-white/30" />
-            <span className="font-medium tracking-wide">EXPERT GUIDANCE</span>
-          </div>
-        </div>
       </div>
-      
-      {/* Elegant Scroll Indicator */}
-      <button 
-        onClick={scrollToFleet}
-        className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/60 hover:text-white transition-colors group animate-bounce"
-      >
-        <span className="text-xs font-semibold tracking-widest uppercase">Scroll</span>
-        <div className="w-px h-12 bg-gradient-to-b from-white/60 to-transparent" />
-      </button>
     </section>
   );
 };
