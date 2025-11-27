@@ -4,7 +4,11 @@
     "about": "SOBRE",
     "fleet": "FROTA",
     "faq": "PERGUNTAS",
-    "contact": "CONTACTO"
+    "contact": "CONTACTO",
+    "info": "INFO",
+    "requirements": "REQUISITOS",
+    "safety": "POLÍTICAS DE SEGURANÇA",
+    "testimonials": "EXPERIÊNCIAS DE CLIENTE"
   },
   "hero": {
     "title": "AVENTURA PREMIUM EM MUSSULO",

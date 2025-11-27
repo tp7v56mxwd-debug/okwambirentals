@@ -33,7 +33,7 @@ export const InfoDialogs = () => {
             className="relative px-5 py-2.5 text-sm font-semibold tracking-wide transition-all duration-300 group text-foreground/70 hover:text-foreground"
           >
             <span className="relative z-10 flex items-center gap-1">
-              {t('nav.info', { defaultValue: 'Info' })}
+              {t('nav.info')}
               <ChevronDown className="w-4 h-4" />
             </span>
             <span className="absolute inset-0 rounded-lg bg-primary/10 scale-0 group-hover:scale-100 transition-transform duration-300" />
@@ -46,11 +46,11 @@ export const InfoDialogs = () => {
           </DropdownMenuItem>
           <DropdownMenuItem onClick={() => setOpenDialog("requirements")} className="cursor-pointer">
             <FileCheck className="w-4 h-4 mr-2" />
-            {t('nav.requirements', { defaultValue: 'Requirements' })}
+            {t('nav.requirements')}
           </DropdownMenuItem>
           <DropdownMenuItem onClick={() => setOpenDialog("safety")} className="cursor-pointer">
             <Shield className="w-4 h-4 mr-2" />
-            {t('nav.safety', { defaultValue: 'Safety Policies' })}
+            {t('nav.safety')}
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
@@ -69,7 +69,7 @@ export const InfoDialogs = () => {
       <Dialog open={openDialog === "requirements"} onOpenChange={(open) => !open && setOpenDialog(null)}>
         <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
           <DialogHeader>
-            <DialogTitle className="sr-only">{t('nav.requirements', { defaultValue: 'Requirements' })}</DialogTitle>
+            <DialogTitle className="sr-only">{t('nav.requirements')}</DialogTitle>
           </DialogHeader>
           <Requirements />
         </DialogContent>
@@ -79,7 +79,7 @@ export const InfoDialogs = () => {
       <Dialog open={openDialog === "safety"} onOpenChange={(open) => !open && setOpenDialog(null)}>
         <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
           <DialogHeader>
-            <DialogTitle className="sr-only">{t('nav.safety', { defaultValue: 'Safety Policies' })}</DialogTitle>
+            <DialogTitle className="sr-only">{t('nav.safety')}</DialogTitle>
           </DialogHeader>
           <SafetyPolicies />
         </DialogContent>
@@ -115,7 +115,7 @@ export const MobileInfoDialogs = ({ onClose }: { onClose: () => void }) => {
         >
           <span className="flex items-center gap-2">
             <FileCheck className="w-4 h-4" />
-            {t('nav.requirements', { defaultValue: 'Requirements' })}
+            {t('nav.requirements')}
           </span>
         </button>
         <button
@@ -124,7 +124,7 @@ export const MobileInfoDialogs = ({ onClose }: { onClose: () => void }) => {
         >
           <span className="flex items-center gap-2">
             <Shield className="w-4 h-4" />
-            {t('nav.safety', { defaultValue: 'Safety Policies' })}
+            {t('nav.safety')}
           </span>
         </button>
       </div>
@@ -142,7 +142,7 @@ export const MobileInfoDialogs = ({ onClose }: { onClose: () => void }) => {
       <Dialog open={openDialog === "requirements"} onOpenChange={(open) => !open && setOpenDialog(null)}>
         <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
           <DialogHeader>
-            <DialogTitle className="sr-only">{t('nav.requirements', { defaultValue: 'Requirements' })}</DialogTitle>
+            <DialogTitle className="sr-only">{t('nav.requirements')}</DialogTitle>
           </DialogHeader>
           <Requirements />
         </DialogContent>
@@ -151,7 +151,7 @@ export const MobileInfoDialogs = ({ onClose }: { onClose: () => void }) => {
       <Dialog open={openDialog === "safety"} onOpenChange={(open) => !open && setOpenDialog(null)}>
         <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
           <DialogHeader>
-            <DialogTitle className="sr-only">{t('nav.safety', { defaultValue: 'Safety Policies' })}</DialogTitle>
+            <DialogTitle className="sr-only">{t('nav.safety')}</DialogTitle>
           </DialogHeader>
           <SafetyPolicies />
         </DialogContent>

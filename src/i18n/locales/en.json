@@ -4,7 +4,11 @@
     "about": "ABOUT",
     "fleet": "FLEET",
     "faq": "FAQ",
-    "contact": "CONTACT"
+    "contact": "CONTACT",
+    "info": "INFO",
+    "requirements": "REQUIREMENTS",
+    "safety": "SAFETY POLICIES",
+    "testimonials": "CLIENT EXPERIENCES"
   },
   "hero": {
     "title": "PREMIUM ADVENTURE IN MUSSULO",
