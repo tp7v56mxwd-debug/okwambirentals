@@ -1,8 +1,11 @@
 import { Button } from "@/components/ui/button";
 import { ChevronDown } from "lucide-react";
 import heroImage from "@/assets/mussulo-beach.jpg";
+import { useTranslation } from 'react-i18next';
 
 const Hero = () => {
+  const { t } = useTranslation();
+  
   const scrollToFleet = () => {
     const element = document.getElementById('fleet');
     if (element) {
@@ -39,7 +42,7 @@ const Hero = () => {
         
         {/* Subtitle */}
         <p className="text-lg md:text-xl lg:text-2xl text-primary-foreground/90 mb-12 max-w-2xl mx-auto leading-relaxed font-light tracking-wide">
-          Your gateway to unforgettable adventures at Mussulo Peninsula. Professional equipment, expert guidance, and unmatched safety standards.
+          {t('hero.subtitle')}
         </p>
         
         {/* Luxury Divider */}
@@ -56,7 +59,7 @@ const Hero = () => {
             onClick={scrollToFleet}
             className="group bg-accent hover:bg-accent-glow text-accent-foreground font-semibold tracking-wide shadow-glow hover:shadow-luxury transition-all hover:-translate-y-0.5 px-10 py-6 text-base"
           >
-            <span>EXPLORE FLEET</span>
+            <span>{t('hero.exploreFleet')}</span>
             <ChevronDown className="ml-2 w-4 h-4 group-hover:translate-y-1 transition-transform" />
           </Button>
           <Button 
@@ -65,7 +68,7 @@ const Hero = () => {
             onClick={scrollToFleet}
             className="bg-white/5 backdrop-blur-md border-2 border-white/30 text-white hover:bg-white hover:text-primary font-semibold tracking-wide shadow-premium hover:shadow-luxury transition-all hover:-translate-y-0.5 px-10 py-6 text-base"
           >
-            RESERVE NOW
+            {t('hero.reserveNow')}
           </Button>
         </div>
       </div>

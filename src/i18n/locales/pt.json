@@ -1,0 +1,201 @@
+{
+  "nav": {
+    "home": "INÍCIO",
+    "about": "SOBRE",
+    "fleet": "FROTA",
+    "faq": "PERGUNTAS",
+    "contact": "CONTACTO",
+    "reserve": "RESERVAR AGORA"
+  },
+  "hero": {
+    "title": "AVENTURA PREMIUM EM MUSSULO",
+    "subtitle": "Explore as águas cristalinas da Ilha de Mussulo com os nossos jet skis, ATVs e UTVs premium. Liberdade encontra luxo.",
+    "exploreFleet": "EXPLORAR FROTA",
+    "reserveNow": "RESERVAR AGORA"
+  },
+  "about": {
+    "subtitle": "Sobre Nós",
+    "title": "Onde a Aventura Encontra o Luxo",
+    "description": "Na Okwambi Rentals, oferecemos experiências de aventura premium na deslumbrante Ilha de Mussulo. A nossa frota de topo de jet skis, ATVs e UTVs é mantida nos mais altos padrões, garantindo a sua segurança e prazer.",
+    "highlight1": "Equipamento de alta qualidade",
+    "highlight2": "Rotas com vista para o mar",
+    "highlight3": "Guias experientes",
+    "highlight4": "Preços flexíveis",
+    "cta": "Descubra Mussulo"
+  },
+  "fleet": {
+    "subtitle": "A Nossa Frota",
+    "title": "Escolha a Sua Aventura",
+    "description": "Experimente a emoção das nossas motos de água de alta performance, ATVs robustos ou UTVs confortáveis."
+  },
+  "requirements": {
+    "subtitle": "Antes de Começar",
+    "title": "Requisitos Rápidos",
+    "age": {
+      "title": "Idade & Identificação",
+      "items": [
+        "16+ anos com identificação válida",
+        "Carta de condução exigida para ATVs/UTVs",
+        "Consentimento parental se menor de 18"
+      ]
+    },
+    "safety": {
+      "title": "Segurança em Primeiro",
+      "items": [
+        "Capacete e colete salva-vidas fornecidos",
+        "Briefing de segurança obrigatório",
+        "Condições meteorológicas verificadas"
+      ]
+    },
+    "booking": {
+      "title": "Reserva",
+      "items": [
+        "Reserve online ou no local",
+        "Depósito reembolsável necessário",
+        "Política de cancelamento de 24h"
+      ]
+    }
+  },
+  "safety": {
+    "subtitle": "A Sua Segurança",
+    "title": "Políticas de Segurança",
+    "rules": {
+      "title": "Regras de Aluguer",
+      "description": "Regras claras para manter todos em segurança enquanto maximiza a sua experiência de aventura.",
+      "items": [
+        "16+ com identificação válida (consentimento parental se menor de 18)",
+        "Carta de condução exigida para ATVs/UTVs",
+        "Sem álcool ou drogas antes/durante o aluguer",
+        "Permaneça dentro das zonas e rotas designadas",
+        "Siga todas as instruções e briefings da equipa",
+        "Respeite outros utilizadores e o ambiente"
+      ]
+    },
+    "equipment": {
+      "title": "Equipamento de Segurança",
+      "description": "Equipamento de proteção de topo fornecido e verificado antes de cada aluguer.",
+      "items": [
+        "Capacetes certificados (obrigatórios para ATVs/UTVs)",
+        "Coletes salva-vidas de alta qualidade (obrigatórios para jet skis)",
+        "Kit de primeiros socorros em todos os veículos",
+        "Dispositivos de comunicação para emergências",
+        "Rastreamento GPS para a sua segurança",
+        "Equipamento de segurança de reserva disponível"
+      ]
+    },
+    "weather": {
+      "title": "Diretrizes Meteorológicas",
+      "description": "Monitorizamos as condições de perto para garantir experiências seguras e agradáveis.",
+      "items": [
+        "Operações suspensas durante tempestades",
+        "Jet skis limitados a condições de mar calmo",
+        "Inspeções antes e depois do aluguer",
+        "Reembolso total para cancelamentos meteorológicos",
+        "Previsões meteorológicas partilhadas durante a reserva",
+        "Equipa disponível 24/7 para condições em mudança"
+      ]
+    }
+  },
+  "testimonials": {
+    "subtitle": "Testemunhos",
+    "title": "O Que Dizem os Nossos Clientes",
+    "description": "Leia sobre as experiências incríveis dos nossos clientes"
+  },
+  "faq": {
+    "subtitle": "Perguntas Frequentes",
+    "title": "Perguntas Frequentes",
+    "questions": {
+      "what": {
+        "q": "Que veículos estão disponíveis para aluguer?",
+        "a": "Oferecemos jet skis premium, ATVs (quadriciclos) e UTVs (veículos side-by-side). Cada veículo é mantido nos mais altos padrões e adequado para diferentes níveis de experiência."
+      },
+      "age": {
+        "q": "Qual é o requisito de idade?",
+        "a": "Deve ter pelo menos 16 anos de idade com identificação válida. É necessário consentimento parental para menores de 18 anos. É exigida carta de condução para ATVs e UTVs."
+      },
+      "book": {
+        "q": "Como faço para reservar um aluguer?",
+        "a": "Pode reservar online através do nosso site ou contactar-nos diretamente. Recomendamos reservar com antecedência, especialmente durante a época alta."
+      },
+      "safety": {
+        "q": "Que medidas de segurança estão implementadas?",
+        "a": "Fornecemos todo o equipamento de segurança necessário incluindo capacetes e coletes salva-vidas. É obrigatório um briefing de segurança antes de cada aluguer. Os nossos veículos são mantidos regularmente e rastreados por GPS."
+      },
+      "cancel": {
+        "q": "Qual é a política de cancelamento?",
+        "a": "Oferecemos uma política de cancelamento de 24 horas. Cancelamentos devido ao mau tempo recebem reembolso total."
+      },
+      "duration": {
+        "q": "Quanto tempo posso alugar?",
+        "a": "Oferecemos períodos de aluguer flexíveis começando a partir de 1 hora. Pacotes meio-dia e dia completo também estão disponíveis com tarifas com desconto."
+      }
+    }
+  },
+  "contact": {
+    "subtitle": "Contacte-nos",
+    "title": "Pronto para Começar a Sua Aventura?",
+    "description": "Tem perguntas ou quer fazer uma reserva? Entre em contacto e responderemos em breve!",
+    "form": {
+      "name": "Nome",
+      "email": "Email",
+      "subject": "Assunto",
+      "message": "Mensagem",
+      "submit": "Enviar Mensagem",
+      "sending": "A enviar..."
+    },
+    "toast": {
+      "success": "Sucesso!",
+      "successDesc": "A sua mensagem foi enviada com sucesso.",
+      "error": "Erro",
+      "errorDesc": "Ocorreu um erro ao enviar a sua mensagem. Por favor, tente novamente."
+    }
+  },
+  "location": {
+    "subtitle": "Encontre-nos",
+    "title": "Visite-nos em Mussulo",
+    "description": "Localizado na deslumbrante Ilha de Mussulo, Luanda, Angola",
+    "cta": "Obter Direções"
+  },
+  "footer": {
+    "description": "Experimente a emoção da aventura premium em Mussulo com os nossos jet skis, ATVs e UTVs de topo.",
+    "quickLinks": "Links Rápidos",
+    "links": {
+      "home": "Início",
+      "about": "Sobre Nós",
+      "fleet": "Frota",
+      "faq": "Perguntas",
+      "contact": "Contacto"
+    },
+    "contact": "Contacto",
+    "hours": "Horário de Funcionamento",
+    "hoursValue": "Todos os dias: 8h - 18h",
+    "legal": "Legal",
+    "terms": "Termos de Serviço",
+    "privacy": "Política de Privacidade",
+    "rights": "Todos os direitos reservados."
+  },
+  "whatsapp": {
+    "chat": "Fale connosco"
+  },
+  "booking": {
+    "title": "Reserve a Sua Aventura",
+    "vehicle": "Veículo",
+    "name": "Nome Completo",
+    "email": "Email",
+    "phone": "Telefone",
+    "date": "Data",
+    "time": "Hora",
+    "duration": "Duração",
+    "hours": "horas",
+    "requests": "Pedidos Especiais",
+    "total": "Total",
+    "reserve": "Confirmar Reserva",
+    "reserving": "A reservar...",
+    "toast": {
+      "success": "Reserva Confirmada!",
+      "successDesc": "A sua reserva foi efetuada com sucesso. Receberá um email de confirmação em breve.",
+      "error": "Erro na Reserva",
+      "errorDesc": "Ocorreu um erro ao processar a sua reserva. Por favor, tente novamente."
+    }
+  }
+}
