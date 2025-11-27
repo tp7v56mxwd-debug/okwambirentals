@@ -80,51 +80,7 @@ const Contact = () => {
           </p>
         </div>
 
-        <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-12">
-          {/* Contact Info */}
-          <div className="space-y-6">
-            <div className="bg-card/50 backdrop-blur-sm rounded-2xl p-8 border border-border/50 hover:border-primary/20 hover:shadow-premium transition-all">
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary to-primary-light flex items-center justify-center flex-shrink-0">
-                  <MapPin className="w-6 h-6 text-primary-foreground" strokeWidth={1.5} />
-                </div>
-                <div>
-                  <h3 className="font-display text-lg font-bold text-foreground mb-2">Location</h3>
-                  <p className="text-muted-foreground">
-                    Mussulo Peninsula<br />
-                    Luanda, Angola
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div className="bg-card/50 backdrop-blur-sm rounded-2xl p-8 border border-border/50 hover:border-primary/20 hover:shadow-premium transition-all">
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary to-primary-light flex items-center justify-center flex-shrink-0">
-                  <Phone className="w-6 h-6 text-primary-foreground" strokeWidth={1.5} />
-                </div>
-                <div>
-                  <h3 className="font-display text-lg font-bold text-foreground mb-2">Phone</h3>
-                  <p className="text-muted-foreground">+244 923 456 789</p>
-                  <p className="text-sm text-muted-foreground/70 mt-1">Available 24/7</p>
-                </div>
-              </div>
-            </div>
-
-            <div className="bg-card/50 backdrop-blur-sm rounded-2xl p-8 border border-border/50 hover:border-primary/20 hover:shadow-premium transition-all">
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary to-primary-light flex items-center justify-center flex-shrink-0">
-                  <Mail className="w-6 h-6 text-primary-foreground" strokeWidth={1.5} />
-                </div>
-                <div>
-                  <h3 className="font-display text-lg font-bold text-foreground mb-2">Email</h3>
-                  <p className="text-muted-foreground">info@okwambi.ao</p>
-                  <p className="text-sm text-muted-foreground/70 mt-1">Response within 24 hours</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
+        <div className="max-w-2xl mx-auto">
           {/* Contact Form */}
           <div className="bg-card/50 backdrop-blur-sm rounded-2xl p-8 border border-border/50">
             <form onSubmit={handleSubmit} className="space-y-6">
