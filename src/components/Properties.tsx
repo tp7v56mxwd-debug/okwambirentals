@@ -4,9 +4,6 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { BookingDialog } from "./BookingDialog";
 import { Users, Gauge, Waves, Calendar, Shield, Droplet, CheckCircle2 } from "lucide-react";
-import jetskiImg from "@/assets/jetski-premium.jpg";
-import atvImg from "@/assets/atv-premium.jpg";
-import utvImg from "@/assets/utv-premium.jpg";
 
 const Properties = () => {
   const [bookingOpen, setBookingOpen] = useState(false);
@@ -16,7 +13,6 @@ const Properties = () => {
     {
       category: "WATER SPORTS",
       name: "Jet Ski",
-      image: jetskiImg,
       capacity: "1-2 riders",
       speed: "110 km/h",
       features: ["Premium life jackets included", "Full fuel tank included", "Professional safety briefing", "GPS tracking enabled"],
@@ -42,7 +38,6 @@ const Properties = () => {
     {
       category: "LAND ADVENTURE", 
       name: "ATV",
-      image: atvImg,
       capacity: "1 rider",
       speed: "80 km/h", 
       features: ["Professional helmet included", "Full protective gear set", "Off-road terrain ready", "Expert guidance"],
@@ -68,7 +63,6 @@ const Properties = () => {
     {
       category: "PREMIUM EXPERIENCE",
       name: "UTV",
-      image: utvImg,
       capacity: "2-4 passengers",
       speed: "90 km/h",
       features: ["Full roll cage protection", "Premium off-road tires", "Comfortable seating", "Group adventure ready"],
@@ -124,21 +118,11 @@ const Properties = () => {
                 key={index}
                 className="group relative overflow-hidden bg-card/50 backdrop-blur-sm border-border/50 hover:border-primary/30 transition-all duration-500 hover:shadow-luxury flex flex-col"
               >
-                {/* Image Container */}
-                <div className="relative h-72 overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent z-10" />
-                  <img 
-                    src={vehicle.image} 
-                    alt={`${vehicle.name} - Premium rental at Mussulo Peninsula, Luanda, Angola`}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                  />
-                  <Badge className="absolute top-4 left-4 z-20 bg-primary/90 backdrop-blur-sm border-primary-foreground/20 text-primary-foreground font-bold tracking-wider">
-                    {vehicle.category}
-                  </Badge>
-                </div>
-
                 {/* Content */}
                 <div className="p-8 flex-1 flex flex-col">
+                  <Badge className="w-fit mb-4 bg-primary/90 backdrop-blur-sm border-primary-foreground/20 text-primary-foreground font-bold tracking-wider">
+                    {vehicle.category}
+                  </Badge>
                   <h3 className="font-display text-3xl font-bold mb-4 text-foreground">
                     {vehicle.name}
                   </h3>
