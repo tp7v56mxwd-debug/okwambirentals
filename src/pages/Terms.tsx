@@ -39,7 +39,7 @@ const Terms = () => {
                 To rent a vehicle, you must:
               </p>
               <ul className="list-disc list-inside space-y-2 text-muted-foreground ml-4">
-                <li>Be at least 18 years of age</li>
+                <li>Be at least 16 years of age (with parental/guardian consent required for minors under 18)</li>
                 <li>Hold a valid driver's license for at least 2 years</li>
                 <li>Present a valid government-issued ID or passport</li>
                 <li>Provide a credit card for the security deposit</li>
