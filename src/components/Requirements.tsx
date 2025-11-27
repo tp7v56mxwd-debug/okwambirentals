@@ -16,8 +16,8 @@ const Requirements = () => {
       title: "Security Deposit",
       items: [
         "Refundable deposit required",
-        "Credit card authorization",
-        "Returned within 7-10 business days"
+        "Credit card or cash accepted",
+        "Returned within 24 hours"
       ]
     },
     {
