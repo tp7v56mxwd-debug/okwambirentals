@@ -20,8 +20,9 @@ const SafetyPolicies = () => {
       title: "Rental Rules",
       description: "Clear rules to keep everyone safe while maximizing your adventure experience.",
       items: [
-        "Must be 16+ years old with valid ID",
-        "Valid driver's license required for land vehicles",
+        "Must be 16+ years old with valid ID or driver's license",
+        "Parental consent required for ages 16-17 or without driver's license",
+        "Valid driver's license preferred for land vehicles",
         "No alcohol or drugs before/during rental",
         "Stay within designated zones and routes",
         "Follow all staff instructions and briefings",
