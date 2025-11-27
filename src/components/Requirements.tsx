@@ -1,85 +1,99 @@
-import { Shield, FileCheck, CreditCard, Calendar } from "lucide-react";
+import { Shield, FileCheck, CreditCard, Clock } from "lucide-react";
 
 const Requirements = () => {
   const requirements = [
     {
       icon: FileCheck,
-      title: "Valid ID Required",
-      description: "Bring a valid government-issued ID or passport. International visitors welcome with valid documentation."
-    },
-    {
-      icon: Shield,
-      title: "Age Requirements",
-      description: "Must be 18+ years old. Minors allowed as passengers with adult supervision and signed waiver."
+      title: "Valid Documentation",
+      items: [
+        "Driver's license (held for 2+ years)",
+        "Government-issued ID or passport",
+        "Minimum age: 21 years"
+      ]
     },
     {
       icon: CreditCard,
       title: "Security Deposit",
-      description: "Refundable security deposit required at check-in. Accepted: Cash, Credit/Debit cards."
+      items: [
+        "Refundable deposit required",
+        "Credit card authorization",
+        "Returned within 7-10 business days"
+      ]
     },
     {
-      icon: Calendar,
+      icon: Clock,
       title: "Booking Policy",
-      description: "Cancel up to 24 hours before for full refund. Late cancellations subject to 50% charge."
+      items: [
+        "Free cancellation up to 24 hours",
+        "Flexible rental durations",
+        "Instant confirmation available"
+      ]
+    },
+    {
+      icon: Shield,
+      title: "Safety Standards",
+      items: [
+        "Comprehensive safety briefing",
+        "Premium protective equipment",
+        "Professional guidance included"
+      ]
     }
   ];
 
   return (
-    <section className="py-24 bg-background relative overflow-hidden">
-      <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-accent/5 rounded-full blur-3xl" />
+    <section className="py-32 relative overflow-hidden bg-gradient-to-b from-background to-muted/20">
+      {/* Background Elements */}
+      <div className="absolute top-0 left-0 w-[600px] h-[600px] bg-primary/5 rounded-full blur-3xl" />
+      <div className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-accent/5 rounded-full blur-3xl" />
       
-      <div className="container mx-auto px-4 relative">
-        <div className="text-center mb-16 animate-in fade-in slide-in-from-bottom-4 duration-700">
-          <div className="inline-block mb-4">
-            <span className="px-4 py-2 bg-primary/10 text-primary font-bold text-sm tracking-wider rounded-full border border-primary/20">
-              BEFORE YOU RIDE
-            </span>
+      <div className="container mx-auto px-6 lg:px-8 relative">
+        {/* Section Header */}
+        <div className="max-w-3xl mx-auto text-center mb-20">
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/5 border border-primary/10 rounded-full mb-6">
+            <span className="text-primary text-sm font-semibold tracking-widest uppercase">Before You Start</span>
           </div>
-          <h2 className="text-5xl md:text-7xl font-black mb-6 text-foreground leading-tight">
-            What You Need to Know
+          
+          <h2 className="font-display text-5xl md:text-6xl lg:text-7xl font-bold mb-6 text-foreground leading-tight">
+            Simple & Clear
+            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-primary via-accent to-accent-glow">Requirements</span>
           </h2>
-          <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto font-medium">
-            Quick essentials for a smooth rental experience
+          
+          <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
+            Everything you need to know before embarking on your adventure
           </p>
         </div>
 
+        {/* Requirements Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
-          {requirements.map((req, index) => {
-            const Icon = req.icon;
-            return (
-              <div
-                key={req.title}
-                className="group relative animate-in fade-in slide-in-from-bottom-4"
-                style={{ animationDelay: `${index * 100}ms` }}
-              >
-                <div className="absolute -inset-1 bg-gradient-to-br from-primary/10 via-accent/10 to-primary/10 rounded-2xl blur-lg opacity-0 group-hover:opacity-100 transition-all duration-500" />
-                <div className="relative bg-card rounded-2xl p-8 shadow-soft hover:shadow-elegant transition-all duration-500 border border-border/50 hover:border-primary/30 h-full">
-                  <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-primary to-primary-glow flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                    <Icon className="w-8 h-8 text-white" />
-                  </div>
-                  
-                  <h3 className="text-xl font-black mb-3 text-foreground group-hover:text-primary transition-colors duration-300">
-                    {req.title}
-                  </h3>
-                  
-                  <p className="text-muted-foreground leading-relaxed">
-                    {req.description}
-                  </p>
+          {requirements.map((req, index) => (
+            <div 
+              key={index}
+              className="group relative"
+            >
+              {/* Card */}
+              <div className="relative bg-card/50 backdrop-blur-sm p-8 rounded-2xl border border-border/50 hover:border-primary/20 transition-all duration-500 hover:shadow-premium h-full">
+                {/* Icon */}
+                <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-br from-primary to-primary-light text-primary-foreground mb-6 shadow-subtle group-hover:shadow-premium transition-all group-hover:-translate-y-1">
+                  <req.icon className="w-6 h-6" strokeWidth={1.5} />
                 </div>
+                
+                {/* Title */}
+                <h3 className="font-display text-xl font-bold mb-4 text-foreground">
+                  {req.title}
+                </h3>
+                
+                {/* Items */}
+                <ul className="space-y-3">
+                  {req.items.map((item, idx) => (
+                    <li key={idx} className="flex items-start gap-2 text-sm text-muted-foreground">
+                      <div className="w-1 h-1 rounded-full bg-accent flex-shrink-0 mt-2" />
+                      <span className="leading-relaxed">{item}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
-            );
-          })}
-        </div>
-
-        <div className="mt-16 max-w-4xl mx-auto bg-gradient-to-br from-primary/5 to-accent/5 rounded-3xl p-8 border border-primary/20">
-          <h3 className="text-2xl font-black text-foreground mb-4">Safety First</h3>
-          <p className="text-muted-foreground leading-relaxed mb-4">
-            All rentals include comprehensive safety briefings, premium protective equipment, and clear operating instructions. 
-            Our experienced staff ensures you're comfortable and confident before your adventure begins.
-          </p>
-          <p className="text-sm text-muted-foreground font-bold">
-            Emergency contact and support available throughout your rental period.
-          </p>
+            </div>
+          ))}
         </div>
       </div>
     </section>

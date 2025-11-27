@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Mail, Phone, MapPin } from "lucide-react";
+import { Mail, Phone, MapPin, Send } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { z } from "zod";
 
@@ -33,8 +33,8 @@ const Contact = () => {
       contactSchema.parse(data);
 
       toast({
-        title: "Message Sent!",
-        description: "We'll get back to you as soon as possible."
+        title: "Message Sent",
+        description: "We'll get back to you within 24 hours."
       });
 
       e.currentTarget.reset();
@@ -56,86 +56,143 @@ const Contact = () => {
       setIsSubmitting(false);
     }
   };
+
   return (
-    <section id="contact" className="py-24 relative overflow-hidden" style={{ background: 'var(--gradient-subtle)' }}>
-      <div className="absolute top-0 left-0 w-96 h-96 bg-accent/5 rounded-full blur-3xl" />
+    <section id="contact" className="py-32 relative overflow-hidden bg-gradient-to-b from-background via-muted/10 to-background">
+      {/* Background Elements */}
+      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-accent/5 rounded-full blur-3xl" />
+      <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-primary/5 rounded-full blur-3xl" />
       
-      <div className="container mx-auto px-4 relative">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-20 animate-in fade-in slide-in-from-bottom-4 duration-700">
-            <div className="inline-block mb-4">
-              <span className="px-4 py-2 bg-primary/10 text-primary font-bold text-sm tracking-wider rounded-full border border-primary/20">
-                START YOUR ADVENTURE
-              </span>
-            </div>
-            <h2 className="text-5xl md:text-7xl font-black mb-6 text-foreground leading-tight">
-              Book Your Adventure
-            </h2>
-            <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto font-medium">
-              Ready to unleash your Wambi spirit? Let's make it happen
-            </p>
+      <div className="container mx-auto px-6 lg:px-8 relative">
+        {/* Section Header */}
+        <div className="max-w-3xl mx-auto text-center mb-20">
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-accent/5 border border-accent/10 rounded-full mb-6">
+            <span className="text-accent text-sm font-semibold tracking-widest uppercase">Get In Touch</span>
           </div>
           
-          <div className="grid md:grid-cols-2 gap-12">
-            <div className="space-y-8">
-              <div className="flex items-start gap-5 group">
-                <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary to-primary/50 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
-                  <MapPin className="w-8 h-8 text-white" />
+          <h2 className="font-display text-5xl md:text-6xl lg:text-7xl font-bold mb-6 text-foreground leading-tight">
+            Start Your
+            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-primary via-accent to-accent-glow">Adventure</span>
+          </h2>
+          
+          <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
+            Ready to experience the ultimate adventure? Reach out and let's make it happen.
+          </p>
+        </div>
+
+        <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-12">
+          {/* Contact Info */}
+          <div className="space-y-6">
+            <div className="bg-card/50 backdrop-blur-sm rounded-2xl p-8 border border-border/50 hover:border-primary/20 hover:shadow-premium transition-all">
+              <div className="flex items-start gap-4">
+                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary to-primary-light flex items-center justify-center flex-shrink-0">
+                  <MapPin className="w-6 h-6 text-primary-foreground" strokeWidth={1.5} />
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold mb-2 text-foreground">Location</h3>
-                  <p className="text-muted-foreground text-lg">Mussulo Peninsula, Luanda, Angola</p>
-                </div>
-              </div>
-              
-              <div className="flex items-start gap-5 group">
-                <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-accent to-accent/50 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
-                  <Phone className="w-8 h-8 text-white" />
-                </div>
-                <div>
-                  <h3 className="text-xl font-bold mb-2 text-foreground">Phone</h3>
-                  <p className="text-muted-foreground text-lg">+244 XXX XXX XXX</p>
-                </div>
-              </div>
-              
-              <div className="flex items-start gap-5 group">
-                <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary to-primary/50 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
-                  <Mail className="w-8 h-8 text-white" />
-                </div>
-                <div>
-                  <h3 className="text-xl font-bold mb-2 text-foreground">Email</h3>
-                  <p className="text-muted-foreground text-lg">info@okwambirentals.com</p>
-                </div>
-              </div>
-              
-              <div className="mt-8 p-6 rounded-2xl bg-card border-2 border-border/50">
-                <h4 className="font-bold text-lg mb-3 text-foreground">Operating Hours</h4>
-                <div className="space-y-2 text-muted-foreground">
-                  <p>Monday - Sunday: 8:00 AM - 6:00 PM</p>
-                  <p className="text-sm">Peak season hours may vary</p>
+                  <h3 className="font-display text-lg font-bold text-foreground mb-2">Location</h3>
+                  <p className="text-muted-foreground">
+                    Mussulo Peninsula<br />
+                    Luanda, Angola
+                  </p>
                 </div>
               </div>
             </div>
-            
-            <form className="space-y-5 bg-card p-8 rounded-2xl shadow-xl border-2 border-border/50" onSubmit={handleSubmit}>
-              <div>
-                <label className="block text-sm font-semibold mb-2 text-foreground">Your Name</label>
-                <Input name="name" placeholder="John Doe" className="bg-background h-12 text-base" required maxLength={100} />
+
+            <div className="bg-card/50 backdrop-blur-sm rounded-2xl p-8 border border-border/50 hover:border-primary/20 hover:shadow-premium transition-all">
+              <div className="flex items-start gap-4">
+                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary to-primary-light flex items-center justify-center flex-shrink-0">
+                  <Phone className="w-6 h-6 text-primary-foreground" strokeWidth={1.5} />
+                </div>
+                <div>
+                  <h3 className="font-display text-lg font-bold text-foreground mb-2">Phone</h3>
+                  <p className="text-muted-foreground">+244 923 456 789</p>
+                  <p className="text-sm text-muted-foreground/70 mt-1">Available 24/7</p>
+                </div>
               </div>
-              <div>
-                <label className="block text-sm font-semibold mb-2 text-foreground">Your Email</label>
-                <Input name="email" type="email" placeholder="john@example.com" className="bg-background h-12 text-base" required maxLength={255} />
+            </div>
+
+            <div className="bg-card/50 backdrop-blur-sm rounded-2xl p-8 border border-border/50 hover:border-primary/20 hover:shadow-premium transition-all">
+              <div className="flex items-start gap-4">
+                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary to-primary-light flex items-center justify-center flex-shrink-0">
+                  <Mail className="w-6 h-6 text-primary-foreground" strokeWidth={1.5} />
+                </div>
+                <div>
+                  <h3 className="font-display text-lg font-bold text-foreground mb-2">Email</h3>
+                  <p className="text-muted-foreground">info@okwambi.ao</p>
+                  <p className="text-sm text-muted-foreground/70 mt-1">Response within 24 hours</p>
+                </div>
               </div>
+            </div>
+          </div>
+
+          {/* Contact Form */}
+          <div className="bg-card/50 backdrop-blur-sm rounded-2xl p-8 border border-border/50">
+            <form onSubmit={handleSubmit} className="space-y-6">
               <div>
-                <label className="block text-sm font-semibold mb-2 text-foreground">Subject</label>
-                <Input name="subject" placeholder="Rental Inquiry" className="bg-background h-12 text-base" required maxLength={200} />
+                <label htmlFor="name" className="block text-sm font-semibold text-foreground mb-2">
+                  Name
+                </label>
+                <Input
+                  id="name"
+                  name="name"
+                  placeholder="Your name"
+                  required
+                  maxLength={100}
+                  className="bg-background/50"
+                />
               </div>
+
               <div>
-                <label className="block text-sm font-semibold mb-2 text-foreground">Your Message</label>
-                <Textarea name="message" placeholder="Tell us about your adventure plans..." rows={5} className="bg-background text-base" required maxLength={1000} />
+                <label htmlFor="email" className="block text-sm font-semibold text-foreground mb-2">
+                  Email
+                </label>
+                <Input
+                  id="email"
+                  name="email"
+                  type="email"
+                  placeholder="your.email@example.com"
+                  required
+                  maxLength={255}
+                  className="bg-background/50"
+                />
               </div>
-              <Button type="submit" className="w-full h-12 text-base font-semibold" size="lg" disabled={isSubmitting}>
-                {isSubmitting ? "Sending..." : "Send Message"}
+
+              <div>
+                <label htmlFor="subject" className="block text-sm font-semibold text-foreground mb-2">
+                  Subject
+                </label>
+                <Input
+                  id="subject"
+                  name="subject"
+                  placeholder="How can we help?"
+                  required
+                  maxLength={200}
+                  className="bg-background/50"
+                />
+              </div>
+
+              <div>
+                <label htmlFor="message" className="block text-sm font-semibold text-foreground mb-2">
+                  Message
+                </label>
+                <Textarea
+                  id="message"
+                  name="message"
+                  placeholder="Tell us about your adventure plans..."
+                  required
+                  maxLength={1000}
+                  rows={5}
+                  className="bg-background/50 resize-none"
+                />
+              </div>
+
+              <Button
+                type="submit"
+                disabled={isSubmitting}
+                className="w-full bg-primary hover:bg-primary-light text-primary-foreground font-semibold tracking-wide shadow-premium hover:shadow-luxury transition-all group"
+              >
+                {isSubmitting ? "SENDING..." : "SEND MESSAGE"}
+                <Send className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" strokeWidth={2} />
               </Button>
             </form>
           </div>

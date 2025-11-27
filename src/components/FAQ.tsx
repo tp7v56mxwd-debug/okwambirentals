@@ -43,17 +43,26 @@ const FAQ = () => {
   ];
 
   return (
-    <section id="faq" className="py-20 bg-gradient-to-br from-muted/30 via-background to-muted/20">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
-          <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-primary to-accent mb-4">
-            <HelpCircle className="w-8 h-8 text-primary-foreground" />
+    <section id="faq" className="py-32 relative overflow-hidden bg-gradient-to-b from-muted/20 via-background to-muted/20">
+      {/* Background Elements */}
+      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-accent/5 rounded-full blur-3xl" />
+      <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-primary/5 rounded-full blur-3xl" />
+      
+      <div className="container mx-auto px-6 lg:px-8 relative">
+        {/* Section Header */}
+        <div className="max-w-3xl mx-auto text-center mb-20">
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-accent/5 border border-accent/10 rounded-full mb-6">
+            <HelpCircle className="w-5 h-5 text-accent" strokeWidth={1.5} />
+            <span className="text-accent text-sm font-semibold tracking-widest uppercase">FAQ</span>
           </div>
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-foreground">
-            Frequently Asked Questions
+          
+          <h2 className="font-display text-5xl md:text-6xl lg:text-7xl font-bold mb-6 text-foreground leading-tight">
+            Questions &
+            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-primary via-accent to-accent-glow">Answers</span>
           </h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            Got questions? We've got answers. Find everything you need to know about renting with us.
+          
+          <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
+            Everything you need to know about renting with us
           </p>
         </div>
 
@@ -63,12 +72,12 @@ const FAQ = () => {
               <AccordionItem
                 key={index}
                 value={`item-${index}`}
-                className="bg-card border border-border rounded-lg px-6 shadow-sm hover:shadow-md transition-shadow"
+                className="bg-card/50 backdrop-blur-sm border border-border/50 hover:border-primary/20 rounded-xl px-6 transition-all duration-300"
               >
-                <AccordionTrigger className="text-left hover:no-underline py-4">
-                  <span className="font-semibold text-foreground">{faq.question}</span>
+                <AccordionTrigger className="text-left hover:no-underline py-5 hover:text-primary transition-colors">
+                  <span className="font-display text-lg font-semibold text-foreground pr-4">{faq.question}</span>
                 </AccordionTrigger>
-                <AccordionContent className="text-muted-foreground pb-4">
+                <AccordionContent className="text-muted-foreground pb-5 leading-relaxed">
                   {faq.answer}
                 </AccordionContent>
               </AccordionItem>

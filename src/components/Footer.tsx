@@ -10,49 +10,69 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-gradient-to-br from-foreground to-foreground/90 text-background py-12">
-      <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+    <footer className="relative bg-primary text-primary-foreground overflow-hidden">
+      {/* Decorative Elements */}
+      <div className="absolute top-0 right-0 w-96 h-96 bg-accent/10 rounded-full blur-3xl" />
+      <div className="absolute bottom-0 left-0 w-96 h-96 bg-accent/5 rounded-full blur-3xl" />
+      
+      <div className="container mx-auto px-6 lg:px-8 py-16 relative">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
           {/* Brand */}
-          <div>
-            <div className="flex items-center gap-2 mb-4">
-              <div className="w-10 h-10 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center">
-                <span className="text-white font-bold text-lg">O</span>
-              </div>
-              <div>
-                <div className="font-bold text-lg">Okwambi Rentals</div>
-                <div className="text-sm text-background/70">Be Fearless</div>
-              </div>
+          <div className="md:col-span-1">
+            <div className="mb-6">
+              <span className="font-display text-2xl font-bold tracking-tight">OKWAMBI</span>
+              <p className="text-sm text-primary-foreground/60 mt-2 font-light">
+                Premium adventure experiences in Mussulo Peninsula
+              </p>
             </div>
-            <p className="text-background/70 text-sm">
-              Your trusted partner for adventure vehicle rentals at Mussulo Peninsula.
-            </p>
+            
+            {/* Social Links */}
+            <div className="flex gap-3">
+              <a
+                href="https://facebook.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 rounded-full bg-primary-foreground/10 hover:bg-accent flex items-center justify-center transition-all hover:scale-110 group"
+                aria-label="Facebook"
+              >
+                <Facebook className="w-4 h-4 group-hover:text-accent-foreground transition-colors" />
+              </a>
+              <a
+                href="https://instagram.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 rounded-full bg-primary-foreground/10 hover:bg-accent flex items-center justify-center transition-all hover:scale-110 group"
+                aria-label="Instagram"
+              >
+                <Instagram className="w-4 h-4 group-hover:text-accent-foreground transition-colors" />
+              </a>
+            </div>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h3 className="font-semibold text-lg mb-4">Quick Links</h3>
-            <ul className="space-y-2">
+            <h3 className="font-display text-sm font-bold tracking-wider uppercase mb-4">Navigate</h3>
+            <ul className="space-y-3">
               <li>
                 <button
                   onClick={() => scrollToSection('about')}
-                  className="text-background/70 hover:text-background transition-colors text-sm"
+                  className="text-primary-foreground/70 hover:text-primary-foreground transition-colors text-sm font-light"
                 >
-                  About Us
+                  About
                 </button>
               </li>
               <li>
                 <button
                   onClick={() => scrollToSection('fleet')}
-                  className="text-background/70 hover:text-background transition-colors text-sm"
+                  className="text-primary-foreground/70 hover:text-primary-foreground transition-colors text-sm font-light"
                 >
-                  Our Fleet
+                  Fleet
                 </button>
               </li>
               <li>
                 <button
                   onClick={() => scrollToSection('faq')}
-                  className="text-background/70 hover:text-background transition-colors text-sm"
+                  className="text-primary-foreground/70 hover:text-primary-foreground transition-colors text-sm font-light"
                 >
                   FAQ
                 </button>
@@ -60,7 +80,7 @@ const Footer = () => {
               <li>
                 <button
                   onClick={() => scrollToSection('contact')}
-                  className="text-background/70 hover:text-background transition-colors text-sm"
+                  className="text-primary-foreground/70 hover:text-primary-foreground transition-colors text-sm font-light"
                 >
                   Contact
                 </button>
@@ -70,12 +90,12 @@ const Footer = () => {
 
           {/* Legal */}
           <div>
-            <h3 className="font-semibold text-lg mb-4">Legal</h3>
-            <ul className="space-y-2">
+            <h3 className="font-display text-sm font-bold tracking-wider uppercase mb-4">Legal</h3>
+            <ul className="space-y-3">
               <li>
                 <Link
                   to="/terms"
-                  className="text-background/70 hover:text-background transition-colors text-sm"
+                  className="text-primary-foreground/70 hover:text-primary-foreground transition-colors text-sm font-light"
                 >
                   Terms of Service
                 </Link>
@@ -83,7 +103,7 @@ const Footer = () => {
               <li>
                 <Link
                   to="/privacy"
-                  className="text-background/70 hover:text-background transition-colors text-sm"
+                  className="text-primary-foreground/70 hover:text-primary-foreground transition-colors text-sm font-light"
                 >
                   Privacy Policy
                 </Link>
@@ -93,50 +113,34 @@ const Footer = () => {
 
           {/* Contact */}
           <div>
-            <h3 className="font-semibold text-lg mb-4">Contact Us</h3>
+            <h3 className="font-display text-sm font-bold tracking-wider uppercase mb-4">Contact</h3>
             <ul className="space-y-3">
-              <li className="flex items-center gap-2 text-sm">
-                <MapPin className="w-4 h-4 text-primary" />
-                <span className="text-background/70">Mussulo Peninsula, Luanda</span>
+              <li className="flex items-start gap-3 text-sm">
+                <MapPin className="w-4 h-4 text-accent flex-shrink-0 mt-0.5" strokeWidth={1.5} />
+                <span className="text-primary-foreground/70 font-light">Mussulo Peninsula, Luanda</span>
               </li>
-              <li className="flex items-center gap-2 text-sm">
-                <Phone className="w-4 h-4 text-primary" />
-                <span className="text-background/70">+244 923 456 789</span>
+              <li className="flex items-start gap-3 text-sm">
+                <Phone className="w-4 h-4 text-accent flex-shrink-0 mt-0.5" strokeWidth={1.5} />
+                <span className="text-primary-foreground/70 font-light">+244 923 456 789</span>
               </li>
-              <li className="flex items-center gap-2 text-sm">
-                <Mail className="w-4 h-4 text-primary" />
-                <span className="text-background/70">info@okwambi.ao</span>
+              <li className="flex items-start gap-3 text-sm">
+                <Mail className="w-4 h-4 text-accent flex-shrink-0 mt-0.5" strokeWidth={1.5} />
+                <span className="text-primary-foreground/70 font-light">info@okwambi.ao</span>
               </li>
             </ul>
-            
-            {/* Social Links */}
-            <div className="flex gap-3 mt-4">
-              <a
-                href="https://facebook.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-8 h-8 rounded-full bg-background/10 hover:bg-background/20 flex items-center justify-center transition-colors"
-                aria-label="Facebook"
-              >
-                <Facebook className="w-4 h-4" />
-              </a>
-              <a
-                href="https://instagram.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-8 h-8 rounded-full bg-background/10 hover:bg-background/20 flex items-center justify-center transition-colors"
-                aria-label="Instagram"
-              >
-                <Instagram className="w-4 h-4" />
-              </a>
-            </div>
           </div>
         </div>
 
-        <div className="border-t border-background/20 pt-6 text-center">
-          <p className="text-background/70 text-sm">
-            &copy; {new Date().getFullYear()} Okwambi Rentals. All rights reserved.
-          </p>
+        {/* Bottom Bar */}
+        <div className="pt-8 border-t border-primary-foreground/10">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+            <p className="text-sm text-primary-foreground/60 font-light">
+              &copy; {new Date().getFullYear()} Okwambi Rentals. All rights reserved.
+            </p>
+            <p className="text-sm text-primary-foreground/60 font-light">
+              Crafted with excellence in Angola
+            </p>
+          </div>
         </div>
       </div>
     </footer>

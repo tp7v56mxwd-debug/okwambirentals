@@ -1,4 +1,4 @@
-import { Star } from "lucide-react";
+import { Star, Quote } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 
 const Testimonials = () => {
@@ -34,36 +34,57 @@ const Testimonials = () => {
   ];
 
   return (
-    <section className="py-20 bg-gradient-to-br from-background via-muted/10 to-background">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-foreground">
-            What Our Customers Say
+    <section className="py-32 relative overflow-hidden bg-gradient-to-b from-background via-muted/10 to-background">
+      {/* Background Elements */}
+      <div className="absolute top-0 left-0 w-[600px] h-[600px] bg-primary/5 rounded-full blur-3xl" />
+      <div className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-accent/5 rounded-full blur-3xl" />
+      
+      <div className="container mx-auto px-6 lg:px-8 relative">
+        {/* Section Header */}
+        <div className="max-w-3xl mx-auto text-center mb-20">
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/5 border border-primary/10 rounded-full mb-6">
+            <span className="text-primary text-sm font-semibold tracking-widest uppercase">Testimonials</span>
+          </div>
+          
+          <h2 className="font-display text-5xl md:text-6xl lg:text-7xl font-bold mb-6 text-foreground leading-tight">
+            Client
+            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-primary via-accent to-accent-glow">Experiences</span>
           </h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            Don't just take our word for it - hear from adventurers who've experienced the thrill with Okwambi Rentals.
+          
+          <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
+            Real stories from adventurers who've experienced the Okwambi difference
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
           {testimonials.map((testimonial, index) => (
             <Card
               key={index}
-              className="bg-card hover:shadow-lg transition-all duration-300 hover:-translate-y-2"
+              className="bg-card/50 backdrop-blur-sm border border-border/50 hover:border-primary/20 hover:shadow-luxury transition-all duration-500 hover:-translate-y-2"
             >
-              <CardContent className="p-6">
-                <div className="flex gap-1 mb-4">
+              <CardContent className="p-6 relative">
+                {/* Quote Icon */}
+                <div className="absolute top-4 right-4 w-8 h-8 rounded-full bg-accent/10 flex items-center justify-center">
+                  <Quote className="w-4 h-4 text-accent" strokeWidth={2} />
+                </div>
+                
+                {/* Rating */}
+                <div className="flex gap-0.5 mb-4">
                   {[...Array(testimonial.rating)].map((_, i) => (
-                    <Star key={i} className="w-5 h-5 fill-accent text-accent" />
+                    <Star key={i} className="w-4 h-4 fill-accent text-accent" strokeWidth={0} />
                   ))}
                 </div>
-                <p className="text-muted-foreground mb-4 leading-relaxed">
+                
+                {/* Review Text */}
+                <p className="text-muted-foreground text-sm mb-6 leading-relaxed">
                   "{testimonial.text}"
                 </p>
-                <div className="border-t border-border pt-4">
-                  <p className="font-semibold text-foreground">{testimonial.name}</p>
-                  <p className="text-sm text-muted-foreground">{testimonial.location}</p>
-                  <p className="text-xs text-muted-foreground mt-1">{testimonial.date}</p>
+                
+                {/* Author Info */}
+                <div className="pt-4 border-t border-border/50">
+                  <p className="font-display font-semibold text-foreground">{testimonial.name}</p>
+                  <p className="text-xs text-muted-foreground mt-1">{testimonial.location}</p>
+                  <p className="text-xs text-muted-foreground/60 mt-1">{testimonial.date}</p>
                 </div>
               </CardContent>
             </Card>
