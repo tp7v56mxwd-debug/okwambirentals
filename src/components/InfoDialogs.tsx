@@ -77,7 +77,7 @@ export const InfoDialogs = () => {
         console.log("FAQ Dialog change:", open);
         if (!open) setOpenDialog(null);
       }}>
-        <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto bg-background z-[200]">
+        <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
           <DialogHeader>
             <DialogTitle>{t('nav.faq')}</DialogTitle>
           </DialogHeader>
@@ -90,7 +90,7 @@ export const InfoDialogs = () => {
         console.log("Requirements Dialog change:", open);
         if (!open) setOpenDialog(null);
       }}>
-        <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto bg-background z-[200]">
+        <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
           <DialogHeader>
             <DialogTitle>{t('nav.requirements')}</DialogTitle>
           </DialogHeader>
@@ -103,7 +103,7 @@ export const InfoDialogs = () => {
         console.log("Safety Dialog change:", open);
         if (!open) setOpenDialog(null);
       }}>
-        <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto bg-background z-[200]">
+        <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
           <DialogHeader>
             <DialogTitle>{t('nav.safety')}</DialogTitle>
           </DialogHeader>
@@ -161,7 +161,7 @@ export const MobileInfoDialogs = ({ onClose }: { onClose: () => void }) => {
         console.log("Mobile FAQ Dialog change:", open);
         if (!open) setOpenDialog(null);
       }}>
-        <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto bg-background z-[200]">
+        <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
           <DialogHeader>
             <DialogTitle>{t('nav.faq')}</DialogTitle>
           </DialogHeader>
@@ -173,7 +173,7 @@ export const MobileInfoDialogs = ({ onClose }: { onClose: () => void }) => {
         console.log("Mobile Requirements Dialog change:", open);
         if (!open) setOpenDialog(null);
       }}>
-        <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto bg-background z-[200]">
+        <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
           <DialogHeader>
             <DialogTitle>{t('nav.requirements')}</DialogTitle>
           </DialogHeader>
@@ -185,7 +185,7 @@ export const MobileInfoDialogs = ({ onClose }: { onClose: () => void }) => {
         console.log("Mobile Safety Dialog change:", open);
         if (!open) setOpenDialog(null);
       }}>
-        <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto bg-background z-[200]">
+        <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
           <DialogHeader>
             <DialogTitle>{t('nav.safety')}</DialogTitle>
           </DialogHeader>
