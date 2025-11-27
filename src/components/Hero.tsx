@@ -18,13 +18,7 @@ const Hero = () => {
       <div className="absolute inset-0" style={{ background: 'var(--gradient-overlay)' }} />
       
       <div className="relative z-10 container mx-auto px-4 text-center text-white">
-        <div className="inline-block mb-6 animate-in fade-in slide-in-from-bottom-4 duration-700">
-          <div className="px-6 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20">
-            <span className="text-sm font-semibold tracking-wider">MUSSULO ADVENTURES</span>
-          </div>
-        </div>
-        
-        <h1 className="text-6xl md:text-8xl lg:text-9xl font-black mb-8 animate-in fade-in slide-in-from-bottom-4 duration-1000 delay-100 leading-[0.9] tracking-tight">
+        <h1 className="text-6xl md:text-8xl lg:text-9xl font-black mb-8 animate-in fade-in slide-in-from-bottom-4 duration-1000 leading-[0.9] tracking-tight">
           <span className="block text-white">Okwambi</span>
           <span className="block text-white">Rentals</span>
         </h1>

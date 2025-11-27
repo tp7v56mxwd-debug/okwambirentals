@@ -5,7 +5,6 @@ const Properties = () => {
   const fleet = [
     {
       name: "Jet Ski",
-      icon: "🌊",
       capacity: "1-2 Riders",
       speed: "Up to 65 mph",
       price: "45.000 Kz",
@@ -18,7 +17,6 @@ const Properties = () => {
     },
     {
       name: "ATV",
-      icon: "🏍️",
       capacity: "1 Rider",
       speed: "Variable speeds",
       price: "30.000 Kz",
@@ -31,7 +29,6 @@ const Properties = () => {
     },
     {
       name: "UTV",
-      icon: "🚙",
       capacity: "2-4 Passengers",
       speed: "Off-road capable",
       price: "50.000 Kz",
@@ -76,8 +73,7 @@ const Properties = () => {
                 <div className="aspect-video bg-gradient-to-br from-primary/5 via-accent/5 to-primary/5 flex items-center justify-center relative overflow-hidden group-hover:scale-105 transition-transform duration-500">
                   <div className="absolute inset-0 bg-gradient-to-br from-primary/0 via-accent/0 to-primary/0 group-hover:from-primary/10 group-hover:via-accent/10 group-hover:to-primary/10 transition-all duration-500" />
                   <div className="text-center relative z-10">
-                    <span className="text-7xl mb-3 block transform group-hover:scale-110 transition-transform duration-500">{vehicle.icon}</span>
-                    <span className="text-base font-bold text-muted-foreground uppercase tracking-wide">{vehicle.name}</span>
+                    <span className="text-4xl font-black text-foreground uppercase tracking-wide">{vehicle.name}</span>
                   </div>
                 </div>
                 
