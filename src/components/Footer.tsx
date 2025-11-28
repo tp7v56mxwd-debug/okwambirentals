@@ -1,4 +1,4 @@
-import { Facebook, Instagram, Mail, MapPin, Phone } from "lucide-react";
+import { Facebook, Instagram, Mail, MapPin, Phone, ArrowUp } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useTranslation } from 'react-i18next';
 
@@ -10,6 +10,13 @@ const Footer = () => {
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     }
+  };
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
   };
 
   return (
@@ -99,9 +106,19 @@ const Footer = () => {
         {/* Bottom Bar */}
         <div className="pt-8 mt-4 border-t border-primary-foreground/20">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-            <p className="text-sm text-primary-foreground/60 font-light">
-              &copy; {new Date().getFullYear()} Okwambi Rentals. {t('footer.rights')}
-            </p>
+            <div className="flex items-center gap-3">
+              <p className="text-sm text-primary-foreground/60 font-light">
+                &copy; {new Date().getFullYear()} Okwambi Rentals. {t('footer.rights')}
+              </p>
+              <button
+                onClick={scrollToTop}
+                className="inline-flex items-center gap-1 text-xs text-primary-foreground/70 hover:text-primary-foreground transition-all duration-300 group"
+                aria-label="Back to top"
+              >
+                <span className="font-medium">{t('footer.backToTop', 'Back to top')}</span>
+                <ArrowUp className="w-4 h-4 group-hover:-translate-y-1 transition-transform" />
+              </button>
+            </div>
             <p className="text-sm text-primary-foreground/60 font-light">
               {t('footer.madeIn')}
             </p>
