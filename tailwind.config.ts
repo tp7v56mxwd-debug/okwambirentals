@@ -102,6 +102,14 @@ export default {
         "zoom-in": {
           "0%": { transform: "scale(1.1)", opacity: "0" },
           "100%": { transform: "scale(1)", opacity: "1" }
+        },
+        "shimmer": {
+          "0%, 100%": { backgroundPosition: "0% 50%", backgroundSize: "200% 200%" },
+          "50%": { backgroundPosition: "100% 50%" }
+        },
+        "float": {
+          "0%, 100%": { transform: "translateY(0px)" },
+          "50%": { transform: "translateY(-10px)" }
         }
       },
       animation: {
@@ -110,7 +118,9 @@ export default {
         "fade-in": "fade-in 0.5s ease-out",
         "slide-in-from-top-2": "slide-in-from-top 0.3s ease-out",
         "slide-in-from-bottom-4": "slide-in-from-bottom 0.5s ease-out",
-        "zoom-in": "zoom-in 1s ease-out"
+        "zoom-in": "zoom-in 1s ease-out",
+        "shimmer": "shimmer 3s ease-in-out infinite",
+        "float": "float 3s ease-in-out infinite"
       },
     },
   },
