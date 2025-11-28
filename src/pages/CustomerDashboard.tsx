@@ -173,13 +173,6 @@ const CustomerDashboard = () => {
                 <p className="text-muted-foreground">View and manage your rental bookings</p>
               </div>
             </div>
-            <Button
-              onClick={() => navigate("/2fa")}
-              variant="outline"
-              className="whitespace-nowrap"
-            >
-              Configurar 2FA
-            </Button>
           </div>
 
           {bookings.length === 0 ? (
