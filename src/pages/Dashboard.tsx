@@ -5,12 +5,13 @@ import { supabase } from '@/integrations/supabase/client';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Badge } from '@/components/ui/badge';
-import { Loader2, Calendar, Clock, Car, Mail, Phone, MessageSquare } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from '@/components/ui/alert-dialog';
+import { Loader2, Calendar, Clock, Car, Mail, Phone, MessageSquare, XCircle, AlertTriangle } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { useTranslation } from 'react-i18next';
-import { format } from 'date-fns';
+import { format, differenceInHours, parseISO } from 'date-fns';
 
 interface Booking {
   id: string;
@@ -34,6 +35,9 @@ const Dashboard = () => {
   const { t } = useTranslation();
   const [bookings, setBookings] = useState<Booking[]>([]);
   const [loading, setLoading] = useState(true);
+  const [cancellingId, setCancellingId] = useState<string | null>(null);
+  const [showCancelDialog, setShowCancelDialog] = useState(false);
+  const [selectedBooking, setSelectedBooking] = useState<Booking | null>(null);
 
   useEffect(() => {
     if (!authLoading && !user) {
@@ -66,6 +70,78 @@ const Dashboard = () => {
       });
     } finally {
       setLoading(false);
+    }
+  };
+
+  const canCancelBooking = (booking: Booking): { canCancel: boolean; reason?: string } => {
+    if (booking.status !== 'pending') {
+      return { canCancel: false, reason: 'Only pending bookings can be cancelled' };
+    }
+
+    // Parse booking date and time to create a full datetime
+    const bookingDateTime = parseISO(`${booking.booking_date}T${booking.booking_time}`);
+    const hoursUntilBooking = differenceInHours(bookingDateTime, new Date());
+
+    if (hoursUntilBooking < 24) {
+      return { 
+        canCancel: false, 
+        reason: 'Free cancellation is only available up to 24 hours before the booking time' 
+      };
+    }
+
+    return { canCancel: true };
+  };
+
+  const handleCancelClick = (booking: Booking) => {
+    const { canCancel, reason } = canCancelBooking(booking);
+    
+    if (!canCancel) {
+      toast({
+        variant: 'destructive',
+        title: 'Cannot Cancel',
+        description: reason,
+      });
+      return;
+    }
+
+    setSelectedBooking(booking);
+    setShowCancelDialog(true);
+  };
+
+  const handleCancelConfirm = async () => {
+    if (!selectedBooking) return;
+
+    setCancellingId(selectedBooking.id);
+    
+    try {
+      const { error } = await supabase
+        .from('bookings')
+        .update({ status: 'cancelled' })
+        .eq('id', selectedBooking.id)
+        .eq('user_id', user?.id);
+
+      if (error) throw error;
+
+      // Update local state
+      setBookings(bookings.map(b => 
+        b.id === selectedBooking.id ? { ...b, status: 'cancelled' } : b
+      ));
+
+      toast({
+        title: 'Booking Cancelled',
+        description: 'Your booking has been successfully cancelled.',
+      });
+    } catch (error) {
+      console.error('Error cancelling booking:', error);
+      toast({
+        variant: 'destructive',
+        title: 'Cancellation Failed',
+        description: 'Failed to cancel booking. Please try again.',
+      });
+    } finally {
+      setCancellingId(null);
+      setShowCancelDialog(false);
+      setSelectedBooking(null);
     }
   };
 
@@ -130,7 +206,7 @@ const Dashboard = () => {
                 <Card key={booking.id}>
                   <CardHeader>
                     <div className="flex items-start justify-between">
-                      <div>
+                      <div className="flex-1">
                         <CardTitle className="flex items-center gap-2">
                           <Car className="h-5 w-5" />
                           {booking.vehicle_type}
@@ -139,7 +215,24 @@ const Dashboard = () => {
                           Booking ID: {booking.id.slice(0, 8)}
                         </CardDescription>
                       </div>
-                      {getStatusBadge(booking.status)}
+                      <div className="flex items-center gap-2">
+                        {getStatusBadge(booking.status)}
+                        {booking.status === 'pending' && (
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            onClick={() => handleCancelClick(booking)}
+                            disabled={cancellingId === booking.id}
+                            className="text-destructive hover:text-destructive hover:bg-destructive/10"
+                          >
+                            {cancellingId === booking.id ? (
+                              <Loader2 className="h-4 w-4 animate-spin" />
+                            ) : (
+                              <XCircle className="h-4 w-4" />
+                            )}
+                          </Button>
+                        )}
+                      </div>
                     </div>
                   </CardHeader>
                   <CardContent>
@@ -200,6 +293,49 @@ const Dashboard = () => {
       </main>
 
       <Footer />
+
+      {/* Cancellation Confirmation Dialog */}
+      <AlertDialog open={showCancelDialog} onOpenChange={setShowCancelDialog}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle className="flex items-center gap-2">
+              <AlertTriangle className="h-5 w-5 text-destructive" />
+              Cancel Booking?
+            </AlertDialogTitle>
+            <AlertDialogDescription className="space-y-2">
+              <p>Are you sure you want to cancel this booking?</p>
+              {selectedBooking && (
+                <div className="mt-4 p-4 bg-muted rounded-lg space-y-2 text-sm">
+                  <div className="flex justify-between">
+                    <span className="font-medium">Vehicle:</span>
+                    <span>{selectedBooking.vehicle_type}</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="font-medium">Date:</span>
+                    <span>{format(new Date(selectedBooking.booking_date), 'PPP')}</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="font-medium">Time:</span>
+                    <span>{selectedBooking.booking_time}</span>
+                  </div>
+                </div>
+              )}
+              <p className="text-xs text-muted-foreground mt-4">
+                This action cannot be undone. You'll receive a confirmation email once the cancellation is processed.
+              </p>
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>Keep Booking</AlertDialogCancel>
+            <AlertDialogAction
+              onClick={handleCancelConfirm}
+              className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
+            >
+              Yes, Cancel Booking
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </div>
   );
 };
