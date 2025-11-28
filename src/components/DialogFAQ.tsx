@@ -11,48 +11,46 @@ const DialogFAQ = () => {
   const { t } = useTranslation();
 
   return (
-    <div className="space-y-8">
-      <div className="text-center max-w-2xl mx-auto">
-        <h2 className="text-4xl font-bold mb-4">
-          {t('faq.title1')} <span className="text-primary">{t('faq.title2')}</span>
+    <div className="space-y-6">
+      <div className="mb-6">
+        <h2 className="text-2xl font-bold mb-2">
+          {t('faq.title1')} {t('faq.title2')}
         </h2>
-        <p className="text-lg text-muted-foreground">{t('faq.description')}</p>
+        <p className="text-muted-foreground">{t('faq.description')}</p>
       </div>
 
-      <Accordion type="single" collapsible className="space-y-4">
+      <Accordion type="single" collapsible className="space-y-3">
         {(t('faq.questions', { returnObjects: true }) as Array<{ q: string; a: string }>).map((faq, index) => (
           <AccordionItem
             key={index}
             value={`item-${index}`}
-            className="border-2 border-border rounded-2xl px-6 bg-gradient-to-br from-card to-card/50 hover:border-primary/50 transition-all duration-300 hover:shadow-lg data-[state=open]:border-primary/50 data-[state=open]:shadow-xl"
+            className="border border-border rounded-lg bg-card hover:border-primary/50 transition-colors"
           >
-            <AccordionTrigger className="text-left hover:no-underline py-6 group">
-              <span className="font-bold text-lg text-foreground pr-4 group-hover:text-primary transition-colors">
+            <AccordionTrigger className="px-5 py-4 hover:no-underline text-left">
+              <span className="font-semibold text-base text-foreground pr-4">
                 {faq.q}
               </span>
             </AccordionTrigger>
-            <AccordionContent className="text-foreground/90 pb-6 pt-2 leading-relaxed text-base">
+            <AccordionContent className="px-5 pb-4 text-sm text-foreground/80 leading-relaxed">
               {faq.a}
             </AccordionContent>
           </AccordionItem>
         ))}
       </Accordion>
 
-      <div className="bg-gradient-to-r from-primary/10 to-accent/10 border border-primary/20 rounded-2xl p-6">
-        <div className="flex items-start gap-4">
-          <div className="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0">
-            <HelpCircle className="w-6 h-6 text-primary" />
-          </div>
-          <div>
-            <h4 className="font-semibold text-foreground text-lg mb-2">Ainda tem dúvidas?</h4>
-            <p className="text-foreground/80 leading-relaxed mb-4">
-              Entre em contacto connosco através do WhatsApp ou formulário de contacto. A nossa equipa está pronta para ajudar!
+      <div className="bg-muted/50 border border-border rounded-lg p-5 mt-4">
+        <div className="flex items-start gap-3">
+          <HelpCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+          <div className="flex-1">
+            <h4 className="font-semibold text-foreground text-sm mb-2">Ainda tem dúvidas?</h4>
+            <p className="text-sm text-muted-foreground mb-3">
+              Entre em contacto através do WhatsApp ou formulário de contacto.
             </p>
-            <div className="flex flex-wrap gap-3">
-              <a href="https://wa.me/244923456789" target="_blank" rel="noopener noreferrer" className="px-5 py-2.5 bg-green-600 text-white rounded-lg font-semibold hover:bg-green-700 transition-colors text-sm">
+            <div className="flex gap-2">
+              <a href="https://wa.me/244923456789" target="_blank" rel="noopener noreferrer" className="text-sm px-4 py-2 bg-green-600 text-white rounded-md font-medium hover:bg-green-700 transition-colors">
                 WhatsApp
               </a>
-              <a href="#contact" className="px-5 py-2.5 bg-primary text-primary-foreground rounded-lg font-semibold hover:bg-primary/90 transition-colors text-sm">
+              <a href="#contact" className="text-sm px-4 py-2 bg-primary text-primary-foreground rounded-md font-medium hover:bg-primary/90 transition-colors">
                 Contacto
               </a>
             </div>
