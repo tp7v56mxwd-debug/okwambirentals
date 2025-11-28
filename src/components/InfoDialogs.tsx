@@ -85,9 +85,9 @@ export const InfoDialogs = () => {
       <Dialog open={openDialog === "faq"} onOpenChange={(open) => {
         if (!open) setOpenDialog(null);
       }}>
-        <DialogContent className="max-w-3xl max-h-[85vh] overflow-y-auto">
+        <DialogContent className="max-w-3xl max-h-[85vh] overflow-y-auto bg-background">
           <DialogHeader>
-            <DialogTitle className="sr-only">{t('nav.faq')}</DialogTitle>
+            <DialogTitle className="text-2xl font-bold mb-4">{t('nav.faq')}</DialogTitle>
           </DialogHeader>
           <DialogFAQ />
         </DialogContent>
@@ -97,9 +97,9 @@ export const InfoDialogs = () => {
       <Dialog open={openDialog === "requirements"} onOpenChange={(open) => {
         if (!open) setOpenDialog(null);
       }}>
-        <DialogContent className="max-w-3xl max-h-[85vh] overflow-y-auto">
+        <DialogContent className="max-w-3xl max-h-[85vh] overflow-y-auto bg-background">
           <DialogHeader>
-            <DialogTitle className="sr-only">{t('nav.requirements')}</DialogTitle>
+            <DialogTitle className="text-2xl font-bold mb-4">{t('nav.requirements')}</DialogTitle>
           </DialogHeader>
           <DialogRequirements />
         </DialogContent>
@@ -109,9 +109,9 @@ export const InfoDialogs = () => {
       <Dialog open={openDialog === "safety"} onOpenChange={(open) => {
         if (!open) setOpenDialog(null);
       }}>
-        <DialogContent className="max-w-3xl max-h-[85vh] overflow-y-auto">
+        <DialogContent className="max-w-3xl max-h-[85vh] overflow-y-auto bg-background">
           <DialogHeader>
-            <DialogTitle className="sr-only">{t('nav.safety')}</DialogTitle>
+            <DialogTitle className="text-2xl font-bold mb-4">{t('nav.safety')}</DialogTitle>
           </DialogHeader>
           <DialogSafety />
         </DialogContent>
@@ -166,9 +166,9 @@ export const MobileInfoDialogs = ({ onClose }: { onClose: () => void }) => {
       <Dialog open={openDialog === "faq"} onOpenChange={(open) => {
         if (!open) setOpenDialog(null);
       }}>
-        <DialogContent className="max-w-3xl max-h-[85vh] overflow-y-auto">
+        <DialogContent className="max-w-3xl max-h-[85vh] overflow-y-auto bg-background">
           <DialogHeader>
-            <DialogTitle className="sr-only">{t('nav.faq')}</DialogTitle>
+            <DialogTitle className="text-2xl font-bold mb-4">{t('nav.faq')}</DialogTitle>
           </DialogHeader>
           <DialogFAQ />
         </DialogContent>
@@ -177,9 +177,9 @@ export const MobileInfoDialogs = ({ onClose }: { onClose: () => void }) => {
       <Dialog open={openDialog === "requirements"} onOpenChange={(open) => {
         if (!open) setOpenDialog(null);
       }}>
-        <DialogContent className="max-w-3xl max-h-[85vh] overflow-y-auto">
+        <DialogContent className="max-w-3xl max-h-[85vh] overflow-y-auto bg-background">
           <DialogHeader>
-            <DialogTitle className="sr-only">{t('nav.requirements')}</DialogTitle>
+            <DialogTitle className="text-2xl font-bold mb-4">{t('nav.requirements')}</DialogTitle>
           </DialogHeader>
           <DialogRequirements />
         </DialogContent>
@@ -188,9 +188,9 @@ export const MobileInfoDialogs = ({ onClose }: { onClose: () => void }) => {
       <Dialog open={openDialog === "safety"} onOpenChange={(open) => {
         if (!open) setOpenDialog(null);
       }}>
-        <DialogContent className="max-w-3xl max-h-[85vh] overflow-y-auto">
+        <DialogContent className="max-w-3xl max-h-[85vh] overflow-y-auto bg-background">
           <DialogHeader>
-            <DialogTitle className="sr-only">{t('nav.safety')}</DialogTitle>
+            <DialogTitle className="text-2xl font-bold mb-4">{t('nav.safety')}</DialogTitle>
           </DialogHeader>
           <DialogSafety />
         </DialogContent>

@@ -40,9 +40,8 @@ const DialogRequirements = () => {
   ];
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 p-2">
       <div>
-        <h2 className="text-2xl font-bold mb-2">{t('requirements.title')}</h2>
         <p className="text-muted-foreground">{t('requirements.description')}</p>
       </div>
 
@@ -50,17 +49,17 @@ const DialogRequirements = () => {
         {requirements.map((req, index) => {
           const Icon = req.icon;
           return (
-            <div key={index} className="border border-border rounded-lg p-4">
+            <div key={index} className="border border-border rounded-lg p-4 bg-card">
               <div className="flex items-center gap-3 mb-3">
-                <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
+                <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
                   <Icon className="w-5 h-5 text-primary" />
                 </div>
-                <h3 className="font-semibold text-lg">{req.title}</h3>
+                <h3 className="font-semibold text-lg text-foreground">{req.title}</h3>
               </div>
               <ul className="space-y-2">
                 {req.items.map((item, idx) => (
-                  <li key={idx} className="text-sm text-muted-foreground flex items-start gap-2">
-                    <span className="text-primary mt-1">•</span>
+                  <li key={idx} className="text-sm text-foreground flex items-start gap-2">
+                    <span className="text-primary mt-1 flex-shrink-0">•</span>
                     <span>{item}</span>
                   </li>
                 ))}
