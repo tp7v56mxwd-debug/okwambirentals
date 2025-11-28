@@ -6,7 +6,8 @@ import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Alert, AlertDescription } from '@/components/ui/alert';
-import { Loader2, ShieldAlert, CheckCircle2, ArrowLeft } from 'lucide-react';
+import { Label } from '@/components/ui/label';
+import { Loader2, ShieldAlert, CheckCircle2, ArrowLeft, ShieldCheck } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
 import { toast } from 'sonner';
 import { z } from 'zod';
@@ -46,6 +47,9 @@ export default function Auth() {
   const [isRedirecting, setIsRedirecting] = useState(false);
   const [showResetPassword, setShowResetPassword] = useState(false);
   const [resetEmail, setResetEmail] = useState('');
+  const [show2FA, setShow2FA] = useState(false);
+  const [mfaFactorId, setMfaFactorId] = useState<string>('');
+  const [mfaCode, setMfaCode] = useState('');
 
   const signInForm = useForm<z.infer<typeof signInSchema>>({
     resolver: zodResolver(signInSchema),
@@ -86,12 +90,63 @@ export default function Auth() {
   const handleSignIn = async (values: z.infer<typeof signInSchema>) => {
     setIsLoading(true);
     setShowAccessDenied(false);
-    const { error } = await signIn(values.email, values.password);
     
-    if (error) {
+    try {
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email: values.email,
+        password: values.password,
+      });
+
+      if (error) {
+        toast.error(error.message || 'Erro ao fazer login');
+        setIsLoading(false);
+        return;
+      }
+
+      // Check if user has MFA enabled
+      const { data: factors } = await supabase.auth.mfa.listFactors();
+      const verifiedFactor = factors?.totp?.find(factor => factor.status === 'verified');
+
+      if (verifiedFactor) {
+        setMfaFactorId(verifiedFactor.id);
+        setShow2FA(true);
+        setIsLoading(false);
+      }
+      // If no MFA, the useEffect will handle redirect
+    } catch (error: any) {
+      console.error('Login error:', error);
+      toast.error('Erro ao fazer login');
       setIsLoading(false);
     }
-    // Keep loading state active while checking admin status
+  };
+
+  const handleVerify2FA = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!mfaCode || mfaCode.length !== 6) {
+      toast.error('Por favor, insira o código de 6 dígitos');
+      return;
+    }
+
+    setIsLoading(true);
+    try {
+      const challenge = await supabase.auth.mfa.challenge({ factorId: mfaFactorId });
+      if (challenge.error) throw challenge.error;
+
+      const verify = await supabase.auth.mfa.verify({
+        factorId: mfaFactorId,
+        challengeId: challenge.data.id,
+        code: mfaCode,
+      });
+
+      if (verify.error) throw verify.error;
+
+      toast.success('Login realizado com sucesso!');
+      // The session is now authenticated, useEffect will handle redirect
+    } catch (error: any) {
+      console.error('2FA verification error:', error);
+      toast.error(error.message || 'Código inválido. Tente novamente.');
+      setIsLoading(false);
+    }
   };
 
   const handleSignUp = async (values: z.infer<typeof signUpSchema>) => {
@@ -144,6 +199,66 @@ export default function Auth() {
               : 'Checking authentication...'}
           </p>
         </div>
+      </div>
+    );
+  }
+
+  if (show2FA) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-background via-background/95 to-primary/5 p-4">
+        <Card className="w-full max-w-md shadow-lg">
+          <CardHeader className="space-y-1">
+            <div className="flex items-center justify-center mb-4">
+              <ShieldCheck className="h-12 w-12 text-primary" />
+            </div>
+            <CardTitle className="text-2xl font-bold text-center">Verificação 2FA</CardTitle>
+            <CardDescription className="text-center">
+              Insira o código de 6 dígitos do seu aplicativo autenticador
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <form onSubmit={handleVerify2FA} className="space-y-4">
+              <div className="space-y-2">
+                <Label htmlFor="mfa-code">Código de Verificação</Label>
+                <Input
+                  id="mfa-code"
+                  type="text"
+                  placeholder="000000"
+                  maxLength={6}
+                  value={mfaCode}
+                  onChange={(e) => setMfaCode(e.target.value.replace(/\D/g, ''))}
+                  disabled={isLoading}
+                  required
+                  autoFocus
+                  className="text-center text-2xl tracking-widest"
+                />
+              </div>
+              <Button type="submit" className="w-full" disabled={isLoading || mfaCode.length !== 6}>
+                {isLoading ? (
+                  <>
+                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                    Verificando...
+                  </>
+                ) : (
+                  'Verificar e Entrar'
+                )}
+              </Button>
+              <Button
+                type="button"
+                variant="ghost"
+                className="w-full"
+                onClick={() => {
+                  setShow2FA(false);
+                  setMfaCode('');
+                  supabase.auth.signOut();
+                }}
+                disabled={isLoading}
+              >
+                Voltar ao Login
+              </Button>
+            </form>
+          </CardContent>
+        </Card>
       </div>
     );
   }

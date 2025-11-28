@@ -19,6 +19,7 @@ import CustomerDashboard from "./pages/CustomerDashboard";
 import AdminReviews from "./pages/AdminReviews";
 import VehiclePhotos from "@/pages/VehiclePhotos";
 import ResetPassword from "./pages/ResetPassword";
+import TwoFactorAuth from "./pages/TwoFactorAuth";
 
 const queryClient = new QueryClient();
 
@@ -44,6 +45,7 @@ const App = () => (
               <Route path="/my-bookings" element={<CustomerDashboard />} />
               <Route path="/vehicle-photos" element={<VehiclePhotos />} />
               <Route path="/reset-password" element={<ResetPassword />} />
+              <Route path="/2fa" element={<TwoFactorAuth />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>
