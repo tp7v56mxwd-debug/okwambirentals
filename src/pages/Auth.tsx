@@ -111,9 +111,9 @@ export default function Auth() {
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-background via-background/95 to-primary/5 p-4">
       <Card className="w-full max-w-md shadow-lg">
         <CardHeader className="space-y-1">
-          <CardTitle className="text-2xl font-bold text-center">Admin Portal</CardTitle>
+          <CardTitle className="text-2xl font-bold text-center">Welcome Back</CardTitle>
           <CardDescription className="text-center">
-            Sign in to manage bookings
+            Sign in to your account or create a new one
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -133,7 +133,7 @@ export default function Auth() {
                       <FormItem>
                         <FormLabel>Email</FormLabel>
                         <FormControl>
-                          <Input type="email" placeholder="admin@example.com" {...field} />
+                          <Input type="email" placeholder="your@email.com" {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -167,13 +167,6 @@ export default function Auth() {
             </TabsContent>
             
             <TabsContent value="signup">
-              <Alert className="mb-4">
-                <CheckCircle2 className="h-4 w-4" />
-                <AlertDescription>
-                  Admin access is granted to @okwambirentals.com emails automatically.
-                </AlertDescription>
-              </Alert>
-              
               <Form {...signUpForm}>
                 <form onSubmit={signUpForm.handleSubmit(handleSignUp)} className="space-y-4">
                   <FormField
@@ -196,7 +189,7 @@ export default function Auth() {
                       <FormItem>
                         <FormLabel>Email</FormLabel>
                         <FormControl>
-                          <Input type="email" placeholder="admin@example.com" {...field} />
+                          <Input type="email" placeholder="your@email.com" {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
