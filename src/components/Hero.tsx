@@ -17,69 +17,58 @@ const Hero = () => {
   };
 
   return (
-    <section id="hero" className="relative h-screen flex items-center justify-center overflow-hidden">
-      {/* Background Image with Enhanced Overlay */}
-      <img
-        src={heroImage}
-        alt="Mussulo Beach - Premium Adventure Destination in Luanda, Angola"
-        loading="eager"
-        fetchPriority="high"
-        decoding="async"
-        className="absolute inset-0 w-full h-full object-cover scale-105"
-      />
+    <section id="hero" className="relative min-h-screen flex items-center overflow-hidden">
+      {/* Background Image */}
+      <div className="absolute inset-0">
+        <img
+          src={heroImage}
+          alt="Mussulo Beach - Premium Adventure Destination in Luanda, Angola"
+          loading="eager"
+          fetchPriority="high"
+          decoding="async"
+          className="w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-background/95 via-background/70 to-background/30" />
+      </div>
       
-      {/* Enhanced Gradient Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-background/60 to-background/80" />
-      
-      {/* Animated Gradient Accent */}
-      <div className="absolute inset-0 bg-gradient-to-tr from-primary/20 via-transparent to-accent/20 animate-pulse" style={{ animationDuration: '4s' }} />
-      
-      {/* Subtle Pattern Overlay */}
-      <div className="absolute inset-0 opacity-5" style={{
-        backgroundImage: 'radial-gradient(circle at 2px 2px, currentColor 1px, transparent 0)',
-        backgroundSize: '48px 48px'
-      }} />
-      
-      <div className="relative z-10 container mx-auto px-6 lg:px-8 text-center">
-        {/* Main Headline */}
-        <h1 className="font-display text-6xl md:text-7xl lg:text-8xl font-bold mb-6 animate-in fade-in slide-in-from-bottom-4 duration-1000 leading-[1.1] tracking-tight">
-          <span className="block text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.95)]">Experience</span>
-          <span className="block text-transparent bg-clip-text bg-gradient-to-r from-white via-accent-glow to-accent drop-shadow-[0_2px_10px_rgba(0,0,0,0.8)] animate-[shimmer_3s_ease-in-out_infinite]">Mussulo</span>
-        </h1>
-        
-        {/* Subtitle with Premium Styling */}
-        <p className="text-lg md:text-xl lg:text-2xl text-white mb-12 max-w-2xl mx-auto leading-relaxed font-semibold tracking-[0.02em] drop-shadow-[0_2px_8px_rgba(0,0,0,0.95)] animate-in fade-in duration-1000 delay-200">
-          {t('hero.subtitle')}
-        </p>
-        
-        {/* Luxury Divider */}
-        <div className="flex items-center justify-center gap-3 mb-12 animate-in fade-in duration-1000 delay-300">
-          <div className="h-px w-12 bg-gradient-to-r from-transparent to-accent" />
-          <div className="w-1.5 h-1.5 rounded-full bg-accent" />
-          <div className="h-px w-12 bg-gradient-to-l from-transparent to-accent" />
-        </div>
-        
-        {/* CTA Buttons */}
-        <div className="flex flex-col sm:flex-row gap-5 justify-center items-center animate-in fade-in slide-in-from-bottom-4 duration-1000 delay-400">
-          <Button 
-            size="lg" 
-            onClick={scrollToFleet}
-            className="group relative overflow-hidden bg-gradient-to-r from-accent via-accent-glow to-accent hover:from-accent-glow hover:via-accent hover:to-accent-glow text-accent-foreground font-bold tracking-wide shadow-[0_10px_40px_rgba(var(--accent),0.5)] hover:shadow-[0_15px_50px_rgba(var(--accent),0.7)] transition-all duration-500 hover:-translate-y-2 hover:scale-[1.08] px-12 py-7 text-base rounded-xl before:absolute before:inset-0 before:bg-gradient-to-r before:from-white/20 before:via-white/30 before:to-white/20 before:opacity-0 hover:before:opacity-100 before:transition-opacity before:duration-500"
-          >
-            <span className="relative z-10 flex items-center gap-2">
+      <div className="relative z-10 container mx-auto px-6 lg:px-16 py-24">
+        <div className="max-w-3xl">
+          {/* Eyebrow */}
+          <div className="mb-8 flex items-center gap-4">
+            <div className="h-[2px] w-16 bg-accent" />
+            <span className="text-sm font-semibold tracking-[0.2em] uppercase text-muted-foreground">Premium Adventure Rentals</span>
+          </div>
+          
+          {/* Main Headline */}
+          <h1 className="font-display text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold mb-8 leading-[0.95] tracking-tight">
+            <span className="block text-foreground">Experience</span>
+            <span className="block text-accent">Mussulo</span>
+          </h1>
+          
+          {/* Subtitle */}
+          <p className="text-xl md:text-2xl text-muted-foreground mb-12 leading-relaxed max-w-2xl">
+            {t('hero.subtitle')}
+          </p>
+          
+          {/* CTA Buttons */}
+          <div className="flex flex-wrap gap-4">
+            <Button 
+              size="lg" 
+              onClick={scrollToFleet}
+              className="group bg-accent hover:bg-accent/90 text-accent-foreground font-semibold px-10 py-6 text-base transition-all duration-300"
+            >
               {t('hero.exploreFleet')}
-              <ChevronDown className="w-5 h-5 group-hover:translate-y-1 group-hover:animate-bounce transition-all duration-300" />
-            </span>
-            <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/30 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000" />
-          </Button>
-          <Button 
-            size="lg" 
-            onClick={() => setBookingOpen(true)}
-            className="group relative overflow-hidden bg-white/10 backdrop-blur-sm border-2 border-white/60 text-white hover:bg-white hover:text-primary hover:border-white font-bold tracking-wide shadow-[0_10px_40px_rgba(0,0,0,0.4)] hover:shadow-[0_15px_50px_rgba(255,255,255,0.5)] transition-all duration-500 hover:-translate-y-2 hover:scale-[1.08] px-12 py-7 text-base rounded-xl before:absolute before:inset-0 before:bg-gradient-to-r before:from-white/0 before:via-white/20 before:to-white/0 before:opacity-0 hover:before:opacity-100 before:transition-opacity before:duration-500"
-          >
-            <span className="relative z-10">{t('hero.reserveNow')}</span>
-            <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000" />
-          </Button>
+              <ChevronDown className="ml-2 w-5 h-5 group-hover:translate-y-1 transition-transform" />
+            </Button>
+            <Button 
+              size="lg" 
+              variant="outline"
+              onClick={() => setBookingOpen(true)}
+              className="border-2 font-semibold px-10 py-6 text-base transition-all duration-300 hover:bg-foreground/5"
+            >
+              {t('hero.reserveNow')}
+            </Button>
+          </div>
         </div>
       </div>
       

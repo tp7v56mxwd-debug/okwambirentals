@@ -93,46 +93,35 @@ const Properties = () => {
 
   return (
     <>
-      <section id="fleet" className="py-32 relative overflow-hidden bg-gradient-to-b from-background via-muted/10 to-background">
-        {/* Elegant Background Elements */}
-        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-accent/5 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-primary/5 rounded-full blur-3xl" />
-        
-        <div ref={ref} className={`container mx-auto px-6 lg:px-8 relative transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+      <section id="fleet" className="py-32 bg-muted/30">
+        <div ref={ref} className={`container mx-auto px-6 lg:px-16 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           {/* Section Header */}
-          <div className="max-w-3xl mx-auto text-center mb-20">
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-accent/5 border border-accent/10 rounded-full mb-6">
-              <span className="text-accent text-sm font-semibold tracking-widest uppercase">{t('fleet.badge')}</span>
+          <div className="mb-20">
+            <div className="flex items-center gap-4 mb-6">
+              <div className="h-[2px] w-16 bg-accent" />
+              <span className="text-sm font-semibold tracking-[0.2em] uppercase text-muted-foreground">{t('fleet.badge')}</span>
             </div>
             
-            <h2 className="font-display text-5xl md:text-6xl lg:text-7xl font-bold mb-6 text-foreground leading-tight">
-              {t('fleet.title1')}
-              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-primary via-accent to-accent-glow">{t('fleet.title2')}</span>
+            <h2 className="font-display text-5xl md:text-6xl lg:text-7xl font-bold text-foreground leading-[1.1] max-w-4xl">
+              {t('fleet.title1')}{' '}
+              <span className="text-accent">{t('fleet.title2')}</span>
             </h2>
             
-            <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
+            <p className="text-xl text-muted-foreground leading-relaxed mt-6 max-w-2xl">
               {t('fleet.description')}
             </p>
           </div>
 
-          {/* Vehicle Cards */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {/* Vehicle Grid */}
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-1 bg-border">
             {fleet.map((vehicle, index) => (
-              <Card 
+              <article 
                 key={index}
-                className="group relative overflow-hidden bg-gradient-to-br from-card/60 to-card/40 backdrop-blur-md border border-border/40 hover:border-primary/50 transition-all duration-500 hover:shadow-[0_20px_60px_rgba(0,0,0,0.15)] hover:-translate-y-2 flex flex-col rounded-2xl"
+                className="group relative overflow-hidden bg-background transition-all duration-300 hover:bg-muted/50"
               >
-                {/* Animated gradient border effect */}
-                <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-primary/0 via-primary/5 to-accent/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                
-                {/* Shine effect on hover */}
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700">
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
-                </div>
-
                 {/* Vehicle Image Gallery */}
                 {vehiclePhotos[vehicle.id] && vehiclePhotos[vehicle.id].length > 0 ? (
-                  <div className="relative h-64 overflow-hidden rounded-t-2xl">
+                  <div className="relative aspect-[4/3] overflow-hidden bg-muted">
                     <Carousel className="w-full h-full">
                       <CarouselContent>
                         {vehiclePhotos[vehicle.id].map((photoUrl, photoIndex) => (
@@ -142,100 +131,77 @@ const Properties = () => {
                               alt={`${vehicle.name} ${photoIndex + 1}`}
                               loading="lazy"
                               decoding="async"
-                              className="object-cover w-full h-full"
+                              className="object-cover w-full h-full transition-transform duration-700 group-hover:scale-105"
                             />
                           </CarouselItem>
                         ))}
                       </CarouselContent>
-                      <CarouselPrevious className="left-2" />
-                      <CarouselNext className="right-2" />
+                      <CarouselPrevious className="left-4" />
+                      <CarouselNext className="right-4" />
                     </Carousel>
-                    <div className="absolute inset-0 bg-gradient-to-t from-card/90 via-card/20 to-transparent pointer-events-none" />
                   </div>
                 ) : (
-                  <div className="relative h-64 overflow-hidden rounded-t-2xl bg-gradient-to-br from-muted/50 to-muted">
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <div className="text-center p-6">
-                        <div className="p-3 bg-background/50 rounded-full inline-block mb-3">
-                          <Shield className="h-8 w-8 text-muted-foreground/50" />
-                        </div>
-                        <p className="text-sm text-muted-foreground font-medium">
-                          {vehicle.name}
-                        </p>
-                        <p className="text-xs text-muted-foreground/70 mt-1">
-                          Photos coming soon
-                        </p>
-                      </div>
+                  <div className="relative aspect-[4/3] bg-muted flex items-center justify-center">
+                    <div className="text-center p-6">
+                      <Shield className="h-12 w-12 text-muted-foreground/30 mx-auto mb-3" />
+                      <p className="text-sm text-muted-foreground font-medium">{vehicle.name}</p>
+                      <p className="text-xs text-muted-foreground/70 mt-1">Photos coming soon</p>
                     </div>
-                    <div className="absolute inset-0 bg-gradient-to-t from-card/90 via-card/20 to-transparent pointer-events-none" />
                   </div>
                 )}
                 
                 {/* Content */}
-                <div className="relative z-10 p-8 flex-1 flex flex-col">
-                  <Badge className="w-fit mb-4 bg-gradient-to-r from-primary to-primary-light backdrop-blur-sm border border-primary-foreground/10 text-primary-foreground font-bold tracking-wider shadow-md">
+                <div className="p-8">
+                  <div className="text-xs font-bold tracking-[0.15em] uppercase text-accent mb-3">
                     {vehicle.category}
-                  </Badge>
+                  </div>
+                  
                   <h3 className="font-display text-3xl font-bold mb-4 text-foreground">
                     {vehicle.name}
                   </h3>
 
-                  {/* Specs Grid */}
-                  <div className="grid grid-cols-2 gap-4 mb-6">
-                    <div className="flex items-center gap-2 text-sm">
-                      <Users className="w-4 h-4 text-primary" strokeWidth={1.5} />
-                      <span className="text-muted-foreground font-medium">{vehicle.capacity}</span>
+                  {/* Specs */}
+                  <div className="flex items-center gap-6 mb-6 pb-6 border-b border-border">
+                    <div className="flex items-center gap-2">
+                      <Users className="w-4 h-4 text-muted-foreground" />
+                      <span className="text-sm text-muted-foreground">{vehicle.capacity}</span>
                     </div>
-                    <div className="flex items-center gap-2 text-sm">
-                      <Gauge className="w-4 h-4 text-primary" strokeWidth={1.5} />
-                      <span className="text-muted-foreground font-medium">{vehicle.speed}</span>
+                    <div className="flex items-center gap-2">
+                      <Gauge className="w-4 h-4 text-muted-foreground" />
+                      <span className="text-sm text-muted-foreground">{vehicle.speed}</span>
                     </div>
                   </div>
 
-                  {/* Key Features */}
-                  <div className="space-y-3 mb-6">
-                    <h4 className="text-xs font-bold text-muted-foreground uppercase tracking-wider flex items-center gap-2">
-                      <Shield className="w-3.5 h-3.5 text-accent" />
-                      {t('fleet.included')}
-                    </h4>
+                  {/* Features */}
+                  <div className="space-y-2 mb-8">
                     {vehicle.features.slice(0, 3).map((feature, idx) => (
-                      <div key={idx} className="flex items-start gap-2">
-                        <div className="w-1.5 h-1.5 rounded-full bg-accent flex-shrink-0 mt-2" />
-                        <span className="text-sm text-muted-foreground leading-relaxed">{feature}</span>
+                      <div key={idx} className="flex items-start gap-3">
+                        <div className="w-1 h-1 rounded-full bg-accent flex-shrink-0 mt-2" />
+                        <span className="text-sm text-muted-foreground">{feature}</span>
                       </div>
                     ))}
                   </div>
 
-                  {/* Safety Badge */}
-                  <div className="bg-muted/30 rounded-xl p-3 mb-6 border border-border/30">
-                    <div className="flex items-center gap-2 text-xs">
-                      <Shield className="w-4 h-4 text-accent" />
-                      <span className="text-muted-foreground font-semibold">{t('fleet.safety')}</span>
-                    </div>
-                  </div>
-
                   {/* Price & CTA */}
-                  <div className="mt-auto">
-                    <div className="flex items-center justify-between pt-6 border-t border-border/50">
-                      <div>
-                        <div className="text-xs text-muted-foreground uppercase tracking-wider mb-1 font-semibold">{t('fleet.priceLabel')}</div>
-                        <div className="text-2xl font-black text-primary">{vehicle.price}</div>
-                        <div className="text-xs text-muted-foreground">{t('fleet.per30min')}</div>
-                      </div>
-                      <Button
-                        onClick={() => {
-                          setSelectedVehicle(vehicle);
-                          setBookingOpen(true);
-                        }}
-                        className="font-bold text-sm px-8 py-6 bg-gradient-to-r from-primary to-primary-light hover:from-primary-light hover:to-primary shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5 hover:scale-105 rounded-xl group"
-                      >
-                        <span>{t('fleet.bookNow')}</span>
-                        <ChevronDown className="ml-1 w-4 h-4 rotate-[-90deg] group-hover:translate-x-1 transition-transform" />
-                      </Button>
+                  <div className="flex items-end justify-between pt-6 border-t border-border">
+                    <div>
+                      <div className="text-xs text-muted-foreground uppercase tracking-wider mb-1">{t('fleet.priceLabel')}</div>
+                      <div className="text-3xl font-bold text-foreground">{vehicle.price}</div>
+                      <div className="text-xs text-muted-foreground">{t('fleet.per30min')}</div>
                     </div>
+                    <Button
+                      onClick={() => {
+                        setSelectedVehicle(vehicle);
+                        setBookingOpen(true);
+                      }}
+                      variant="default"
+                      className="font-semibold transition-all duration-300"
+                    >
+                      {t('fleet.bookNow')}
+                    </Button>
                   </div>
                 </div>
-              </Card>
+              </article>
             ))}
           </div>
         </div>
