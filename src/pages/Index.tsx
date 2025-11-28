@@ -6,7 +6,6 @@ import Testimonials from "@/components/Testimonials";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
-import BackToTop from "@/components/BackToTop";
 import ScrollProgress from "@/components/ScrollProgress";
 import SkipToContent from "@/components/SkipToContent";
 
@@ -24,7 +23,6 @@ const Index = () => {
         <Contact />
         <Footer />
         <WhatsAppButton />
-        <BackToTop />
       </main>
     </>
   );
