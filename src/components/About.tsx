@@ -48,12 +48,12 @@ const About = () => {
           {features.map((feature, index) => (
             <div 
               key={index}
-              className="group"
+              className="group h-full"
               style={{ animationDelay: `${index * 100}ms` }}
             >
-              <div className="border border-border bg-background p-6 hover:border-foreground/20 transition-colors">
-                <feature.icon className="w-6 h-6 text-foreground mb-4" strokeWidth={1.5} />
-                <h3 className="font-display text-lg font-semibold mb-2 text-foreground">
+              <div className="border border-border bg-background p-8 hover:border-foreground/20 transition-colors h-full flex flex-col">
+                <feature.icon className="w-8 h-8 text-foreground mb-6" strokeWidth={1.5} />
+                <h3 className="font-display text-xl font-semibold mb-3 text-foreground">
                   {feature.title}
                 </h3>
                 <p className="text-sm text-muted-foreground leading-relaxed">
