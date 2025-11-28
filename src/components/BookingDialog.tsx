@@ -309,7 +309,7 @@ export const BookingDialog = ({ open, onOpenChange, vehicleName, vehiclePrice, b
                     onSelect={setDate}
                     disabled={(date) => date < new Date()}
                     initialFocus
-                    className="pointer-events-auto"
+                    className={cn("p-3 pointer-events-auto")}
                   />
                 </PopoverContent>
               </Popover>
