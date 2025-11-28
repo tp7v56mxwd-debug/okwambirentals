@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '@/hooks/useAuth';
 import { Button } from '@/components/ui/button';
@@ -47,11 +47,12 @@ export default function Auth() {
     },
   });
 
-  // Redirect if already logged in
-  if (!loading && user) {
-    navigate('/admin');
-    return null;
-  }
+  // Redirect if already logged in - must be in useEffect
+  useEffect(() => {
+    if (!loading && user) {
+      navigate('/admin');
+    }
+  }, [loading, user, navigate]);
 
   const handleSignIn = async (values: z.infer<typeof signInSchema>) => {
     setIsLoading(true);
