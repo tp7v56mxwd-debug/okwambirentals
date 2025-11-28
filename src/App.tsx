@@ -18,6 +18,7 @@ import Dashboard from "./pages/Dashboard";
 import CustomerDashboard from "./pages/CustomerDashboard";
 import AdminReviews from "./pages/AdminReviews";
 import VehiclePhotos from "@/pages/VehiclePhotos";
+import ResetPassword from "./pages/ResetPassword";
 
 const queryClient = new QueryClient();
 
@@ -42,6 +43,7 @@ const App = () => (
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/my-bookings" element={<CustomerDashboard />} />
               <Route path="/vehicle-photos" element={<VehiclePhotos />} />
+              <Route path="/reset-password" element={<ResetPassword />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>

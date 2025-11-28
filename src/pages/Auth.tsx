@@ -6,7 +6,9 @@ import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Alert, AlertDescription } from '@/components/ui/alert';
-import { Loader2, ShieldAlert, CheckCircle2 } from 'lucide-react';
+import { Loader2, ShieldAlert, CheckCircle2, ArrowLeft } from 'lucide-react';
+import { supabase } from '@/integrations/supabase/client';
+import { toast } from 'sonner';
 import { z } from 'zod';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -42,6 +44,8 @@ export default function Auth() {
   const [isLoading, setIsLoading] = useState(false);
   const [showAccessDenied, setShowAccessDenied] = useState(false);
   const [isRedirecting, setIsRedirecting] = useState(false);
+  const [showResetPassword, setShowResetPassword] = useState(false);
+  const [resetEmail, setResetEmail] = useState('');
 
   const signInForm = useForm<z.infer<typeof signInSchema>>({
     resolver: zodResolver(signInSchema),
@@ -100,6 +104,32 @@ export default function Auth() {
     setIsLoading(false);
   };
 
+  const handleResetPassword = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!resetEmail) {
+      toast.error('Por favor, insira seu email');
+      return;
+    }
+
+    setIsLoading(true);
+    try {
+      const { error } = await supabase.auth.resetPasswordForEmail(resetEmail, {
+        redirectTo: `${window.location.origin}/auth?reset=true`,
+      });
+
+      if (error) throw error;
+
+      toast.success('Email de recuperação enviado! Verifique sua caixa de entrada.');
+      setResetEmail('');
+      setShowResetPassword(false);
+    } catch (error: any) {
+      console.error('Error sending reset email:', error);
+      toast.error(error.message || 'Erro ao enviar email de recuperação');
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   // Show loading screen when checking auth or redirecting
   if (loading || isRedirecting) {
     return (
@@ -114,6 +144,63 @@ export default function Auth() {
               : 'Checking authentication...'}
           </p>
         </div>
+      </div>
+    );
+  }
+
+  if (showResetPassword) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-background via-background/95 to-primary/5 p-4">
+        <Card className="w-full max-w-md shadow-lg">
+          <CardHeader className="space-y-1">
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => setShowResetPassword(false)}
+              className="mb-2 w-fit"
+            >
+              <ArrowLeft className="mr-2 h-4 w-4" />
+              Voltar
+            </Button>
+            <CardTitle className="text-2xl font-bold text-center">Recuperar Senha</CardTitle>
+            <CardDescription className="text-center">
+              Insira seu email para receber o link de recuperação
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <form onSubmit={handleResetPassword} className="space-y-4">
+              <div className="space-y-2">
+                <label htmlFor="reset-email" className="text-sm font-medium">
+                  Email
+                </label>
+                <Input
+                  id="reset-email"
+                  type="email"
+                  placeholder="seu@email.com"
+                  value={resetEmail}
+                  onChange={(e) => setResetEmail(e.target.value)}
+                  disabled={isLoading}
+                  required
+                />
+              </div>
+              <Button type="submit" className="w-full" disabled={isLoading}>
+                {isLoading ? (
+                  <>
+                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                    Enviando...
+                  </>
+                ) : (
+                  'Enviar Link de Recuperação'
+                )}
+              </Button>
+            </form>
+          </CardContent>
+          <CardFooter className="flex justify-center">
+            <Button variant="ghost" onClick={() => navigate('/')}>
+              Voltar ao Início
+            </Button>
+          </CardFooter>
+        </Card>
       </div>
     );
   }
@@ -172,6 +259,15 @@ export default function Auth() {
                     ) : (
                       'Sign In'
                     )}
+                  </Button>
+                  <Button
+                    type="button"
+                    variant="link"
+                    className="w-full text-sm"
+                    onClick={() => setShowResetPassword(true)}
+                    disabled={isLoading}
+                  >
+                    Esqueceu sua senha?
                   </Button>
                 </form>
               </Form>
