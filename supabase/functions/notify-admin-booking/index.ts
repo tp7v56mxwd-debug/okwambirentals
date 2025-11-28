@@ -19,7 +19,13 @@ interface BookingNotification {
 }
 
 const handler = async (req: Request): Promise<Response> => {
+  const requestId = crypto.randomUUID();
+  const startTime = Date.now();
+  
+  console.log(`[${requestId}] Admin notification request received at ${new Date().toISOString()}`);
+  
   if (req.method === "OPTIONS") {
+    console.log(`[${requestId}] CORS preflight request`);
     return new Response(null, { headers: corsHeaders });
   }
 
@@ -27,6 +33,12 @@ const handler = async (req: Request): Promise<Response> => {
     const ADMIN_WHATSAPP = Deno.env.get("ADMIN_WHATSAPP_NUMBER");
     const RESEND_API_KEY = Deno.env.get("RESEND_API_KEY");
     
+    console.log(`[${requestId}] Environment check:`, {
+      hasWhatsAppNumber: !!ADMIN_WHATSAPP,
+      hasResendKey: !!RESEND_API_KEY
+    });
+    
+    console.log(`[${requestId}] Parsing notification request body`);
     const {
       customerName,
       customerEmail,
@@ -39,11 +51,17 @@ const handler = async (req: Request): Promise<Response> => {
       bookingId
     }: BookingNotification = await req.json();
 
-    console.log("Sending admin notifications for booking:", bookingId);
+    console.log(`[${requestId}] Admin notification for booking:`, {
+      bookingId: bookingId.slice(0, 8),
+      vehicleType,
+      customerName,
+      bookingDate
+    });
 
     // Send Email Notification
     if (RESEND_API_KEY) {
       try {
+        console.log(`[${requestId}] Sending admin email notification via Resend`);
         const emailResponse = await fetch("https://api.resend.com/emails", {
           method: "POST",
           headers: {
@@ -135,18 +153,34 @@ const handler = async (req: Request): Promise<Response> => {
 
         if (!emailResponse.ok) {
           const error = await emailResponse.text();
-          console.error("Resend API error:", error);
+          console.error(`[${requestId}] Resend API error (Status ${emailResponse.status}):`, {
+            status: emailResponse.status,
+            statusText: emailResponse.statusText,
+            error: error,
+            bookingId: bookingId.slice(0, 8)
+          });
         } else {
-          console.log("Email notification sent successfully");
+          const emailData = await emailResponse.json();
+          console.log(`[${requestId}] Admin email notification sent successfully:`, {
+            emailId: emailData.id,
+            bookingId: bookingId.slice(0, 8)
+          });
         }
-      } catch (emailError) {
-        console.error("Error sending email:", emailError);
+      } catch (emailError: any) {
+        console.error(`[${requestId}] Error sending admin email notification:`, {
+          error: emailError.message,
+          stack: emailError.stack,
+          bookingId: bookingId.slice(0, 8)
+        });
       }
+    } else {
+      console.warn(`[${requestId}] Skipping email notification - RESEND_API_KEY not configured`);
     }
 
     // Send WhatsApp Notification
     if (ADMIN_WHATSAPP) {
       try {
+        console.log(`[${requestId}] Preparing WhatsApp notification`);
         const message = `🚨 *New Booking Alert*\n\n` +
           `*Vehicle:* ${vehicleType}\n` +
           `*Date:* ${bookingDate}\n` +
@@ -161,17 +195,30 @@ const handler = async (req: Request): Promise<Response> => {
 
         const whatsappUrl = `https://wa.me/${ADMIN_WHATSAPP}?text=${encodeURIComponent(message)}`;
         
-        console.log("WhatsApp notification prepared:", whatsappUrl);
+        console.log(`[${requestId}] WhatsApp notification prepared for booking ${bookingId.slice(0, 8)}`);
         
         // Note: Actual WhatsApp message sending would require WhatsApp Business API
         // For now, we're logging the URL which can be used to send manually
-      } catch (whatsappError) {
-        console.error("Error preparing WhatsApp notification:", whatsappError);
+      } catch (whatsappError: any) {
+        console.error(`[${requestId}] Error preparing WhatsApp notification:`, {
+          error: whatsappError.message,
+          stack: whatsappError.stack,
+          bookingId: bookingId.slice(0, 8)
+        });
       }
+    } else {
+      console.warn(`[${requestId}] Skipping WhatsApp notification - ADMIN_WHATSAPP_NUMBER not configured`);
     }
 
+    const executionTime = Date.now() - startTime;
+    console.log(`[${requestId}] Admin notifications completed in ${executionTime}ms`);
+
     return new Response(
-      JSON.stringify({ success: true, message: "Admin notifications sent" }),
+      JSON.stringify({ 
+        success: true, 
+        message: "Admin notifications sent",
+        requestId: requestId
+      }),
       {
         status: 200,
         headers: {
@@ -181,9 +228,18 @@ const handler = async (req: Request): Promise<Response> => {
       }
     );
   } catch (error: any) {
-    console.error("Error in notify-admin-booking function:", error);
+    const executionTime = Date.now() - startTime;
+    console.error(`[${requestId}] Error in notify-admin-booking function (${executionTime}ms):`, {
+      error: error.message,
+      stack: error.stack,
+      name: error.name,
+      duration: `${executionTime}ms`
+    });
     return new Response(
-      JSON.stringify({ error: error.message }),
+      JSON.stringify({ 
+        error: error.message,
+        requestId: requestId
+      }),
       {
         status: 500,
         headers: { "Content-Type": "application/json", ...corsHeaders },
