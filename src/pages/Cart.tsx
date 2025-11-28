@@ -31,8 +31,7 @@ const Cart = () => {
   };
 
   const handleCheckout = () => {
-    // Navigate to auth if not logged in, otherwise proceed with booking
-    navigate('/auth');
+    navigate('/checkout');
   };
 
   if (items.length === 0) {
