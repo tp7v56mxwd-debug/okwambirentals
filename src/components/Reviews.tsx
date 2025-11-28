@@ -103,18 +103,18 @@ export const Reviews = () => {
   const averageRating = reviews.reduce((acc, review) => acc + review.rating, 0) / reviews.length;
 
   return (
-    <section className="py-20 bg-gradient-to-br from-background via-background/95 to-primary/5">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
-          <h2 className="text-4xl md:text-5xl font-black text-foreground mb-4">
-            What Our Customers Say
+    <section id="testimonials" className="py-16 bg-background border-t border-border">
+      <div className="container mx-auto px-6 lg:px-8">
+        <div className="mb-12">
+          <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-3">
+            Customer Reviews
           </h2>
-          <div className="flex items-center justify-center gap-2 mb-2">
+          <div className="flex items-center gap-3">
             <div className="flex">
               {[1, 2, 3, 4, 5].map((star) => (
                 <Star
                   key={star}
-                  className={`h-6 w-6 ${
+                  className={`h-4 w-4 ${
                     star <= Math.round(averageRating)
                       ? "fill-yellow-400 text-yellow-400"
                       : "text-gray-300"
@@ -122,42 +122,36 @@ export const Reviews = () => {
                 />
               ))}
             </div>
-            <span className="text-xl font-bold text-foreground">
-              {averageRating.toFixed(1)} out of 5
+            <span className="text-sm font-medium text-foreground">
+              {averageRating.toFixed(1)} ({reviews.length} reviews)
             </span>
           </div>
-          <p className="text-muted-foreground">Based on {reviews.length} verified reviews</p>
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {reviews.map((review) => (
-            <Card key={review.id} className="hover:shadow-lg transition-shadow">
+            <Card key={review.id} className="border border-border hover:border-foreground/20 transition-colors">
               <CardContent className="pt-6">
-                <div className="flex items-start gap-4 mb-4">
-                  <Quote className="h-8 w-8 text-primary/20 flex-shrink-0" />
-                  <div className="flex-1">
-                    <div className="flex mb-2">
-                      {[1, 2, 3, 4, 5].map((star) => (
-                        <Star
-                          key={star}
-                          className={`h-4 w-4 ${
-                            star <= review.rating
-                              ? "fill-yellow-400 text-yellow-400"
-                              : "text-gray-300"
-                          }`}
-                        />
-                      ))}
-                    </div>
-                    <p className="text-foreground leading-relaxed mb-4">
-                      "{review.review_text}"
-                    </p>
-                  </div>
+                <div className="flex mb-3">
+                  {[1, 2, 3, 4, 5].map((star) => (
+                    <Star
+                      key={star}
+                      className={`h-4 w-4 ${
+                        star <= review.rating
+                          ? "fill-yellow-400 text-yellow-400"
+                          : "text-gray-300"
+                      }`}
+                    />
+                  ))}
                 </div>
-                <div className="border-t border-border/30 pt-4">
-                  <p className="font-semibold text-foreground">
+                <p className="text-foreground text-sm leading-relaxed mb-4">
+                  "{review.review_text}"
+                </p>
+                <div className="border-t border-border pt-3">
+                  <p className="font-medium text-sm text-foreground">
                     {review.bookings.customer_name}
                   </p>
-                  <p className="text-sm text-muted-foreground">
+                  <p className="text-xs text-muted-foreground">
                     {review.bookings.vehicle_type} • {format(new Date(review.created_at), "MMM yyyy")}
                   </p>
                 </div>
