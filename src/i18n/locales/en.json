@@ -328,6 +328,48 @@
     "rights": "All rights reserved.",
     "madeIn": "Crafted with excellence in Angola"
   },
+  "packages": {
+    "badge": "Special Packages",
+    "title1": "Daily",
+    "title2": "Packages",
+    "description": "Save more with our exclusive daily packages - maximum fun, best value",
+    "mostPopular": "MOST POPULAR",
+    "save": "Save",
+    "duration": "Full day (8am - 6pm)",
+    "bookPackage": "BOOK PACKAGE",
+    "customNote": "Need a custom package? We're here to help.",
+    "contactUs": "Contact Us",
+    "basic": {
+      "name": "Basic Adventure",
+      "features": [
+        "4 hours with vehicle of your choice",
+        "Premium safety equipment included",
+        "GPS tracking and on-site support",
+        "Full fuel tank"
+      ]
+    },
+    "premium": {
+      "name": "Premium Experience",
+      "features": [
+        "6 hours with 2 different vehicles",
+        "Professional guide included",
+        "Guided peninsula tour",
+        "Adventure photo session",
+        "Drinks and snacks included"
+      ]
+    },
+    "ultimate": {
+      "name": "Ultimate Adventure",
+      "features": [
+        "Full day with all 3 vehicles",
+        "Dedicated personal guide",
+        "Premium VIP tour with exclusive route",
+        "Professional photo session",
+        "Gourmet beach lunch included",
+        "GoPro equipment included"
+      ]
+    }
+  },
   "whatsapp": {
     "chat": "Chat with us"
   },
