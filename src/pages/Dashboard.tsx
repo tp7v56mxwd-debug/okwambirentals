@@ -181,11 +181,16 @@ const Dashboard = () => {
       
       <main className="flex-1 container mx-auto px-4 py-24">
         <div className="max-w-7xl mx-auto space-y-8">
-          <div>
-            <h1 className="text-4xl font-bold mb-2">My Bookings</h1>
-            <p className="text-muted-foreground">
-              View and manage your adventure bookings
-            </p>
+          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+            <div>
+              <h1 className="text-4xl font-bold mb-2">My Bookings</h1>
+              <p className="text-muted-foreground">
+                View and manage your adventure bookings
+              </p>
+            </div>
+            <Button onClick={() => navigate('/vehicle-photos')} variant="outline">
+              Manage Vehicle Photos
+            </Button>
           </div>
 
           {bookings.length === 0 ? (

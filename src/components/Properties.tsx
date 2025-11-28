@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -6,15 +6,46 @@ import { BookingDialog } from "./BookingDialog";
 import { Users, Gauge, Shield, ChevronDown } from "lucide-react";
 import { useTranslation } from 'react-i18next';
 import { useIntersectionObserver } from '@/hooks/useIntersectionObserver';
+import { supabase } from "@/integrations/supabase/client";
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 
 const Properties = () => {
   const { t } = useTranslation();
   const { ref, isVisible } = useIntersectionObserver();
   const [bookingOpen, setBookingOpen] = useState(false);
   const [selectedVehicle, setSelectedVehicle] = useState<any>(null);
+  const [vehiclePhotos, setVehiclePhotos] = useState<Record<string, string[]>>({});
+
+  useEffect(() => {
+    fetchVehiclePhotos();
+  }, []);
+
+  const fetchVehiclePhotos = async () => {
+    try {
+      const { data, error } = await supabase
+        .from("vehicle_photos")
+        .select("*")
+        .order("display_order", { ascending: true });
+
+      if (error) throw error;
+
+      const photosByVehicle: Record<string, string[]> = {};
+      data?.forEach((photo) => {
+        if (!photosByVehicle[photo.vehicle_type]) {
+          photosByVehicle[photo.vehicle_type] = [];
+        }
+        photosByVehicle[photo.vehicle_type].push(photo.image_url);
+      });
+
+      setVehiclePhotos(photosByVehicle);
+    } catch (error) {
+      console.error("Error fetching vehicle photos:", error);
+    }
+  };
   
   const fleet = [
     {
+      id: "jetski",
       category: t('fleet.vehicles.jetski.category'),
       name: t('fleet.vehicles.jetski.name'),
       capacity: t('fleet.vehicles.jetski.capacity'),
@@ -28,6 +59,7 @@ const Properties = () => {
       basePricePerHalfHour: 35000
     },
     {
+      id: "atv",
       category: t('fleet.vehicles.atv.category'),
       name: t('fleet.vehicles.atv.name'),
       capacity: t('fleet.vehicles.atv.capacity'),
@@ -41,6 +73,7 @@ const Properties = () => {
       basePricePerHalfHour: 30000
     },
     {
+      id: "utv",
       category: t('fleet.vehicles.utv.category'),
       name: t('fleet.vehicles.utv.name'),
       capacity: t('fleet.vehicles.utv.capacity'),
@@ -93,6 +126,29 @@ const Properties = () => {
                 <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700">
                   <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
                 </div>
+
+                {/* Vehicle Image Gallery */}
+                {vehiclePhotos[vehicle.id] && vehiclePhotos[vehicle.id].length > 0 && (
+                  <div className="relative h-64 overflow-hidden rounded-t-2xl">
+                    <Carousel className="w-full h-full">
+                      <CarouselContent>
+                        {vehiclePhotos[vehicle.id].map((photoUrl, photoIndex) => (
+                          <CarouselItem key={photoIndex}>
+                            <img
+                              src={photoUrl}
+                              alt={`${vehicle.name} ${photoIndex + 1}`}
+                              className="object-cover w-full h-full"
+                            />
+                          </CarouselItem>
+                        ))}
+                      </CarouselContent>
+                      <CarouselPrevious className="left-2" />
+                      <CarouselNext className="right-2" />
+                    </Carousel>
+                    <div className="absolute inset-0 bg-gradient-to-t from-card/90 via-card/20 to-transparent pointer-events-none" />
+                  </div>
+                )}
+                
                 {/* Content */}
                 <div className="relative z-10 p-8 flex-1 flex flex-col">
                   <Badge className="w-fit mb-4 bg-gradient-to-r from-primary to-primary-light backdrop-blur-sm border border-primary-foreground/10 text-primary-foreground font-bold tracking-wider shadow-md">
