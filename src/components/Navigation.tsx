@@ -87,10 +87,24 @@ const Navigation = () => {
     >
       <div className="container mx-auto px-6 lg:px-8 relative">
         <div className="flex items-center justify-between h-20">
+          {/* Mobile Menu Button - Left Side */}
+          <button 
+            className="lg:hidden text-foreground p-2.5 hover:bg-primary/10 rounded-xl transition-all duration-300 hover:scale-110 active:scale-95 relative group order-first"
+            onClick={() => setIsOpen(!isOpen)}
+            aria-label="Toggle menu"
+          >
+            <span className="absolute inset-0 rounded-xl bg-gradient-to-br from-primary/5 to-accent/5 opacity-0 group-hover:opacity-100 transition-opacity" />
+            {isOpen ? (
+              <X className="w-6 h-6 relative z-10 transition-transform rotate-0 group-hover:rotate-90" />
+            ) : (
+              <Menu className="w-6 h-6 relative z-10" />
+            )}
+          </button>
+
           {/* Logo */}
           <button 
             onClick={() => scrollToSection('hero')} 
-            className="flex items-center gap-2 group relative"
+            className="flex items-center gap-2 group relative lg:order-first"
             aria-label="Go to homepage"
           >
             <div className="relative">
@@ -197,19 +211,6 @@ const Navigation = () => {
             </div>
           </div>
 
-          {/* Mobile Menu Button */}
-          <button 
-            className="lg:hidden text-foreground p-2.5 hover:bg-primary/10 rounded-xl transition-all duration-300 hover:scale-110 active:scale-95 relative group"
-            onClick={() => setIsOpen(!isOpen)}
-            aria-label="Toggle menu"
-          >
-            <span className="absolute inset-0 rounded-xl bg-gradient-to-br from-primary/5 to-accent/5 opacity-0 group-hover:opacity-100 transition-opacity" />
-            {isOpen ? (
-              <X className="w-6 h-6 relative z-10 transition-transform rotate-0 group-hover:rotate-90" />
-            ) : (
-              <Menu className="w-6 h-6 relative z-10" />
-            )}
-          </button>
         </div>
 
         {/* Mobile Menu */}
