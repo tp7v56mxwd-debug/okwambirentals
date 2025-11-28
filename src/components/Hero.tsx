@@ -17,8 +17,7 @@ const Hero = () => {
   };
 
   return (
-    <section id="hero" className="relative min-h-screen flex items-end overflow-hidden">
-      {/* Background Image */}
+    <section id="hero" className="relative min-h-[90vh] flex items-end overflow-hidden">
       <div className="absolute inset-0">
         <img
           src={heroImage}
@@ -28,45 +27,35 @@ const Hero = () => {
           decoding="async"
           className="w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-background/95 via-background/70 to-background/30" />
+        <div className="absolute inset-0 bg-gradient-to-r from-background/95 via-background/60 to-background/20" />
       </div>
       
-      <div className="relative z-10 container mx-auto px-6 lg:px-16 py-24 pb-32 w-full">
-        {/* Text Content - Left Aligned */}
-        <div className="max-w-4xl mb-20">
-          {/* Eyebrow */}
-          <div className="mb-8 flex items-center gap-4">
-            <div className="h-[2px] w-16 bg-accent" />
-            <span className="text-sm font-semibold tracking-[0.2em] uppercase text-muted-foreground">Premium Adventure Rentals</span>
-          </div>
-          
-          {/* Main Headline */}
-          <h1 className="font-display text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold mb-8 leading-[0.95] tracking-tight">
+      <div className="relative z-10 container mx-auto px-6 lg:px-12 py-20 pb-24 w-full">
+        <div className="max-w-3xl mb-16">
+          <h1 className="font-display text-5xl md:text-6xl lg:text-7xl font-semibold mb-6 leading-[1.1] tracking-tight">
             <span className="block text-foreground">Experience</span>
             <span className="block text-accent">Mussulo</span>
           </h1>
           
-          {/* Subtitle */}
-          <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed max-w-2xl">
+          <p className="text-lg md:text-xl text-muted-foreground leading-relaxed max-w-xl">
             {t('hero.subtitle')}
           </p>
         </div>
         
-        {/* CTA Buttons - Centered */}
-        <div className="flex flex-wrap justify-center gap-4 max-w-2xl mx-auto">
+        <div className="flex flex-wrap justify-center gap-3 max-w-2xl mx-auto">
           <Button 
-            size="lg" 
+            size="default"
             onClick={scrollToFleet}
-            className="group bg-accent hover:bg-accent/90 text-accent-foreground font-semibold px-10 py-6 text-base transition-all duration-300"
+            className="transition-colors"
           >
             {t('hero.exploreFleet')}
-            <ChevronDown className="ml-2 w-5 h-5 group-hover:translate-y-1 transition-transform" />
+            <ChevronDown className="ml-2 w-4 h-4" />
           </Button>
           <Button 
-            size="lg" 
+            size="default"
             variant="outline"
             onClick={() => setBookingOpen(true)}
-            className="border-2 font-semibold px-10 py-6 text-base transition-all duration-300 hover:bg-foreground/5"
+            className="transition-colors"
           >
             {t('hero.reserveNow')}
           </Button>

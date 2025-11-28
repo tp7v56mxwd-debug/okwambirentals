@@ -58,8 +58,8 @@ export const Reviews = () => {
 
   if (loading) {
     return (
-      <section className="py-20 bg-gradient-to-br from-background via-background/95 to-primary/5">
-        <div className="container mx-auto px-4">
+      <section className="section-padding bg-background">
+        <div className="container mx-auto px-6 lg:px-12">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[1, 2, 3].map((i) => (
               <Card key={i} className="animate-pulse">
@@ -78,20 +78,16 @@ export const Reviews = () => {
 
   if (reviews.length === 0) {
     return (
-      <section className="py-20 bg-gradient-to-br from-background via-background/95 to-primary/5">
-        <div className="container mx-auto px-4">
-          <Card className="max-w-2xl mx-auto border-dashed border-2 bg-muted/30">
+      <section className="section-padding bg-background">
+        <div className="container mx-auto px-6 lg:px-12">
+          <Card className="max-w-2xl mx-auto border-dashed">
             <CardContent className="pt-12 pb-12 text-center">
-              <div className="flex justify-center mb-6">
-                <div className="p-4 bg-primary/10 rounded-full">
-                  <Star className="h-12 w-12 text-primary" />
-                </div>
-              </div>
-              <h3 className="text-2xl font-bold text-foreground mb-3">
+              <Star className="h-8 w-8 text-foreground mx-auto mb-4" />
+              <h3 className="text-xl font-semibold text-foreground mb-2">
                 No Reviews Yet
               </h3>
-              <p className="text-muted-foreground max-w-md mx-auto">
-                Be the first to share your experience! Complete a booking and leave a review to help others discover the adventure.
+              <p className="text-sm text-muted-foreground max-w-md mx-auto">
+                Be the first to share your experience!
               </p>
             </CardContent>
           </Card>
@@ -103,13 +99,13 @@ export const Reviews = () => {
   const averageRating = reviews.reduce((acc, review) => acc + review.rating, 0) / reviews.length;
 
   return (
-    <section id="testimonials" className="py-16 bg-background border-t border-border">
-      <div className="container mx-auto px-6 lg:px-8">
-        <div className="mb-12">
-          <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-3">
+    <section id="testimonials" className="section-padding bg-background border-t border-border">
+      <div className="container mx-auto px-6 lg:px-12">
+        <div className="mb-12 max-w-3xl">
+          <h2 className="font-display text-3xl md:text-4xl font-semibold text-foreground mb-3">
             Customer Reviews
           </h2>
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2">
             <div className="flex">
               {[1, 2, 3, 4, 5].map((star) => (
                 <Star
@@ -122,13 +118,13 @@ export const Reviews = () => {
                 />
               ))}
             </div>
-            <span className="text-sm font-medium text-foreground">
-              {averageRating.toFixed(1)} ({reviews.length} reviews)
+            <span className="text-sm text-muted-foreground">
+              {averageRating.toFixed(1)} · {reviews.length} reviews
             </span>
           </div>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl">
           {reviews.map((review) => (
             <Card key={review.id} className="border border-border hover:border-foreground/20 transition-colors">
               <CardContent className="pt-6">
@@ -152,7 +148,7 @@ export const Reviews = () => {
                     {review.bookings.customer_name}
                   </p>
                   <p className="text-xs text-muted-foreground">
-                    {review.bookings.vehicle_type} • {format(new Date(review.created_at), "MMM yyyy")}
+                    {review.bookings.vehicle_type} · {format(new Date(review.created_at), "MMM yyyy")}
                   </p>
                 </div>
               </CardContent>
