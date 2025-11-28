@@ -28,6 +28,7 @@ export type Database = {
           status: string
           total_price: string
           updated_at: string
+          user_id: string | null
           vehicle_type: string
         }
         Insert: {
@@ -43,6 +44,7 @@ export type Database = {
           status?: string
           total_price: string
           updated_at?: string
+          user_id?: string | null
           vehicle_type: string
         }
         Update: {
@@ -58,6 +60,7 @@ export type Database = {
           status?: string
           total_price?: string
           updated_at?: string
+          user_id?: string | null
           vehicle_type?: string
         }
         Relationships: []
