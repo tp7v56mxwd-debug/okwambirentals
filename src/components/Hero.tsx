@@ -17,7 +17,7 @@ const Hero = () => {
   };
 
   return (
-    <section id="hero" className="relative min-h-screen flex items-center overflow-hidden">
+    <section id="hero" className="relative min-h-screen flex items-end overflow-hidden">
       {/* Background Image */}
       <div className="absolute inset-0">
         <img
@@ -31,7 +31,7 @@ const Hero = () => {
         <div className="absolute inset-0 bg-gradient-to-r from-background/95 via-background/70 to-background/30" />
       </div>
       
-      <div className="relative z-10 container mx-auto px-6 lg:px-16 py-24">
+      <div className="relative z-10 container mx-auto px-6 lg:px-16 py-24 pb-32 w-full">
         <div className="max-w-3xl">
           {/* Eyebrow */}
           <div className="mb-8 flex items-center gap-4">
@@ -46,29 +46,29 @@ const Hero = () => {
           </h1>
           
           {/* Subtitle */}
-          <p className="text-xl md:text-2xl text-muted-foreground mb-12 leading-relaxed max-w-2xl">
+          <p className="text-xl md:text-2xl text-muted-foreground mb-16 leading-relaxed max-w-2xl">
             {t('hero.subtitle')}
           </p>
-          
-          {/* CTA Buttons */}
-          <div className="flex flex-wrap gap-4">
-            <Button 
-              size="lg" 
-              onClick={scrollToFleet}
-              className="group bg-accent hover:bg-accent/90 text-accent-foreground font-semibold px-10 py-6 text-base transition-all duration-300"
-            >
-              {t('hero.exploreFleet')}
-              <ChevronDown className="ml-2 w-5 h-5 group-hover:translate-y-1 transition-transform" />
-            </Button>
-            <Button 
-              size="lg" 
-              variant="outline"
-              onClick={() => setBookingOpen(true)}
-              className="border-2 font-semibold px-10 py-6 text-base transition-all duration-300 hover:bg-foreground/5"
-            >
-              {t('hero.reserveNow')}
-            </Button>
-          </div>
+        </div>
+        
+        {/* CTA Buttons - Centered at bottom */}
+        <div className="flex flex-wrap justify-center gap-4 max-w-2xl mx-auto">
+          <Button 
+            size="lg" 
+            onClick={scrollToFleet}
+            className="group bg-accent hover:bg-accent/90 text-accent-foreground font-semibold px-10 py-6 text-base transition-all duration-300"
+          >
+            {t('hero.exploreFleet')}
+            <ChevronDown className="ml-2 w-5 h-5 group-hover:translate-y-1 transition-transform" />
+          </Button>
+          <Button 
+            size="lg" 
+            variant="outline"
+            onClick={() => setBookingOpen(true)}
+            className="border-2 font-semibold px-10 py-6 text-base transition-all duration-300 hover:bg-foreground/5"
+          >
+            {t('hero.reserveNow')}
+          </Button>
         </div>
       </div>
       
