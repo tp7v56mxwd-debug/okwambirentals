@@ -40,20 +40,20 @@ const Footer = () => {
             {/* Social Links */}
             <div className="flex gap-3">
               <a
-                href="https://facebook.com/okwambirentals"
+                href="https://www.facebook.com/okwambirentals"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-11 h-11 rounded-xl bg-primary-foreground/10 hover:bg-accent backdrop-blur-sm flex items-center justify-center transition-all duration-300 hover:scale-110 hover:-translate-y-1 hover:shadow-lg group border border-primary-foreground/5"
-                aria-label="Facebook"
+                className="w-11 h-11 rounded-xl bg-primary-foreground/10 hover:bg-accent backdrop-blur-sm flex items-center justify-center transition-all duration-300 hover:scale-110 hover:-translate-y-1 hover:shadow-lg group border border-primary-foreground/5 cursor-pointer"
+                aria-label="Visit our Facebook page"
               >
                 <Facebook className="w-5 h-5 group-hover:text-accent-foreground transition-colors" />
               </a>
               <a
-                href="https://instagram.com/okwambirentals"
+                href="https://www.instagram.com/okwambirentals"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-11 h-11 rounded-xl bg-primary-foreground/10 hover:bg-accent backdrop-blur-sm flex items-center justify-center transition-all duration-300 hover:scale-110 hover:-translate-y-1 hover:shadow-lg group border border-primary-foreground/5"
-                aria-label="Instagram"
+                className="w-11 h-11 rounded-xl bg-primary-foreground/10 hover:bg-accent backdrop-blur-sm flex items-center justify-center transition-all duration-300 hover:scale-110 hover:-translate-y-1 hover:shadow-lg group border border-primary-foreground/5 cursor-pointer"
+                aria-label="Visit our Instagram page"
               >
                 <Instagram className="w-5 h-5 group-hover:text-accent-foreground transition-colors" />
               </a>
