@@ -41,21 +41,63 @@ export const Reviews = () => {
         .order("created_at", { ascending: false })
         .limit(6);
 
-      if (error) throw error;
+      if (error) {
+        console.error("Failed to load reviews:", error);
+        setReviews([]);
+        return;
+      }
+      
       setReviews(data || []);
     } catch (error) {
-      console.error("Error fetching reviews:", error);
+      console.error("Unexpected error loading reviews:", error);
+      setReviews([]);
     } finally {
       setLoading(false);
     }
   };
 
   if (loading) {
-    return <div className="text-center py-8">Loading reviews...</div>;
+    return (
+      <section className="py-20 bg-gradient-to-br from-background via-background/95 to-primary/5">
+        <div className="container mx-auto px-4">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[1, 2, 3].map((i) => (
+              <Card key={i} className="animate-pulse">
+                <CardContent className="pt-6 space-y-4">
+                  <div className="h-4 bg-muted rounded w-3/4" />
+                  <div className="h-20 bg-muted rounded" />
+                  <div className="h-4 bg-muted rounded w-1/2" />
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+    );
   }
 
   if (reviews.length === 0) {
-    return null;
+    return (
+      <section className="py-20 bg-gradient-to-br from-background via-background/95 to-primary/5">
+        <div className="container mx-auto px-4">
+          <Card className="max-w-2xl mx-auto border-dashed border-2 bg-muted/30">
+            <CardContent className="pt-12 pb-12 text-center">
+              <div className="flex justify-center mb-6">
+                <div className="p-4 bg-primary/10 rounded-full">
+                  <Star className="h-12 w-12 text-primary" />
+                </div>
+              </div>
+              <h3 className="text-2xl font-bold text-foreground mb-3">
+                No Reviews Yet
+              </h3>
+              <p className="text-muted-foreground max-w-md mx-auto">
+                Be the first to share your experience! Complete a booking and leave a review to help others discover the adventure.
+              </p>
+            </CardContent>
+          </Card>
+        </div>
+      </section>
+    );
   }
 
   const averageRating = reviews.reduce((acc, review) => acc + review.rating, 0) / reviews.length;
