@@ -44,9 +44,11 @@ const DialogSafety = () => {
   ];
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 p-2">
       <div>
-        <h2 className="text-2xl font-bold mb-2">{t('safety.title')}</h2>
+        <h2 className="text-3xl font-bold mb-2">
+          {t('safety.title1')} <span className="text-primary">{t('safety.title2')}</span>
+        </h2>
         <p className="text-muted-foreground">{t('safety.description')}</p>
       </div>
 
@@ -54,18 +56,18 @@ const DialogSafety = () => {
         {policies.map((policy, index) => {
           const Icon = policy.icon;
           return (
-            <div key={index} className="border border-border rounded-lg p-4">
+            <div key={index} className="border border-border rounded-lg p-4 bg-card hover:border-primary/50 transition-colors">
               <div className="flex items-center gap-3 mb-2">
-                <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
-                  <Icon className="w-5 h-5 text-primary" />
+                <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
+                  <Icon className="w-6 h-6 text-primary" />
                 </div>
-                <h3 className="font-semibold text-lg">{policy.title}</h3>
+                <h3 className="font-bold text-lg text-foreground">{policy.title}</h3>
               </div>
-              <p className="text-sm text-muted-foreground mb-3">{policy.description}</p>
-              <ul className="space-y-2">
+              <p className="text-sm text-muted-foreground mb-3 ml-2">{policy.description}</p>
+              <ul className="space-y-2 ml-2">
                 {(policy.items as string[]).map((item, idx) => (
-                  <li key={idx} className="text-sm text-muted-foreground flex items-start gap-2">
-                    <span className="text-primary mt-1">•</span>
+                  <li key={idx} className="text-sm text-foreground flex items-start gap-2">
+                    <span className="text-primary mt-1 flex-shrink-0 font-bold">✓</span>
                     <span>{item}</span>
                   </li>
                 ))}
@@ -73,6 +75,11 @@ const DialogSafety = () => {
             </div>
           );
         })}
+      </div>
+
+      <div className="bg-accent/10 border border-accent/20 rounded-lg p-4">
+        <h3 className="font-bold text-foreground mb-2">{t('safety.cta.title')}</h3>
+        <p className="text-sm text-muted-foreground">{t('safety.cta.description')}</p>
       </div>
     </div>
   );
