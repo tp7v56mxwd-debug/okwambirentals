@@ -21,6 +21,7 @@ import VehiclePhotos from "@/pages/VehiclePhotos";
 import ResetPassword from "./pages/ResetPassword";
 import TwoFactorAuth from "./pages/TwoFactorAuth";
 import SitemapRedirect from "./pages/SitemapRedirect";
+import BookingConfirmation from "./pages/BookingConfirmation";
 
 const queryClient = new QueryClient();
 
@@ -47,6 +48,7 @@ const App = () => (
               <Route path="/vehicle-photos" element={<VehiclePhotos />} />
               <Route path="/reset-password" element={<ResetPassword />} />
               <Route path="/2fa" element={<TwoFactorAuth />} />
+              <Route path="/booking/:id" element={<BookingConfirmation />} />
               <Route path="/sitemap.xml" element={<SitemapRedirect />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
