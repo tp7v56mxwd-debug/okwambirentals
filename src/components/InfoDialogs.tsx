@@ -49,21 +49,30 @@ export const InfoDialogs = () => {
           className="w-64 bg-background border border-border shadow-lg rounded-xl p-2 z-[150]"
         >
           <DropdownMenuItem 
-            onClick={() => handleDialogOpen("faq")} 
+            onSelect={(e) => {
+              e.preventDefault();
+              handleDialogOpen("faq");
+            }}
             className="cursor-pointer rounded-lg py-3 px-4 text-sm font-medium transition-all hover:bg-primary/10 hover:text-primary focus:bg-primary/10 focus:text-primary"
           >
             <HelpCircle className="w-4 h-4 mr-3" />
             <span>{t('nav.faq')}</span>
           </DropdownMenuItem>
           <DropdownMenuItem 
-            onClick={() => handleDialogOpen("requirements")} 
+            onSelect={(e) => {
+              e.preventDefault();
+              handleDialogOpen("requirements");
+            }}
             className="cursor-pointer rounded-lg py-3 px-4 text-sm font-medium transition-all hover:bg-primary/10 hover:text-primary focus:bg-primary/10 focus:text-primary"
           >
             <FileCheck className="w-4 h-4 mr-3" />
             <span>{t('nav.requirements')}</span>
           </DropdownMenuItem>
           <DropdownMenuItem 
-            onClick={() => handleDialogOpen("safety")} 
+            onSelect={(e) => {
+              e.preventDefault();
+              handleDialogOpen("safety");
+            }}
             className="cursor-pointer rounded-lg py-3 px-4 text-sm font-medium transition-all hover:bg-primary/10 hover:text-primary focus:bg-primary/10 focus:text-primary"
           >
             <Shield className="w-4 h-4 mr-3" />
