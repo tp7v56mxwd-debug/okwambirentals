@@ -25,7 +25,7 @@ const signUpSchema = signInSchema.extend({
 });
 
 export default function Auth() {
-  const { signIn, signUp, user, loading } = useAuth();
+  const { signIn, signUp, user, isAdmin, loading } = useAuth();
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
 
@@ -47,12 +47,12 @@ export default function Auth() {
     },
   });
 
-  // Redirect if already logged in - must be in useEffect
+  // Redirect only if logged in AND is admin
   useEffect(() => {
-    if (!loading && user) {
+    if (!loading && user && isAdmin) {
       navigate('/admin');
     }
-  }, [loading, user, navigate]);
+  }, [loading, user, isAdmin, navigate]);
 
   const handleSignIn = async (values: z.infer<typeof signInSchema>) => {
     setIsLoading(true);
