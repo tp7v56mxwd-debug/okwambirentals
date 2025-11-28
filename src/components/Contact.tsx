@@ -62,19 +62,19 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="py-16 bg-background border-t border-border">
-      <div ref={ref} className={`container mx-auto px-6 lg:px-8 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-        <div className="mb-12">
-          <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-2">
+    <section id="contact" className="section-padding bg-background border-t border-border">
+      <div ref={ref} className={`container mx-auto px-6 lg:px-12 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+        <div className="mb-12 max-w-3xl">
+          <h2 className="font-display text-3xl md:text-4xl font-semibold text-foreground mb-3">
             {t('contact.title1')}
           </h2>
-          <p className="text-muted-foreground">
+          <p className="text-base text-muted-foreground leading-relaxed">
             {t('contact.description')}
           </p>
         </div>
 
         <div className="max-w-2xl">
-          <div className="border border-border bg-card p-8">
+          <div className="border border-border bg-background p-8">
             <form onSubmit={handleSubmit} className="space-y-5">
               <div>
                 <label htmlFor="name" className="block text-sm font-medium text-foreground mb-1.5">
@@ -86,7 +86,6 @@ const Contact = () => {
                   placeholder={t('contact.form.namePlaceholder')}
                   required
                   maxLength={100}
-                  className="border-border"
                 />
               </div>
 
@@ -101,7 +100,6 @@ const Contact = () => {
                   placeholder={t('contact.form.emailPlaceholder')}
                   required
                   maxLength={255}
-                  className="border-border"
                 />
               </div>
 
@@ -115,7 +113,6 @@ const Contact = () => {
                   placeholder={t('contact.form.subjectPlaceholder')}
                   required
                   maxLength={200}
-                  className="border-border"
                 />
               </div>
 
@@ -130,13 +127,14 @@ const Contact = () => {
                   required
                   maxLength={1000}
                   rows={5}
-                  className="border-border resize-none"
+                  className="resize-none"
                 />
               </div>
 
               <Button
                 type="submit"
                 disabled={isSubmitting}
+                size="sm"
                 className="w-full"
               >
                 {isSubmitting ? t('contact.form.sending') : t('contact.form.submit')}

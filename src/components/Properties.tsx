@@ -93,33 +93,24 @@ const Properties = () => {
 
   return (
     <>
-      <section id="fleet" className="py-32 bg-muted/30">
-        <div ref={ref} className={`container mx-auto px-6 lg:px-16 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-          {/* Section Header */}
-          <div className="mb-20">
-            <div className="flex items-center gap-4 mb-6">
-              <div className="h-[2px] w-16 bg-accent" />
-              <span className="text-sm font-semibold tracking-[0.2em] uppercase text-muted-foreground">{t('fleet.badge')}</span>
-            </div>
-            
-            <h2 className="font-display text-5xl md:text-6xl lg:text-7xl font-bold text-foreground leading-[1.1] max-w-4xl">
-              {t('fleet.title1')}{' '}
-              <span className="text-accent">{t('fleet.title2')}</span>
+      <section id="fleet" className="section-padding bg-background">
+        <div ref={ref} className={`container mx-auto px-6 lg:px-12 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+          <div className="mb-12 max-w-3xl">
+            <h2 className="font-display text-3xl md:text-4xl font-semibold text-foreground mb-3">
+              {t('fleet.title1')} {t('fleet.title2')}
             </h2>
-            
-            <p className="text-xl text-muted-foreground leading-relaxed mt-6 max-w-2xl">
+            <p className="text-base text-muted-foreground leading-relaxed">
               {t('fleet.description')}
             </p>
           </div>
 
-          {/* Vehicle Grid */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-1 bg-border">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-1 bg-border max-w-6xl">
             {fleet.map((vehicle, index) => (
               <article 
                 key={index}
-                className="group relative overflow-hidden bg-background transition-all duration-300 hover:bg-muted/50"
+                className="group relative overflow-hidden bg-background transition-colors hover:bg-muted/30"
+                style={{ animationDelay: `${index * 100}ms` }}
               >
-                {/* Vehicle Image Gallery */}
                 {vehiclePhotos[vehicle.id] && vehiclePhotos[vehicle.id].length > 0 ? (
                   <div className="relative aspect-[4/3] overflow-hidden bg-muted">
                     <Carousel className="w-full h-full">
@@ -131,62 +122,57 @@ const Properties = () => {
                               alt={`${vehicle.name} ${photoIndex + 1}`}
                               loading="lazy"
                               decoding="async"
-                              className="object-cover w-full h-full transition-transform duration-700 group-hover:scale-105"
+                              className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-105"
                             />
                           </CarouselItem>
                         ))}
                       </CarouselContent>
-                      <CarouselPrevious className="left-4" />
-                      <CarouselNext className="right-4" />
+                      <CarouselPrevious className="left-3" />
+                      <CarouselNext className="right-3" />
                     </Carousel>
                   </div>
                 ) : (
                   <div className="relative aspect-[4/3] bg-muted flex items-center justify-center">
                     <div className="text-center p-6">
-                      <Shield className="h-12 w-12 text-muted-foreground/30 mx-auto mb-3" />
-                      <p className="text-sm text-muted-foreground font-medium">{vehicle.name}</p>
+                      <Shield className="h-10 w-10 text-muted-foreground/30 mx-auto mb-2" />
+                      <p className="text-sm text-muted-foreground">{vehicle.name}</p>
                       <p className="text-xs text-muted-foreground/70 mt-1">Photos coming soon</p>
                     </div>
                   </div>
                 )}
                 
-                {/* Content */}
-                <div className="p-8">
-                  <div className="text-xs font-bold tracking-[0.15em] uppercase text-accent mb-3">
+                <div className="p-6">
+                  <div className="text-xs font-medium tracking-wide uppercase text-accent mb-2">
                     {vehicle.category}
                   </div>
                   
-                  <h3 className="font-display text-3xl font-bold mb-4 text-foreground">
+                  <h3 className="font-display text-xl font-semibold mb-3 text-foreground">
                     {vehicle.name}
                   </h3>
 
-                  {/* Specs */}
-                  <div className="flex items-center gap-6 mb-6 pb-6 border-b border-border">
-                    <div className="flex items-center gap-2">
-                      <Users className="w-4 h-4 text-muted-foreground" />
-                      <span className="text-sm text-muted-foreground">{vehicle.capacity}</span>
+                  <div className="flex items-center gap-4 mb-4 pb-4 border-b border-border">
+                    <div className="flex items-center gap-1.5">
+                      <Users className="w-4 h-4 text-muted-foreground" strokeWidth={1.5} />
+                      <span className="text-xs text-muted-foreground">{vehicle.capacity}</span>
                     </div>
-                    <div className="flex items-center gap-2">
-                      <Gauge className="w-4 h-4 text-muted-foreground" />
-                      <span className="text-sm text-muted-foreground">{vehicle.speed}</span>
+                    <div className="flex items-center gap-1.5">
+                      <Gauge className="w-4 h-4 text-muted-foreground" strokeWidth={1.5} />
+                      <span className="text-xs text-muted-foreground">{vehicle.speed}</span>
                     </div>
                   </div>
 
-                  {/* Features */}
-                  <div className="space-y-2 mb-8">
+                  <div className="space-y-1.5 mb-6">
                     {vehicle.features.slice(0, 3).map((feature, idx) => (
-                      <div key={idx} className="flex items-start gap-3">
-                        <div className="w-1 h-1 rounded-full bg-accent flex-shrink-0 mt-2" />
-                        <span className="text-sm text-muted-foreground">{feature}</span>
+                      <div key={idx} className="flex items-start gap-2">
+                        <div className="w-1 h-1 rounded-full bg-foreground flex-shrink-0 mt-1.5" />
+                        <span className="text-xs text-muted-foreground leading-relaxed">{feature}</span>
                       </div>
                     ))}
                   </div>
 
-                  {/* Price & CTA */}
-                  <div className="flex items-end justify-between pt-6 border-t border-border">
+                  <div className="flex items-end justify-between pt-4 border-t border-border">
                     <div>
-                      <div className="text-xs text-muted-foreground uppercase tracking-wider mb-1">{t('fleet.priceLabel')}</div>
-                      <div className="text-3xl font-bold text-foreground">{vehicle.price}</div>
+                      <div className="text-xl font-semibold text-foreground">{vehicle.price}</div>
                       <div className="text-xs text-muted-foreground">{t('fleet.per30min')}</div>
                     </div>
                     <Button
@@ -194,8 +180,8 @@ const Properties = () => {
                         setSelectedVehicle(vehicle);
                         setBookingOpen(true);
                       }}
-                      variant="default"
-                      className="font-semibold transition-all duration-300"
+                      size="sm"
+                      className="transition-colors"
                     >
                       {t('fleet.bookNow')}
                     </Button>
