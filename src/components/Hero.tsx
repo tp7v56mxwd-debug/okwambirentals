@@ -30,7 +30,7 @@ const Hero = () => {
       />
       
       {/* Enhanced Gradient Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-background/60 to-background/80 backdrop-blur-[2px]" />
+      <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-background/60 to-background/80" />
       
       {/* Animated Gradient Accent */}
       <div className="absolute inset-0 bg-gradient-to-tr from-primary/20 via-transparent to-accent/20 animate-pulse" style={{ animationDuration: '4s' }} />
