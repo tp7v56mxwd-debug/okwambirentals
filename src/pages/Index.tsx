@@ -2,7 +2,6 @@ import Navigation from "@/components/Navigation";
 import Hero from "@/components/Hero";
 import Properties from "@/components/Properties";
 import { Reviews } from "@/components/Reviews";
-import { BookingTracker } from "@/components/BookingTracker";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
@@ -19,7 +18,6 @@ const Index = () => {
         <Hero />
         <Properties />
         <Reviews />
-        <BookingTracker />
         <Contact />
         <Footer />
         <WhatsAppButton />
