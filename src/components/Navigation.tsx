@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { Menu, X, Waves, LogIn, Shield, Calendar, LogOut, User } from "lucide-react";
+import { Menu, X, LogIn, Shield, Calendar, LogOut, User } from "lucide-react";
 import { useState, useEffect } from "react";
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
@@ -77,34 +77,27 @@ const Navigation = () => {
     <nav 
       role="navigation" 
       aria-label="Main navigation"
-      className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-500 ${
+      className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-300 ${
         isScrolled || isOpen
-          ? 'bg-background/98 backdrop-blur-2xl shadow-[0_8px_32px_rgba(0,0,0,0.12)] border-b border-border/30' 
-          : 'bg-gradient-to-b from-background/90 via-background/50 to-transparent backdrop-blur-sm'
+          ? 'bg-background/95 backdrop-blur-md border-b border-border' 
+          : 'bg-transparent'
       }`}
     >
-      <div className="container mx-auto px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20">
+      <div className="container mx-auto px-6 lg:px-16">
+        <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <button 
             onClick={() => scrollToSection('hero')} 
-            className="flex items-center gap-2 group relative"
+            className="group"
             aria-label="Go to homepage"
           >
-            <div className="relative">
-              <div className="absolute inset-0 bg-primary/20 blur-xl rounded-full group-hover:bg-primary/30 transition-all duration-300" />
-              <Waves className="relative w-8 h-8 text-primary group-hover:scale-110 transition-transform duration-300" />
-            </div>
-            <div className="relative">
-              <span className="relative font-display text-2xl lg:text-3xl font-bold bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent group-hover:from-accent group-hover:via-primary group-hover:to-accent transition-all duration-500 bg-[length:200%_auto] group-hover:bg-right">
-                OKWAMBI
-              </span>
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-primary to-accent group-hover:w-full transition-all duration-300" />
-            </div>
+            <span className="font-display text-xl font-normal tracking-tight text-foreground transition-colors duration-200 group-hover:text-accent">
+              OKWAMBI
+            </span>
           </button>
 
           {/* Desktop Menu */}
-          <div className="hidden lg:flex items-center gap-2" role="menubar" aria-label="Desktop navigation menu">
+          <div className="hidden lg:flex items-center gap-1" role="menubar" aria-label="Desktop navigation menu">
             {navLinks.map((link) => (
               <button
                 key={link.id}
@@ -112,29 +105,23 @@ const Navigation = () => {
                 role="menuitem"
                 aria-label={`Navigate to ${link.label}`}
                 aria-current={activeSection === link.id ? 'page' : undefined}
-                className={`relative px-5 py-2.5 text-sm font-semibold tracking-wide transition-all duration-300 group ${
+                className={`px-4 py-2 text-sm font-medium transition-colors duration-200 ${
                   activeSection === link.id
-                    ? 'text-primary'
-                    : 'text-foreground/70 hover:text-foreground'
+                    ? 'text-foreground'
+                    : 'text-muted-foreground hover:text-foreground'
                 }`}
               >
-                <span className="relative z-10">{link.label}</span>
-                <span className={`absolute inset-0 rounded-lg bg-primary/10 scale-0 group-hover:scale-100 transition-transform duration-300 ${
-                  activeSection === link.id ? 'scale-100' : ''
-                }`} />
-                <span className={`absolute bottom-2 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-primary to-accent group-hover:w-3/4 transition-all duration-300 ${
-                  activeSection === link.id ? 'w-3/4' : ''
-                }`} />
+                {link.label}
               </button>
             ))}
             <InfoDialogs />
-            <div className="ml-2 pl-2 border-l border-border/50 flex items-center gap-2">
+            <div className="ml-6 pl-6 border-l border-border flex items-center gap-3">
               <LanguageSwitcher />
               {user ? (
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
-                    <Button variant="outline" size="sm" className="ml-2">
-                      <User className="h-4 w-4 mr-1" />
+                    <Button variant="ghost" size="sm">
+                      <User className="h-4 w-4 mr-2" />
                       Account
                     </Button>
                   </DropdownMenuTrigger>
@@ -165,12 +152,11 @@ const Navigation = () => {
                 </DropdownMenu>
               ) : (
                 <Button
-                  variant="outline"
+                  variant="ghost"
                   size="sm"
                   onClick={() => navigate('/auth')}
-                  className="ml-2"
                 >
-                  <LogIn className="h-4 w-4 mr-1" />
+                  <LogIn className="h-4 w-4 mr-2" />
                   Login
                 </Button>
               )}
@@ -179,15 +165,14 @@ const Navigation = () => {
 
           {/* Mobile Menu Button */}
           <button 
-            className="lg:hidden text-foreground p-2.5 hover:bg-primary/10 rounded-xl transition-all duration-300 hover:scale-110 active:scale-95 relative group"
+            className="lg:hidden text-foreground p-2 transition-colors duration-200 hover:text-accent"
             onClick={() => setIsOpen(!isOpen)}
             aria-label="Toggle menu"
           >
-            <span className="absolute inset-0 rounded-xl bg-gradient-to-br from-primary/5 to-accent/5 opacity-0 group-hover:opacity-100 transition-opacity" />
             {isOpen ? (
-              <X className="w-6 h-6 relative z-10 transition-transform rotate-0 group-hover:rotate-90" />
+              <X className="w-5 h-5" />
             ) : (
-              <Menu className="w-6 h-6 relative z-10" />
+              <Menu className="w-5 h-5" />
             )}
           </button>
         </div>
