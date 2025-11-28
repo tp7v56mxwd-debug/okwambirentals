@@ -32,7 +32,8 @@ const Hero = () => {
       </div>
       
       <div className="relative z-10 container mx-auto px-6 lg:px-16 py-24 pb-32 w-full">
-        <div className="max-w-3xl">
+        {/* Text Content - Left Aligned */}
+        <div className="max-w-4xl mb-20">
           {/* Eyebrow */}
           <div className="mb-8 flex items-center gap-4">
             <div className="h-[2px] w-16 bg-accent" />
@@ -46,12 +47,12 @@ const Hero = () => {
           </h1>
           
           {/* Subtitle */}
-          <p className="text-xl md:text-2xl text-muted-foreground mb-16 leading-relaxed max-w-2xl">
+          <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed max-w-2xl">
             {t('hero.subtitle')}
           </p>
         </div>
         
-        {/* CTA Buttons - Centered at bottom */}
+        {/* CTA Buttons - Centered */}
         <div className="flex flex-wrap justify-center gap-4 max-w-2xl mx-auto">
           <Button 
             size="lg" 
