@@ -219,7 +219,7 @@ export const BookingDialog = ({ open, onOpenChange, vehicleName, vehiclePrice, b
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-[650px] max-h-[90vh] overflow-y-auto">
+      <DialogContent className="sm:max-w-[650px] max-h-[90vh] overflow-y-auto pointer-events-auto">
         <DialogHeader>
           <DialogTitle className="text-3xl font-black text-foreground">
             {selectedVehicle ? `Book Your ${selectedVehicle}` : t('fleet.bookNow')}
@@ -289,12 +289,13 @@ export const BookingDialog = ({ open, onOpenChange, vehicleName, vehiclePrice, b
 
             <div>
               <Label>Booking Date</Label>
-              <Popover>
+              <Popover modal={true}>
                 <PopoverTrigger asChild>
                   <Button
                     variant="outline"
+                    type="button"
                     className={cn(
-                      "w-full justify-start text-left font-normal",
+                      "w-full justify-start text-left font-normal pointer-events-auto",
                       !date && "text-muted-foreground"
                     )}
                   >
@@ -302,20 +303,19 @@ export const BookingDialog = ({ open, onOpenChange, vehicleName, vehiclePrice, b
                     {date ? format(date, "PPP") : "Select a date"}
                   </Button>
                 </PopoverTrigger>
-                <PopoverContent className="w-auto p-0" align="start">
+                <PopoverContent className="w-auto p-0 z-[200]" align="start">
                   <Calendar
                     mode="single"
                     selected={date}
                     onSelect={setDate}
                     disabled={(date) => date < new Date()}
                     initialFocus
-                    className={cn("p-3 pointer-events-auto")}
                   />
                 </PopoverContent>
               </Popover>
             </div>
 
-            {selectedVehicle && (
+            {selectedVehicle && date && (
               <div className="bg-muted/30 rounded-lg p-4 border border-border/30">
                 <AvailabilityCalendar 
                   selectedDate={date}
