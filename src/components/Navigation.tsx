@@ -152,6 +152,10 @@ const Navigation = () => {
                         My Bookings
                       </DropdownMenuItem>
                     )}
+                    <DropdownMenuItem onClick={() => navigate('/2fa')}>
+                      <Shield className="h-4 w-4 mr-2" />
+                      Security (2FA)
+                    </DropdownMenuItem>
                     <DropdownMenuSeparator />
                     <DropdownMenuItem onClick={handleLogout} className="text-destructive focus:text-destructive">
                       <LogOut className="h-4 w-4 mr-2" />
@@ -244,6 +248,17 @@ const Navigation = () => {
                         My Bookings
                       </Button>
                     )}
+                    <Button
+                      variant="outline"
+                      className="w-full mt-2"
+                      onClick={() => {
+                        navigate('/2fa');
+                        setIsOpen(false);
+                      }}
+                    >
+                      <Shield className="h-4 w-4 mr-2" />
+                      Security (2FA)
+                    </Button>
                     <Button
                       variant="outline"
                       className="w-full text-destructive hover:text-destructive"

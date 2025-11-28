@@ -183,19 +183,15 @@ const Dashboard = () => {
         <div className="max-w-7xl mx-auto space-y-8">
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
             <div>
-              <h1 className="text-4xl font-bold mb-2">My Bookings</h1>
+              <h1 className="text-4xl font-bold mb-2">Admin Dashboard</h1>
               <p className="text-muted-foreground">
-                View and manage your adventure bookings
+                Manage bookings and vehicle photos
               </p>
             </div>
-            <div className="flex gap-2">
-              <Button onClick={() => navigate('/2fa')} variant="outline">
-                Configurar 2FA
-              </Button>
-              <Button onClick={() => navigate('/vehicle-photos')} variant="outline">
-                Manage Vehicle Photos
-              </Button>
-            </div>
+            <Button onClick={() => navigate('/vehicle-photos')} variant="default">
+              <Shield className="h-4 w-4 mr-2" />
+              Manage Vehicle Photos
+            </Button>
           </div>
 
           {bookings.length === 0 ? (
@@ -206,12 +202,13 @@ const Dashboard = () => {
                 <p className="text-muted-foreground mb-4">
                   Start your adventure by booking a vehicle!
                 </p>
-                <button
+                <Button
                   onClick={() => navigate('/')}
-                  className="px-6 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors"
+                  variant="default"
+                  size="lg"
                 >
                   Browse Vehicles
-                </button>
+                </Button>
               </CardContent>
             </Card>
           ) : (
