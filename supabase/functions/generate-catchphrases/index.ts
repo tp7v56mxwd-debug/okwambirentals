@@ -31,22 +31,27 @@ serve(async (req) => {
           },
           {
             role: "user",
-            content: `Create 10 creative and memorable Portuguese catchphrases for OKWAMBI, an adventure vehicle rental company (ATVs, UTVs, jet skis) located at Mussulo Beach in Luanda, Angola.
+            content: `Create 8 creative Portuguese catchphrases for OKWAMBI that blend these two elements:
 
-Key points:
-- "Okwambi" means "valente" (brave/valiant) in Portuguese
-- The company offers thrilling beach and water adventures
-- Target audience: adventurous people seeking excitement
-- Location: Beautiful Mussulo Peninsula, Luanda
+1. The style and power of: "Domina o Mar, Conquista a Areia"
+2. The meaning of "Okwambi" = "valente" (brave/valiant)
+
+Company context:
+- Adventure vehicle rentals (ATVs, UTVs, jet skis)
+- Mussulo Beach, Luanda, Angola
+- Target: brave, adventurous thrill-seekers
 
 Requirements:
-- Each catchphrase should be SHORT (3-7 words maximum)
-- Must be in Portuguese
-- Should evoke bravery, adventure, freedom, or excitement
-- Should be memorable and catchy
-- Mix different styles: some bold, some poetic, some action-oriented
+- SHORT (4-7 words maximum)
+- Must incorporate the brave/valiant meaning directly or indirectly
+- Action-oriented and powerful like option 4
+- Use verbs like domina, conquista, but add the valente/brave element
 
-Return ONLY a numbered list of 10 catchphrases, nothing else.`
+Examples of the style wanted:
+- "Valente no Mar, Forte na Areia"
+- "Para Valentes, Só Aventuras"
+
+Return ONLY a numbered list of 8 catchphrases, nothing else.`
           }
         ],
       }),
