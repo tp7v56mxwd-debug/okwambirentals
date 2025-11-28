@@ -48,6 +48,8 @@ const App = () => (
               <Route path="/2fa" element={<TwoFactorAuth />} />
               <Route path="/booking/:id" element={<BookingConfirmation />} />
               <Route path="/sitemap.xml" element={<SitemapRedirect />} />
+              {/* Redirect old dashboard route to home */}
+              <Route path="/dashboard" element={<Index />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>
