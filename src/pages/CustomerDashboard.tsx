@@ -158,19 +158,28 @@ const CustomerDashboard = () => {
       
       <main className="container mx-auto px-4 py-8 mt-20">
         <div className="max-w-6xl mx-auto">
-          <div className="flex items-center gap-4 mb-8">
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => navigate("/")}
-              className="rounded-full"
-            >
-              <ArrowLeft className="h-5 w-5" />
-            </Button>
-            <div>
-              <h1 className="text-4xl font-black text-foreground mb-2">My Bookings</h1>
-              <p className="text-muted-foreground">View and manage your rental bookings</p>
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-8">
+            <div className="flex items-center gap-4">
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={() => navigate("/")}
+                className="rounded-full"
+              >
+                <ArrowLeft className="h-5 w-5" />
+              </Button>
+              <div>
+                <h1 className="text-4xl font-black text-foreground mb-2">My Bookings</h1>
+                <p className="text-muted-foreground">View and manage your rental bookings</p>
+              </div>
             </div>
+            <Button
+              onClick={() => navigate("/2fa")}
+              variant="outline"
+              className="whitespace-nowrap"
+            >
+              Configurar 2FA
+            </Button>
           </div>
 
           {bookings.length === 0 ? (

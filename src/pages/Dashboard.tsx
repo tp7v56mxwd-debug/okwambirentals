@@ -9,7 +9,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from '@/components/ui/alert-dialog';
-import { Loader2, Calendar, Clock, Car, Mail, Phone, MessageSquare, XCircle, AlertTriangle } from 'lucide-react';
+import { Loader2, Calendar, Clock, Car, Mail, Phone, MessageSquare, XCircle, AlertTriangle, Shield } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { useTranslation } from 'react-i18next';
 import { format, differenceInHours, parseISO } from 'date-fns';
@@ -188,9 +188,14 @@ const Dashboard = () => {
                 View and manage your adventure bookings
               </p>
             </div>
-            <Button onClick={() => navigate('/vehicle-photos')} variant="outline">
-              Manage Vehicle Photos
-            </Button>
+            <div className="flex gap-2">
+              <Button onClick={() => navigate('/2fa')} variant="outline">
+                Configurar 2FA
+              </Button>
+              <Button onClick={() => navigate('/vehicle-photos')} variant="outline">
+                Manage Vehicle Photos
+              </Button>
+            </div>
           </div>
 
           {bookings.length === 0 ? (
