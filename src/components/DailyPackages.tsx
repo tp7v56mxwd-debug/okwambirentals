@@ -15,14 +15,11 @@ const DailyPackages = () => {
       name: t('packages.basic.name'),
       icon: TrendingUp,
       price: "150.000 Kz",
-      originalPrice: "180.000 Kz",
-      savings: "30.000 Kz",
-      duration: t('packages.duration'),
+      duration: "3.5 horas",
       features: [
         t('packages.basic.features.0'),
         t('packages.basic.features.1'),
-        t('packages.basic.features.2'),
-        t('packages.basic.features.3')
+        t('packages.basic.features.2')
       ],
       gradient: "from-primary/10 to-accent/10",
       borderGradient: "from-primary to-accent"
@@ -31,17 +28,14 @@ const DailyPackages = () => {
       id: 'premium',
       name: t('packages.premium.name'),
       icon: Crown,
-      price: "280.000 Kz",
-      originalPrice: "340.000 Kz",
-      savings: "60.000 Kz",
-      duration: t('packages.duration'),
+      price: "250.000 Kz",
+      duration: "6 horas",
       popular: true,
       features: [
         t('packages.premium.features.0'),
         t('packages.premium.features.1'),
         t('packages.premium.features.2'),
-        t('packages.premium.features.3'),
-        t('packages.premium.features.4')
+        t('packages.premium.features.3')
       ],
       gradient: "from-accent/20 to-accent-glow/20",
       borderGradient: "from-accent via-accent-glow to-accent"
@@ -50,17 +44,14 @@ const DailyPackages = () => {
       id: 'ultimate',
       name: t('packages.ultimate.name'),
       icon: Sparkles,
-      price: "380.000 Kz",
-      originalPrice: "480.000 Kz",
-      savings: "100.000 Kz",
-      duration: t('packages.duration'),
+      price: "400.000 Kz",
+      duration: "10 horas",
       features: [
         t('packages.ultimate.features.0'),
         t('packages.ultimate.features.1'),
         t('packages.ultimate.features.2'),
         t('packages.ultimate.features.3'),
-        t('packages.ultimate.features.4'),
-        t('packages.ultimate.features.5')
+        t('packages.ultimate.features.4')
       ],
       gradient: "from-primary/15 to-accent/15",
       borderGradient: "from-primary via-accent to-accent-glow"
@@ -128,17 +119,10 @@ const DailyPackages = () => {
                     </h3>
                   </div>
 
-                  {/* Savings Badge */}
-                  <div className="inline-flex items-center gap-1.5 w-fit px-3 py-1.5 bg-accent/10 border border-accent/30 rounded-full mb-6">
-                    <TrendingUp className="w-3.5 h-3.5 text-accent" />
-                    <span className="text-xs font-bold text-accent">{t('packages.save')} {pkg.savings}</span>
-                  </div>
-
                   {/* Pricing */}
                   <div className="mb-8">
                     <div className="flex items-baseline gap-2 mb-1">
                       <span className="text-4xl font-black text-foreground">{pkg.price}</span>
-                      <span className="text-lg text-muted-foreground line-through">{pkg.originalPrice}</span>
                     </div>
                     <p className="text-sm text-muted-foreground font-medium">{pkg.duration}</p>
                   </div>

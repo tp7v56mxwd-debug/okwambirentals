@@ -329,44 +329,39 @@
     "madeIn": "Crafted with excellence in Angola"
   },
   "packages": {
-    "badge": "Special Packages",
-    "title1": "Daily",
+    "badge": "Rental Packages",
+    "title1": "Time-Based",
     "title2": "Packages",
-    "description": "Save more with our exclusive daily packages - maximum fun, best value",
+    "description": "Choose the time you need and pay only for what you use",
     "mostPopular": "MOST POPULAR",
-    "save": "Save",
-    "duration": "Full day (8am - 6pm)",
-    "bookPackage": "BOOK PACKAGE",
+    "bookPackage": "BOOK NOW",
     "customNote": "Need a custom package? We're here to help.",
     "contactUs": "Contact Us",
     "basic": {
-      "name": "Basic Adventure",
+      "name": "Basic Package",
       "features": [
-        "4 hours with vehicle of your choice",
-        "Premium safety equipment included",
-        "GPS tracking and on-site support",
-        "Full fuel tank"
+        "3.5 hours rental",
+        "1 vehicle of choice",
+        "Safety equipment included"
       ]
     },
     "premium": {
-      "name": "Premium Experience",
+      "name": "Intermediate Package",
       "features": [
-        "6 hours with 2 different vehicles",
-        "Professional guide included",
-        "Guided peninsula tour",
-        "Adventure photo session",
-        "Drinks and snacks included"
+        "6 hours rental",
+        "1 vehicle of choice",
+        "Safety equipment included",
+        "Vehicle swap (subject to availability)"
       ]
     },
     "ultimate": {
-      "name": "Ultimate Adventure",
+      "name": "Full Day Package",
       "features": [
-        "Full day with all 3 vehicles",
-        "Dedicated personal guide",
-        "Premium VIP tour with exclusive route",
-        "Professional photo session",
-        "Gourmet beach lunch included",
-        "GoPro equipment included"
+        "10 hours rental",
+        "1 vehicle of choice",
+        "Safety equipment included",
+        "Vehicle swap (subject to availability)",
+        "Priority service"
       ]
     }
   },
