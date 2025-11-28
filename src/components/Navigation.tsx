@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { Menu, X, Waves, LogIn, Shield, LayoutDashboard } from "lucide-react";
+import { Menu, X, Waves, LogIn, Shield, Calendar } from "lucide-react";
 import { useState, useEffect } from "react";
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
@@ -122,11 +122,11 @@ const Navigation = () => {
                   <Button
                     variant="default"
                     size="sm"
-                    onClick={() => navigate('/dashboard')}
+                    onClick={() => navigate('/my-bookings')}
                     className="ml-2"
                   >
-                    <LayoutDashboard className="h-4 w-4 mr-1" />
-                    Dashboard
+                    <Calendar className="h-4 w-4 mr-1" />
+                    My Bookings
                   </Button>
                 )
               ) : (
@@ -205,12 +205,12 @@ const Navigation = () => {
                       variant="default"
                       className="w-full"
                       onClick={() => {
-                        navigate('/dashboard');
+                        navigate('/my-bookings');
                         setIsOpen(false);
                       }}
                     >
-                      <LayoutDashboard className="h-4 w-4 mr-2" />
-                      My Dashboard
+                      <Calendar className="h-4 w-4 mr-2" />
+                      My Bookings
                     </Button>
                   )
                 ) : (
