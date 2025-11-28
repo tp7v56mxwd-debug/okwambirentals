@@ -17,8 +17,14 @@ interface BookingEmailRequest {
 }
 
 const handler = async (req: Request): Promise<Response> => {
+  const requestId = crypto.randomUUID();
+  const startTime = Date.now();
+  
+  console.log(`[${requestId}] Request received at ${new Date().toISOString()}`);
+  
   // Handle CORS preflight requests
   if (req.method === "OPTIONS") {
+    console.log(`[${requestId}] CORS preflight request`);
     return new Response(null, { headers: corsHeaders });
   }
 
@@ -26,7 +32,7 @@ const handler = async (req: Request): Promise<Response> => {
     const RESEND_API_KEY = Deno.env.get("RESEND_API_KEY");
     
     if (!RESEND_API_KEY) {
-      console.error("RESEND_API_KEY is not configured");
+      console.error(`[${requestId}] RESEND_API_KEY is not configured - email service unavailable`);
       return new Response(
         JSON.stringify({ 
           error: "Email service not configured. Please contact support." 
@@ -38,6 +44,7 @@ const handler = async (req: Request): Promise<Response> => {
       );
     }
 
+    console.log(`[${requestId}] Parsing request body`);
     const { 
       customerName, 
       customerEmail, 
@@ -48,7 +55,15 @@ const handler = async (req: Request): Promise<Response> => {
       totalPrice 
     }: BookingEmailRequest = await req.json();
 
+    console.log(`[${requestId}] Email request for:`, {
+      customerEmail,
+      vehicleType,
+      bookingDate,
+      bookingTime
+    });
+
     // Send email using Resend
+    console.log(`[${requestId}] Sending email via Resend API to ${customerEmail}`);
     const emailResponse = await fetch("https://api.resend.com/emails", {
       method: "POST",
       headers: {
@@ -141,12 +156,22 @@ const handler = async (req: Request): Promise<Response> => {
 
     if (!emailResponse.ok) {
       const error = await emailResponse.text();
-      console.error("Resend API error:", error);
+      console.error(`[${requestId}] Resend API error (Status ${emailResponse.status}):`, {
+        status: emailResponse.status,
+        statusText: emailResponse.statusText,
+        error: error,
+        customerEmail
+      });
       throw new Error(`Failed to send email: ${error}`);
     }
 
     const emailData = await emailResponse.json();
-    console.log("Email sent successfully:", emailData);
+    const executionTime = Date.now() - startTime;
+    console.log(`[${requestId}] Email sent successfully in ${executionTime}ms:`, {
+      emailId: emailData.id,
+      to: customerEmail,
+      duration: `${executionTime}ms`
+    });
 
     return new Response(JSON.stringify({ success: true, data: emailData }), {
       status: 200,
@@ -156,9 +181,18 @@ const handler = async (req: Request): Promise<Response> => {
       },
     });
   } catch (error: any) {
-    console.error("Error in send-booking-confirmation function:", error);
+    const executionTime = Date.now() - startTime;
+    console.error(`[${requestId}] Error in send-booking-confirmation function (${executionTime}ms):`, {
+      error: error.message,
+      stack: error.stack,
+      name: error.name,
+      duration: `${executionTime}ms`
+    });
     return new Response(
-      JSON.stringify({ error: error.message }),
+      JSON.stringify({ 
+        error: error.message,
+        requestId: requestId
+      }),
       {
         status: 500,
         headers: { "Content-Type": "application/json", ...corsHeaders },

@@ -101,6 +101,9 @@ export const BookingDialog = ({ open, onOpenChange, vehicleName, vehiclePrice, b
     e.preventDefault();
     setIsSubmitting(true);
 
+    const submissionStartTime = new Date().toISOString();
+    console.log(`[BOOKING_SUBMIT] Started at ${submissionStartTime}`);
+
     try {
       const formData = new FormData(e.currentTarget);
       const data = {
@@ -114,10 +117,19 @@ export const BookingDialog = ({ open, onOpenChange, vehicleName, vehiclePrice, b
         special_requests: formData.get("special_requests") as string
       };
 
+      console.log('[BOOKING_VALIDATION] Starting validation for:', {
+        vehicle: selectedVehicle,
+        date: date,
+        duration: duration,
+        hasUser: !!user
+      });
+
       const validated = bookingSchema.parse(data);
+      console.log('[BOOKING_VALIDATION] Validation successful');
 
       const totalPrice = calculateTotalPrice(duration);
 
+      console.log('[BOOKING_DB_INSERT] Attempting database insert');
       const { data: bookingData, error } = await supabase.from("bookings").insert({
         customer_name: validated.customer_name,
         customer_email: validated.customer_email,
@@ -132,13 +144,23 @@ export const BookingDialog = ({ open, onOpenChange, vehicleName, vehiclePrice, b
         user_id: user?.id || null
       }).select().single();
 
-      if (error) throw error;
+      if (error) {
+        console.error('[BOOKING_DB_INSERT] Database insert failed:', {
+          error: error.message,
+          code: error.code,
+          details: error.details,
+          hint: error.hint
+        });
+        throw error;
+      }
 
       const bookingId = bookingData?.id;
+      console.log(`[BOOKING_DB_INSERT] Success - Booking ID: ${bookingId}`);
 
       // Send confirmation email via Edge Function
       try {
-        await supabase.functions.invoke("send-booking-confirmation", {
+        console.log('[BOOKING_EMAIL] Invoking send-booking-confirmation function');
+        const emailResponse = await supabase.functions.invoke("send-booking-confirmation", {
           body: {
             customerName: validated.customer_name,
             customerEmail: validated.customer_email,
@@ -149,14 +171,29 @@ export const BookingDialog = ({ open, onOpenChange, vehicleName, vehiclePrice, b
             totalPrice: totalPrice,
           },
         });
-      } catch (emailError) {
-        console.error("Error sending confirmation email:", emailError);
+
+        if (emailResponse.error) {
+          console.error('[BOOKING_EMAIL] Edge function returned error:', {
+            error: emailResponse.error,
+            bookingId: bookingId
+          });
+        } else {
+          console.log('[BOOKING_EMAIL] Confirmation email sent successfully');
+        }
+      } catch (emailError: any) {
+        console.error('[BOOKING_EMAIL] Failed to send confirmation email:', {
+          error: emailError.message || emailError,
+          stack: emailError.stack,
+          bookingId: bookingId,
+          customerEmail: validated.customer_email
+        });
         // Don't fail the booking if email fails
       }
 
       // Send admin notification
       try {
-        await supabase.functions.invoke("notify-admin-booking", {
+        console.log('[BOOKING_NOTIFY] Invoking notify-admin-booking function');
+        const notifyResponse = await supabase.functions.invoke("notify-admin-booking", {
           body: {
             customerName: validated.customer_name,
             customerEmail: validated.customer_email,
@@ -169,10 +206,29 @@ export const BookingDialog = ({ open, onOpenChange, vehicleName, vehiclePrice, b
             bookingId: bookingId || "unknown",
           },
         });
-      } catch (notifyError) {
-        console.error("Error sending admin notification:", notifyError);
+
+        if (notifyResponse.error) {
+          console.error('[BOOKING_NOTIFY] Edge function returned error:', {
+            error: notifyResponse.error,
+            bookingId: bookingId
+          });
+        } else {
+          console.log('[BOOKING_NOTIFY] Admin notification sent successfully');
+        }
+      } catch (notifyError: any) {
+        console.error('[BOOKING_NOTIFY] Failed to send admin notification:', {
+          error: notifyError.message || notifyError,
+          stack: notifyError.stack,
+          bookingId: bookingId
+        });
         // Don't fail the booking if notification fails
       }
+
+      const submissionEndTime = new Date().toISOString();
+      console.log(`[BOOKING_SUBMIT] Completed successfully at ${submissionEndTime}`, {
+        bookingId: bookingId,
+        totalDuration: `${Date.parse(submissionEndTime) - Date.parse(submissionStartTime)}ms`
+      });
 
       // Close dialog and redirect to confirmation page
       onOpenChange(false);
@@ -188,10 +244,32 @@ export const BookingDialog = ({ open, onOpenChange, vehicleName, vehiclePrice, b
         }, 500);
       }
     } catch (error) {
+      console.error('[BOOKING_SUBMIT] Booking submission failed:', {
+        error: error,
+        errorType: error instanceof z.ZodError ? 'VALIDATION' : 'UNKNOWN',
+        timestamp: new Date().toISOString(),
+        vehicle: selectedVehicle,
+        date: date,
+        duration: duration
+      });
+
       if (error instanceof z.ZodError) {
+        console.error('[BOOKING_VALIDATION] Validation errors:', error.errors);
         toast({
           title: "Validation Error",
           description: error.errors[0].message,
+          variant: "destructive"
+        });
+      } else if (error && typeof error === 'object' && 'code' in error) {
+        // Database error
+        console.error('[BOOKING_DB_ERROR] Database error details:', {
+          message: (error as any).message,
+          code: (error as any).code,
+          details: (error as any).details
+        });
+        toast({
+          title: "Booking Failed",
+          description: "Unable to save booking. Please try again or contact support.",
           variant: "destructive"
         });
       } else {
