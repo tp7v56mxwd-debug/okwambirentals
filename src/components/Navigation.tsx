@@ -105,6 +105,22 @@ const Navigation = () => {
             </div>
           </button>
 
+          {/* Cart Icon - Top Right */}
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={() => navigate('/cart')}
+            className="relative lg:absolute lg:right-8"
+            aria-label="Shopping cart"
+          >
+            <ShoppingCart className="h-6 w-6" />
+            {totalItems > 0 && (
+              <span className="absolute -top-1 -right-1 bg-primary text-primary-foreground text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">
+                {totalItems}
+              </span>
+            )}
+          </Button>
+
           {/* Desktop Menu */}
           <div className="hidden lg:flex items-center gap-2" role="menubar" aria-label="Desktop navigation menu">
             {navLinks.map((link) => (
@@ -131,20 +147,6 @@ const Navigation = () => {
             ))}
             <InfoDialogs />
             <div className="ml-2 pl-2 border-l border-border/50 flex items-center gap-2">
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => navigate('/cart')}
-                className="relative"
-                aria-label="Shopping cart"
-              >
-                <ShoppingCart className="h-5 w-5" />
-                {totalItems > 0 && (
-                  <span className="absolute -top-1 -right-1 bg-primary text-primary-foreground text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">
-                    {totalItems}
-                  </span>
-                )}
-              </Button>
               <LanguageSwitcher />
               {user ? (
                 <DropdownMenu>
