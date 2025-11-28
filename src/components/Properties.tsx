@@ -27,7 +27,10 @@ const Properties = () => {
         .select("*")
         .order("display_order", { ascending: true });
 
-      if (error) throw error;
+      if (error) {
+        console.error("Failed to load vehicle photos:", error);
+        return;
+      }
 
       const photosByVehicle: Record<string, string[]> = {};
       data?.forEach((photo) => {
@@ -39,7 +42,7 @@ const Properties = () => {
 
       setVehiclePhotos(photosByVehicle);
     } catch (error) {
-      console.error("Error fetching vehicle photos:", error);
+      console.error("Unexpected error loading photos:", error);
     }
   };
   
@@ -128,7 +131,7 @@ const Properties = () => {
                 </div>
 
                 {/* Vehicle Image Gallery */}
-                {vehiclePhotos[vehicle.id] && vehiclePhotos[vehicle.id].length > 0 && (
+                {vehiclePhotos[vehicle.id] && vehiclePhotos[vehicle.id].length > 0 ? (
                   <div className="relative h-64 overflow-hidden rounded-t-2xl">
                     <Carousel className="w-full h-full">
                       <CarouselContent>
@@ -137,6 +140,8 @@ const Properties = () => {
                             <img
                               src={photoUrl}
                               alt={`${vehicle.name} ${photoIndex + 1}`}
+                              loading="lazy"
+                              decoding="async"
                               className="object-cover w-full h-full"
                             />
                           </CarouselItem>
@@ -145,6 +150,23 @@ const Properties = () => {
                       <CarouselPrevious className="left-2" />
                       <CarouselNext className="right-2" />
                     </Carousel>
+                    <div className="absolute inset-0 bg-gradient-to-t from-card/90 via-card/20 to-transparent pointer-events-none" />
+                  </div>
+                ) : (
+                  <div className="relative h-64 overflow-hidden rounded-t-2xl bg-gradient-to-br from-muted/50 to-muted">
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <div className="text-center p-6">
+                        <div className="p-3 bg-background/50 rounded-full inline-block mb-3">
+                          <Shield className="h-8 w-8 text-muted-foreground/50" />
+                        </div>
+                        <p className="text-sm text-muted-foreground font-medium">
+                          {vehicle.name}
+                        </p>
+                        <p className="text-xs text-muted-foreground/70 mt-1">
+                          Photos coming soon
+                        </p>
+                      </div>
+                    </div>
                     <div className="absolute inset-0 bg-gradient-to-t from-card/90 via-card/20 to-transparent pointer-events-none" />
                   </div>
                 )}

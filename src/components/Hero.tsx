@@ -19,14 +19,13 @@ const Hero = () => {
   return (
     <section id="hero" className="relative h-screen flex items-center justify-center overflow-hidden">
       {/* Background Image with Enhanced Overlay */}
-      <div 
-        className="absolute inset-0 bg-cover bg-center transition-transform duration-700"
-        style={{ 
-          backgroundImage: `url(${heroImage})`,
-          transform: 'scale(1.05)',
-        }}
-        role="img"
-        aria-label="Mussulo Beach panoramic view"
+      <img
+        src={heroImage}
+        alt="Mussulo Beach - Premium Adventure Destination in Luanda, Angola"
+        loading="eager"
+        fetchPriority="high"
+        decoding="async"
+        className="absolute inset-0 w-full h-full object-cover scale-105"
       />
       
       {/* Enhanced Gradient Overlay */}
