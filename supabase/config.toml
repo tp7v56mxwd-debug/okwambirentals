@@ -2,3 +2,6 @@ project_id = "pvcbdlkdwwuejxsrugrv"
 
 [functions.generate-catchphrases]
 verify_jwt = false
+
+[functions.generate-sitemap]
+verify_jwt = false

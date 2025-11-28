@@ -100,7 +100,7 @@
 - ✅ Open Graph tags (Facebook/social media)
 - ✅ Twitter Cards
 - ✅ Structured Data (JSON-LD) para Google
-- ✅ Sitemap.xml configurado
+- ✅ Sitemap.xml configurado (dinâmico via Edge Function)
 - ✅ Robots.txt configurado
 - ✅ Canonical URLs
 - ✅ Semantic HTML
@@ -206,8 +206,8 @@
 - [ ] Imagens têm alt text descritivo
 - [ ] H1 único por página
 - [ ] Estrutura de headings lógica (H1 → H2 → H3)
-- [ ] Sitemap atualizado
-- [ ] Robots.txt correto
+- [x] Sitemap dinâmico atualiza automaticamente
+- [x] Robots.txt correto
 - [ ] URLs canônicas atualizadas
 
 ### Legal

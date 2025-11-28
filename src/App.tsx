@@ -20,6 +20,7 @@ import AdminReviews from "./pages/AdminReviews";
 import VehiclePhotos from "@/pages/VehiclePhotos";
 import ResetPassword from "./pages/ResetPassword";
 import TwoFactorAuth from "./pages/TwoFactorAuth";
+import SitemapRedirect from "./pages/SitemapRedirect";
 
 const queryClient = new QueryClient();
 
@@ -46,6 +47,7 @@ const App = () => (
               <Route path="/vehicle-photos" element={<VehiclePhotos />} />
               <Route path="/reset-password" element={<ResetPassword />} />
               <Route path="/2fa" element={<TwoFactorAuth />} />
+              <Route path="/sitemap.xml" element={<SitemapRedirect />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>
