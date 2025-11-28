@@ -107,7 +107,7 @@ const Properties = () => {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
             {fleet.map((vehicle, index) => (
               <article 
                 key={index}
@@ -145,7 +145,7 @@ const Properties = () => {
                 )}
                 
                 <div className="p-6">
-                  <div className="text-xs font-medium tracking-wide uppercase text-accent mb-2">
+                  <div className="text-xs font-bold tracking-wide uppercase text-accent mb-2 border-t-2 border-accent pt-2">
                     {vehicle.category}
                   </div>
                   

@@ -70,7 +70,7 @@ const DailyPackages = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-6 max-w-5xl">
+        <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
           {packages.map((pkg, index) => {
             const Icon = pkg.icon;
             return (
@@ -88,9 +88,9 @@ const DailyPackages = () => {
                 )}
 
                 <div className="p-6 flex-1 flex flex-col">
-                  <div className="flex items-center gap-2 mb-4">
+                  <div className="flex items-center gap-2 mb-4 border-t-2 border-foreground pt-3">
                     <Icon className="w-5 h-5 text-foreground" strokeWidth={1.5} />
-                    <h3 className="font-display text-lg font-semibold text-foreground">
+                    <h3 className="font-display text-lg font-bold text-foreground">
                       {pkg.name}
                     </h3>
                   </div>

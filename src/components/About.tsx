@@ -44,7 +44,7 @@ const About = () => {
           </p>
         </div>
         
-        <div className="grid md:grid-cols-2 gap-8 max-w-4xl">
+        <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
           {features.map((feature, index) => (
             <div 
               key={index}
