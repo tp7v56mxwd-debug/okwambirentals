@@ -48,7 +48,18 @@ const Cart = () => {
               <p className="text-muted-foreground mb-8">
                 Add some amazing vehicles to your cart and start your adventure!
               </p>
-              <Button onClick={() => navigate('/#fleet')} size="lg">
+              <Button 
+                onClick={() => {
+                  navigate('/');
+                  setTimeout(() => {
+                    const fleetElement = document.getElementById('fleet');
+                    if (fleetElement) {
+                      fleetElement.scrollIntoView({ behavior: 'smooth' });
+                    }
+                  }, 100);
+                }} 
+                size="lg"
+              >
                 Browse Vehicles
               </Button>
             </div>
@@ -208,7 +219,15 @@ const Cart = () => {
 
                   <Button
                     variant="outline"
-                    onClick={() => navigate('/#fleet')}
+                    onClick={() => {
+                      navigate('/');
+                      setTimeout(() => {
+                        const fleetElement = document.getElementById('fleet');
+                        if (fleetElement) {
+                          fleetElement.scrollIntoView({ behavior: 'smooth' });
+                        }
+                      }, 100);
+                    }}
                     className="w-full mt-3"
                   >
                     Continue Shopping
