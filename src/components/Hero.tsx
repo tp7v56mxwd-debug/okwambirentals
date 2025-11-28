@@ -43,12 +43,12 @@ const Hero = () => {
       <div className="relative z-10 container mx-auto px-6 lg:px-8 text-center">
         {/* Main Headline */}
         <h1 className="font-display text-6xl md:text-7xl lg:text-8xl font-bold mb-6 animate-in fade-in slide-in-from-bottom-4 duration-1000 leading-[1.1] tracking-tight">
-          <span className="block text-white drop-shadow-[0_4px_12px_rgba(0,0,0,0.9)]">Experience</span>
-          <span className="block text-transparent bg-clip-text bg-gradient-to-r from-white via-accent-glow to-accent drop-shadow-[0_4px_20px_rgba(var(--accent),0.6)] animate-[shimmer_3s_ease-in-out_infinite]">Mussulo</span>
+          <span className="block text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.95)]">Experience</span>
+          <span className="block text-transparent bg-clip-text bg-gradient-to-r from-white via-accent-glow to-accent drop-shadow-[0_2px_10px_rgba(0,0,0,0.8)] animate-[shimmer_3s_ease-in-out_infinite]">Mussulo</span>
         </h1>
         
         {/* Subtitle with Premium Styling */}
-        <p className="text-lg md:text-xl lg:text-2xl text-white/90 mb-12 max-w-2xl mx-auto leading-relaxed font-semibold tracking-[0.02em] drop-shadow-[0_2px_12px_rgba(0,0,0,0.9)] animate-in fade-in duration-1000 delay-200">
+        <p className="text-lg md:text-xl lg:text-2xl text-white mb-12 max-w-2xl mx-auto leading-relaxed font-semibold tracking-[0.02em] drop-shadow-[0_2px_8px_rgba(0,0,0,0.95)] animate-in fade-in duration-1000 delay-200">
           {t('hero.subtitle')}
         </p>
         
@@ -75,7 +75,7 @@ const Hero = () => {
           <Button 
             size="lg" 
             onClick={() => setBookingOpen(true)}
-            className="group relative overflow-hidden bg-white/5 backdrop-blur-xl border-2 border-white/50 text-white hover:bg-white hover:text-primary hover:border-white font-bold tracking-wide shadow-[0_10px_40px_rgba(0,0,0,0.4)] hover:shadow-[0_15px_50px_rgba(255,255,255,0.5)] transition-all duration-500 hover:-translate-y-2 hover:scale-[1.08] px-12 py-7 text-base rounded-xl before:absolute before:inset-0 before:bg-gradient-to-r before:from-white/0 before:via-white/20 before:to-white/0 before:opacity-0 hover:before:opacity-100 before:transition-opacity before:duration-500"
+            className="group relative overflow-hidden bg-white/10 backdrop-blur-sm border-2 border-white/60 text-white hover:bg-white hover:text-primary hover:border-white font-bold tracking-wide shadow-[0_10px_40px_rgba(0,0,0,0.4)] hover:shadow-[0_15px_50px_rgba(255,255,255,0.5)] transition-all duration-500 hover:-translate-y-2 hover:scale-[1.08] px-12 py-7 text-base rounded-xl before:absolute before:inset-0 before:bg-gradient-to-r before:from-white/0 before:via-white/20 before:to-white/0 before:opacity-0 hover:before:opacity-100 before:transition-opacity before:duration-500"
           >
             <span className="relative z-10">{t('hero.reserveNow')}</span>
             <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000" />
