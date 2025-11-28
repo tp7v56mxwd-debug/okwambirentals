@@ -17,6 +17,7 @@ import Admin from "./pages/Admin";
 import Dashboard from "./pages/Dashboard";
 import CustomerDashboard from "./pages/CustomerDashboard";
 import AdminReviews from "./pages/AdminReviews";
+import VehiclePhotos from "./pages/VehiclePhotos";
 
 const queryClient = new QueryClient();
 
@@ -40,6 +41,7 @@ const App = () => (
               <Route path="/admin/reviews" element={<AdminReviews />} />
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/my-bookings" element={<CustomerDashboard />} />
+              <Route path="/vehicle-photos" element={<VehiclePhotos />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>
