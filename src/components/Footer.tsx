@@ -106,22 +106,22 @@ const Footer = () => {
         {/* Bottom Bar */}
         <div className="pt-8 mt-4 border-t border-primary-foreground/20">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-            <div className="flex items-center gap-3">
-              <p className="text-sm text-primary-foreground/60 font-light">
-                &copy; {new Date().getFullYear()} Okwambi Rentals. {t('footer.rights')}
-              </p>
-              <button
-                onClick={scrollToTop}
-                className="inline-flex items-center gap-1 text-xs text-primary-foreground/70 hover:text-primary-foreground transition-all duration-300 group"
-                aria-label="Back to top"
-              >
-                <span className="font-medium">{t('footer.backToTop', 'Back to top')}</span>
-                <ArrowUp className="w-4 h-4 group-hover:-translate-y-1 transition-transform" />
-              </button>
-            </div>
+            <p className="text-sm text-primary-foreground/60 font-light">
+              &copy; {new Date().getFullYear()} Okwambi Rentals. {t('footer.rights')}
+            </p>
             <p className="text-sm text-primary-foreground/60 font-light">
               {t('footer.madeIn')}
             </p>
+          </div>
+          <div className="flex justify-center mt-6">
+            <button
+              onClick={scrollToTop}
+              className="inline-flex items-center gap-1 text-xs text-primary-foreground/70 hover:text-primary-foreground transition-all duration-300 group"
+              aria-label="Back to top"
+            >
+              <span className="font-medium">{t('footer.backToTop', 'Back to top')}</span>
+              <ArrowUp className="w-4 h-4 group-hover:-translate-y-1 transition-transform" />
+            </button>
           </div>
         </div>
       </div>
