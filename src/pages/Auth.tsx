@@ -11,17 +11,28 @@ import { z } from 'zod';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
+import { PasswordStrengthIndicator } from '@/components/PasswordStrengthIndicator';
 
 const signInSchema = z.object({
   email: z.string().email('Invalid email address'),
   password: z.string().min(6, 'Password must be at least 6 characters'),
 });
 
-const signUpSchema = signInSchema.extend({
-  fullName: z.string().min(2, 'Name must be at least 2 characters'),
+const passwordSchema = z
+  .string()
+  .min(8, 'A senha deve ter no mínimo 8 caracteres')
+  .regex(/[A-Z]/, 'A senha deve conter pelo menos uma letra maiúscula')
+  .regex(/[a-z]/, 'A senha deve conter pelo menos uma letra minúscula')
+  .regex(/\d/, 'A senha deve conter pelo menos um número')
+  .regex(/[!@#$%^&*(),.?":{}|<>]/, 'A senha deve conter pelo menos um caractere especial');
+
+const signUpSchema = z.object({
+  email: z.string().email('Endereço de email inválido'),
+  password: passwordSchema,
+  fullName: z.string().min(2, 'O nome deve ter no mínimo 2 caracteres'),
   confirmPassword: z.string(),
 }).refine((data) => data.password === data.confirmPassword, {
-  message: "Passwords don't match",
+  message: "As senhas não coincidem",
   path: ['confirmPassword'],
 });
 
@@ -202,8 +213,9 @@ export default function Auth() {
                       <FormItem>
                         <FormLabel>Password</FormLabel>
                         <FormControl>
-                          <Input type="password" placeholder="••••••" {...field} />
+                          <Input type="password" placeholder="••••••••" {...field} />
                         </FormControl>
+                        <PasswordStrengthIndicator password={field.value} />
                         <FormMessage />
                       </FormItem>
                     )}
