@@ -96,10 +96,10 @@ const Navigation = () => {
               <Waves className="relative w-8 h-8 text-primary group-hover:scale-110 transition-transform duration-300" />
             </div>
             <div className="relative">
-              <span className="relative font-display text-2xl lg:text-3xl font-bold bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent group-hover:from-accent group-hover:via-primary group-hover:to-accent transition-all duration-500 bg-[length:200%_auto] group-hover:bg-right">
+              <span className="relative font-display text-2xl lg:text-3xl font-black bg-gradient-to-r from-primary via-accent to-accent bg-clip-text text-transparent group-hover:from-accent group-hover:via-accent-glow group-hover:to-accent transition-all duration-500 bg-[length:200%_auto] group-hover:bg-right drop-shadow-[0_2px_8px_rgba(245,166,35,0.3)] filter brightness-110">
                 OKWAMBI
               </span>
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-primary to-accent group-hover:w-full transition-all duration-300" />
+              <span className="absolute -bottom-1 left-0 w-0 h-1 bg-gradient-to-r from-accent to-accent-glow group-hover:w-full transition-all duration-300 shadow-[0_0_8px_rgba(245,166,35,0.6)]" />
             </div>
           </button>
 
