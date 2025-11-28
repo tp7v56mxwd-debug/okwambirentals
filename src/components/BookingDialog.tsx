@@ -15,6 +15,7 @@ import { useToast } from "@/hooks/use-toast";
 import { z } from "zod";
 import { useTranslation } from 'react-i18next';
 import { useAuth } from '@/hooks/useAuth';
+import { AvailabilityCalendar } from "@/components/AvailabilityCalendar";
 
 const bookingSchema = z.object({
   customer_name: z.string().trim().min(2, "Name must be at least 2 characters").max(100, "Name is too long"),
@@ -145,6 +146,28 @@ export const BookingDialog = ({ open, onOpenChange, vehicleName, vehiclePrice, b
       } catch (emailError) {
         console.error("Error sending confirmation email:", emailError);
         // Don't fail the booking if email fails
+      }
+
+      // Send admin notification
+      try {
+        const bookingId = (await supabase.from("bookings").select("id").eq("customer_email", validated.customer_email).order("created_at", { ascending: false }).limit(1).single()).data?.id;
+        
+        await supabase.functions.invoke("notify-admin-booking", {
+          body: {
+            customerName: validated.customer_name,
+            customerEmail: validated.customer_email,
+            customerPhone: validated.customer_phone,
+            vehicleType: validated.vehicle_type,
+            bookingDate: format(validated.booking_date, "MMM dd, yyyy"),
+            bookingTime: validated.booking_time,
+            duration: validated.duration,
+            totalPrice: `${totalPrice} Kz`,
+            bookingId: bookingId || "unknown",
+          },
+        });
+      } catch (notifyError) {
+        console.error("Error sending admin notification:", notifyError);
+        // Don't fail the booking if notification fails
       }
 
       setShowConfirmation(true);
@@ -291,6 +314,16 @@ export const BookingDialog = ({ open, onOpenChange, vehicleName, vehiclePrice, b
                 </PopoverContent>
               </Popover>
             </div>
+
+            {selectedVehicle && (
+              <div className="bg-muted/30 rounded-lg p-4 border border-border/30">
+                <AvailabilityCalendar 
+                  selectedDate={date}
+                  selectedTime={(document.querySelector('[name="booking_time"]') as HTMLSelectElement)?.value || ""}
+                  vehicleType={selectedVehicle}
+                />
+              </div>
+            )}
 
             <div>
               <Label htmlFor="booking_time">Time Slot</Label>
