@@ -44,42 +44,65 @@ const DialogSafety = () => {
   ];
 
   return (
-    <div className="space-y-6 p-2">
-      <div>
-        <h2 className="text-3xl font-bold mb-2">
+    <div className="space-y-8">
+      <div className="text-center max-w-2xl mx-auto">
+        <h2 className="text-4xl font-bold mb-4">
           {t('safety.title1')} <span className="text-primary">{t('safety.title2')}</span>
         </h2>
-        <p className="text-muted-foreground">{t('safety.description')}</p>
+        <p className="text-lg text-muted-foreground">{t('safety.description')}</p>
       </div>
 
-      <div className="grid gap-4">
+      <div className="space-y-6">
         {policies.map((policy, index) => {
           const Icon = policy.icon;
           return (
-            <div key={index} className="border border-border rounded-lg p-4 bg-card hover:border-primary/50 transition-colors">
-              <div className="flex items-center gap-3 mb-2">
-                <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
-                  <Icon className="w-6 h-6 text-primary" />
+            <div key={index} className="group relative bg-gradient-to-br from-card to-card/50 border-2 border-border hover:border-primary/50 rounded-2xl p-8 transition-all duration-300 hover:shadow-xl">
+              <div className="absolute top-0 right-0 w-40 h-40 bg-primary/5 rounded-full blur-3xl group-hover:bg-primary/10 transition-colors" />
+              
+              <div className="relative">
+                <div className="flex items-start gap-6 mb-6">
+                  <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary to-primary/70 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+                    <Icon className="w-8 h-8 text-primary-foreground" />
+                  </div>
+                  
+                  <div>
+                    <h3 className="font-bold text-2xl text-foreground mb-3">{policy.title}</h3>
+                    <p className="text-base text-muted-foreground leading-relaxed">{policy.description}</p>
+                  </div>
                 </div>
-                <h3 className="font-bold text-lg text-foreground">{policy.title}</h3>
+                
+                <div className="grid md:grid-cols-2 gap-3 pl-2">
+                  {(policy.items as string[]).map((item, idx) => (
+                    <div key={idx} className="flex items-start gap-3 text-foreground/90">
+                      <span className="text-primary text-xl flex-shrink-0 mt-0.5">✓</span>
+                      <span className="text-base leading-relaxed">{item}</span>
+                    </div>
+                  ))}
+                </div>
               </div>
-              <p className="text-sm text-muted-foreground mb-3 ml-2">{policy.description}</p>
-              <ul className="space-y-2 ml-2">
-                {(policy.items as string[]).map((item, idx) => (
-                  <li key={idx} className="text-sm text-foreground flex items-start gap-2">
-                    <span className="text-primary mt-1 flex-shrink-0 font-bold">✓</span>
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
             </div>
           );
         })}
       </div>
 
-      <div className="bg-accent/10 border border-accent/20 rounded-lg p-4">
-        <h3 className="font-bold text-foreground mb-2">{t('safety.cta.title')}</h3>
-        <p className="text-sm text-muted-foreground">{t('safety.cta.description')}</p>
+      <div className="bg-gradient-to-r from-accent/10 to-primary/10 border border-accent/20 rounded-2xl p-8">
+        <div className="flex items-start gap-4">
+          <div className="w-14 h-14 rounded-full bg-accent/20 flex items-center justify-center flex-shrink-0">
+            <PhoneCall className="w-7 h-7 text-accent" />
+          </div>
+          <div>
+            <h3 className="font-bold text-foreground text-2xl mb-3">{t('safety.cta.title')}</h3>
+            <p className="text-base text-foreground/80 leading-relaxed mb-4">{t('safety.cta.description')}</p>
+            <div className="flex flex-wrap gap-4">
+              <a href="tel:+244923456789" className="px-6 py-3 bg-primary text-primary-foreground rounded-lg font-semibold hover:bg-primary/90 transition-colors">
+                Ligar Agora
+              </a>
+              <a href="https://wa.me/244923456789" target="_blank" rel="noopener noreferrer" className="px-6 py-3 bg-green-600 text-white rounded-lg font-semibold hover:bg-green-700 transition-colors">
+                WhatsApp
+              </a>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
