@@ -114,12 +114,14 @@ const Properties = () => {
             {fleet.map((vehicle, index) => (
               <article 
                 key={index}
-                className="group relative overflow-hidden bg-card/50 backdrop-blur-sm border-2 border-primary/20 hover:border-primary/60 rounded-lg transition-all duration-300 hover:shadow-2xl animate-fade-in"
+                className="group relative overflow-hidden rounded-xl border-4 border-primary shadow-[0_0_30px_rgba(0,150,255,0.3)] hover:shadow-[0_0_50px_rgba(0,150,255,0.5)] transition-all duration-300 animate-fade-in bg-gradient-to-br from-card via-card to-card/80"
                 style={{ animationDelay: `${index * 100}ms` }}
               >
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5 pointer-events-none z-0" />
+                
                 {vehiclePhotos[vehicle.id] && vehiclePhotos[vehicle.id].length > 0 ? (
-                  <div className="relative aspect-[4/3] overflow-hidden bg-muted border-b-4 border-gradient-to-r from-primary via-accent to-primary">
-                    <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-accent/10 pointer-events-none z-10" />
+                  <div className="relative aspect-[4/3] overflow-hidden bg-muted">
+                    <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-transparent to-accent/20 pointer-events-none z-10" />
                     <Carousel className="w-full h-full">
                       <CarouselContent>
                         {vehiclePhotos[vehicle.id].map((photoUrl, photoIndex) => (
@@ -139,8 +141,8 @@ const Properties = () => {
                     </Carousel>
                   </div>
                 ) : (
-                  <div className="relative aspect-[4/3] bg-muted flex items-center justify-center border-b-4 border-gradient-to-r from-primary via-accent to-primary">
-                    <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-accent/10 pointer-events-none" />
+                  <div className="relative aspect-[4/3] bg-muted flex items-center justify-center">
+                    <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-transparent to-accent/20 pointer-events-none" />
                     <div className="text-center p-6 relative z-10">
                       <Shield className="h-10 w-10 text-muted-foreground/30 mx-auto mb-2" />
                       <p className="text-sm text-muted-foreground">{vehicle.name}</p>
@@ -149,11 +151,13 @@ const Properties = () => {
                   </div>
                 )}
                 
-                <div className="p-6 relative">
-                  <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary via-accent to-primary" />
+                <div className="p-6 relative z-10 bg-gradient-to-b from-background/95 to-background">
+                  <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-primary via-accent to-primary" />
                   
-                  <div className="text-xs font-bold tracking-wide uppercase text-accent mb-2 border-t-2 border-accent pt-2">
+                  <div className="text-xs font-bold tracking-widest uppercase text-accent mb-3 pt-3 flex items-center gap-2">
+                    <div className="h-px flex-1 bg-gradient-to-r from-transparent via-accent to-transparent" />
                     {vehicle.category}
+                    <div className="h-px flex-1 bg-gradient-to-r from-transparent via-accent to-transparent" />
                   </div>
                   
                   <h3 className="font-display text-xl font-semibold mb-3 text-foreground group-hover:text-primary transition-colors">

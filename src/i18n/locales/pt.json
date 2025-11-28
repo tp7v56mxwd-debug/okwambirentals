@@ -55,7 +55,7 @@
       "jetski": {
         "category": "DESPORTOS AQUÁTICOS",
         "name": "Jet Ski",
-        "capacity": "1-2 pilotos",
+        "capacity": "1-2 passageiros",
         "speed": "110 km/h",
         "features": [
           "Coletes salva-vidas premium incluídos",
@@ -66,7 +66,7 @@
       "atv": {
         "category": "AVENTURA TERRESTRE",
         "name": "ATV",
-        "capacity": "1 piloto",
+        "capacity": "1 passageiro",
         "speed": "80 km/h",
         "features": [
           "Capacete profissional incluído",
