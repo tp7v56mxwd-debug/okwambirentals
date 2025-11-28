@@ -78,10 +78,10 @@ export default function Auth() {
           navigate('/admin');
         }, 500);
       } else {
-        // Non-admin users get redirected to dashboard
+        // Regular customers get redirected to their bookings page
         setIsRedirecting(true);
         setTimeout(() => {
-          navigate('/dashboard');
+          navigate('/my-bookings');
         }, 500);
       }
     }

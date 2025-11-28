@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -60,6 +61,7 @@ const vehicles = [
 
 export const BookingDialog = ({ open, onOpenChange, vehicleName, vehiclePrice, basePricePerHalfHour }: BookingDialogProps) => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
   const { user } = useAuth();
   const [date, setDate] = useState<Date>();
   const [duration, setDuration] = useState(30);
@@ -114,7 +116,7 @@ export const BookingDialog = ({ open, onOpenChange, vehicleName, vehiclePrice, b
 
       const totalPrice = calculateTotalPrice(duration);
 
-      const { error } = await supabase.from("bookings").insert({
+      const { data: bookingData, error } = await supabase.from("bookings").insert({
         customer_name: validated.customer_name,
         customer_email: validated.customer_email,
         customer_phone: validated.customer_phone,
@@ -126,9 +128,11 @@ export const BookingDialog = ({ open, onOpenChange, vehicleName, vehiclePrice, b
         special_requests: validated.special_requests || "",
         status: "pending",
         user_id: user?.id || null
-      });
+      }).select().single();
 
       if (error) throw error;
+
+      const bookingId = bookingData?.id;
 
       // Send confirmation email via Edge Function
       try {
@@ -150,8 +154,6 @@ export const BookingDialog = ({ open, onOpenChange, vehicleName, vehiclePrice, b
 
       // Send admin notification
       try {
-        const bookingId = (await supabase.from("bookings").select("id").eq("customer_email", validated.customer_email).order("created_at", { ascending: false }).limit(1).single()).data?.id;
-        
         await supabase.functions.invoke("notify-admin-booking", {
           body: {
             customerName: validated.customer_name,
@@ -170,18 +172,19 @@ export const BookingDialog = ({ open, onOpenChange, vehicleName, vehiclePrice, b
         // Don't fail the booking if notification fails
       }
 
-      setShowConfirmation(true);
+      // Close dialog and redirect to confirmation page
+      onOpenChange(false);
       toast({
         title: "Booking Confirmed!",
-        description: "We've received your booking request. You'll receive a confirmation email shortly."
+        description: "Redirecting to your booking details..."
       });
 
-      setTimeout(() => {
-        setShowConfirmation(false);
-        onOpenChange(false);
-        e.currentTarget.reset();
-        setDate(undefined);
-      }, 3000);
+      // Redirect to confirmation page
+      if (bookingId) {
+        setTimeout(() => {
+          navigate(`/booking/${bookingId}`);
+        }, 500);
+      }
     } catch (error) {
       if (error instanceof z.ZodError) {
         toast({
