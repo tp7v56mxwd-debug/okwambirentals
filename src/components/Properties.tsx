@@ -96,13 +96,16 @@ const Properties = () => {
 
   return (
     <>
-      <section id="fleet" className="section-padding bg-background">
+      <section id="fleet" className="section-padding bg-gradient-to-b from-background via-background/95 to-background">
         <div ref={ref} className={`container mx-auto px-6 lg:px-12 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-          <div className="mb-12 max-w-3xl">
-            <h2 className="font-display text-3xl md:text-4xl font-semibold text-foreground mb-3">
-              {t('fleet.title1')} {t('fleet.title2')}
-            </h2>
-            <p className="text-base text-muted-foreground leading-relaxed">
+          <div className="mb-12 max-w-3xl mx-auto text-center">
+            <div className="inline-block mb-4">
+              <div className="h-1 w-24 bg-gradient-to-r from-primary via-accent to-primary rounded-full animate-pulse mb-4 mx-auto" />
+              <h2 className="font-display text-3xl md:text-4xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+                {t('fleet.title1')} {t('fleet.title2')}
+              </h2>
+            </div>
+            <p className="text-base text-muted-foreground leading-relaxed mx-auto">
               {t('fleet.description')}
             </p>
           </div>
@@ -111,11 +114,12 @@ const Properties = () => {
             {fleet.map((vehicle, index) => (
               <article 
                 key={index}
-                className="group relative overflow-hidden bg-background transition-colors hover:bg-muted/30"
+                className="group relative overflow-hidden bg-card/50 backdrop-blur-sm border-2 border-primary/20 hover:border-primary/60 rounded-lg transition-all duration-300 hover:shadow-2xl animate-fade-in"
                 style={{ animationDelay: `${index * 100}ms` }}
               >
                 {vehiclePhotos[vehicle.id] && vehiclePhotos[vehicle.id].length > 0 ? (
-                  <div className="relative aspect-[4/3] overflow-hidden bg-muted">
+                  <div className="relative aspect-[4/3] overflow-hidden bg-muted border-b-4 border-gradient-to-r from-primary via-accent to-primary">
+                    <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-accent/10 pointer-events-none z-10" />
                     <Carousel className="w-full h-full">
                       <CarouselContent>
                         {vehiclePhotos[vehicle.id].map((photoUrl, photoIndex) => (
@@ -125,7 +129,7 @@ const Properties = () => {
                               alt={`${vehicle.name} ${photoIndex + 1}`}
                               loading="lazy"
                               decoding="async"
-                              className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-105"
+                              className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-110"
                             />
                           </CarouselItem>
                         ))}
@@ -135,8 +139,9 @@ const Properties = () => {
                     </Carousel>
                   </div>
                 ) : (
-                  <div className="relative aspect-[4/3] bg-muted flex items-center justify-center">
-                    <div className="text-center p-6">
+                  <div className="relative aspect-[4/3] bg-muted flex items-center justify-center border-b-4 border-gradient-to-r from-primary via-accent to-primary">
+                    <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-accent/10 pointer-events-none" />
+                    <div className="text-center p-6 relative z-10">
                       <Shield className="h-10 w-10 text-muted-foreground/30 mx-auto mb-2" />
                       <p className="text-sm text-muted-foreground">{vehicle.name}</p>
                       <p className="text-xs text-muted-foreground/70 mt-1">Photos coming soon</p>
@@ -144,30 +149,32 @@ const Properties = () => {
                   </div>
                 )}
                 
-                <div className="p-6">
+                <div className="p-6 relative">
+                  <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary via-accent to-primary" />
+                  
                   <div className="text-xs font-bold tracking-wide uppercase text-accent mb-2 border-t-2 border-accent pt-2">
                     {vehicle.category}
                   </div>
                   
-                  <h3 className="font-display text-xl font-semibold mb-3 text-foreground">
+                  <h3 className="font-display text-xl font-semibold mb-3 text-foreground group-hover:text-primary transition-colors">
                     {vehicle.name}
                   </h3>
 
                   <div className="flex items-center gap-4 mb-4 pb-4 border-b border-border">
                     <div className="flex items-center gap-1.5">
-                      <Users className="w-4 h-4 text-muted-foreground" strokeWidth={1.5} />
+                      <Users className="w-4 h-4 text-primary" strokeWidth={1.5} />
                       <span className="text-xs text-muted-foreground">{vehicle.capacity}</span>
                     </div>
                     <div className="flex items-center gap-1.5">
-                      <Gauge className="w-4 h-4 text-muted-foreground" strokeWidth={1.5} />
+                      <Gauge className="w-4 h-4 text-primary" strokeWidth={1.5} />
                       <span className="text-xs text-muted-foreground">{vehicle.speed}</span>
                     </div>
                   </div>
 
-                  <div className="space-y-1.5 mb-6">
+                  <div className="space-y-1.5 mb-6 p-4 rounded-lg bg-gradient-to-br from-primary/5 to-accent/5 border border-primary/10">
                     {vehicle.features.slice(0, 3).map((feature, idx) => (
                       <div key={idx} className="flex items-start gap-2">
-                        <div className="w-1 h-1 rounded-full bg-foreground flex-shrink-0 mt-1.5" />
+                        <div className="w-1 h-1 rounded-full bg-primary flex-shrink-0 mt-1.5" />
                         <span className="text-xs text-muted-foreground leading-relaxed">{feature}</span>
                       </div>
                     ))}
