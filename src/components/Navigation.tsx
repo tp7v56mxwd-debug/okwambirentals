@@ -1,11 +1,21 @@
 import { Button } from "@/components/ui/button";
-import { Menu, X, Waves, LogIn, Shield, Calendar } from "lucide-react";
+import { Menu, X, Waves, LogIn, Shield, Calendar, LogOut, User } from "lucide-react";
 import { useState, useEffect } from "react";
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import LanguageSwitcher from "./LanguageSwitcher";
 import { InfoDialogs, MobileInfoDialogs } from "./InfoDialogs";
 import { useAuth } from '@/hooks/useAuth';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { supabase } from '@/integrations/supabase/client';
+import { toast } from 'sonner';
 
 const Navigation = () => {
   const { t } = useTranslation();
@@ -40,6 +50,19 @@ const Navigation = () => {
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
       setIsOpen(false);
+    }
+  };
+
+  const handleLogout = async () => {
+    try {
+      const { error } = await supabase.auth.signOut();
+      if (error) throw error;
+      toast.success('Logged out successfully');
+      navigate('/');
+      setIsOpen(false);
+    } catch (error) {
+      console.error('Error logging out:', error);
+      toast.error('Failed to log out');
     }
   };
 
@@ -108,27 +131,34 @@ const Navigation = () => {
             <div className="ml-2 pl-2 border-l border-border/50 flex items-center gap-2">
               <LanguageSwitcher />
               {user ? (
-                isAdmin ? (
-                  <Button
-                    variant="default"
-                    size="sm"
-                    onClick={() => navigate('/admin')}
-                    className="ml-2"
-                  >
-                    <Shield className="h-4 w-4 mr-1" />
-                    Admin
-                  </Button>
-                ) : (
-                  <Button
-                    variant="default"
-                    size="sm"
-                    onClick={() => navigate('/my-bookings')}
-                    className="ml-2"
-                  >
-                    <Calendar className="h-4 w-4 mr-1" />
-                    My Bookings
-                  </Button>
-                )
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <Button variant="outline" size="sm" className="ml-2">
+                      <User className="h-4 w-4 mr-1" />
+                      Account
+                    </Button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent align="end" className="w-56">
+                    <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                    <DropdownMenuSeparator />
+                    {isAdmin ? (
+                      <DropdownMenuItem onClick={() => navigate('/admin')}>
+                        <Shield className="h-4 w-4 mr-2" />
+                        Admin Dashboard
+                      </DropdownMenuItem>
+                    ) : (
+                      <DropdownMenuItem onClick={() => navigate('/my-bookings')}>
+                        <Calendar className="h-4 w-4 mr-2" />
+                        My Bookings
+                      </DropdownMenuItem>
+                    )}
+                    <DropdownMenuSeparator />
+                    <DropdownMenuItem onClick={handleLogout} className="text-destructive focus:text-destructive">
+                      <LogOut className="h-4 w-4 mr-2" />
+                      Logout
+                    </DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
               ) : (
                 <Button
                   variant="outline"
@@ -186,33 +216,43 @@ const Navigation = () => {
                 <MobileInfoDialogs onClose={() => setIsOpen(false)} />
               </div>
               
-              <div className="mt-2 px-2">
+              <div className="mt-2 px-2 space-y-2">
                 {user ? (
-                  isAdmin ? (
+                  <>
+                    {isAdmin ? (
+                      <Button
+                        variant="default"
+                        className="w-full"
+                        onClick={() => {
+                          navigate('/admin');
+                          setIsOpen(false);
+                        }}
+                      >
+                        <Shield className="h-4 w-4 mr-2" />
+                        Admin Dashboard
+                      </Button>
+                    ) : (
+                      <Button
+                        variant="default"
+                        className="w-full"
+                        onClick={() => {
+                          navigate('/my-bookings');
+                          setIsOpen(false);
+                        }}
+                      >
+                        <Calendar className="h-4 w-4 mr-2" />
+                        My Bookings
+                      </Button>
+                    )}
                     <Button
-                      variant="default"
-                      className="w-full"
-                      onClick={() => {
-                        navigate('/admin');
-                        setIsOpen(false);
-                      }}
+                      variant="outline"
+                      className="w-full text-destructive hover:text-destructive"
+                      onClick={handleLogout}
                     >
-                      <Shield className="h-4 w-4 mr-2" />
-                      Admin Dashboard
+                      <LogOut className="h-4 w-4 mr-2" />
+                      Logout
                     </Button>
-                  ) : (
-                    <Button
-                      variant="default"
-                      className="w-full"
-                      onClick={() => {
-                        navigate('/my-bookings');
-                        setIsOpen(false);
-                      }}
-                    >
-                      <Calendar className="h-4 w-4 mr-2" />
-                      My Bookings
-                    </Button>
-                  )
+                  </>
                 ) : (
                   <Button
                     variant="outline"
