@@ -30,6 +30,34 @@ export const AvailabilityCalendar = ({ selectedDate, selectedTime, vehicleType }
     }
   }, [selectedDate, vehicleType]);
 
+  // Real-time subscription for booking updates
+  useEffect(() => {
+    if (!selectedDate || !vehicleType) return;
+
+    const dateStr = format(selectedDate, "yyyy-MM-dd");
+    
+    const channel = supabase
+      .channel('booking-changes')
+      .on(
+        'postgres_changes',
+        {
+          event: '*',
+          schema: 'public',
+          table: 'bookings',
+          filter: `booking_date=eq.${dateStr},vehicle_type=eq.${vehicleType}`
+        },
+        () => {
+          // Refetch availability when bookings change
+          fetchAvailability();
+        }
+      )
+      .subscribe();
+
+    return () => {
+      supabase.removeChannel(channel);
+    };
+  }, [selectedDate, vehicleType]);
+
   const fetchAvailability = async () => {
     if (!selectedDate) return;
     
