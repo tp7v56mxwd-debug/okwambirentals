@@ -12,6 +12,7 @@ import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, 
 import { useToast } from '@/hooks/use-toast';
 import { LogOut, Search, Trash2, Star } from 'lucide-react';
 import { format } from 'date-fns';
+import { LaunchChecklist } from '@/components/LaunchChecklist';
 
 interface Booking {
   id: string;
@@ -208,6 +209,10 @@ export default function Admin() {
       </header>
 
       <main className="container mx-auto px-4 py-8">
+        <div className="mb-6">
+          <LaunchChecklist />
+        </div>
+
         <Card>
           <CardHeader>
             <CardTitle>Booking Management</CardTitle>
