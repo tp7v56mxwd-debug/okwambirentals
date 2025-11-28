@@ -24,8 +24,8 @@ const Properties = () => {
         t('fleet.vehicles.jetski.features.1'),
         t('fleet.vehicles.jetski.features.2')
       ],
-      price: "30.000 Kz",
-      basePricePerHalfHour: 30000
+      price: "35.000 Kz",
+      basePricePerHalfHour: 35000
     },
     {
       category: t('fleet.vehicles.atv.category'),
@@ -37,8 +37,8 @@ const Properties = () => {
         t('fleet.vehicles.atv.features.1'),
         t('fleet.vehicles.atv.features.2')
       ],
-      price: "35.000 Kz",
-      basePricePerHalfHour: 35000
+      price: "30.000 Kz",
+      basePricePerHalfHour: 30000
     },
     {
       category: t('fleet.vehicles.utv.category'),

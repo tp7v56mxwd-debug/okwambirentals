@@ -328,6 +328,48 @@
     "rights": "Todos os direitos reservados.",
     "madeIn": "Criado com excelência em Angola"
   },
+  "packages": {
+    "badge": "Pacotes Especiais",
+    "title1": "Pacotes",
+    "title2": "Diários",
+    "description": "Economize mais com os nossos pacotes diários exclusivos - máxima diversão, melhor valor",
+    "mostPopular": "MAIS POPULAR",
+    "save": "Poupe",
+    "duration": "Dia completo (8h - 18h)",
+    "bookPackage": "RESERVAR PACOTE",
+    "customNote": "Precisa de um pacote personalizado? Estamos aqui para ajudar.",
+    "contactUs": "Fale Connosco",
+    "basic": {
+      "name": "Aventura Básica",
+      "features": [
+        "4 horas de aluguer de veículo à escolha",
+        "Equipamento de segurança premium incluído",
+        "GPS tracking e suporte no local",
+        "Tanque cheio de combustível"
+      ]
+    },
+    "premium": {
+      "name": "Experiência Premium",
+      "features": [
+        "6 horas com 2 veículos diferentes",
+        "Guia profissional incluído",
+        "Tour guiado pela península",
+        "Sessão fotográfica de aventura",
+        "Bebidas e snacks incluídos"
+      ]
+    },
+    "ultimate": {
+      "name": "Aventura Ultimate",
+      "features": [
+        "Dia completo com todos os 3 veículos",
+        "Guia pessoal dedicado",
+        "Tour VIP premium com rota exclusiva",
+        "Sessão fotográfica profissional",
+        "Almoço gourmet na praia incluído",
+        "Equipamento GoPro incluído"
+      ]
+    }
+  },
   "whatsapp": {
     "chat": "Fale connosco"
   },
