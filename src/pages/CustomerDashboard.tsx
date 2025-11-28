@@ -5,13 +5,14 @@ import { supabase } from "@/integrations/supabase/client";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Calendar, Clock, Car, Phone, Mail, AlertCircle, ArrowLeft, Loader2 } from "lucide-react";
+import { Calendar, Clock, Car, Phone, Mail, AlertCircle, ArrowLeft, Loader2, Star } from "lucide-react";
 import { format } from "date-fns";
 import { toast } from "sonner";
 import LoadingSpinner from "@/components/LoadingSpinner";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Alert, AlertDescription } from "@/components/ui/alert";
+import { ReviewDialog } from "@/components/ReviewDialog";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -45,6 +46,8 @@ const CustomerDashboard = () => {
   const [loading, setLoading] = useState(true);
   const [cancellingId, setCancellingId] = useState<string | null>(null);
   const [bookingToCancel, setBookingToCancel] = useState<string | null>(null);
+  const [reviewingBooking, setReviewingBooking] = useState<{ id: string; vehicleType: string } | null>(null);
+  const [hasReviews, setHasReviews] = useState<Record<string, boolean>>({});
 
   useEffect(() => {
     if (!authLoading && !user) {
@@ -69,6 +72,21 @@ const CustomerDashboard = () => {
 
       if (error) throw error;
       setBookings(data || []);
+
+      // Check which bookings have reviews
+      if (data) {
+        const bookingIds = data.map(b => b.id);
+        const { data: reviews } = await supabase
+          .from("reviews")
+          .select("booking_id")
+          .in("booking_id", bookingIds);
+
+        const reviewMap: Record<string, boolean> = {};
+        reviews?.forEach(r => {
+          reviewMap[r.booking_id] = true;
+        });
+        setHasReviews(reviewMap);
+      }
     } catch (error) {
       console.error("Error fetching bookings:", error);
       toast.error("Failed to load bookings");
@@ -279,6 +297,29 @@ const CustomerDashboard = () => {
                       </div>
                     )}
 
+                    {booking.status === "completed" && !hasReviews[booking.id] && (
+                      <div className="mt-6">
+                        <Button
+                          onClick={() => setReviewingBooking({ id: booking.id, vehicleType: booking.vehicle_type })}
+                          className="w-full md:w-auto"
+                        >
+                          <Star className="h-4 w-4 mr-2" />
+                          Leave a Review
+                        </Button>
+                      </div>
+                    )}
+
+                    {booking.status === "completed" && hasReviews[booking.id] && (
+                      <div className="mt-6">
+                        <Alert>
+                          <Star className="h-4 w-4" />
+                          <AlertDescription className="text-sm">
+                            Thank you for your review! It's pending admin approval.
+                          </AlertDescription>
+                        </Alert>
+                      </div>
+                    )}
+
                     <div className="mt-4 pt-4 border-t border-border/30">
                       <p className="text-xs text-muted-foreground">
                         Booked on {format(new Date(booking.created_at), "MMM dd, yyyy 'at' h:mm a")}
@@ -313,6 +354,16 @@ const CustomerDashboard = () => {
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>
+
+      {reviewingBooking && (
+        <ReviewDialog
+          open={!!reviewingBooking}
+          onOpenChange={(open) => !open && setReviewingBooking(null)}
+          bookingId={reviewingBooking.id}
+          vehicleType={reviewingBooking.vehicleType}
+          onSuccess={fetchBookings}
+        />
+      )}
     </div>
   );
 };
