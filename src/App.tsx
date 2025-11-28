@@ -17,7 +17,7 @@ import Admin from "./pages/Admin";
 import Dashboard from "./pages/Dashboard";
 import CustomerDashboard from "./pages/CustomerDashboard";
 import AdminReviews from "./pages/AdminReviews";
-import VehiclePhotos from "./pages/VehiclePhotos";
+import VehiclePhotos from "@/pages/VehiclePhotos";
 
 const queryClient = new QueryClient();
 
