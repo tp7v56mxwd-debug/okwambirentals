@@ -50,7 +50,7 @@ export default function Auth() {
     },
   });
 
-  // Redirect only if logged in AND is admin
+  // Handle redirect based on user type
   useEffect(() => {
     if (!loading && user) {
       if (isAdmin) {
@@ -59,8 +59,11 @@ export default function Auth() {
           navigate('/admin');
         }, 500);
       } else {
-        setShowAccessDenied(true);
-        setIsLoading(false);
+        // Non-admin users get redirected to home with a friendly message
+        setIsRedirecting(true);
+        setTimeout(() => {
+          navigate('/', { state: { message: 'Welcome! Your account has been created.' } });
+        }, 500);
       }
     }
   }, [loading, user, isAdmin, navigate]);
@@ -93,7 +96,11 @@ export default function Auth() {
         <div className="flex flex-col items-center gap-4">
           <Loader2 className="h-12 w-12 animate-spin text-primary" />
           <p className="text-sm text-muted-foreground animate-pulse">
-            {isRedirecting ? 'Redirecting to admin dashboard...' : 'Checking authentication...'}
+            {isRedirecting 
+              ? isAdmin 
+                ? 'Redirecting to admin dashboard...' 
+                : 'Redirecting...'
+              : 'Checking authentication...'}
           </p>
         </div>
       </div>
@@ -110,15 +117,6 @@ export default function Auth() {
           </CardDescription>
         </CardHeader>
         <CardContent>
-          {showAccessDenied && (
-            <Alert variant="destructive" className="mb-4">
-              <ShieldAlert className="h-4 w-4" />
-              <AlertDescription>
-                Access denied. Your account doesn't have admin privileges. Please contact an administrator to grant you access.
-              </AlertDescription>
-            </Alert>
-          )}
-          
           <Tabs defaultValue="signin" className="w-full">
             <TabsList className="grid w-full grid-cols-2">
               <TabsTrigger value="signin" disabled={isLoading}>Sign In</TabsTrigger>
@@ -172,7 +170,7 @@ export default function Auth() {
               <Alert className="mb-4">
                 <CheckCircle2 className="h-4 w-4" />
                 <AlertDescription>
-                  After signing up, contact an admin to grant you access privileges.
+                  Admin access is granted to @okwambirentals.com emails automatically.
                 </AlertDescription>
               </Alert>
               
