@@ -20,9 +20,9 @@ const Footer = () => {
       <div className="absolute inset-0 bg-gradient-to-t from-background/10 to-transparent" />
       
       <div className="container mx-auto px-6 lg:px-8 py-16 relative">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
           {/* Brand */}
-          <div className="md:col-span-1">
+          <div>
             <div className="mb-6">
               <span className="font-display text-2xl font-bold tracking-tight">OKWAMBI</span>
               <p className="text-sm text-primary-foreground/60 mt-2 font-light">
@@ -51,45 +51,6 @@ const Footer = () => {
                 <Instagram className="w-5 h-5 group-hover:text-accent-foreground transition-colors" />
               </a>
             </div>
-          </div>
-
-          {/* Quick Links */}
-          <div>
-            <h3 className="font-display text-sm font-bold tracking-wider uppercase mb-4">{t('footer.quickLinks')}</h3>
-            <ul className="space-y-3">
-              <li>
-                <button
-                  onClick={() => scrollToSection('about')}
-                  className="text-primary-foreground/70 hover:text-primary-foreground transition-colors text-sm font-light"
-                >
-                  {t('footer.links.about')}
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => scrollToSection('fleet')}
-                  className="text-primary-foreground/70 hover:text-primary-foreground transition-colors text-sm font-light"
-                >
-                  {t('footer.links.fleet')}
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => scrollToSection('faq')}
-                  className="text-primary-foreground/70 hover:text-primary-foreground transition-colors text-sm font-light"
-                >
-                  {t('footer.links.faq')}
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => scrollToSection('contact')}
-                  className="text-primary-foreground/70 hover:text-primary-foreground transition-colors text-sm font-light"
-                >
-                  {t('footer.links.contact')}
-                </button>
-              </li>
-            </ul>
           </div>
 
           {/* Legal */}
