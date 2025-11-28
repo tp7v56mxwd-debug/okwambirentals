@@ -158,7 +158,7 @@ const VehiclePhotos = () => {
           className="mb-6"
         >
           <ArrowLeft className="mr-2 h-4 w-4" />
-          Voltar ao Dashboard
+          Back to Admin
         </Button>
 
         <Card>

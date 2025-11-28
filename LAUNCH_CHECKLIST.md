@@ -82,13 +82,15 @@
 
 ### Features do Cliente
 - ✅ Sistema de reservas online
-- ✅ Dashboard pessoal de bookings
+- ✅ Página de confirmação de reserva
+- ✅ Rastreador de reservas (sem login)
+- ✅ Dashboard pessoal de bookings (/my-bookings)
 - ✅ Cancelamento de reservas (24h antes)
 - ✅ Sistema de reviews
 - ✅ Configuração de 2FA
 
 ### Features Admin
-- ✅ Dashboard administrativo
+- ✅ Dashboard administrativo (/admin)
 - ✅ Gerenciamento de reservas
 - ✅ Aprovação/rejeição de reviews
 - ✅ Upload de fotos dos veículos
