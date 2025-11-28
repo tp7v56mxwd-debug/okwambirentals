@@ -14,6 +14,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import { z } from "zod";
 import { useTranslation } from 'react-i18next';
+import { useAuth } from '@/hooks/useAuth';
 
 const bookingSchema = z.object({
   customer_name: z.string().trim().min(2, "Name must be at least 2 characters").max(100, "Name is too long"),
@@ -58,6 +59,7 @@ const vehicles = [
 
 export const BookingDialog = ({ open, onOpenChange, vehicleName, vehiclePrice, basePricePerHalfHour }: BookingDialogProps) => {
   const { t } = useTranslation();
+  const { user } = useAuth();
   const [date, setDate] = useState<Date>();
   const [duration, setDuration] = useState(30);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -121,7 +123,8 @@ export const BookingDialog = ({ open, onOpenChange, vehicleName, vehiclePrice, b
         duration: validated.duration,
         total_price: `${totalPrice} Kz`,
         special_requests: validated.special_requests || "",
-        status: "pending"
+        status: "pending",
+        user_id: user?.id || null
       });
 
       if (error) throw error;

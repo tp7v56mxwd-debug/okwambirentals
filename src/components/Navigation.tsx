@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { Menu, X, Waves, LogIn, Shield } from "lucide-react";
+import { Menu, X, Waves, LogIn, Shield, LayoutDashboard } from "lucide-react";
 import { useState, useEffect } from "react";
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
@@ -107,16 +107,28 @@ const Navigation = () => {
             <InfoDialogs />
             <div className="ml-2 pl-2 border-l border-border/50 flex items-center gap-2">
               <LanguageSwitcher />
-              {isAdmin ? (
-                <Button
-                  variant="default"
-                  size="sm"
-                  onClick={() => navigate('/admin')}
-                  className="ml-2"
-                >
-                  <Shield className="h-4 w-4 mr-1" />
-                  Admin
-                </Button>
+              {user ? (
+                isAdmin ? (
+                  <Button
+                    variant="default"
+                    size="sm"
+                    onClick={() => navigate('/admin')}
+                    className="ml-2"
+                  >
+                    <Shield className="h-4 w-4 mr-1" />
+                    Admin
+                  </Button>
+                ) : (
+                  <Button
+                    variant="default"
+                    size="sm"
+                    onClick={() => navigate('/dashboard')}
+                    className="ml-2"
+                  >
+                    <LayoutDashboard className="h-4 w-4 mr-1" />
+                    Dashboard
+                  </Button>
+                )
               ) : (
                 <Button
                   variant="outline"
@@ -175,18 +187,32 @@ const Navigation = () => {
               </div>
               
               <div className="mt-2 px-2">
-                {isAdmin ? (
-                  <Button
-                    variant="default"
-                    className="w-full"
-                    onClick={() => {
-                      navigate('/admin');
-                      setIsOpen(false);
-                    }}
-                  >
-                    <Shield className="h-4 w-4 mr-2" />
-                    Admin Dashboard
-                  </Button>
+                {user ? (
+                  isAdmin ? (
+                    <Button
+                      variant="default"
+                      className="w-full"
+                      onClick={() => {
+                        navigate('/admin');
+                        setIsOpen(false);
+                      }}
+                    >
+                      <Shield className="h-4 w-4 mr-2" />
+                      Admin Dashboard
+                    </Button>
+                  ) : (
+                    <Button
+                      variant="default"
+                      className="w-full"
+                      onClick={() => {
+                        navigate('/dashboard');
+                        setIsOpen(false);
+                      }}
+                    >
+                      <LayoutDashboard className="h-4 w-4 mr-2" />
+                      My Dashboard
+                    </Button>
+                  )
                 ) : (
                   <Button
                     variant="outline"
@@ -197,7 +223,7 @@ const Navigation = () => {
                     }}
                   >
                     <LogIn className="h-4 w-4 mr-2" />
-                    Admin Login
+                    Login
                   </Button>
                 )}
               </div>

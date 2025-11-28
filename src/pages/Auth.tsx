@@ -59,10 +59,10 @@ export default function Auth() {
           navigate('/admin');
         }, 500);
       } else {
-        // Non-admin users get redirected to home with a friendly message
+        // Non-admin users get redirected to dashboard
         setIsRedirecting(true);
         setTimeout(() => {
-          navigate('/', { state: { message: 'Welcome! Your account has been created.' } });
+          navigate('/dashboard');
         }, 500);
       }
     }
