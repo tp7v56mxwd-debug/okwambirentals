@@ -3,15 +3,18 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { BookingDialog } from "./BookingDialog";
-import { Users, Gauge, Shield, ChevronDown } from "lucide-react";
+import { Users, Gauge, Shield, ChevronDown, ShoppingCart, Calendar } from "lucide-react";
 import { useTranslation } from 'react-i18next';
 import { useIntersectionObserver } from '@/hooks/useIntersectionObserver';
 import { supabase } from "@/integrations/supabase/client";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
+import { useCart } from '@/contexts/CartContext';
+import { toast } from 'sonner';
 
 const Properties = () => {
   const { t } = useTranslation();
   const { ref, isVisible } = useIntersectionObserver();
+  const { addToCart } = useCart();
   const [bookingOpen, setBookingOpen] = useState(false);
   const [selectedVehicle, setSelectedVehicle] = useState<any>(null);
   const [vehiclePhotos, setVehiclePhotos] = useState<Record<string, string[]>>({});
@@ -170,21 +173,44 @@ const Properties = () => {
                     ))}
                   </div>
 
-                  <div className="flex items-end justify-between pt-4 border-t border-border">
-                    <div>
-                      <div className="text-xl font-semibold text-foreground">{vehicle.price}</div>
-                      <div className="text-xs text-muted-foreground">{t('fleet.per30min')}</div>
+                  <div className="pt-4 border-t border-border space-y-3">
+                    <div className="flex items-end justify-between">
+                      <div>
+                        <div className="text-xl font-semibold text-foreground">{vehicle.price}</div>
+                        <div className="text-xs text-muted-foreground">{t('fleet.per30min')}</div>
+                      </div>
                     </div>
-                    <Button
-                      onClick={() => {
-                        setSelectedVehicle(vehicle);
-                        setBookingOpen(true);
-                      }}
-                      size="sm"
-                      className="transition-colors"
-                    >
-                      {t('fleet.bookNow')}
-                    </Button>
+                    <div className="flex gap-2">
+                      <Button
+                        onClick={() => {
+                          addToCart({
+                            vehicleId: vehicle.id,
+                            vehicleName: vehicle.name,
+                            vehiclePrice: vehicle.price,
+                            basePricePerHalfHour: vehicle.basePricePerHalfHour,
+                            duration: 30,
+                          });
+                          toast.success('Added to cart!');
+                        }}
+                        size="sm"
+                        variant="outline"
+                        className="flex-1"
+                      >
+                        <ShoppingCart className="h-4 w-4 mr-1" />
+                        Add to Cart
+                      </Button>
+                      <Button
+                        onClick={() => {
+                          setSelectedVehicle(vehicle);
+                          setBookingOpen(true);
+                        }}
+                        size="sm"
+                        className="flex-1"
+                      >
+                        <Calendar className="h-4 w-4 mr-1" />
+                        {t('fleet.bookNow')}
+                      </Button>
+                    </div>
                   </div>
                 </div>
               </article>

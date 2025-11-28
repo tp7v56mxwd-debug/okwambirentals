@@ -21,6 +21,7 @@ import ResetPassword from "./pages/ResetPassword";
 import TwoFactorAuth from "./pages/TwoFactorAuth";
 import SitemapRedirect from "./pages/SitemapRedirect";
 import BookingConfirmation from "./pages/BookingConfirmation";
+import Cart from "./pages/Cart";
 
 const queryClient = new QueryClient();
 
@@ -47,6 +48,7 @@ const App = () => (
               <Route path="/reset-password" element={<ResetPassword />} />
               <Route path="/2fa" element={<TwoFactorAuth />} />
               <Route path="/booking/:id" element={<BookingConfirmation />} />
+              <Route path="/cart" element={<Cart />} />
               <Route path="/sitemap.xml" element={<SitemapRedirect />} />
               {/* Redirect old dashboard route to home */}
               <Route path="/dashboard" element={<Index />} />

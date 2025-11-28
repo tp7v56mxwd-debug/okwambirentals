@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
-import { Menu, X, Waves, LogIn, Shield, Calendar, LogOut, User } from "lucide-react";
+import { Menu, X, Waves, LogIn, Shield, Calendar, LogOut, User, ShoppingCart } from "lucide-react";
 import { useState, useEffect } from "react";
+import { useCart } from '@/contexts/CartContext';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import LanguageSwitcher from "./LanguageSwitcher";
@@ -21,6 +22,7 @@ const Navigation = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const { user, isAdmin } = useAuth();
+  const { totalItems } = useCart();
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('hero');
@@ -129,6 +131,20 @@ const Navigation = () => {
             ))}
             <InfoDialogs />
             <div className="ml-2 pl-2 border-l border-border/50 flex items-center gap-2">
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => navigate('/cart')}
+                className="relative"
+                aria-label="Shopping cart"
+              >
+                <ShoppingCart className="h-5 w-5" />
+                {totalItems > 0 && (
+                  <span className="absolute -top-1 -right-1 bg-primary text-primary-foreground text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">
+                    {totalItems}
+                  </span>
+                )}
+              </Button>
               <LanguageSwitcher />
               {user ? (
                 <DropdownMenu>
@@ -221,6 +237,22 @@ const Navigation = () => {
               </div>
               
               <div className="mt-2 px-2 space-y-2">
+                <Button
+                  variant="default"
+                  className="w-full relative"
+                  onClick={() => {
+                    navigate('/cart');
+                    setIsOpen(false);
+                  }}
+                >
+                  <ShoppingCart className="h-4 w-4 mr-2" />
+                  Cart
+                  {totalItems > 0 && (
+                    <span className="ml-2 bg-primary-foreground text-primary text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">
+                      {totalItems}
+                    </span>
+                  )}
+                </Button>
                 {user ? (
                   <>
                     {isAdmin ? (
