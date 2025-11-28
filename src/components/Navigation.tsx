@@ -85,7 +85,7 @@ const Navigation = () => {
           : 'bg-gradient-to-b from-background/90 via-background/50 to-transparent backdrop-blur-sm'
       }`}
     >
-      <div className="container mx-auto px-6 lg:px-8">
+      <div className="container mx-auto px-6 lg:px-8 relative">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <button 
@@ -105,24 +105,26 @@ const Navigation = () => {
             </div>
           </button>
 
-          {/* Cart Icon - Top Right */}
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={() => navigate('/cart')}
-            className="relative lg:absolute lg:right-8"
-            aria-label="Shopping cart"
-          >
-            <ShoppingCart className="h-6 w-6" />
-            {totalItems > 0 && (
-              <span className="absolute -top-1 -right-1 bg-primary text-primary-foreground text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">
-                {totalItems}
-              </span>
-            )}
-          </Button>
+          {/* Cart Icon - Aligned with Logo on Right */}
+          <div className="absolute right-6 lg:right-8 top-1/2 -translate-y-1/2 hidden lg:block">
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => navigate('/cart')}
+              className="relative"
+              aria-label="Shopping cart"
+            >
+              <ShoppingCart className="h-6 w-6" />
+              {totalItems > 0 && (
+                <span className="absolute -top-1 -right-1 bg-primary text-primary-foreground text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">
+                  {totalItems}
+                </span>
+              )}
+            </Button>
+          </div>
 
           {/* Desktop Menu */}
-          <div className="hidden lg:flex items-center gap-2" role="menubar" aria-label="Desktop navigation menu">
+          <div className="hidden lg:flex items-center gap-2 mr-20" role="menubar" aria-label="Desktop navigation menu">
             {navLinks.map((link) => (
               <button
                 key={link.id}
