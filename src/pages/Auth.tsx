@@ -3,9 +3,10 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '@/hooks/useAuth';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Alert, AlertDescription } from '@/components/ui/alert';
+import { Loader2, ShieldAlert, CheckCircle2 } from 'lucide-react';
 import { z } from 'zod';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -28,6 +29,8 @@ export default function Auth() {
   const { signIn, signUp, user, isAdmin, loading } = useAuth();
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
+  const [showAccessDenied, setShowAccessDenied] = useState(false);
+  const [isRedirecting, setIsRedirecting] = useState(false);
 
   const signInForm = useForm<z.infer<typeof signInSchema>>({
     resolver: zodResolver(signInSchema),
@@ -49,25 +52,53 @@ export default function Auth() {
 
   // Redirect only if logged in AND is admin
   useEffect(() => {
-    if (!loading && user && isAdmin) {
-      navigate('/admin');
+    if (!loading && user) {
+      if (isAdmin) {
+        setIsRedirecting(true);
+        setTimeout(() => {
+          navigate('/admin');
+        }, 500);
+      } else {
+        setShowAccessDenied(true);
+        setIsLoading(false);
+      }
     }
   }, [loading, user, isAdmin, navigate]);
 
   const handleSignIn = async (values: z.infer<typeof signInSchema>) => {
     setIsLoading(true);
-    await signIn(values.email, values.password);
-    setIsLoading(false);
+    setShowAccessDenied(false);
+    const { error } = await signIn(values.email, values.password);
+    
+    if (error) {
+      setIsLoading(false);
+    }
+    // Keep loading state active while checking admin status
   };
 
   const handleSignUp = async (values: z.infer<typeof signUpSchema>) => {
     setIsLoading(true);
+    setShowAccessDenied(false);
     const { error } = await signUp(values.email, values.password, values.fullName);
     if (!error) {
       signUpForm.reset();
     }
     setIsLoading(false);
   };
+
+  // Show loading screen when checking auth or redirecting
+  if (loading || isRedirecting) {
+    return (
+      <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-background via-background/95 to-primary/5 p-4">
+        <div className="flex flex-col items-center gap-4">
+          <Loader2 className="h-12 w-12 animate-spin text-primary" />
+          <p className="text-sm text-muted-foreground animate-pulse">
+            {isRedirecting ? 'Redirecting to admin dashboard...' : 'Checking authentication...'}
+          </p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-background via-background/95 to-primary/5 p-4">
@@ -79,10 +110,19 @@ export default function Auth() {
           </CardDescription>
         </CardHeader>
         <CardContent>
+          {showAccessDenied && (
+            <Alert variant="destructive" className="mb-4">
+              <ShieldAlert className="h-4 w-4" />
+              <AlertDescription>
+                Access denied. Your account doesn't have admin privileges. Please contact an administrator to grant you access.
+              </AlertDescription>
+            </Alert>
+          )}
+          
           <Tabs defaultValue="signin" className="w-full">
             <TabsList className="grid w-full grid-cols-2">
-              <TabsTrigger value="signin">Sign In</TabsTrigger>
-              <TabsTrigger value="signup">Sign Up</TabsTrigger>
+              <TabsTrigger value="signin" disabled={isLoading}>Sign In</TabsTrigger>
+              <TabsTrigger value="signup" disabled={isLoading}>Sign Up</TabsTrigger>
             </TabsList>
             
             <TabsContent value="signin">
@@ -115,13 +155,27 @@ export default function Auth() {
                     )}
                   />
                   <Button type="submit" className="w-full" disabled={isLoading}>
-                    {isLoading ? 'Signing in...' : 'Sign In'}
+                    {isLoading ? (
+                      <>
+                        <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                        Signing in...
+                      </>
+                    ) : (
+                      'Sign In'
+                    )}
                   </Button>
                 </form>
               </Form>
             </TabsContent>
             
             <TabsContent value="signup">
+              <Alert className="mb-4">
+                <CheckCircle2 className="h-4 w-4" />
+                <AlertDescription>
+                  After signing up, contact an admin to grant you access privileges.
+                </AlertDescription>
+              </Alert>
+              
               <Form {...signUpForm}>
                 <form onSubmit={signUpForm.handleSubmit(handleSignUp)} className="space-y-4">
                   <FormField
@@ -177,7 +231,14 @@ export default function Auth() {
                     )}
                   />
                   <Button type="submit" className="w-full" disabled={isLoading}>
-                    {isLoading ? 'Creating account...' : 'Sign Up'}
+                    {isLoading ? (
+                      <>
+                        <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                        Creating account...
+                      </>
+                    ) : (
+                      'Sign Up'
+                    )}
                   </Button>
                 </form>
               </Form>
