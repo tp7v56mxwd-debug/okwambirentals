@@ -17,6 +17,9 @@ import { z } from "zod";
 import { useTranslation } from 'react-i18next';
 import { useAuth } from '@/hooks/useAuth';
 import { AvailabilityCalendar } from "@/components/AvailabilityCalendar";
+import { BookingLocationInfo } from "@/components/booking/BookingLocationInfo";
+import { BookingPriceDisplay } from "@/components/booking/BookingPriceDisplay";
+import { BookingInfoPanel } from "@/components/booking/BookingInfoPanel";
 
 const bookingSchema = z.object({
   customer_name: z.string().trim().min(2, "Name must be at least 2 characters").max(100, "Name is too long"),
@@ -66,7 +69,6 @@ export const BookingDialog = ({ open, onOpenChange, vehicleName, vehiclePrice, b
   const [date, setDate] = useState<Date>();
   const [duration, setDuration] = useState(30);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [showConfirmation, setShowConfirmation] = useState(false);
   const [selectedVehicle, setSelectedVehicle] = useState<string>(vehicleName || "");
   const [currentPrice, setCurrentPrice] = useState(basePricePerHalfHour);
   const { toast } = useToast();
@@ -204,22 +206,6 @@ export const BookingDialog = ({ open, onOpenChange, vehicleName, vehiclePrice, b
     }
   };
 
-  if (showConfirmation) {
-    return (
-      <Dialog open={open} onOpenChange={onOpenChange}>
-        <DialogContent className="sm:max-w-md">
-          <div className="text-center py-8">
-            <div className="mb-4 text-6xl">✓</div>
-            <h2 className="text-3xl font-black text-foreground mb-2">Booking Confirmed!</h2>
-            <p className="text-muted-foreground">
-              Check your email for confirmation details
-            </p>
-          </div>
-        </DialogContent>
-      </Dialog>
-    );
-  }
-
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-[650px] max-h-[90vh] overflow-y-auto pointer-events-auto">
@@ -227,11 +213,7 @@ export const BookingDialog = ({ open, onOpenChange, vehicleName, vehiclePrice, b
           <DialogTitle className="text-3xl font-black text-foreground">
             {selectedVehicle ? `Book Your ${selectedVehicle}` : t('fleet.bookNow')}
           </DialogTitle>
-          <div className="bg-muted/50 rounded-lg p-4 mt-4 border border-border/30">
-            <h4 className="text-sm font-bold text-foreground mb-2">📍 Meeting Location & Hours</h4>
-            <p className="text-sm text-muted-foreground mb-1"><strong>Location:</strong> Okwambi Rentals Beach Station, Mussulo Peninsula, Luanda</p>
-            <p className="text-sm text-muted-foreground"><strong>Operating Hours:</strong> Daily 9:00 AM - 6:00 PM (Last rental at 5:30 PM)</p>
-          </div>
+          <BookingLocationInfo />
         </DialogHeader>
 
         <form onSubmit={handleSubmit} className="space-y-6">
@@ -376,50 +358,14 @@ export const BookingDialog = ({ open, onOpenChange, vehicleName, vehiclePrice, b
               />
             </div>
 
-            <div className="bg-gradient-to-br from-primary/10 to-accent/10 rounded-2xl p-6 border border-primary/20">
-              <div className="space-y-3">
-                <div className="flex justify-between items-center">
-                  <span className="text-sm text-muted-foreground font-bold">Base Rate (30 min)</span>
-                  <span className="text-foreground font-bold">
-                    {currentPrice > 0 ? `${currentPrice.toLocaleString('en-US', { minimumFractionDigits: 3 })} Kz` : '---'}
-                  </span>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-sm text-muted-foreground font-bold">Duration</span>
-                  <span className="text-foreground font-bold">{durationOptions.find(d => d.value === duration)?.label}</span>
-                </div>
-                <div className="border-t border-border/30 pt-3">
-                  <div className="flex justify-between items-center">
-                    <p className="text-sm text-muted-foreground font-bold uppercase">Total Price</p>
-                    <p className="text-3xl font-black text-primary">
-                      {currentPrice > 0 ? `${calculateTotalPrice(duration)} Kz` : '---'}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <BookingPriceDisplay 
+              currentPrice={currentPrice}
+              duration={duration}
+              calculateTotalPrice={calculateTotalPrice}
+              durationLabel={durationOptions.find(d => d.value === duration)?.label || ""}
+            />
 
-            <div className="bg-muted/30 rounded-lg p-4 border border-border/30">
-              <h4 className="text-xs font-bold text-foreground uppercase tracking-wider mb-3">Important Information</h4>
-              <ul className="space-y-2 text-xs text-muted-foreground">
-                <li className="flex items-start gap-2">
-                  <span className="text-accent mt-0.5">•</span>
-                  <span>Security deposit required at check-in (refunded after safe return)</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-accent mt-0.5">•</span>
-                  <span>Valid ID and driver's license required (age restrictions apply)</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-accent mt-0.5">•</span>
-                  <span>Late returns charged at 2x hourly rate after 15-minute grace period</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-accent mt-0.5">•</span>
-                  <span>Free cancellation up to 24 hours before booking time</span>
-                </li>
-              </ul>
-            </div>
+            <BookingInfoPanel />
           </div>
 
           <Button
