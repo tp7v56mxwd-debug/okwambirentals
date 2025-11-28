@@ -20,13 +20,18 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-foreground text-background border-t border-border" role="contentinfo" aria-label="Footer">
-      <div className="container mx-auto px-6 lg:px-12 py-16">
+    <footer className="relative bg-gradient-to-br from-primary via-primary to-primary-light text-primary-foreground overflow-hidden" role="contentinfo" aria-label="Footer">
+      {/* Decorative blur elements */}
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-accent/15 rounded-full blur-3xl" />
+      <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-accent/10 rounded-full blur-3xl" />
+      <div className="absolute inset-0 bg-gradient-to-t from-background/10 to-transparent" />
+      
+      <div className="container mx-auto px-6 lg:px-12 py-16 relative">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
           {/* Brand */}
           <div>
             <span className="font-display text-xl font-bold tracking-tight">OKWAMBI</span>
-            <p className="text-sm text-background/70 mt-3 leading-relaxed">
+            <p className="text-sm text-primary-foreground/70 mt-3 leading-relaxed">
               {t('footer.description')}
             </p>
             
@@ -35,7 +40,7 @@ const Footer = () => {
                 href="https://www.facebook.com/okwambirentals"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-9 h-9 border border-background/20 hover:border-accent hover:bg-accent hover:text-accent-foreground flex items-center justify-center transition-colors"
+                className="w-9 h-9 backdrop-blur-sm bg-primary-foreground/10 hover:bg-accent hover:text-accent-foreground flex items-center justify-center transition-all border border-primary-foreground/10"
                 aria-label="Visit our Facebook page"
               >
                 <Facebook className="w-4 h-4" />
@@ -44,7 +49,7 @@ const Footer = () => {
                 href="https://instagram.com/okwambirentals"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-9 h-9 border border-background/20 hover:border-accent hover:bg-accent hover:text-accent-foreground flex items-center justify-center transition-colors"
+                className="w-9 h-9 backdrop-blur-sm bg-primary-foreground/10 hover:bg-accent hover:text-accent-foreground flex items-center justify-center transition-all border border-primary-foreground/10"
                 aria-label="Visit our Instagram page"
               >
                 <Instagram className="w-4 h-4" />
@@ -59,7 +64,7 @@ const Footer = () => {
               <li>
                 <Link
                   to="/terms"
-                  className="text-sm text-background/70 hover:text-background transition-colors"
+                  className="text-sm text-primary-foreground/70 hover:text-primary-foreground transition-colors"
                 >
                   {t('footer.terms')}
                 </Link>
@@ -67,7 +72,7 @@ const Footer = () => {
               <li>
                 <Link
                   to="/privacy"
-                  className="text-sm text-background/70 hover:text-background transition-colors"
+                  className="text-sm text-primary-foreground/70 hover:text-primary-foreground transition-colors"
                 >
                   {t('footer.privacy')}
                 </Link>
@@ -80,29 +85,29 @@ const Footer = () => {
             <h3 className="text-sm font-semibold mb-4 tracking-wide">{t('footer.contact')}</h3>
             <ul className="space-y-2">
               <li className="flex items-start gap-2 text-sm">
-                <MapPin className="w-4 h-4 text-accent flex-shrink-0 mt-0.5" />
-                <span className="text-background/70">Mussulo Peninsula, Luanda</span>
+                <MapPin className="w-4 h-4 text-accent flex-shrink-0 mt-0.5" strokeWidth={1.5} />
+                <span className="text-primary-foreground/70">Mussulo Peninsula, Luanda</span>
               </li>
               <li className="flex items-start gap-2 text-sm">
-                <Phone className="w-4 h-4 text-accent flex-shrink-0 mt-0.5" />
-                <span className="text-background/70">+244 923 456 789</span>
+                <Phone className="w-4 h-4 text-accent flex-shrink-0 mt-0.5" strokeWidth={1.5} />
+                <span className="text-primary-foreground/70">+244 923 456 789</span>
               </li>
               <li className="flex items-start gap-2 text-sm">
-                <Mail className="w-4 h-4 text-accent flex-shrink-0 mt-0.5" />
-                <span className="text-background/70">info@okwambi.ao</span>
+                <Mail className="w-4 h-4 text-accent flex-shrink-0 mt-0.5" strokeWidth={1.5} />
+                <span className="text-primary-foreground/70">info@okwambi.ao</span>
               </li>
             </ul>
           </div>
         </div>
 
-        <div className="pt-8 border-t border-background/10">
+        <div className="pt-8 border-t border-primary-foreground/20">
           <div className="flex flex-col md:flex-row items-center justify-between gap-3">
-            <p className="text-xs text-background/60">
+            <p className="text-xs text-primary-foreground/60">
               &copy; {new Date().getFullYear()} Okwambi Rentals. {t('footer.rights')}
             </p>
             <button
               onClick={scrollToTop}
-              className="text-xs text-background/60 hover:text-background transition-colors inline-flex items-center gap-1 group"
+              className="text-xs text-primary-foreground/70 hover:text-primary-foreground transition-colors inline-flex items-center gap-1 group"
               aria-label="Back to top"
             >
               {t('footer.backToTop', 'Back to top')}
