@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "@/hooks/useAuth";
 import { supabase } from "@/integrations/supabase/client";
+import { useBookingNotifications } from "@/hooks/useBookingNotifications";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -48,6 +49,9 @@ const CustomerDashboard = () => {
   const [bookingToCancel, setBookingToCancel] = useState<string | null>(null);
   const [reviewingBooking, setReviewingBooking] = useState<{ id: string; vehicleType: string } | null>(null);
   const [hasReviews, setHasReviews] = useState<Record<string, boolean>>({});
+  
+  // Enable push notifications for booking updates
+  useBookingNotifications(user?.id);
 
   useEffect(() => {
     if (!authLoading && !user) {
