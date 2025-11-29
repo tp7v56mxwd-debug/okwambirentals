@@ -33,26 +33,10 @@ const Hero = () => {
       <div className="relative z-10 container mx-auto px-6 lg:px-12 py-20 pb-24 w-full">
         <div className="max-w-3xl mb-16 relative">
           <h1 className="font-display text-5xl md:text-6xl lg:text-7xl font-semibold mb-6 leading-[1.1] tracking-tight">
-            <span 
-              className="block text-transparent bg-clip-text bg-gradient-to-r from-foreground via-primary to-foreground opacity-0 animate-fade-in"
-              style={{ 
-                animationDelay: '0.3s', 
-                animationFillMode: 'forwards',
-                backgroundSize: '200% auto',
-                animation: 'fade-in 0.3s ease-out 0.3s forwards, gradient-shift 3s ease infinite'
-              }}
-            >
+            <span className="block text-foreground animate-fade-in-up" style={{ animationDelay: '0.2s', animationFillMode: 'forwards', opacity: 0 }}>
               Experience
             </span>
-            <span 
-              className="block text-transparent bg-clip-text bg-gradient-to-r from-accent via-primary to-accent opacity-0 animate-fade-in"
-              style={{ 
-                animationDelay: '0.6s', 
-                animationFillMode: 'forwards',
-                backgroundSize: '200% auto',
-                animation: 'fade-in 0.3s ease-out 0.6s forwards, gradient-shift 3s ease infinite 0.5s'
-              }}
-            >
+            <span className="block text-accent animate-fade-in-up" style={{ animationDelay: '0.5s', animationFillMode: 'forwards', opacity: 0 }}>
               Mussulo
             </span>
           </h1>
