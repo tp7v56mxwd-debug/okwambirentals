@@ -152,9 +152,9 @@ const Properties = () => {
                   <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-primary via-accent to-primary" />
                   
                   <div className="text-xs font-bold tracking-widest uppercase text-accent mb-3 pt-3 flex items-center gap-2">
-                    <div className="h-px flex-1 bg-gradient-to-r from-transparent via-accent to-transparent" />
+                    <div className="h-[0.5px] flex-1 bg-gradient-to-r from-transparent via-accent/60 to-transparent" />
                     {vehicle.category}
-                    <div className="h-px flex-1 bg-gradient-to-r from-transparent via-accent to-transparent" />
+                    <div className="h-[0.5px] flex-1 bg-gradient-to-r from-transparent via-accent/60 to-transparent" />
                   </div>
                   
                   <h3 className="font-display text-xl font-semibold mb-3 text-foreground group-hover:text-primary transition-colors">
