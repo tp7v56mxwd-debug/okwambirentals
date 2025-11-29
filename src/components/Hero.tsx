@@ -34,7 +34,7 @@ const Hero = () => {
         <div className="max-w-3xl mb-16">
           <h1 className="font-display text-5xl md:text-6xl lg:text-7xl font-semibold mb-6 leading-[1.1] tracking-tight">
             <span className="block text-foreground animate-fade-in opacity-0 [animation-delay:200ms] [animation-fill-mode:forwards]">Experience</span>
-            <span className="block text-accent animate-fade-in opacity-0 [animation-delay:500ms] [animation-fill-mode:forwards]">Mussulo</span>
+            <span className="block text-accent animate-fade-in opacity-0 [animation-delay:500ms] [animation-fill-mode:forwards] hover:scale-105 transition-transform duration-300 cursor-default drop-shadow-[0_0_15px_rgba(var(--accent-rgb),0.3)]">Mussulo</span>
           </h1>
           
           <p className="text-lg md:text-xl text-muted-foreground leading-relaxed max-w-xl">
