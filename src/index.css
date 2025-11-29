@@ -145,6 +145,24 @@ All colors MUST be HSL.
     }
   }
   
+  @keyframes color-pulse-dark {
+    0%, 100% {
+      color: hsl(var(--foreground));
+    }
+    50% {
+      color: hsl(var(--accent));
+    }
+  }
+  
+  @keyframes color-pulse-orange {
+    0%, 100% {
+      color: hsl(var(--accent));
+    }
+    50% {
+      color: hsl(27 96% 75%);
+    }
+  }
+  
   .animate-fade-in-up {
     animation: fadeInUp 0.8s ease-out forwards;
   }
@@ -156,6 +174,14 @@ All colors MUST be HSL.
   
   .animate-glow {
     animation: glow-pulse 2s ease-in-out infinite;
+  }
+  
+  .animate-color-pulse-dark {
+    animation: color-pulse-dark 3s ease-in-out infinite;
+  }
+  
+  .animate-color-pulse-orange {
+    animation: color-pulse-orange 3s ease-in-out infinite;
   }
 }
 

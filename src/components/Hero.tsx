@@ -36,10 +36,10 @@ const Hero = () => {
           <div className="absolute -inset-8 bg-gradient-to-r from-accent/20 via-primary/20 to-accent/20 blur-3xl opacity-60 animate-[pulse_3s_ease-in-out_infinite] -z-10" />
           
           <h1 className="font-display text-5xl md:text-6xl lg:text-7xl font-semibold mb-6 leading-[1.1] tracking-tight">
-            <span className="block text-foreground animate-[pulse_2s_ease-in-out_infinite]">
+            <span className="block animate-color-pulse-dark">
               Experience
             </span>
-            <span className="block text-accent animate-[pulse_2s_ease-in-out_infinite] [animation-delay:0.5s]">
+            <span className="block animate-color-pulse-orange">
               Mussulo
             </span>
           </h1>
