@@ -32,7 +32,11 @@ const Hero = () => {
       
       <div className="relative z-10 container mx-auto px-6 lg:px-12 py-20 pb-24 w-full">
         <div className="max-w-3xl mb-16">
-          <h1 className="font-display text-5xl md:text-6xl lg:text-7xl font-semibold mb-6 leading-[1.1] tracking-tight">
+          {/* Animated gradient background */}
+          <div className="absolute -inset-4 bg-gradient-to-r from-primary/20 via-accent/20 to-primary/20 blur-3xl opacity-30 animate-[pulse_4s_ease-in-out_infinite] -z-10" />
+          <div className="absolute -inset-8 bg-gradient-to-br from-accent/10 via-primary/10 to-accent/10 blur-2xl opacity-40 animate-[pulse_6s_ease-in-out_infinite] [animation-delay:1s] -z-10" />
+          
+          <h1 className="font-display text-5xl md:text-6xl lg:text-7xl font-semibold mb-6 leading-[1.1] tracking-tight relative">
             <span className="block text-foreground animate-fade-in opacity-0 [animation-delay:200ms] [animation-fill-mode:forwards]">Experience</span>
             <span className="block text-accent animate-fade-in opacity-0 [animation-delay:500ms] [animation-fill-mode:forwards] hover:scale-105 transition-transform duration-300 cursor-default drop-shadow-[0_0_15px_rgba(var(--accent-rgb),0.3)]">Mussulo</span>
           </h1>
