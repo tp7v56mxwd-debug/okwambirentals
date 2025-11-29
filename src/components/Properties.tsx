@@ -114,14 +114,12 @@ const Properties = () => {
             {fleet.map((vehicle, index) => (
               <article 
                 key={index}
-                className="group relative overflow-hidden rounded-xl border-4 border-primary shadow-[0_0_30px_rgba(0,150,255,0.3)] hover:shadow-[0_0_50px_rgba(0,150,255,0.5)] transition-all duration-300 animate-fade-in bg-gradient-to-br from-card via-card to-card/80"
+                className="group relative overflow-hidden rounded-xl border-4 border-primary shadow-[0_0_30px_rgba(0,150,255,0.3)] hover:shadow-[0_0_50px_rgba(0,150,255,0.5)] transition-all duration-300 animate-fade-in bg-card"
                 style={{ animationDelay: `${index * 100}ms` }}
               >
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5 pointer-events-none z-0" />
                 
                 {vehiclePhotos[vehicle.id] && vehiclePhotos[vehicle.id].length > 0 ? (
                   <div className="relative aspect-[4/3] overflow-hidden bg-muted">
-                    <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-transparent to-accent/20 pointer-events-none z-10" />
                     <Carousel className="w-full h-full">
                       <CarouselContent>
                         {vehiclePhotos[vehicle.id].map((photoUrl, photoIndex) => (
@@ -142,7 +140,6 @@ const Properties = () => {
                   </div>
                 ) : (
                   <div className="relative aspect-[4/3] bg-muted flex items-center justify-center">
-                    <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-transparent to-accent/20 pointer-events-none" />
                     <div className="text-center p-6 relative z-10">
                       <Shield className="h-10 w-10 text-muted-foreground/30 mx-auto mb-2" />
                       <p className="text-sm text-muted-foreground">{vehicle.name}</p>
