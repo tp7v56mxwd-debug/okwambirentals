@@ -127,12 +127,12 @@ All colors MUST be HSL.
     }
   }
   
-  @keyframes gradient-shift {
-    0%, 100% {
+  @keyframes gradient-wave {
+    0% {
       background-position: 0% 50%;
     }
-    50% {
-      background-position: 100% 50%;
+    100% {
+      background-position: 200% 50%;
     }
   }
   
@@ -145,43 +145,20 @@ All colors MUST be HSL.
     }
   }
   
-  @keyframes color-pulse-dark {
-    0%, 100% {
-      color: hsl(var(--foreground));
-    }
-    50% {
-      color: hsl(var(--accent));
-    }
-  }
-  
-  @keyframes color-pulse-orange {
-    0%, 100% {
-      color: hsl(var(--accent));
-    }
-    50% {
-      color: hsl(27 96% 75%);
-    }
-  }
-  
   .animate-fade-in-up {
     animation: fadeInUp 0.8s ease-out forwards;
   }
   
-  .animate-gradient {
+  .animate-gradient-wave {
     background-size: 200% auto;
-    animation: gradient-shift 4s ease infinite;
+    animation: gradient-wave 3s linear infinite;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
   
   .animate-glow {
     animation: glow-pulse 2s ease-in-out infinite;
-  }
-  
-  .animate-color-pulse-dark {
-    animation: color-pulse-dark 3s ease-in-out infinite;
-  }
-  
-  .animate-color-pulse-orange {
-    animation: color-pulse-orange 3s ease-in-out infinite;
   }
 }
 
