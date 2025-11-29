@@ -88,8 +88,7 @@ const DailyPackages = () => {
                 )}
 
                 <div className="p-6 flex-1 flex flex-col">
-                  <div className="flex items-center gap-2 mb-4 border-t-2 border-foreground pt-3">
-                    <Icon className="w-5 h-5 text-foreground" strokeWidth={1.5} />
+                  <div className="mb-4 border-t-2 border-foreground pt-3">
                     <h3 className="font-display text-lg font-bold text-foreground">
                       {pkg.name}
                     </h3>
