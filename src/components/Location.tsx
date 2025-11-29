@@ -106,7 +106,12 @@ const Location = () => {
                 </div>
                 <div>
                   <h3 className="font-display text-lg font-bold text-foreground mb-2">{t('location.phone.title')}</h3>
-                  <p className="text-muted-foreground">{t('location.phone.number')}</p>
+                  <a 
+                    href="tel:+447477963492" 
+                    className="text-muted-foreground hover:text-foreground transition-colors hover:underline"
+                  >
+                    {t('location.phone.number')}
+                  </a>
                   <p className="text-sm text-muted-foreground/70 mt-1">{t('location.phone.availability')}</p>
                 </div>
               </div>
@@ -119,7 +124,12 @@ const Location = () => {
                 </div>
                 <div>
                   <h3 className="font-display text-lg font-bold text-foreground mb-2">{t('location.email.title')}</h3>
-                  <p className="text-muted-foreground">{t('location.email.address')}</p>
+                  <a 
+                    href="mailto:info@okwambi.ao" 
+                    className="text-muted-foreground hover:text-foreground transition-colors hover:underline"
+                  >
+                    {t('location.email.address')}
+                  </a>
                   <p className="text-sm text-muted-foreground/70 mt-1">{t('location.email.response')}</p>
                 </div>
               </div>
