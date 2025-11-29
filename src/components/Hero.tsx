@@ -34,8 +34,13 @@ const Hero = () => {
         <div className="max-w-3xl mb-16 relative">
           <h1 className="font-display text-5xl md:text-6xl lg:text-7xl font-semibold mb-6 leading-[1.1] tracking-tight">
             <span 
-              className="block text-foreground opacity-0 animate-fade-in"
-              style={{ animationDelay: '0.3s', animationFillMode: 'forwards' }}
+              className="block text-transparent bg-clip-text bg-gradient-to-r from-foreground via-primary to-foreground opacity-0 animate-fade-in"
+              style={{ 
+                animationDelay: '0.3s', 
+                animationFillMode: 'forwards',
+                backgroundSize: '200% auto',
+                animation: 'fade-in 0.3s ease-out 0.3s forwards, gradient-shift 3s ease infinite'
+              }}
             >
               Experience
             </span>
@@ -45,7 +50,7 @@ const Hero = () => {
                 animationDelay: '0.6s', 
                 animationFillMode: 'forwards',
                 backgroundSize: '200% auto',
-                animation: 'fade-in 0.3s ease-out 0.6s forwards, gradient-shift 3s ease infinite'
+                animation: 'fade-in 0.3s ease-out 0.6s forwards, gradient-shift 3s ease infinite 0.5s'
               }}
             >
               Mussulo
