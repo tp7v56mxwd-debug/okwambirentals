@@ -33,7 +33,7 @@ const Hero = () => {
       <div className="relative z-10 container mx-auto px-6 lg:px-12 py-20 pb-24 w-full">
         <div className="max-w-3xl mb-16">
           <h1 className="font-display text-5xl md:text-6xl lg:text-7xl font-semibold mb-6 leading-[1.1] tracking-tight">
-            <span className="block text-accent">Mussulo</span>
+            <span className="block text-accent">{t('hero.title')}</span>
           </h1>
           
           <p className="text-lg md:text-xl text-muted-foreground leading-relaxed max-w-xl">
