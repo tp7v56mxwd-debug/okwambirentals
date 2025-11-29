@@ -143,9 +143,6 @@ const Navigation = () => {
                 <span className={`absolute inset-0 rounded-lg bg-primary/10 scale-0 group-hover:scale-100 transition-transform duration-300 ${
                   activeSection === link.id ? 'scale-100' : ''
                 }`} />
-                <span className={`absolute bottom-2 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-primary to-accent group-hover:w-3/4 transition-all duration-300 ${
-                  activeSection === link.id ? 'w-3/4' : ''
-                }`} />
               </button>
             ))}
             <InfoDialogs />
