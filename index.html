@@ -49,23 +49,31 @@
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "LocalBusiness",
+      "@type": ["LocalBusiness", "SportsActivityLocation", "TouristAttraction"],
       "name": "Okwambi Rentals",
-      "description": "Premium jet ski, ATV, and UTV rentals at Mussulo Peninsula, Luanda, Angola",
+      "alternateName": "Okwambi Adventure Rentals",
+      "description": "Premium jet ski, ATV, and UTV rentals at Mussulo Peninsula, Luanda, Angola. Experience unforgettable water sports and off-road adventures with professional equipment, full safety gear, GPS tracking, and expert guidance.",
       "url": "https://okwambirentals.lovable.app",
-      "image": "https://lovable.dev/opengraph-image-p98pqg.png",
-      "telephone": "+244923456789",
+      "logo": "https://lovable.dev/opengraph-image-p98pqg.png",
+      "image": [
+        "https://lovable.dev/opengraph-image-p98pqg.png"
+      ],
+      "telephone": "+447477963492",
+      "email": "info@okwambi.ao",
       "priceRange": "30000-45000 Kz",
+      "currenciesAccepted": "AOA",
+      "paymentAccepted": "Cash, Card, Mobile Payment",
       "address": {
         "@type": "PostalAddress",
+        "streetAddress": "Mussulo Beach",
         "addressLocality": "Mussulo Peninsula",
         "addressRegion": "Luanda",
         "addressCountry": "AO"
       },
       "geo": {
         "@type": "GeoCoordinates",
-        "latitude": "-8.9167",
-        "longitude": "13.1833"
+        "latitude": "-8.8383",
+        "longitude": "13.2894"
       },
       "openingHoursSpecification": {
         "@type": "OpeningHoursSpecification",
@@ -75,47 +83,98 @@
       },
       "aggregateRating": {
         "@type": "AggregateRating",
-        "ratingValue": "5.0",
+        "ratingValue": "4.9",
         "reviewCount": "127",
         "bestRating": "5",
         "worstRating": "1"
       },
       "hasOfferCatalog": {
         "@type": "OfferCatalog",
-        "name": "Vehicle Rentals",
+        "name": "Vehicle Rentals & Adventure Packages",
         "itemListElement": [
           {
             "@type": "Offer",
             "itemOffered": {
               "@type": "Product",
               "name": "Jet Ski Rental",
-              "description": "Premium Yamaha Jet Ski rental with full safety equipment and GPS tracking"
+              "description": "Premium Yamaha Jet Ski rental with full safety equipment, life jackets, GPS tracking, and professional instruction",
+              "category": "Water Sports Equipment"
             },
             "price": "30000",
-            "priceCurrency": "AOA"
+            "priceCurrency": "AOA",
+            "priceValidUntil": "2025-12-31",
+            "availability": "https://schema.org/InStock"
           },
           {
             "@type": "Offer",
             "itemOffered": {
               "@type": "Product",
               "name": "ATV Rental",
-              "description": "All-terrain vehicle rental with protective gear and guided assistance"
+              "description": "All-terrain quad bike rental with protective gear, helmets, and guided assistance for beach and trail adventures",
+              "category": "Recreational Vehicles"
             },
             "price": "35000",
-            "priceCurrency": "AOA"
+            "priceCurrency": "AOA",
+            "priceValidUntil": "2025-12-31",
+            "availability": "https://schema.org/InStock"
           },
           {
             "@type": "Offer",
             "itemOffered": {
               "@type": "Product",
               "name": "UTV Rental",
-              "description": "Utility terrain vehicle rental for group adventures with full safety equipment"
+              "description": "Side-by-side utility terrain vehicle rental for group adventures with full safety equipment and GPS navigation",
+              "category": "Recreational Vehicles"
             },
             "price": "45000",
-            "priceCurrency": "AOA"
+            "priceCurrency": "AOA",
+            "priceValidUntil": "2025-12-31",
+            "availability": "https://schema.org/InStock"
           }
         ]
-      }
+      },
+      "areaServed": {
+        "@type": "GeoCircle",
+        "geoMidpoint": {
+          "@type": "GeoCoordinates",
+          "latitude": "-8.8383",
+          "longitude": "13.2894"
+        },
+        "geoRadius": "50000"
+      },
+      "knowsAbout": [
+        "Water Sports",
+        "ATV Tours",
+        "Beach Adventures",
+        "Off-Road Experiences",
+        "Safety Training",
+        "Equipment Rental"
+      ],
+      "amenityFeature": [
+        {
+          "@type": "LocationFeatureSpecification",
+          "name": "Professional Safety Equipment",
+          "value": true
+        },
+        {
+          "@type": "LocationFeatureSpecification",
+          "name": "GPS Tracking",
+          "value": true
+        },
+        {
+          "@type": "LocationFeatureSpecification",
+          "name": "Expert Guidance",
+          "value": true
+        },
+        {
+          "@type": "LocationFeatureSpecification",
+          "name": "Beach Access",
+          "value": true
+        }
+      ],
+      "sameAs": [
+        "https://okwambirentals.lovable.app"
+      ]
     }
     </script>
   </head>
