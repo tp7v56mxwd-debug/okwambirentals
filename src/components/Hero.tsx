@@ -50,16 +50,10 @@ const Hero = () => {
           <div className="absolute -inset-8 bg-gradient-to-r from-accent/20 via-primary/20 to-accent/20 blur-3xl opacity-60 animate-gradient -z-10" />
           
           <h1 className="font-display text-5xl md:text-6xl lg:text-7xl font-semibold mb-6 leading-[1.1] tracking-tight">
-            <span 
-              className="block text-transparent bg-clip-text bg-gradient-to-r from-foreground via-primary to-foreground animate-fade-in-up animate-gradient" 
-              style={{ animationDelay: '0.2s', animationFillMode: 'forwards', opacity: 0 }}
-            >
+            <span className="block text-foreground">
               Experience
             </span>
-            <span 
-              className="block text-transparent bg-clip-text bg-gradient-to-r from-accent via-orange-400 to-accent animate-fade-in-up animate-gradient animate-glow" 
-              style={{ animationDelay: '0.5s', animationFillMode: 'forwards', opacity: 0 }}
-            >
+            <span className="block text-accent">
               Mussulo
             </span>
           </h1>
