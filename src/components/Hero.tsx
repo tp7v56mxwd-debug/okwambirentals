@@ -39,7 +39,7 @@ const Hero = () => {
             <span 
               className="block animate-gradient-wave"
               style={{ 
-                backgroundImage: 'linear-gradient(90deg, hsl(var(--foreground)), hsl(var(--accent)), hsl(var(--foreground)), hsl(var(--accent)))'
+                backgroundImage: 'linear-gradient(135deg, hsl(var(--foreground)) 0%, hsl(var(--foreground)) 40%, hsl(var(--accent)) 50%, hsl(var(--foreground)) 60%, hsl(var(--foreground)) 100%)'
               }}
             >
               Experience
@@ -47,7 +47,7 @@ const Hero = () => {
             <span 
               className="block animate-gradient-wave"
               style={{ 
-                backgroundImage: 'linear-gradient(90deg, hsl(var(--accent)), hsl(27 96% 75%), hsl(var(--accent)), hsl(27 96% 75%))'
+                backgroundImage: 'linear-gradient(135deg, hsl(222 47% 11%) 0%, hsl(222 47% 11%) 40%, hsl(var(--accent)) 50%, hsl(222 47% 11%) 60%, hsl(222 47% 11%) 100%)'
               }}
             >
               Mussulo
