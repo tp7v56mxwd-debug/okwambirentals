@@ -119,7 +119,7 @@ const Properties = () => {
               >
                 
                 {vehiclePhotos[vehicle.id] && vehiclePhotos[vehicle.id].length > 0 ? (
-                  <div className="relative aspect-[4/3] overflow-hidden bg-muted">
+                  <div className="relative aspect-[4/3] overflow-hidden bg-background">
                     <Carousel className="w-full h-full">
                       <CarouselContent>
                         {vehiclePhotos[vehicle.id].map((photoUrl, photoIndex) => (
@@ -139,7 +139,7 @@ const Properties = () => {
                     </Carousel>
                   </div>
                 ) : (
-                  <div className="relative aspect-[4/3] bg-muted flex items-center justify-center">
+                  <div className="relative aspect-[4/3] bg-background flex items-center justify-center">
                     <div className="text-center p-6 relative z-10">
                       <Shield className="h-10 w-10 text-muted-foreground/30 mx-auto mb-2" />
                       <p className="text-sm text-muted-foreground">{vehicle.name}</p>
@@ -148,7 +148,7 @@ const Properties = () => {
                   </div>
                 )}
                 
-                <div className="p-6 relative z-10 bg-gradient-to-b from-background/95 to-background">
+                <div className="p-6 relative z-10 bg-background">
                   <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-primary via-accent to-primary" />
                   
                   <div className="text-xs font-bold tracking-widest uppercase text-accent mb-3 pt-3 flex items-center gap-2">
@@ -172,7 +172,7 @@ const Properties = () => {
                     </div>
                   </div>
 
-                  <div className="space-y-1.5 mb-6 p-4 rounded-lg bg-gradient-to-br from-primary/5 to-accent/5 border border-primary/10">
+                  <div className="space-y-1.5 mb-6 p-4 rounded-lg bg-card border border-border">
                     {vehicle.features.slice(0, 3).map((feature, idx) => (
                       <div key={idx} className="flex items-start gap-2">
                         <div className="w-1 h-1 rounded-full bg-primary flex-shrink-0 mt-1.5" />
