@@ -106,13 +106,13 @@ const Footer = () => {
         </div>
 
         <div className="pt-8 border-t border-primary-foreground/20">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-3">
-            <p className="text-xs text-primary-foreground/60">
+          <div className="flex flex-col items-center justify-center gap-3 md:flex-row md:justify-between">
+            <p className="text-xs text-primary-foreground/60 md:order-1">
               &copy; {new Date().getFullYear()} Okwambi Rentals. {t('footer.rights')}
             </p>
             <button
               onClick={scrollToTop}
-              className="text-xs text-primary-foreground/70 hover:text-primary-foreground transition-colors inline-flex items-center gap-1 group"
+              className="text-xs text-primary-foreground/70 hover:text-primary-foreground transition-colors inline-flex items-center gap-1 group md:order-2"
               aria-label="Back to top"
             >
               {t('footer.backToTop', 'Back to top')}
