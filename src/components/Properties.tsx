@@ -114,7 +114,7 @@ const Properties = () => {
             {fleet.map((vehicle, index) => (
               <article 
                 key={index}
-                className="group relative overflow-hidden rounded-xl border-4 border-primary shadow-[0_0_30px_rgba(0,150,255,0.3)] hover:shadow-[0_0_50px_rgba(0,150,255,0.5)] transition-all duration-300 animate-fade-in bg-card"
+                className="group relative overflow-hidden rounded-xl border-4 border-primary shadow-lg hover:shadow-2xl transition-all duration-300 animate-fade-in bg-card"
                 style={{ animationDelay: `${index * 100}ms` }}
               >
                 
