@@ -136,8 +136,26 @@ All colors MUST be HSL.
     }
   }
   
+  @keyframes glow-pulse {
+    0%, 100% {
+      filter: drop-shadow(0 0 20px rgba(251, 146, 60, 0.4));
+    }
+    50% {
+      filter: drop-shadow(0 0 40px rgba(251, 146, 60, 0.7));
+    }
+  }
+  
   .animate-fade-in-up {
     animation: fadeInUp 0.8s ease-out forwards;
+  }
+  
+  .animate-gradient {
+    background-size: 200% auto;
+    animation: gradient-shift 4s ease infinite;
+  }
+  
+  .animate-glow {
+    animation: glow-pulse 2s ease-in-out infinite;
   }
 }
 
