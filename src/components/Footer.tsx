@@ -47,7 +47,7 @@ const Footer = () => {
                 <Facebook className="w-4 h-4" />
               </a>
               <a
-                href="https://www.instagram.com/okwambirentals/"
+                href="https://instagram.com/okwambirentals/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-9 h-9 backdrop-blur-sm bg-primary-foreground/10 hover:bg-accent hover:text-accent-foreground flex items-center justify-center transition-all border border-primary-foreground/10"
