@@ -105,20 +105,22 @@ const Footer = () => {
           </div>
         </div>
 
+        {/* Back to top button - centered with spacing */}
+        <div className="flex justify-center mt-12 mb-8">
+          <button
+            onClick={scrollToTop}
+            className="text-sm text-primary-foreground/70 hover:text-primary-foreground transition-colors inline-flex items-center gap-2 group"
+            aria-label="Back to top"
+          >
+            {t('footer.backToTop', 'Back to top')}
+            <ArrowUp className="w-4 h-4 group-hover:-translate-y-0.5 transition-transform" />
+          </button>
+        </div>
+
         <div className="pt-8 border-t border-primary-foreground/20">
-          <div className="flex flex-col items-center justify-center gap-3 text-center lg:flex-row lg:justify-between lg:text-left">
-            <p className="text-xs text-primary-foreground/60 order-2 lg:order-1">
-              &copy; {new Date().getFullYear()} Okwambi Rentals. {t('footer.rights')}
-            </p>
-            <button
-              onClick={scrollToTop}
-              className="text-xs text-primary-foreground/70 hover:text-primary-foreground transition-colors inline-flex items-center gap-1 group order-1 lg:order-2"
-              aria-label="Back to top"
-            >
-              {t('footer.backToTop', 'Back to top')}
-              <ArrowUp className="w-3 h-3 group-hover:-translate-y-0.5 transition-transform" />
-            </button>
-          </div>
+          <p className="text-xs text-primary-foreground/60 text-center">
+            &copy; {new Date().getFullYear()} Okwambi Rentals. {t('footer.rights')}
+          </p>
         </div>
       </div>
     </footer>
