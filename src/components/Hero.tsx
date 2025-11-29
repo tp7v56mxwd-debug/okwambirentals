@@ -36,10 +36,20 @@ const Hero = () => {
           <div className="absolute -inset-8 bg-gradient-to-r from-accent/20 via-primary/20 to-accent/20 blur-3xl opacity-60 animate-[pulse_3s_ease-in-out_infinite] -z-10" />
           
           <h1 className="font-display text-5xl md:text-6xl lg:text-7xl font-semibold mb-6 leading-[1.1] tracking-tight">
-            <span className="block animate-color-pulse-dark">
+            <span 
+              className="block animate-gradient-wave"
+              style={{ 
+                backgroundImage: 'linear-gradient(90deg, hsl(var(--foreground)), hsl(var(--accent)), hsl(var(--foreground)), hsl(var(--accent)))'
+              }}
+            >
               Experience
             </span>
-            <span className="block animate-color-pulse-orange">
+            <span 
+              className="block animate-gradient-wave"
+              style={{ 
+                backgroundImage: 'linear-gradient(90deg, hsl(var(--accent)), hsl(27 96% 75%), hsl(var(--accent)), hsl(27 96% 75%))'
+              }}
+            >
               Mussulo
             </span>
           </h1>
