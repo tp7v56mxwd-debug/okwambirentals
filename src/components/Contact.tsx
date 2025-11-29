@@ -64,7 +64,7 @@ const Contact = () => {
   return (
     <section id="contact" className="section-padding bg-background border-t border-border">
       <div ref={ref} className={`container mx-auto px-6 lg:px-12 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-        <div className="mb-12 max-w-3xl">
+        <div className="mb-12 max-w-3xl mx-auto text-center">
           <h2 className="font-display text-3xl md:text-4xl font-semibold text-foreground mb-3">
             {t('contact.title1')}
           </h2>
@@ -73,7 +73,7 @@ const Contact = () => {
           </p>
         </div>
 
-        <div className="max-w-2xl">
+        <div className="max-w-2xl mx-auto">
           <div className="border border-border bg-background p-8">
             <form onSubmit={handleSubmit} className="space-y-5">
               <div>
