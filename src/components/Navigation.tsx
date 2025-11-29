@@ -71,7 +71,6 @@ const Navigation = () => {
   const navLinks = [
     { id: 'hero', label: t('nav.home') },
     { id: 'fleet', label: t('nav.fleet') },
-    { id: 'testimonials', label: t('nav.testimonials') },
     { id: 'contact', label: t('nav.contact') },
   ];
 
