@@ -125,26 +125,8 @@ const Navigation = () => {
             </div>
           </button>
 
-          {/* Cart Icon - Aligned with Logo on Right */}
-          <div className="absolute right-6 lg:right-8 top-1/2 -translate-y-1/2 hidden lg:block">
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => navigate('/cart')}
-              className="relative"
-              aria-label="Shopping cart"
-            >
-              <ShoppingCart className="h-6 w-6" />
-              {totalItems > 0 && (
-                <span className="absolute -top-1 -right-1 bg-primary text-primary-foreground text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">
-                  {totalItems}
-                </span>
-              )}
-            </Button>
-          </div>
-
           {/* Desktop Menu */}
-          <div className="hidden lg:flex items-center gap-2 mr-20" role="menubar" aria-label="Desktop navigation menu">
+          <div className="hidden lg:flex items-center gap-1 ml-auto" role="menubar" aria-label="Desktop navigation menu">
             {navLinks.map((link) => (
               <button
                 key={link.id}
@@ -168,14 +150,27 @@ const Navigation = () => {
               </button>
             ))}
             <InfoDialogs />
-            <div className="ml-2 pl-2 border-l border-border/50 flex items-center gap-2">
+            <div className="ml-3 pl-3 border-l border-border/50 flex items-center gap-1.5">
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={() => navigate('/cart')}
+                className="relative h-9 w-9"
+                aria-label="Shopping cart"
+              >
+                <ShoppingCart className="h-5 w-5" />
+                {totalItems > 0 && (
+                  <span className="absolute -top-1 -right-1 bg-primary text-primary-foreground text-xs font-bold rounded-full h-4 w-4 flex items-center justify-center">
+                    {totalItems}
+                  </span>
+                )}
+              </Button>
               <LanguageSwitcher />
               {user ? (
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
-                    <Button variant="outline" size="sm" className="ml-2">
-                      <User className="h-4 w-4 mr-1" />
-                      Account
+                    <Button variant="ghost" size="icon" className="h-9 w-9">
+                      <User className="h-5 w-5" />
                     </Button>
                   </DropdownMenuTrigger>
                   <DropdownMenuContent align="end" className="w-56">
@@ -205,13 +200,12 @@ const Navigation = () => {
                 </DropdownMenu>
               ) : (
                 <Button
-                  variant="outline"
-                  size="sm"
+                  variant="ghost"
+                  size="icon"
                   onClick={() => navigate('/auth')}
-                  className="ml-2"
+                  className="h-9 w-9"
                 >
-                  <LogIn className="h-4 w-4 mr-1" />
-                  Login
+                  <LogIn className="h-5 w-5" />
                 </Button>
               )}
             </div>
