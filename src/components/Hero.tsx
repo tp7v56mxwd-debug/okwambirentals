@@ -28,6 +28,20 @@ const Hero = () => {
           className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-background/95 via-background/60 to-background/20" />
+        
+        {/* Floating particles */}
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="particle"></div>
+          <div className="particle"></div>
+          <div className="particle"></div>
+          <div className="particle"></div>
+          <div className="particle"></div>
+          <div className="particle"></div>
+          <div className="particle"></div>
+          <div className="particle"></div>
+          <div className="particle"></div>
+          <div className="particle"></div>
+        </div>
       </div>
       
       <div className="relative z-10 container mx-auto px-6 lg:px-12 py-20 pb-24 w-full">
