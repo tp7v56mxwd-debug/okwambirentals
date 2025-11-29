@@ -1,6 +1,7 @@
 import { Facebook, Instagram, Mail, MapPin, Phone, ArrowUp } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useTranslation } from 'react-i18next';
+import LanguageSwitcher from "./LanguageSwitcher";
 
 const Footer = () => {
   const { t } = useTranslation();
@@ -54,6 +55,10 @@ const Footer = () => {
               >
                 <Instagram className="w-4 h-4" />
               </a>
+            </div>
+            
+            <div className="mt-4">
+              <LanguageSwitcher />
             </div>
           </div>
 
