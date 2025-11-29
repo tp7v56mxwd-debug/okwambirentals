@@ -165,7 +165,6 @@ const Navigation = () => {
                   </span>
                 )}
               </Button>
-              <LanguageSwitcher />
               {user ? (
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
