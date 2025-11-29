@@ -28,20 +28,6 @@ const Hero = () => {
           className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-background/95 via-background/60 to-background/20" />
-        
-        {/* Floating particles */}
-        <div className="absolute inset-0 overflow-hidden">
-          <div className="particle"></div>
-          <div className="particle"></div>
-          <div className="particle"></div>
-          <div className="particle"></div>
-          <div className="particle"></div>
-          <div className="particle"></div>
-          <div className="particle"></div>
-          <div className="particle"></div>
-          <div className="particle"></div>
-          <div className="particle"></div>
-        </div>
       </div>
       
       <div className="relative z-10 container mx-auto px-6 lg:px-12 py-20 pb-24 w-full">
@@ -50,10 +36,10 @@ const Hero = () => {
           <div className="absolute -inset-8 bg-gradient-to-r from-accent/20 via-primary/20 to-accent/20 blur-3xl opacity-60 animate-gradient -z-10" />
           
           <h1 className="font-display text-5xl md:text-6xl lg:text-7xl font-semibold mb-6 leading-[1.1] tracking-tight">
-            <span className="block text-foreground">
+            <span className="block text-foreground animate-gradient" style={{ backgroundSize: '200%', background: 'linear-gradient(90deg, hsl(var(--foreground)), hsl(var(--primary)), hsl(var(--foreground)))', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
               Experience
             </span>
-            <span className="block text-accent">
+            <span className="block animate-gradient" style={{ backgroundSize: '200%', background: 'linear-gradient(90deg, hsl(var(--accent)), hsl(27 96% 75%), hsl(var(--accent)))', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
               Mussulo
             </span>
           </h1>
