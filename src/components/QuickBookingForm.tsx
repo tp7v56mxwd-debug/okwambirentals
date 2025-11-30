@@ -242,18 +242,19 @@ const QuickBookingForm = () => {
         {/* Availability Calendar - Shows after vehicle/package and date selected */}
         {((bookingType === "individual" && vehicle) || (bookingType === "package" && packageType)) && date && (
           <div className="space-y-2">
-            <Label>Available Time Slots</Label>
+            <Label>Available Time Slots (Click to Select)</Label>
             <AvailabilityCalendar 
               selectedDate={date}
               selectedTime={time}
               vehicleType={bookingType === "individual" ? vehicle : "ATV Premium"}
+              onTimeSelect={setTime}
             />
           </div>
         )}
 
-        {/* Time Selection */}
+        {/* Time Selection - Alternative method */}
         <div className="space-y-2">
-          <Label htmlFor="time">Select Time Slot</Label>
+          <Label htmlFor="time">Or Select Time Manually</Label>
           <Select 
             value={time} 
             onValueChange={setTime} 
