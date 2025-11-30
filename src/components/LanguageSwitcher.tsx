@@ -1,27 +1,55 @@
 import { useTranslation } from 'react-i18next';
-import { Globe } from 'lucide-react';
+import { Globe, Check } from 'lucide-react';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from './ui/dropdown-menu';
 import { Button } from './ui/button';
 
 const LanguageSwitcher = () => {
   const { i18n } = useTranslation();
 
-  const toggleLanguage = () => {
-    const newLang = i18n.language === 'pt' ? 'en' : 'pt';
-    i18n.changeLanguage(newLang);
-    localStorage.setItem('language', newLang);
+  const changeLanguage = (lang: string) => {
+    i18n.changeLanguage(lang);
+    localStorage.setItem('language', lang);
   };
 
+  const languages = [
+    { code: 'pt', label: 'Português', flag: '🇵🇹' },
+    { code: 'en', label: 'English', flag: '🇬🇧' },
+  ];
+
   return (
-    <Button
-      variant="ghost"
-      size="sm"
-      onClick={toggleLanguage}
-      className="gap-2 text-foreground hover:text-primary transition-colors"
-      aria-label="Switch language"
-    >
-      <Globe className="w-4 h-4" />
-      <span className="font-semibold">{i18n.language.toUpperCase()}</span>
-    </Button>
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <Button
+          variant="ghost"
+          size="sm"
+          className="gap-2 h-9 text-foreground hover:text-primary transition-colors"
+          aria-label="Change language"
+        >
+          <Globe className="w-4 h-4" />
+          <span className="font-semibold text-xs uppercase">{i18n.language}</span>
+        </Button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent align="end" className="w-40 bg-background">
+        {languages.map((lang) => (
+          <DropdownMenuItem
+            key={lang.code}
+            onClick={() => changeLanguage(lang.code)}
+            className="cursor-pointer"
+          >
+            <span className="mr-2">{lang.flag}</span>
+            <span className="flex-1">{lang.label}</span>
+            {i18n.language === lang.code && (
+              <Check className="w-4 h-4 text-primary" />
+            )}
+          </DropdownMenuItem>
+        ))}
+      </DropdownMenuContent>
+    </DropdownMenu>
   );
 };
 

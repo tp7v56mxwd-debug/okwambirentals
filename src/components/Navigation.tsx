@@ -147,6 +147,7 @@ const Navigation = () => {
             ))}
             <InfoDialogs />
             <div className="ml-3 pl-3 border-l border-border/50 flex items-center gap-1.5">
+              <LanguageSwitcher />
               <Button
                 variant="ghost"
                 size="icon"
