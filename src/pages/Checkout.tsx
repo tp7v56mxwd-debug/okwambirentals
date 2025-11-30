@@ -103,24 +103,6 @@ const Checkout = () => {
 
           if (bookingError) throw bookingError;
 
-          // Send confirmation email
-          try {
-            await supabase.functions.invoke('send-booking-confirmation', {
-              body: {
-                bookingId: booking.id,
-                customerName: data.customerName,
-                customerEmail: data.customerEmail,
-                vehicleType: item.vehicleName,
-                bookingDate: format(details.date!, 'yyyy-MM-dd'),
-                bookingTime: details.time!,
-                duration: item.duration,
-                totalPrice: (item.basePricePerHalfHour * (item.duration / 30)).toString(),
-              },
-            });
-          } catch (emailError) {
-            console.error('Email sending error:', emailError);
-          }
-
           // Notify admin
           try {
             await supabase.functions.invoke('notify-admin-booking', {
@@ -149,9 +131,37 @@ const Checkout = () => {
       const results = await Promise.all(bookingPromises);
       const allBookings = results.flat();
 
+      // Generate WhatsApp confirmation message
+      const phoneNumber = "447477963492";
+      const bookingsText = items.map((item, index) => {
+        const details = bookingDetails[item.id];
+        return `\n${index + 1}. ${item.vehicleName}\n   📅 ${format(details.date!, 'dd/MM/yyyy')} às ${details.time}\n   ⏱️ ${item.duration} minutos\n   💰 ${(item.basePricePerHalfHour * (item.duration / 30)).toLocaleString('pt-AO')} Kz`;
+      }).join('\n');
+
+      const message = `🎉 *Reserva Confirmada - Okwambi Rentals*\n\n` +
+        `Olá ${data.customerName}!\n\n` +
+        `Sua reserva foi realizada com sucesso:\n` +
+        `${bookingsText}\n\n` +
+        `💵 *Total: ${totalPrice.toLocaleString('pt-AO')} Kz*\n\n` +
+        `📞 Telefone: ${data.customerPhone}\n` +
+        `📧 Email: ${data.customerEmail}\n` +
+        (data.specialRequests ? `📝 Observações: ${data.specialRequests}\n\n` : '\n') +
+        `📍 Local: Praia do Mussulo, Luanda\n\n` +
+        `Entraremos em contato em breve para confirmar todos os detalhes.\n\n` +
+        `Obrigado por escolher Okwambi Rentals! 🏖️`;
+
+      const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+      
       toast.success(`Successfully created ${allBookings.length} booking(s)!`);
       clearCart();
-      navigate('/');
+      
+      // Open WhatsApp with confirmation message
+      window.open(whatsappUrl, '_blank');
+      
+      // Navigate after a short delay
+      setTimeout(() => {
+        navigate('/');
+      }, 1000);
     } catch (error: any) {
       console.error('Booking error:', error);
       toast.error(error.message || 'Failed to create bookings');
