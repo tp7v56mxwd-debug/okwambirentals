@@ -223,8 +223,21 @@ export const BookingDialog = ({ open, onOpenChange, vehicleName, vehiclePrice, b
       onOpenChange(false);
 
       // Open WhatsApp with confirmation message after a brief delay
+      console.log('[WHATSAPP] Opening WhatsApp URL:', whatsappUrl);
       setTimeout(() => {
-        window.open(whatsappUrl, '_blank');
+        const whatsappWindow = window.open(whatsappUrl, '_blank');
+        if (!whatsappWindow) {
+          console.error('[WHATSAPP] Pop-up was blocked by browser');
+          toast({
+            title: "⚠️ Pop-up Bloqueado",
+            description: "Por favor, permita pop-ups e clique no botão abaixo para abrir o WhatsApp.",
+            duration: 10000,
+          });
+          // Fallback: try to open in same window
+          window.location.href = whatsappUrl;
+        } else {
+          console.log('[WHATSAPP] WhatsApp opened successfully');
+        }
       }, 500);
 
       // Redirect to confirmation page
