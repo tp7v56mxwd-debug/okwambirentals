@@ -112,6 +112,12 @@ const DailyPackages = () => {
                     variant={pkg.popular ? "default" : "outline"}
                     size="sm"
                     className="w-full"
+                    onClick={() => {
+                      const element = document.getElementById('quick-booking');
+                      if (element) {
+                        element.scrollIntoView({ behavior: 'smooth' });
+                      }
+                    }}
                   >
                     {t('packages.bookPackage')}
                   </Button>
@@ -123,7 +129,16 @@ const DailyPackages = () => {
 
         <div className="mt-12 max-w-3xl">
           <p className="text-sm text-muted-foreground mb-3">{t('packages.customNote')}</p>
-          <Button variant="outline" size="sm">
+          <Button 
+            variant="outline" 
+            size="sm"
+            onClick={() => {
+              const element = document.getElementById('quick-booking');
+              if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+              }
+            }}
+          >
             {t('packages.contactUs')}
           </Button>
         </div>
