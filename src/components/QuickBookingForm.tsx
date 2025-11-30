@@ -24,7 +24,9 @@ const QuickBookingForm = () => {
 
     const message = `Hello Okwambi Rentals, I want to reserve:\n• Vehicle: ${vehicleText}\n• Pick-up date: ${pickupText}\n• Return date: ${returnText}\n• Location: ${locationText}\n• My name: ${nameText}`;
     
-    const whatsappUrl = `https://wa.me/447477963492?text=${encodeURIComponent(message)}`;
+    const whatsappUrl = `https://wa.me/244942462828?text=${encodeURIComponent(message)}`;
+    console.log('[QUICK BOOKING] Opening WhatsApp to: +244 942 462 828');
+    console.log('[QUICK BOOKING] Message:', message);
     window.open(whatsappUrl, '_blank');
   };
 
