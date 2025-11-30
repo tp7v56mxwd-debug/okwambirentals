@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -7,6 +8,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { MessageCircle } from "lucide-react";
 
 const QuickBookingForm = () => {
+  const { t } = useTranslation();
   const [vehicle, setVehicle] = useState("");
   const [pickup, setPickup] = useState("");
   const [returnDate, setReturnDate] = useState("");
@@ -29,25 +31,25 @@ const QuickBookingForm = () => {
   return (
     <Card className="w-full max-w-2xl mx-auto">
       <CardHeader>
-        <CardTitle>Quick Booking</CardTitle>
+        <CardTitle>{t('quickBooking.title')}</CardTitle>
       </CardHeader>
       <CardContent className="space-y-4">
         <div className="space-y-2">
-          <Label htmlFor="vehicle">Vehicle</Label>
+          <Label htmlFor="vehicle">{t('quickBooking.vehicleLabel')}</Label>
           <Select value={vehicle} onValueChange={setVehicle}>
             <SelectTrigger id="vehicle">
-              <SelectValue placeholder="Select a vehicle" />
+              <SelectValue placeholder={t('quickBooking.vehiclePlaceholder')} />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="ATV">ATV</SelectItem>
-              <SelectItem value="Jet Ski">Jet Ski</SelectItem>
-              <SelectItem value="UTV">UTV</SelectItem>
+              <SelectItem value="ATV">{t('quickBooking.vehicles.atv')}</SelectItem>
+              <SelectItem value="Jet Ski">{t('quickBooking.vehicles.jetski')}</SelectItem>
+              <SelectItem value="UTV">{t('quickBooking.vehicles.utv')}</SelectItem>
             </SelectContent>
           </Select>
         </div>
 
         <div className="space-y-2">
-          <Label htmlFor="pickup">Pick-up Date</Label>
+          <Label htmlFor="pickup">{t('quickBooking.pickupLabel')}</Label>
           <Input 
             id="pickup" 
             type="date" 
@@ -57,7 +59,7 @@ const QuickBookingForm = () => {
         </div>
 
         <div className="space-y-2">
-          <Label htmlFor="return">Return Date</Label>
+          <Label htmlFor="return">{t('quickBooking.returnLabel')}</Label>
           <Input 
             id="return" 
             type="date" 
@@ -67,20 +69,20 @@ const QuickBookingForm = () => {
         </div>
 
         <div className="space-y-2">
-          <Label htmlFor="location">Location</Label>
+          <Label htmlFor="location">{t('quickBooking.locationLabel')}</Label>
           <Input 
             id="location" 
-            placeholder="Pick-up location"
+            placeholder={t('quickBooking.locationPlaceholder')}
             value={location}
             onChange={(e) => setLocation(e.target.value)}
           />
         </div>
 
         <div className="space-y-2">
-          <Label htmlFor="name">Your Name</Label>
+          <Label htmlFor="name">{t('quickBooking.nameLabel')}</Label>
           <Input 
             id="name" 
-            placeholder="Full Name"
+            placeholder={t('quickBooking.namePlaceholder')}
             value={name}
             onChange={(e) => setName(e.target.value)}
           />
@@ -91,7 +93,7 @@ const QuickBookingForm = () => {
           className="w-full bg-[#25D366] hover:bg-[#20BA5A] text-white"
         >
           <MessageCircle className="mr-2 h-5 w-5" />
-          Reserve on WhatsApp
+          {t('quickBooking.whatsappButton')}
         </Button>
       </CardContent>
     </Card>
