@@ -23,7 +23,6 @@ import { BookingInfoPanel } from "@/components/booking/BookingInfoPanel";
 
 const bookingSchema = z.object({
   customer_name: z.string().trim().min(2, "Name must be at least 2 characters").max(100, "Name is too long"),
-  customer_email: z.string().trim().email("Invalid email address").max(255, "Email is too long"),
   customer_phone: z.string().trim().min(9, "Phone number is too short").max(20, "Phone number is too long"),
   booking_date: z.date({ required_error: "Please select a date" }),
   booking_time: z.string().min(1, "Please select a time"),
@@ -108,7 +107,6 @@ export const BookingDialog = ({ open, onOpenChange, vehicleName, vehiclePrice, b
       const formData = new FormData(e.currentTarget);
       const data = {
         customer_name: formData.get("customer_name") as string,
-        customer_email: formData.get("customer_email") as string,
         customer_phone: formData.get("customer_phone") as string,
         booking_date: date,
         booking_time: formData.get("booking_time") as string,
@@ -132,7 +130,7 @@ export const BookingDialog = ({ open, onOpenChange, vehicleName, vehiclePrice, b
       console.log('[BOOKING_DB_INSERT] Attempting database insert');
       const { data: bookingData, error } = await supabase.from("bookings").insert({
         customer_name: validated.customer_name,
-        customer_email: validated.customer_email,
+        customer_email: null,
         customer_phone: validated.customer_phone,
         vehicle_type: validated.vehicle_type,
         booking_date: format(validated.booking_date, "yyyy-MM-dd"),
@@ -163,7 +161,6 @@ export const BookingDialog = ({ open, onOpenChange, vehicleName, vehiclePrice, b
         const notifyResponse = await supabase.functions.invoke("notify-admin-booking", {
           body: {
             customerName: validated.customer_name,
-            customerEmail: validated.customer_email,
             customerPhone: validated.customer_phone,
             vehicleType: validated.vehicle_type,
             bookingDate: format(validated.booking_date, "MMM dd, yyyy"),
@@ -208,7 +205,6 @@ export const BookingDialog = ({ open, onOpenChange, vehicleName, vehiclePrice, b
         `⏱️ Duração: ${validated.duration} minutos\n` +
         `💰 Total: ${totalPrice} Kz\n\n` +
         `📞 Telefone: ${validated.customer_phone}\n` +
-        `📧 Email: ${validated.customer_email}\n` +
         (validated.special_requests ? `📝 Observações: ${validated.special_requests}\n\n` : '\n') +
         `📍 Local: Praia do Mussulo, Luanda\n\n` +
         `Entraremos em contato em breve para confirmar todos os detalhes.\n\n` +
@@ -313,18 +309,6 @@ export const BookingDialog = ({ open, onOpenChange, vehicleName, vehiclePrice, b
                 placeholder="John Doe"
                 required
                 maxLength={100}
-              />
-            </div>
-
-            <div>
-              <Label htmlFor="customer_email">Email</Label>
-              <Input
-                id="customer_email"
-                name="customer_email"
-                type="email"
-                placeholder="john@example.com"
-                required
-                maxLength={255}
               />
             </div>
 
