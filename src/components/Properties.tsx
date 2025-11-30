@@ -1,9 +1,6 @@
 import { useState, useEffect } from "react";
-import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { BookingDialog } from "./BookingDialog";
-import { Users, Gauge, Shield, ChevronDown, ShoppingCart, Calendar } from "lucide-react";
+import { Users, Gauge, Shield, ShoppingCart, MessageCircle } from "lucide-react";
 import { useTranslation } from 'react-i18next';
 import { useIntersectionObserver } from '@/hooks/useIntersectionObserver';
 import { supabase } from "@/integrations/supabase/client";
@@ -15,9 +12,13 @@ const Properties = () => {
   const { t } = useTranslation();
   const { ref, isVisible } = useIntersectionObserver();
   const { addToCart } = useCart();
-  const [bookingOpen, setBookingOpen] = useState(false);
-  const [selectedVehicle, setSelectedVehicle] = useState<any>(null);
   const [vehiclePhotos, setVehiclePhotos] = useState<Record<string, string[]>>({});
+
+  const openWhatsAppBooking = (vehicle: any) => {
+    const message = `Hello Okwambi Rentals! I want to book:\n\n• Vehicle: ${vehicle.name}\n• Price: ${vehicle.price} per 30 minutes\n• Location: Mussulo Peninsula, Luanda\n\nPlease send me payment instructions.`;
+    const whatsappUrl = `https://wa.me/447477963492?text=${encodeURIComponent(message)}`;
+    window.open(whatsappUrl, '_blank');
+  };
 
   useEffect(() => {
     fetchVehiclePhotos();
@@ -208,14 +209,11 @@ const Properties = () => {
                         Add to Cart
                       </Button>
                       <Button
-                        onClick={() => {
-                          setSelectedVehicle(vehicle);
-                          setBookingOpen(true);
-                        }}
+                        onClick={() => openWhatsAppBooking(vehicle)}
                         size="sm"
-                        className="flex-1"
+                        className="flex-1 bg-[#25D366] hover:bg-[#20BA5A]"
                       >
-                        <Calendar className="h-4 w-4 mr-1" />
+                        <MessageCircle className="h-4 w-4 mr-1" />
                         {t('fleet.bookNow')}
                       </Button>
                     </div>
@@ -226,14 +224,6 @@ const Properties = () => {
           </div>
         </div>
       </section>
-
-      <BookingDialog
-        open={bookingOpen}
-        onOpenChange={setBookingOpen}
-        vehicleName={selectedVehicle?.name || ""}
-        vehiclePrice={selectedVehicle?.price || ""}
-        basePricePerHalfHour={selectedVehicle?.basePricePerHalfHour || 0}
-      />
     </>
   );
 };
