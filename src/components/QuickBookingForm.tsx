@@ -105,9 +105,9 @@ const QuickBookingForm = () => {
               <SelectValue placeholder={t('quickBooking.vehiclePlaceholder')} />
             </SelectTrigger>
             <SelectContent className="bg-background z-50">
-              <SelectItem value="ATV Premium">{t('quickBooking.vehicles.atv')} - 30.000 Kz/30min</SelectItem>
-              <SelectItem value="Jet Ski Premium">{t('quickBooking.vehicles.jetski')} - 35.000 Kz/30min</SelectItem>
-              <SelectItem value="UTV Premium">{t('quickBooking.vehicles.utv')} - 45.000 Kz/30min</SelectItem>
+              <SelectItem value="ATV Premium">ATV</SelectItem>
+              <SelectItem value="Jet Ski Premium">Jet Ski</SelectItem>
+              <SelectItem value="UTV Premium">UTV</SelectItem>
             </SelectContent>
           </Select>
         </div>
