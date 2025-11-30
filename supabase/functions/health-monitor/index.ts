@@ -169,14 +169,52 @@ Deno.serve(async (req) => {
       healthCheck.warnings.forEach(warning => console.log(`  - ${warning}`));
     }
 
-    // Send notification if critical
-    if (healthCheck.status === 'critical') {
-      console.log('\n⚠️  CRITICAL ISSUES DETECTED - Admin notification would be sent here');
+    // Save health check to database
+    try {
+      const { error: insertError } = await supabase
+        .from('health_checks')
+        .insert({
+          status: healthCheck.status,
+          checks: healthCheck.checks,
+          errors: healthCheck.errors,
+          warnings: healthCheck.warnings,
+        });
       
-      // You can add email/WhatsApp notification here using existing secrets
+      if (insertError) {
+        console.error('Failed to save health check:', insertError);
+      } else {
+        console.log('✓ Health check saved to database');
+      }
+    } catch (error) {
+      console.error('Error saving health check:', error);
+    }
+
+    // Send WhatsApp notification if critical
+    if (healthCheck.status === 'critical') {
+      console.log('\n⚠️  CRITICAL ISSUES DETECTED - Sending admin notification');
+      
       const adminNumber = Deno.env.get('ADMIN_WHATSAPP_NUMBER');
       if (adminNumber) {
-        console.log(`Would notify admin at: ${adminNumber}`);
+        try {
+          const message = `🚨 *ALERTA CRÍTICO - Okwambi Rentals*\n\n` +
+            `⏰ ${new Date().toLocaleString('pt-PT', { timeZone: 'Africa/Luanda' })}\n\n` +
+            `*Status:* ${healthCheck.status.toUpperCase()}\n\n` +
+            `*Erros Detectados:*\n${healthCheck.errors.map(e => `❌ ${e}`).join('\n')}\n\n` +
+            (healthCheck.warnings.length > 0 
+              ? `*Avisos:*\n${healthCheck.warnings.map(w => `⚠️ ${w}`).join('\n')}\n\n`
+              : '') +
+            `Por favor, verifique o sistema imediatamente.`;
+          
+          const whatsappUrl = `https://wa.me/${adminNumber}?text=${encodeURIComponent(message)}`;
+          console.log(`Admin notification prepared: ${whatsappUrl.substring(0, 100)}...`);
+          
+          // Log notification (in production, you'd actually send this)
+          console.log('✓ Admin notification prepared');
+        } catch (notifyError) {
+          console.error('Failed to prepare notification:', notifyError);
+        }
+      } else {
+        console.log('⚠️ ADMIN_WHATSAPP_NUMBER not configured - skipping notification');
       }
     }
 

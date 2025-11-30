@@ -83,6 +83,33 @@ export type Database = {
         }
         Relationships: []
       }
+      health_checks: {
+        Row: {
+          checks: Json
+          created_at: string
+          errors: string[] | null
+          id: string
+          status: string
+          warnings: string[] | null
+        }
+        Insert: {
+          checks?: Json
+          created_at?: string
+          errors?: string[] | null
+          id?: string
+          status: string
+          warnings?: string[] | null
+        }
+        Update: {
+          checks?: Json
+          created_at?: string
+          errors?: string[] | null
+          id?: string
+          status?: string
+          warnings?: string[] | null
+        }
+        Relationships: []
+      }
       payments: {
         Row: {
           amount: string

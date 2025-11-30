@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ErrorBoundary from "@/components/ErrorBoundary";
 import { AuthProvider } from "@/hooks/useAuth";
+import HealthMonitor from "./pages/HealthMonitor";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import Terms from "./pages/Terms";
@@ -43,6 +44,7 @@ const App = () => (
               <Route path="/safety" element={<SafetyPage />} />
               <Route path="/auth" element={<Auth />} />
               <Route path="/admin" element={<Admin />} />
+              <Route path="/admin/health" element={<HealthMonitor />} />
               <Route path="/admin/reviews" element={<AdminReviews />} />
               <Route path="/my-bookings" element={<CustomerDashboard />} />
               <Route path="/vehicle-photos" element={<VehiclePhotos />} />
