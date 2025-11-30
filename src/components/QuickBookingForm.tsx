@@ -15,7 +15,9 @@ import { cn } from "@/lib/utils";
 
 const QuickBookingForm = () => {
   const { t } = useTranslation();
+  const [bookingType, setBookingType] = useState<"individual" | "package">("individual");
   const [vehicle, setVehicle] = useState("");
+  const [packageType, setPackageType] = useState("");
   const [date, setDate] = useState<Date>();
   const [time, setTime] = useState("");
   const [duration, setDuration] = useState<number>(30);
@@ -28,6 +30,31 @@ const QuickBookingForm = () => {
     "Jet Ski Premium": 35000,
     "UTV Premium": 45000
   };
+
+  // Package options
+  const packageOptions = [
+    { 
+      id: 'basic', 
+      name: t('packages.basic.name'),
+      price: 150000, 
+      duration: 210, // 3.5 hours in minutes
+      durationLabel: "3.5 horas"
+    },
+    { 
+      id: 'premium', 
+      name: t('packages.premium.name'),
+      price: 250000, 
+      duration: 360, // 6 hours in minutes
+      durationLabel: "6 horas"
+    },
+    { 
+      id: 'ultimate', 
+      name: t('packages.ultimate.name'),
+      price: 400000, 
+      duration: 600, // 10 hours in minutes
+      durationLabel: "10 horas"
+    }
+  ];
 
   // Time slots (9:00 AM - 5:30 PM)
   const timeSlots = [
@@ -49,19 +76,36 @@ const QuickBookingForm = () => {
 
   // Calculate total price
   const priceCalculation = useMemo(() => {
-    if (!vehicle) return null;
+    if (bookingType === "package") {
+      if (!packageType) return null;
+      
+      const selectedPackage = packageOptions.find(p => p.id === packageType);
+      if (!selectedPackage) return null;
 
-    const basePrice = vehiclePrices[vehicle] || 0;
-    const multiplier = durationOptions.find(d => d.value === duration)?.multiplier || 1;
-    const totalPrice = basePrice * multiplier;
+      return {
+        basePrice: selectedPackage.price,
+        duration: selectedPackage.duration,
+        durationLabel: selectedPackage.durationLabel,
+        totalPrice: selectedPackage.price,
+        formattedTotal: selectedPackage.price.toLocaleString('pt-AO'),
+        isPackage: true
+      };
+    } else {
+      if (!vehicle) return null;
 
-    return {
-      basePrice,
-      duration,
-      totalPrice,
-      formattedTotal: totalPrice.toLocaleString('pt-AO')
-    };
-  }, [vehicle, duration]);
+      const basePrice = vehiclePrices[vehicle] || 0;
+      const multiplier = durationOptions.find(d => d.value === duration)?.multiplier || 1;
+      const totalPrice = basePrice * multiplier;
+
+      return {
+        basePrice,
+        duration,
+        totalPrice,
+        formattedTotal: totalPrice.toLocaleString('pt-AO'),
+        isPackage: false
+      };
+    }
+  }, [bookingType, vehicle, packageType, duration]);
 
   const handleWhatsAppBooking = () => {
     // Sanitize and validate inputs
@@ -72,22 +116,34 @@ const QuickBookingForm = () => {
       return; // Prevented by button disabled state, but double-check
     }
 
-    const vehicleText = vehicle.replace(" Premium", "");
     const dateText = date ? format(date, "dd/MM/yyyy") : "";
     const timeText = time;
-    const durationText = durationOptions.find(d => d.value === duration)?.label || `${duration} minutes`;
     const priceText = priceCalculation 
       ? `${priceCalculation.formattedTotal} Kz`
       : '';
 
-    const message = `🎉 *Booking Request - Okwambi Rentals*\n\n` +
-      `*Vehicle Details:*\n` +
-      `• Vehicle: ${vehicleText}\n` +
-      `• Date: ${dateText}\n` +
-      `• Time: ${timeText}\n` +
-      `• Duration: ${durationText}\n` +
-      `• Estimated Total: ${priceText}\n\n` +
-      `*Customer Details:*\n` +
+    let message = `🎉 *Booking Request - Okwambi Rentals*\n\n`;
+    
+    if (bookingType === "package") {
+      const selectedPackage = packageOptions.find(p => p.id === packageType);
+      message += `*Package Details:*\n` +
+        `• Package: ${selectedPackage?.name}\n` +
+        `• Date: ${dateText}\n` +
+        `• Start Time: ${timeText}\n` +
+        `• Duration: ${selectedPackage?.durationLabel}\n` +
+        `• Total Price: ${priceText}\n\n`;
+    } else {
+      const vehicleText = vehicle.replace(" Premium", "");
+      const durationText = durationOptions.find(d => d.value === duration)?.label || `${duration} minutes`;
+      message += `*Vehicle Details:*\n` +
+        `• Vehicle: ${vehicleText}\n` +
+        `• Date: ${dateText}\n` +
+        `• Time: ${timeText}\n` +
+        `• Duration: ${durationText}\n` +
+        `• Estimated Total: ${priceText}\n\n`;
+    }
+
+    message += `*Customer Details:*\n` +
       `• Name: ${sanitizedName}\n` +
       `• Phone: ${sanitizedPhone}\n\n` +
       `📍 Location: Mussulo Peninsula, Luanda\n\n` +
@@ -103,20 +159,56 @@ const QuickBookingForm = () => {
         <CardTitle>{t('quickBooking.title')}</CardTitle>
       </CardHeader>
       <CardContent className="space-y-4">
-        {/* Vehicle Selection - Move to top */}
+        {/* Booking Type Selection */}
         <div className="space-y-2">
-          <Label htmlFor="vehicle">{t('quickBooking.vehicleLabel')}</Label>
-          <Select value={vehicle} onValueChange={setVehicle}>
-            <SelectTrigger id="vehicle">
-              <SelectValue placeholder={t('quickBooking.vehiclePlaceholder')} />
+          <Label htmlFor="bookingType">Tipo de Reserva</Label>
+          <Select value={bookingType} onValueChange={(val: "individual" | "package") => {
+            setBookingType(val);
+            setVehicle("");
+            setPackageType("");
+          }}>
+            <SelectTrigger id="bookingType">
+              <SelectValue />
             </SelectTrigger>
             <SelectContent className="bg-background z-50">
-              <SelectItem value="ATV Premium">ATV</SelectItem>
-              <SelectItem value="Jet Ski Premium">Jet Ski</SelectItem>
-              <SelectItem value="UTV Premium">UTV</SelectItem>
+              <SelectItem value="individual">Veículo Individual</SelectItem>
+              <SelectItem value="package">Pacote Diário</SelectItem>
             </SelectContent>
           </Select>
         </div>
+
+        {/* Vehicle or Package Selection */}
+        {bookingType === "individual" ? (
+          <div className="space-y-2">
+            <Label htmlFor="vehicle">{t('quickBooking.vehicleLabel')}</Label>
+            <Select value={vehicle} onValueChange={setVehicle}>
+              <SelectTrigger id="vehicle">
+                <SelectValue placeholder={t('quickBooking.vehiclePlaceholder')} />
+              </SelectTrigger>
+              <SelectContent className="bg-background z-50">
+                <SelectItem value="ATV Premium">ATV</SelectItem>
+                <SelectItem value="Jet Ski Premium">Jet Ski</SelectItem>
+                <SelectItem value="UTV Premium">UTV</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+        ) : (
+          <div className="space-y-2">
+            <Label htmlFor="package">Selecione o Pacote</Label>
+            <Select value={packageType} onValueChange={setPackageType}>
+              <SelectTrigger id="package">
+                <SelectValue placeholder="Escolha um pacote" />
+              </SelectTrigger>
+              <SelectContent className="bg-background z-50">
+                {packageOptions.map((pkg) => (
+                  <SelectItem key={pkg.id} value={pkg.id}>
+                    {pkg.name} - {pkg.durationLabel} - {pkg.price.toLocaleString('pt-AO')} Kz
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+        )}
 
         {/* Date Selection */}
         <div className="space-y-2">
@@ -147,14 +239,14 @@ const QuickBookingForm = () => {
           </Popover>
         </div>
 
-        {/* Availability Calendar - Shows after vehicle and date selected */}
-        {vehicle && date && (
+        {/* Availability Calendar - Shows after vehicle/package and date selected */}
+        {((bookingType === "individual" && vehicle) || (bookingType === "package" && packageType)) && date && (
           <div className="space-y-2">
             <Label>Available Time Slots</Label>
             <AvailabilityCalendar 
               selectedDate={date}
               selectedTime={time}
-              vehicleType={vehicle}
+              vehicleType={bookingType === "individual" ? vehicle : "ATV Premium"}
             />
           </div>
         )}
@@ -162,7 +254,11 @@ const QuickBookingForm = () => {
         {/* Time Selection */}
         <div className="space-y-2">
           <Label htmlFor="time">Select Time Slot</Label>
-          <Select value={time} onValueChange={setTime} disabled={!date || !vehicle}>
+          <Select 
+            value={time} 
+            onValueChange={setTime} 
+            disabled={!date || (bookingType === "individual" ? !vehicle : !packageType)}
+          >
             <SelectTrigger id="time">
               <SelectValue placeholder="Select time" />
             </SelectTrigger>
@@ -176,22 +272,24 @@ const QuickBookingForm = () => {
           </Select>
         </div>
 
-        {/* Duration Selection */}
-        <div className="space-y-2">
-          <Label htmlFor="duration">Duration</Label>
-          <Select value={duration.toString()} onValueChange={(val) => setDuration(Number(val))}>
-            <SelectTrigger id="duration">
-              <SelectValue />
-            </SelectTrigger>
-            <SelectContent className="bg-background z-50">
-              {durationOptions.map((option) => (
-                <SelectItem key={option.value} value={option.value.toString()}>
-                  {option.label}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-        </div>
+        {/* Duration Selection - Only for individual vehicles */}
+        {bookingType === "individual" && (
+          <div className="space-y-2">
+            <Label htmlFor="duration">Duration</Label>
+            <Select value={duration.toString()} onValueChange={(val) => setDuration(Number(val))}>
+              <SelectTrigger id="duration">
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent className="bg-background z-50">
+                {durationOptions.map((option) => (
+                  <SelectItem key={option.value} value={option.value.toString()}>
+                    {option.label}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+        )}
 
         {/* Price Calculator Display */}
         {priceCalculation && (
@@ -199,14 +297,29 @@ const QuickBookingForm = () => {
             <Calculator className="h-4 w-4 text-primary" />
             <AlertDescription>
               <div className="space-y-2 text-sm">
-                <div className="flex justify-between items-center">
-                  <span className="text-muted-foreground">Base Rate (30 min):</span>
-                  <span className="font-semibold">{priceCalculation.basePrice.toLocaleString('pt-AO')} Kz</span>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-muted-foreground">Duration:</span>
-                  <span className="font-semibold">{durationOptions.find(d => d.value === duration)?.label}</span>
-                </div>
+                {priceCalculation.isPackage ? (
+                  <>
+                    <div className="flex justify-between items-center">
+                      <span className="text-muted-foreground">Package Price:</span>
+                      <span className="font-semibold">{priceCalculation.basePrice.toLocaleString('pt-AO')} Kz</span>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <span className="text-muted-foreground">Duration:</span>
+                      <span className="font-semibold">{priceCalculation.durationLabel}</span>
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    <div className="flex justify-between items-center">
+                      <span className="text-muted-foreground">Base Rate (30 min):</span>
+                      <span className="font-semibold">{priceCalculation.basePrice.toLocaleString('pt-AO')} Kz</span>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <span className="text-muted-foreground">Duration:</span>
+                      <span className="font-semibold">{durationOptions.find(d => d.value === duration)?.label}</span>
+                    </div>
+                  </>
+                )}
                 <div className="h-px bg-border my-2" />
                 <div className="flex justify-between items-center">
                   <span className="font-semibold text-foreground">Total Price:</span>
@@ -247,7 +360,13 @@ const QuickBookingForm = () => {
 
         <Button 
           onClick={handleWhatsAppBooking}
-          disabled={!vehicle || !date || !time || !name.trim() || !phone.trim()}
+          disabled={
+            !date || 
+            !time || 
+            !name.trim() || 
+            !phone.trim() || 
+            (bookingType === "individual" ? !vehicle : !packageType)
+          }
           className="w-full bg-[#25D366] hover:bg-[#20BA5A] text-white disabled:opacity-50 disabled:cursor-not-allowed"
         >
           <MessageCircle className="mr-2 h-5 w-5" />
