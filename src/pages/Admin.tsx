@@ -10,7 +10,7 @@ import { Badge } from '@/components/ui/badge';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from '@/components/ui/alert-dialog';
 import { useToast } from '@/hooks/use-toast';
-import { LogOut, Search, Trash2, Star } from 'lucide-react';
+import { LogOut, Search, Trash2, Star, Activity } from 'lucide-react';
 import { format } from 'date-fns';
 import { LaunchChecklist } from '@/components/LaunchChecklist';
 
@@ -199,6 +199,10 @@ export default function Admin() {
             <Button variant="outline" onClick={() => navigate('/admin/reviews')}>
               <Star className="mr-2 h-4 w-4" />
               Reviews
+            </Button>
+            <Button variant="outline" onClick={() => navigate('/admin/health')}>
+              <Activity className="mr-2 h-4 w-4" />
+              Health Monitor
             </Button>
             <Button variant="outline" onClick={signOut}>
               <LogOut className="mr-2 h-4 w-4" />
