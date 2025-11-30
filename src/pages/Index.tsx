@@ -20,7 +20,7 @@ const Index = () => {
         <Properties />
         <DailyPackages />
         <About />
-        <section className="py-16 px-4 bg-muted/30">
+        <section id="quick-booking" className="py-16 px-4 bg-muted/30">
           <QuickBookingForm />
         </section>
         <Footer />
