@@ -289,7 +289,7 @@ export default function TwoFactorAuth() {
                     <li>Instale um aplicativo autenticador (Google Authenticator, Authy, etc.)</li>
                     <li>Escaneie o QR code que será gerado</li>
                     <li>Insira o código de 6 dígitos para confirmar</li>
-                    <li>Use o código do app sempre que fizer login</li>
+                    <li>Use o código do autenticador sempre que fizer login</li>
                   </ol>
                 </div>
 
