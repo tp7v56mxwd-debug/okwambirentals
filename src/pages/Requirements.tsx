@@ -2,15 +2,18 @@ import { Link } from "react-router-dom";
 import { ArrowLeft, FileCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import DialogRequirements from "@/components/DialogRequirements";
+import { useTranslation } from 'react-i18next';
 
 const RequirementsPage = () => {
+  const { t } = useTranslation();
+  
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-muted/10 to-background">
       <div className="container mx-auto px-4 py-12">
         <Link to="/">
           <Button variant="ghost" className="mb-8">
             <ArrowLeft className="w-4 h-4 mr-2" />
-            Voltar ao Início
+            {t('pages.backToHome')}
           </Button>
         </Link>
 
@@ -19,7 +22,7 @@ const RequirementsPage = () => {
             <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center">
               <FileCheck className="w-6 h-6 text-primary-foreground" />
             </div>
-            <h1 className="text-4xl font-bold text-foreground">Requisitos</h1>
+            <h1 className="text-4xl font-bold text-foreground">{t('pages.requirementsTitle')}</h1>
           </div>
 
           <DialogRequirements />

@@ -330,6 +330,12 @@
     "madeIn": "Criado com excelência em Angola",
     "backToTop": "Voltar ao topo"
   },
+  "pages": {
+    "backToHome": "Voltar ao Início",
+    "faqTitle": "Perguntas Frequentes",
+    "safetyTitle": "Segurança & Políticas",
+    "requirementsTitle": "Requisitos"
+  },
   "packages": {
     "badge": "Pacotes de Aluguer",
     "title1": "Pacotes por",
