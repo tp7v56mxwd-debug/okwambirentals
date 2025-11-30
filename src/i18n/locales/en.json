@@ -389,5 +389,22 @@
       "error": "Booking Error",
       "errorDesc": "There was an error processing your booking. Please try again."
     }
+  },
+  "quickBooking": {
+    "title": "Quick Booking",
+    "vehicleLabel": "Vehicle",
+    "vehiclePlaceholder": "Select a vehicle",
+    "pickupLabel": "Pick-up Date",
+    "returnLabel": "Return Date",
+    "locationLabel": "Location",
+    "locationPlaceholder": "Pick-up location",
+    "nameLabel": "Your Name",
+    "namePlaceholder": "Full Name",
+    "whatsappButton": "Reserve on WhatsApp",
+    "vehicles": {
+      "atv": "ATV",
+      "jetski": "Jet Ski",
+      "utv": "UTV"
+    }
   }
 }

@@ -389,5 +389,22 @@
       "error": "Erro na Reserva",
       "errorDesc": "Ocorreu um erro ao processar a sua reserva. Por favor, tente novamente."
     }
+  },
+  "quickBooking": {
+    "title": "Reserva Rápida",
+    "vehicleLabel": "Veículo",
+    "vehiclePlaceholder": "Selecione um veículo",
+    "pickupLabel": "Data de Levantamento",
+    "returnLabel": "Data de Devolução",
+    "locationLabel": "Localização",
+    "locationPlaceholder": "Local de levantamento",
+    "nameLabel": "O Seu Nome",
+    "namePlaceholder": "Nome Completo",
+    "whatsappButton": "Reservar no WhatsApp",
+    "vehicles": {
+      "atv": "ATV",
+      "jetski": "Jet Ski",
+      "utv": "UTV"
+    }
   }
 }
