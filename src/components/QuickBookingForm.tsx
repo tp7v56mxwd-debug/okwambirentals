@@ -129,7 +129,7 @@ const QuickBookingForm = () => {
       message += `*Package Details:*\n` +
         `• Package: ${selectedPackage?.name}\n` +
         `• Date: ${dateText}\n` +
-        `• Start Time: ${timeText}\n` +
+        `• Time: ${timeText}\n` +
         `• Duration: ${selectedPackage?.durationLabel}\n` +
         `• Total Price: ${priceText}\n\n`;
     } else {
@@ -149,6 +149,7 @@ const QuickBookingForm = () => {
       `📍 Location: Mussulo Peninsula, Luanda\n\n` +
       `Please confirm availability and send payment instructions.`;
     
+    console.log("WhatsApp Message:", message);
     const whatsappUrl = `https://wa.me/447477963492?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, '_blank');
   };
