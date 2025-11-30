@@ -330,6 +330,12 @@
     "madeIn": "Crafted with excellence in Angola",
     "backToTop": "Back to top"
   },
+  "pages": {
+    "backToHome": "Back to Home",
+    "faqTitle": "Frequently Asked Questions",
+    "safetyTitle": "Safety & Policies",
+    "requirementsTitle": "Requirements"
+  },
   "packages": {
     "badge": "Rental Packages",
     "title1": "Time-Based",
