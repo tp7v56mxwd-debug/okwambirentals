@@ -240,14 +240,17 @@ const QuickBookingForm = () => {
         </div>
 
         {/* Availability Calendar - Shows after vehicle/package and date selected */}
-        {((bookingType === "individual" && vehicle) || (bookingType === "package" && packageType)) && date && (
+        {date && ((bookingType === "individual" && vehicle) || (bookingType === "package" && packageType)) && (
           <div className="space-y-2">
             <Label>Available Time Slots (Click to Select)</Label>
             <AvailabilityCalendar 
               selectedDate={date}
               selectedTime={time}
-              vehicleType={bookingType === "individual" ? vehicle : "ATV Premium"}
-              onTimeSelect={setTime}
+              vehicleType={bookingType === "individual" ? vehicle : packageType || ""}
+              onTimeSelect={(selectedTime) => {
+                setTime(selectedTime);
+                console.log("Time selected:", selectedTime);
+              }}
             />
           </div>
         )}
