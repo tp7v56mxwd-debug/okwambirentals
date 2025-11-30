@@ -157,39 +157,6 @@ export const BookingDialog = ({ open, onOpenChange, vehicleName, vehiclePrice, b
       const bookingId = bookingData?.id;
       console.log(`[BOOKING_DB_INSERT] Success - Booking ID: ${bookingId}`);
 
-      // Send confirmation email via Edge Function
-      try {
-        console.log('[BOOKING_EMAIL] Invoking send-booking-confirmation function');
-        const emailResponse = await supabase.functions.invoke("send-booking-confirmation", {
-          body: {
-            customerName: validated.customer_name,
-            customerEmail: validated.customer_email,
-            vehicleType: validated.vehicle_type,
-            bookingDate: format(validated.booking_date, "MMM dd, yyyy"),
-            bookingTime: validated.booking_time,
-            duration: validated.duration,
-            totalPrice: totalPrice,
-          },
-        });
-
-        if (emailResponse.error) {
-          console.error('[BOOKING_EMAIL] Edge function returned error:', {
-            error: emailResponse.error,
-            bookingId: bookingId
-          });
-        } else {
-          console.log('[BOOKING_EMAIL] Confirmation email sent successfully');
-        }
-      } catch (emailError: any) {
-        console.error('[BOOKING_EMAIL] Failed to send confirmation email:', {
-          error: emailError.message || emailError,
-          stack: emailError.stack,
-          bookingId: bookingId,
-          customerEmail: validated.customer_email
-        });
-        // Don't fail the booking if email fails
-      }
-
       // Send admin notification
       try {
         console.log('[BOOKING_NOTIFY] Invoking notify-admin-booking function');
@@ -230,18 +197,41 @@ export const BookingDialog = ({ open, onOpenChange, vehicleName, vehiclePrice, b
         totalDuration: `${Date.parse(submissionEndTime) - Date.parse(submissionStartTime)}ms`
       });
 
-      // Close dialog and redirect to confirmation page
+      // Generate WhatsApp confirmation message
+      const phoneNumber = "447477963492";
+      const message = `🎉 *Reserva Confirmada - Okwambi Rentals*\n\n` +
+        `Olá ${validated.customer_name}!\n\n` +
+        `Sua reserva foi realizada com sucesso:\n\n` +
+        `🏍️ Veículo: ${validated.vehicle_type}\n` +
+        `📅 Data: ${format(validated.booking_date, 'dd/MM/yyyy')}\n` +
+        `⏰ Horário: ${validated.booking_time}\n` +
+        `⏱️ Duração: ${validated.duration} minutos\n` +
+        `💰 Total: ${totalPrice} Kz\n\n` +
+        `📞 Telefone: ${validated.customer_phone}\n` +
+        `📧 Email: ${validated.customer_email}\n` +
+        (validated.special_requests ? `📝 Observações: ${validated.special_requests}\n\n` : '\n') +
+        `📍 Local: Praia do Mussulo, Luanda\n\n` +
+        `Entraremos em contato em breve para confirmar todos os detalhes.\n\n` +
+        `Obrigado por escolher Okwambi Rentals! 🏖️`;
+
+      const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+
+      // Close dialog
       onOpenChange(false);
+      
       toast({
         title: "Booking Confirmed!",
-        description: "Redirecting to your booking details..."
+        description: "Opening WhatsApp with confirmation..."
       });
+
+      // Open WhatsApp with confirmation message
+      window.open(whatsappUrl, '_blank');
 
       // Redirect to confirmation page
       if (bookingId) {
         setTimeout(() => {
           navigate(`/booking/${bookingId}`);
-        }, 500);
+        }, 1000);
       }
     } catch (error) {
       console.error('[BOOKING_SUBMIT] Booking submission failed:', {
