@@ -24,6 +24,12 @@ export type Database = {
           customer_phone: string
           duration: number
           id: string
+          payment_callback_data: Json | null
+          payment_method: string | null
+          payment_mobile: string | null
+          payment_provider: string | null
+          payment_reference: string | null
+          payment_status: string | null
           special_requests: string | null
           status: string
           total_price: string
@@ -40,6 +46,12 @@ export type Database = {
           customer_phone: string
           duration?: number
           id?: string
+          payment_callback_data?: Json | null
+          payment_method?: string | null
+          payment_mobile?: string | null
+          payment_provider?: string | null
+          payment_reference?: string | null
+          payment_status?: string | null
           special_requests?: string | null
           status?: string
           total_price: string
@@ -56,6 +68,12 @@ export type Database = {
           customer_phone?: string
           duration?: number
           id?: string
+          payment_callback_data?: Json | null
+          payment_method?: string | null
+          payment_mobile?: string | null
+          payment_provider?: string | null
+          payment_reference?: string | null
+          payment_status?: string | null
           special_requests?: string | null
           status?: string
           total_price?: string
@@ -64,6 +82,68 @@ export type Database = {
           vehicle_type?: string
         }
         Relationships: []
+      }
+      payments: {
+        Row: {
+          amount: string
+          booking_id: string | null
+          callback_data: Json | null
+          completed_at: string | null
+          created_at: string | null
+          currency: string | null
+          customer_mobile: string | null
+          error_message: string | null
+          id: string
+          payment_method: string
+          payment_provider: string
+          provider_reference: string | null
+          provider_transaction_id: string | null
+          status: string | null
+          updated_at: string | null
+        }
+        Insert: {
+          amount: string
+          booking_id?: string | null
+          callback_data?: Json | null
+          completed_at?: string | null
+          created_at?: string | null
+          currency?: string | null
+          customer_mobile?: string | null
+          error_message?: string | null
+          id?: string
+          payment_method: string
+          payment_provider: string
+          provider_reference?: string | null
+          provider_transaction_id?: string | null
+          status?: string | null
+          updated_at?: string | null
+        }
+        Update: {
+          amount?: string
+          booking_id?: string | null
+          callback_data?: Json | null
+          completed_at?: string | null
+          created_at?: string | null
+          currency?: string | null
+          customer_mobile?: string | null
+          error_message?: string | null
+          id?: string
+          payment_method?: string
+          payment_provider?: string
+          provider_reference?: string | null
+          provider_transaction_id?: string | null
+          status?: string | null
+          updated_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "payments_booking_id_fkey"
+            columns: ["booking_id"]
+            isOneToOne: false
+            referencedRelation: "bookings"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       profiles: {
         Row: {
