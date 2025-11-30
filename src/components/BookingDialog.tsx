@@ -212,22 +212,26 @@ export const BookingDialog = ({ open, onOpenChange, vehicleName, vehiclePrice, b
 
       const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
 
-      // Close dialog
-      onOpenChange(false);
-      
+      // Show success message
       toast({
-        title: "Booking Confirmed!",
-        description: "Opening WhatsApp with confirmation..."
+        title: "🎉 Reserva Confirmada!",
+        description: "Sua reserva foi criada com sucesso. Abrindo WhatsApp...",
+        duration: 5000,
       });
 
-      // Open WhatsApp with confirmation message
-      window.open(whatsappUrl, '_blank');
+      // Close dialog
+      onOpenChange(false);
+
+      // Open WhatsApp with confirmation message after a brief delay
+      setTimeout(() => {
+        window.open(whatsappUrl, '_blank');
+      }, 500);
 
       // Redirect to confirmation page
       if (bookingId) {
         setTimeout(() => {
           navigate(`/booking/${bookingId}`);
-        }, 1000);
+        }, 2000);
       }
     } catch (error) {
       console.error('[BOOKING_SUBMIT] Booking submission failed:', {

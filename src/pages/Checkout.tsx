@@ -149,16 +149,22 @@ const Checkout = () => {
 
       const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
       
-      toast.success(`Successfully created ${allBookings.length} booking(s)!`);
+      // Show success message
+      toast.success(`🎉 ${allBookings.length} Reserva(s) Confirmada(s)! Abrindo WhatsApp...`, {
+        duration: 5000,
+      });
+      
       clearCart();
       
-      // Open WhatsApp with confirmation message
-      window.open(whatsappUrl, '_blank');
+      // Open WhatsApp with confirmation message after a brief delay
+      setTimeout(() => {
+        window.open(whatsappUrl, '_blank');
+      }, 500);
       
-      // Navigate after a short delay
+      // Navigate after showing the message
       setTimeout(() => {
         navigate('/');
-      }, 1000);
+      }, 2000);
     } catch (error: any) {
       console.error('Booking error:', error);
       toast.error(error.message || 'Failed to create bookings');
