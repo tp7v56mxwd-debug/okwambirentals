@@ -2,18 +2,21 @@ import { Button } from "@/components/ui/button";
 import { ChevronDown } from "lucide-react";
 import heroImage from "@/assets/mussulo-beach.jpg";
 import { useTranslation } from 'react-i18next';
-import { useState } from "react";
-import { BookingDialog } from "./BookingDialog";
 
 const Hero = () => {
   const { t } = useTranslation();
-  const [bookingOpen, setBookingOpen] = useState(false);
   
   const scrollToFleet = () => {
     const element = document.getElementById('fleet');
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     }
+  };
+
+  const openWhatsAppBooking = () => {
+    const message = "Hello Okwambi Rentals! I'm interested in booking a vehicle at Mussulo Peninsula. Please send me details and payment instructions.";
+    const whatsappUrl = `https://wa.me/447477963492?text=${encodeURIComponent(message)}`;
+    window.open(whatsappUrl, '_blank');
   };
 
   return (
@@ -71,21 +74,13 @@ const Hero = () => {
           <Button 
             size="default"
             variant="outline"
-            onClick={() => setBookingOpen(true)}
+            onClick={openWhatsAppBooking}
             className="transition-colors"
           >
             {t('hero.reserveNow')}
           </Button>
         </div>
       </div>
-      
-      <BookingDialog
-        open={bookingOpen}
-        onOpenChange={setBookingOpen}
-        vehicleName=""
-        vehiclePrice=""
-        basePricePerHalfHour={0}
-      />
     </section>
   );
 };
