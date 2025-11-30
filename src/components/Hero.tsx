@@ -13,10 +13,11 @@ const Hero = () => {
     }
   };
 
-  const openWhatsAppBooking = () => {
-    const message = "Hello Okwambi Rentals! I'm interested in booking a vehicle at Mussulo Peninsula. Please send me details and payment instructions.";
-    const whatsappUrl = `https://wa.me/447477963492?text=${encodeURIComponent(message)}`;
-    window.open(whatsappUrl, '_blank');
+  const scrollToBooking = () => {
+    const element = document.getElementById('quick-booking');
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
   };
 
   return (
@@ -74,7 +75,7 @@ const Hero = () => {
           <Button 
             size="default"
             variant="outline"
-            onClick={openWhatsAppBooking}
+            onClick={scrollToBooking}
             className="transition-colors"
           >
             {t('hero.reserveNow')}
