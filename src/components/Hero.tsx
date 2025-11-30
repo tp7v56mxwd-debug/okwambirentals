@@ -27,7 +27,6 @@ const Hero = () => {
           src={heroImage}
           alt="Mussulo Beach - Premium Adventure Destination in Luanda, Angola"
           loading="eager"
-          fetchPriority="high"
           decoding="async"
           className="w-full h-full object-cover"
         />

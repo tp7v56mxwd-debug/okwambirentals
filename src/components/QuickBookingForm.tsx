@@ -64,15 +64,21 @@ const QuickBookingForm = () => {
   }, [vehicle, duration]);
 
   const handleWhatsAppBooking = () => {
-    const vehicleText = vehicle.replace(" Premium", "") || "[VEHICLE]";
-    const dateText = date ? format(date, "dd/MM/yyyy") : "[DATE]";
-    const timeText = time || "[TIME]";
+    // Sanitize and validate inputs
+    const sanitizedName = name.trim().slice(0, 100);
+    const sanitizedPhone = phone.trim().slice(0, 20);
+    
+    if (!sanitizedName || !sanitizedPhone) {
+      return; // Prevented by button disabled state, but double-check
+    }
+
+    const vehicleText = vehicle.replace(" Premium", "");
+    const dateText = date ? format(date, "dd/MM/yyyy") : "";
+    const timeText = time;
     const durationText = durationOptions.find(d => d.value === duration)?.label || `${duration} minutes`;
-    const nameText = name || "[NAME]";
-    const phoneText = phone || "[PHONE]";
     const priceText = priceCalculation 
       ? `${priceCalculation.formattedTotal} Kz`
-      : '[PRICE]';
+      : '';
 
     const message = `🎉 *Booking Request - Okwambi Rentals*\n\n` +
       `*Vehicle Details:*\n` +
@@ -82,8 +88,8 @@ const QuickBookingForm = () => {
       `• Duration: ${durationText}\n` +
       `• Estimated Total: ${priceText}\n\n` +
       `*Customer Details:*\n` +
-      `• Name: ${nameText}\n` +
-      `• Phone: ${phoneText}\n\n` +
+      `• Name: ${sanitizedName}\n` +
+      `• Phone: ${sanitizedPhone}\n\n` +
       `📍 Location: Mussulo Peninsula, Luanda\n\n` +
       `Please confirm availability and send payment instructions.`;
     
@@ -219,7 +225,9 @@ const QuickBookingForm = () => {
               id="name" 
               placeholder={t('quickBooking.namePlaceholder')}
               value={name}
-              onChange={(e) => setName(e.target.value)}
+              onChange={(e) => setName(e.target.value.slice(0, 100))}
+              maxLength={100}
+              required
             />
           </div>
 
@@ -230,14 +238,16 @@ const QuickBookingForm = () => {
               type="tel"
               placeholder="+244 123 456 789"
               value={phone}
-              onChange={(e) => setPhone(e.target.value)}
+              onChange={(e) => setPhone(e.target.value.slice(0, 20))}
+              maxLength={20}
+              required
             />
           </div>
         </div>
 
         <Button 
           onClick={handleWhatsAppBooking}
-          disabled={!vehicle || !date || !time || !name || !phone}
+          disabled={!vehicle || !date || !time || !name.trim() || !phone.trim()}
           className="w-full bg-[#25D366] hover:bg-[#20BA5A] text-white disabled:opacity-50 disabled:cursor-not-allowed"
         >
           <MessageCircle className="mr-2 h-5 w-5" />
