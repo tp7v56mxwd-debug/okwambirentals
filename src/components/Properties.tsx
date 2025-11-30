@@ -1,24 +1,15 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { Users, Gauge, Shield, ShoppingCart, MessageCircle } from "lucide-react";
+import { Users, Gauge, Shield } from "lucide-react";
 import { useTranslation } from 'react-i18next';
 import { useIntersectionObserver } from '@/hooks/useIntersectionObserver';
 import { supabase } from "@/integrations/supabase/client";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
-import { useCart } from '@/contexts/CartContext';
-import { toast } from 'sonner';
 
 const Properties = () => {
   const { t } = useTranslation();
   const { ref, isVisible } = useIntersectionObserver();
-  const { addToCart } = useCart();
   const [vehiclePhotos, setVehiclePhotos] = useState<Record<string, string[]>>({});
-
-  const openWhatsAppBooking = (vehicle: any) => {
-    const message = `Hello Okwambi Rentals! I want to book:\n\n• Vehicle: ${vehicle.name}\n• Price: ${vehicle.price} per 30 minutes\n• Location: Mussulo Peninsula, Luanda\n\nPlease send me payment instructions.`;
-    const whatsappUrl = `https://wa.me/447477963492?text=${encodeURIComponent(message)}`;
-    window.open(whatsappUrl, '_blank');
-  };
 
   useEffect(() => {
     fetchVehiclePhotos();
@@ -182,40 +173,12 @@ const Properties = () => {
                     ))}
                   </div>
 
-                  <div className="pt-4 border-t border-border space-y-3">
+                  <div className="pt-4 border-t border-border">
                     <div className="flex items-end justify-between">
                       <div>
                         <div className="text-xl font-semibold text-foreground">{vehicle.price}</div>
                         <div className="text-xs text-muted-foreground">{t('fleet.per30min')}</div>
                       </div>
-                    </div>
-                    <div className="flex gap-2">
-                      <Button
-                        onClick={() => {
-                          addToCart({
-                            vehicleId: vehicle.id,
-                            vehicleName: vehicle.name,
-                            vehiclePrice: vehicle.price,
-                            basePricePerHalfHour: vehicle.basePricePerHalfHour,
-                            duration: 30,
-                          });
-                          toast.success('Added to cart!');
-                        }}
-                        size="sm"
-                        variant="outline"
-                        className="flex-1"
-                      >
-                        <ShoppingCart className="h-4 w-4 mr-1" />
-                        Add to Cart
-                      </Button>
-                      <Button
-                        onClick={() => openWhatsAppBooking(vehicle)}
-                        size="sm"
-                        className="flex-1 bg-[#25D366] hover:bg-[#20BA5A]"
-                      >
-                        <MessageCircle className="h-4 w-4 mr-1" />
-                        {t('fleet.bookNow')}
-                      </Button>
                     </div>
                   </div>
                 </div>
