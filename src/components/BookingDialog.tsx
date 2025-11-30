@@ -195,7 +195,7 @@ export const BookingDialog = ({ open, onOpenChange, vehicleName, vehiclePrice, b
       });
 
       // Generate WhatsApp confirmation message
-      const phoneNumber = "447477963492";
+      const phoneNumber = "244942462828";
       const message = `🎉 *Reserva Confirmada - Okwambi Rentals*\n\n` +
         `Olá ${validated.customer_name}!\n\n` +
         `Sua reserva foi realizada com sucesso:\n\n` +
@@ -211,6 +211,7 @@ export const BookingDialog = ({ open, onOpenChange, vehicleName, vehiclePrice, b
         `Obrigado por escolher Okwambi Rentals! 🏖️`;
 
       const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+      console.log('[WHATSAPP] Sending to: +244 942 462 828');
 
       // Show success message
       toast({
