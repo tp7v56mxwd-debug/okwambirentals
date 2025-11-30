@@ -92,7 +92,7 @@ const QuickBookingForm = () => {
   };
 
   return (
-    <Card className="w-full max-w-2xl mx-auto">
+    <Card id="quick-booking" className="w-full max-w-2xl mx-auto">
       <CardHeader>
         <CardTitle>{t('quickBooking.title')}</CardTitle>
       </CardHeader>
