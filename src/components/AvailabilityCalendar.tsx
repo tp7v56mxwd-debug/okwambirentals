@@ -8,6 +8,7 @@ interface AvailabilityCalendarProps {
   selectedDate: Date | undefined;
   selectedTime: string;
   vehicleType: string;
+  onTimeSelect?: (time: string) => void;
 }
 
 interface BookedSlot {
@@ -20,7 +21,7 @@ const timeSlots = [
   "15:00", "15:30", "16:00", "16:30", "17:00", "17:30"
 ];
 
-export const AvailabilityCalendar = ({ selectedDate, selectedTime, vehicleType }: AvailabilityCalendarProps) => {
+export const AvailabilityCalendar = ({ selectedDate, selectedTime, vehicleType, onTimeSelect }: AvailabilityCalendarProps) => {
   const [bookedSlots, setBookedSlots] = useState<string[]>([]);
   const [loading, setLoading] = useState(false);
 
@@ -106,16 +107,19 @@ export const AvailabilityCalendar = ({ selectedDate, selectedTime, vehicleType }
           const isSelected = selectedTime === time;
           
           return (
-            <div
+            <button
               key={time}
+              type="button"
+              onClick={() => !isBooked && onTimeSelect?.(time)}
+              disabled={isBooked}
               className={`
                 relative px-3 py-2 rounded-lg text-center text-sm font-medium
                 transition-all duration-200
                 ${isBooked 
                   ? 'bg-red-500/10 text-red-700 dark:text-red-400 cursor-not-allowed' 
                   : isSelected
-                  ? 'bg-primary text-primary-foreground'
-                  : 'bg-green-500/10 text-green-700 dark:text-green-400'
+                  ? 'bg-primary text-primary-foreground ring-2 ring-primary ring-offset-2'
+                  : 'bg-green-500/10 text-green-700 dark:text-green-400 hover:bg-green-500/20 cursor-pointer'
                 }
               `}
             >
@@ -127,7 +131,7 @@ export const AvailabilityCalendar = ({ selectedDate, selectedTime, vehicleType }
                 )}
                 <span>{time}</span>
               </div>
-            </div>
+            </button>
           );
         })}
       </div>
