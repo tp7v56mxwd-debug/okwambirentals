@@ -5,66 +5,89 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { MessageCircle, Calculator } from "lucide-react";
+import { MessageCircle, Calculator, Calendar as CalendarIcon } from "lucide-react";
 import { Alert, AlertDescription } from "@/components/ui/alert";
+import { Calendar } from "@/components/ui/calendar";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { AvailabilityCalendar } from "@/components/AvailabilityCalendar";
+import { format } from "date-fns";
+import { cn } from "@/lib/utils";
 
 const QuickBookingForm = () => {
   const { t } = useTranslation();
   const [vehicle, setVehicle] = useState("");
-  const [pickup, setPickup] = useState("");
-  const [returnDate, setReturnDate] = useState("");
-  const [location, setLocation] = useState("");
+  const [date, setDate] = useState<Date>();
+  const [time, setTime] = useState("");
+  const [duration, setDuration] = useState<number>(30);
   const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
 
-  // Vehicle pricing per day (8 hours)
+  // Vehicle pricing per 30 minutes (must match database vehicle names)
   const vehiclePrices: Record<string, number> = {
-    "ATV": 480000,       // 30.000 Kz per 30min × 16 half-hours
-    "Jet Ski": 560000,   // 35.000 Kz per 30min × 16 half-hours
-    "UTV": 720000        // 45.000 Kz per 30min × 16 half-hours
+    "ATV Premium": 30000,
+    "Jet Ski Premium": 35000,
+    "UTV Premium": 45000
   };
+
+  // Time slots (9:00 AM - 5:30 PM)
+  const timeSlots = [
+    "09:00", "09:30", "10:00", "10:30", "11:00", "11:30",
+    "12:00", "12:30", "13:00", "13:30", "14:00", "14:30",
+    "15:00", "15:30", "16:00", "16:30", "17:00", "17:30"
+  ];
+
+  // Duration options
+  const durationOptions = [
+    { label: "30 minutes", value: 30, multiplier: 1 },
+    { label: "1 hour", value: 60, multiplier: 2 },
+    { label: "1.5 hours", value: 90, multiplier: 3 },
+    { label: "2 hours", value: 120, multiplier: 4 },
+    { label: "3 hours", value: 180, multiplier: 6 },
+    { label: "4 hours", value: 240, multiplier: 8 },
+    { label: "Full day (6 hours)", value: 360, multiplier: 12 }
+  ];
 
   // Calculate total price
   const priceCalculation = useMemo(() => {
-    if (!vehicle || !pickup || !returnDate) {
-      return null;
-    }
+    if (!vehicle) return null;
 
-    const pickupDateObj = new Date(pickup);
-    const returnDateObj = new Date(returnDate);
-    
-    if (returnDateObj <= pickupDateObj) {
-      return null;
-    }
-
-    const diffTime = Math.abs(returnDateObj.getTime() - pickupDateObj.getTime());
-    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-    
-    const pricePerDay = vehiclePrices[vehicle] || 0;
-    const totalPrice = pricePerDay * diffDays;
+    const basePrice = vehiclePrices[vehicle] || 0;
+    const multiplier = durationOptions.find(d => d.value === duration)?.multiplier || 1;
+    const totalPrice = basePrice * multiplier;
 
     return {
-      days: diffDays,
-      pricePerDay,
+      basePrice,
+      duration,
       totalPrice,
       formattedTotal: totalPrice.toLocaleString('pt-AO')
     };
-  }, [vehicle, pickup, returnDate]);
+  }, [vehicle, duration]);
 
   const handleWhatsAppBooking = () => {
-    const vehicleText = vehicle || "[VEHICLE SELECTED]";
-    const pickupText = pickup || "[PICK-UP DATE]";
-    const returnText = returnDate || "[RETURN DATE]";
-    const locationText = location || "[LOCATION]";
-    const nameText = name || "[YOUR NAME]";
+    const vehicleText = vehicle.replace(" Premium", "") || "[VEHICLE]";
+    const dateText = date ? format(date, "dd/MM/yyyy") : "[DATE]";
+    const timeText = time || "[TIME]";
+    const durationText = durationOptions.find(d => d.value === duration)?.label || `${duration} minutes`;
+    const nameText = name || "[NAME]";
+    const phoneText = phone || "[PHONE]";
     const priceText = priceCalculation 
-      ? `\n• Estimated Total: ${priceCalculation.formattedTotal} Kz (${priceCalculation.days} day${priceCalculation.days > 1 ? 's' : ''})`
-      : '';
+      ? `${priceCalculation.formattedTotal} Kz`
+      : '[PRICE]';
 
-    const message = `Hello Okwambi Rentals, I want to reserve:\n• Vehicle: ${vehicleText}\n• Pick-up date: ${pickupText}\n• Return date: ${returnText}\n• Location: ${locationText}\n• My name: ${nameText}${priceText}\n\nPlease confirm availability and send payment instructions.`;
+    const message = `🎉 *Booking Request - Okwambi Rentals*\n\n` +
+      `*Vehicle Details:*\n` +
+      `• Vehicle: ${vehicleText}\n` +
+      `• Date: ${dateText}\n` +
+      `• Time: ${timeText}\n` +
+      `• Duration: ${durationText}\n` +
+      `• Estimated Total: ${priceText}\n\n` +
+      `*Customer Details:*\n` +
+      `• Name: ${nameText}\n` +
+      `• Phone: ${phoneText}\n\n` +
+      `📍 Location: Mussulo Peninsula, Luanda\n\n` +
+      `Please confirm availability and send payment instructions.`;
     
     const whatsappUrl = `https://wa.me/447477963492?text=${encodeURIComponent(message)}`;
-    console.log('[QUICK BOOKING] Opening WhatsApp to: +44 7477 963492');
-    console.log('[QUICK BOOKING] Message:', message);
     window.open(whatsappUrl, '_blank');
   };
 
@@ -74,58 +97,94 @@ const QuickBookingForm = () => {
         <CardTitle>{t('quickBooking.title')}</CardTitle>
       </CardHeader>
       <CardContent className="space-y-4">
+        {/* Vehicle Selection - Move to top */}
         <div className="space-y-2">
           <Label htmlFor="vehicle">{t('quickBooking.vehicleLabel')}</Label>
           <Select value={vehicle} onValueChange={setVehicle}>
             <SelectTrigger id="vehicle">
               <SelectValue placeholder={t('quickBooking.vehiclePlaceholder')} />
             </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="ATV">{t('quickBooking.vehicles.atv')}</SelectItem>
-              <SelectItem value="Jet Ski">{t('quickBooking.vehicles.jetski')}</SelectItem>
-              <SelectItem value="UTV">{t('quickBooking.vehicles.utv')}</SelectItem>
+            <SelectContent className="bg-background z-50">
+              <SelectItem value="ATV Premium">{t('quickBooking.vehicles.atv')} - 30.000 Kz/30min</SelectItem>
+              <SelectItem value="Jet Ski Premium">{t('quickBooking.vehicles.jetski')} - 35.000 Kz/30min</SelectItem>
+              <SelectItem value="UTV Premium">{t('quickBooking.vehicles.utv')} - 45.000 Kz/30min</SelectItem>
             </SelectContent>
           </Select>
         </div>
 
+        {/* Date Selection */}
         <div className="space-y-2">
-          <Label htmlFor="pickup">{t('quickBooking.pickupLabel')}</Label>
-          <Input 
-            id="pickup" 
-            type="date" 
-            value={pickup}
-            onChange={(e) => setPickup(e.target.value)}
-          />
+          <Label>Booking Date</Label>
+          <Popover>
+            <PopoverTrigger asChild>
+              <Button
+                variant="outline"
+                className={cn(
+                  "w-full justify-start text-left font-normal",
+                  !date && "text-muted-foreground"
+                )}
+              >
+                <CalendarIcon className="mr-2 h-4 w-4" />
+                {date ? format(date, "PPP") : <span>Select a date</span>}
+              </Button>
+            </PopoverTrigger>
+            <PopoverContent className="w-auto p-0 bg-background z-50" align="start">
+              <Calendar
+                mode="single"
+                selected={date}
+                onSelect={setDate}
+                disabled={(date) => date < new Date(new Date().setHours(0, 0, 0, 0))}
+                initialFocus
+                className={cn("p-3 pointer-events-auto")}
+              />
+            </PopoverContent>
+          </Popover>
         </div>
 
+        {/* Availability Calendar - Shows after vehicle and date selected */}
+        {vehicle && date && (
+          <div className="space-y-2">
+            <Label>Available Time Slots</Label>
+            <AvailabilityCalendar 
+              selectedDate={date}
+              selectedTime={time}
+              vehicleType={vehicle}
+            />
+          </div>
+        )}
+
+        {/* Time Selection */}
         <div className="space-y-2">
-          <Label htmlFor="return">{t('quickBooking.returnLabel')}</Label>
-          <Input 
-            id="return" 
-            type="date" 
-            value={returnDate}
-            onChange={(e) => setReturnDate(e.target.value)}
-          />
+          <Label htmlFor="time">Select Time Slot</Label>
+          <Select value={time} onValueChange={setTime} disabled={!date || !vehicle}>
+            <SelectTrigger id="time">
+              <SelectValue placeholder="Select time" />
+            </SelectTrigger>
+            <SelectContent className="bg-background z-50">
+              {timeSlots.map((slot) => (
+                <SelectItem key={slot} value={slot}>
+                  {slot}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
         </div>
 
+        {/* Duration Selection */}
         <div className="space-y-2">
-          <Label htmlFor="location">{t('quickBooking.locationLabel')}</Label>
-          <Input 
-            id="location" 
-            placeholder={t('quickBooking.locationPlaceholder')}
-            value={location}
-            onChange={(e) => setLocation(e.target.value)}
-          />
-        </div>
-
-        <div className="space-y-2">
-          <Label htmlFor="name">{t('quickBooking.nameLabel')}</Label>
-          <Input 
-            id="name" 
-            placeholder={t('quickBooking.namePlaceholder')}
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-          />
+          <Label htmlFor="duration">Duration</Label>
+          <Select value={duration.toString()} onValueChange={(val) => setDuration(Number(val))}>
+            <SelectTrigger id="duration">
+              <SelectValue />
+            </SelectTrigger>
+            <SelectContent className="bg-background z-50">
+              {durationOptions.map((option) => (
+                <SelectItem key={option.value} value={option.value.toString()}>
+                  {option.label}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
         </div>
 
         {/* Price Calculator Display */}
@@ -135,42 +194,59 @@ const QuickBookingForm = () => {
             <AlertDescription>
               <div className="space-y-2 text-sm">
                 <div className="flex justify-between items-center">
-                  <span className="text-muted-foreground">Duration:</span>
-                  <span className="font-semibold">{priceCalculation.days} day{priceCalculation.days > 1 ? 's' : ''}</span>
+                  <span className="text-muted-foreground">Base Rate (30 min):</span>
+                  <span className="font-semibold">{priceCalculation.basePrice.toLocaleString('pt-AO')} Kz</span>
                 </div>
                 <div className="flex justify-between items-center">
-                  <span className="text-muted-foreground">Price per day:</span>
-                  <span className="font-semibold">{priceCalculation.pricePerDay.toLocaleString('pt-AO')} Kz</span>
+                  <span className="text-muted-foreground">Duration:</span>
+                  <span className="font-semibold">{durationOptions.find(d => d.value === duration)?.label}</span>
                 </div>
                 <div className="h-px bg-border my-2" />
                 <div className="flex justify-between items-center">
-                  <span className="font-semibold text-foreground">Estimated Total:</span>
+                  <span className="font-semibold text-foreground">Total Price:</span>
                   <span className="text-lg font-bold text-primary">{priceCalculation.formattedTotal} Kz</span>
                 </div>
-                <p className="text-xs text-muted-foreground mt-2">
-                  * Final price subject to confirmation. Includes 8 hours per day.
-                </p>
               </div>
             </AlertDescription>
           </Alert>
         )}
 
-        {pickup && returnDate && new Date(returnDate) <= new Date(pickup) && (
-          <Alert variant="destructive">
-            <AlertDescription>
-              Return date must be after pick-up date
-            </AlertDescription>
-          </Alert>
-        )}
+        {/* Customer Details */}
+        <div className="space-y-4 pt-4 border-t">
+          <div className="space-y-2">
+            <Label htmlFor="name">{t('quickBooking.nameLabel')}</Label>
+            <Input 
+              id="name" 
+              placeholder={t('quickBooking.namePlaceholder')}
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
+          </div>
+
+          <div className="space-y-2">
+            <Label htmlFor="phone">Phone Number</Label>
+            <Input 
+              id="phone" 
+              type="tel"
+              placeholder="+244 123 456 789"
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
+            />
+          </div>
+        </div>
 
         <Button 
           onClick={handleWhatsAppBooking}
-          disabled={!vehicle || !pickup || !returnDate || !name}
+          disabled={!vehicle || !date || !time || !name || !phone}
           className="w-full bg-[#25D366] hover:bg-[#20BA5A] text-white disabled:opacity-50 disabled:cursor-not-allowed"
         >
           <MessageCircle className="mr-2 h-5 w-5" />
-          {t('quickBooking.whatsappButton')}
+          Continue to WhatsApp
         </Button>
+
+        <p className="text-xs text-center text-muted-foreground">
+          You'll be redirected to WhatsApp to confirm your booking
+        </p>
       </CardContent>
     </Card>
   );
