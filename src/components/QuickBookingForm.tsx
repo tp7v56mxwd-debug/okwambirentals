@@ -162,7 +162,7 @@ const QuickBookingForm = () => {
       <CardContent className="space-y-4">
         {/* Booking Type Selection */}
         <div className="space-y-2">
-          <Label htmlFor="bookingType">Tipo de Reserva</Label>
+          <Label htmlFor="bookingType">{t('quickBooking.bookingType')}</Label>
           <Select value={bookingType} onValueChange={(val: "individual" | "package") => {
             setBookingType(val);
             setVehicle("");
@@ -172,8 +172,8 @@ const QuickBookingForm = () => {
               <SelectValue />
             </SelectTrigger>
             <SelectContent className="bg-background z-50">
-              <SelectItem value="individual">Veículo Individual</SelectItem>
-              <SelectItem value="package">Pacote Diário</SelectItem>
+              <SelectItem value="individual">{t('quickBooking.individual')}</SelectItem>
+              <SelectItem value="package">{t('quickBooking.package')}</SelectItem>
             </SelectContent>
           </Select>
         </div>
@@ -195,10 +195,10 @@ const QuickBookingForm = () => {
           </div>
         ) : (
           <div className="space-y-2">
-            <Label htmlFor="package">Selecione o Pacote</Label>
+            <Label htmlFor="package">{t('quickBooking.packageLabel')}</Label>
             <Select value={packageType} onValueChange={setPackageType}>
               <SelectTrigger id="package">
-                <SelectValue placeholder="Escolha um pacote" />
+                <SelectValue placeholder={t('quickBooking.packagePlaceholder')} />
               </SelectTrigger>
               <SelectContent className="bg-background z-50">
                 {packageOptions.map((pkg) => (
@@ -213,7 +213,7 @@ const QuickBookingForm = () => {
 
         {/* Date Selection */}
         <div className="space-y-2">
-          <Label>Booking Date</Label>
+          <Label>{t('quickBooking.dateLabel')}</Label>
           <Popover>
             <PopoverTrigger asChild>
               <Button
@@ -224,7 +224,7 @@ const QuickBookingForm = () => {
                 )}
               >
                 <CalendarIcon className="mr-2 h-4 w-4" />
-                {date ? format(date, "PPP") : <span>Select a date</span>}
+                {date ? format(date, "PPP") : <span>{t('quickBooking.dateButton')}</span>}
               </Button>
             </PopoverTrigger>
             <PopoverContent className="w-auto p-0 bg-background z-50" align="start">
@@ -243,7 +243,7 @@ const QuickBookingForm = () => {
         {/* Availability Calendar - Shows after vehicle/package and date selected */}
         {date && ((bookingType === "individual" && vehicle) || (bookingType === "package" && packageType)) && (
           <div className="space-y-2">
-            <Label>Available Time Slots (Click to Select)</Label>
+            <Label>{t('quickBooking.availableSlots')}</Label>
             <AvailabilityCalendar 
               selectedDate={date}
               selectedTime={time}
@@ -258,14 +258,14 @@ const QuickBookingForm = () => {
 
         {/* Time Selection - Alternative method */}
         <div className="space-y-2">
-          <Label htmlFor="time">Or Select Time Manually</Label>
+          <Label htmlFor="time">{t('quickBooking.timeLabel')}</Label>
           <Select 
             value={time} 
             onValueChange={setTime} 
             disabled={!date || (bookingType === "individual" ? !vehicle : !packageType)}
           >
             <SelectTrigger id="time">
-              <SelectValue placeholder="Select time" />
+              <SelectValue placeholder={t('quickBooking.timePlaceholder')} />
             </SelectTrigger>
             <SelectContent className="bg-background z-50">
               {timeSlots.map((slot) => (
@@ -280,7 +280,7 @@ const QuickBookingForm = () => {
         {/* Duration Selection - Only for individual vehicles */}
         {bookingType === "individual" && (
           <div className="space-y-2">
-            <Label htmlFor="duration">Duration</Label>
+            <Label htmlFor="duration">{t('quickBooking.durationLabel')}</Label>
             <Select value={duration.toString()} onValueChange={(val) => setDuration(Number(val))}>
               <SelectTrigger id="duration">
                 <SelectValue />
@@ -305,29 +305,29 @@ const QuickBookingForm = () => {
                 {priceCalculation.isPackage ? (
                   <>
                     <div className="flex justify-between items-center">
-                      <span className="text-muted-foreground">Package Price:</span>
+                      <span className="text-muted-foreground">{t('quickBooking.priceCalculator.packagePrice')}</span>
                       <span className="font-semibold">{priceCalculation.basePrice.toLocaleString('pt-AO')} Kz</span>
                     </div>
                     <div className="flex justify-between items-center">
-                      <span className="text-muted-foreground">Duration:</span>
+                      <span className="text-muted-foreground">{t('quickBooking.priceCalculator.duration')}</span>
                       <span className="font-semibold">{priceCalculation.durationLabel}</span>
                     </div>
                   </>
                 ) : (
                   <>
                     <div className="flex justify-between items-center">
-                      <span className="text-muted-foreground">Base Rate (30 min):</span>
+                      <span className="text-muted-foreground">{t('quickBooking.priceCalculator.baseRate')}</span>
                       <span className="font-semibold">{priceCalculation.basePrice.toLocaleString('pt-AO')} Kz</span>
                     </div>
                     <div className="flex justify-between items-center">
-                      <span className="text-muted-foreground">Duration:</span>
+                      <span className="text-muted-foreground">{t('quickBooking.priceCalculator.duration')}</span>
                       <span className="font-semibold">{durationOptions.find(d => d.value === duration)?.label}</span>
                     </div>
                   </>
                 )}
                 <div className="h-px bg-border my-2" />
                 <div className="flex justify-between items-center">
-                  <span className="font-semibold text-foreground">Total Price:</span>
+                  <span className="font-semibold text-foreground">{t('quickBooking.priceCalculator.total')}</span>
                   <span className="text-lg font-bold text-primary">{priceCalculation.formattedTotal} Kz</span>
                 </div>
               </div>
@@ -350,11 +350,11 @@ const QuickBookingForm = () => {
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="phone">Phone Number</Label>
+            <Label htmlFor="phone">{t('quickBooking.phoneLabel')}</Label>
             <Input 
               id="phone" 
               type="tel"
-              placeholder="+244 123 456 789"
+              placeholder={t('quickBooking.phonePlaceholder')}
               value={phone}
               onChange={(e) => setPhone(e.target.value.slice(0, 20))}
               maxLength={20}
@@ -375,11 +375,11 @@ const QuickBookingForm = () => {
           className="w-full bg-[#25D366] hover:bg-[#20BA5A] text-white disabled:opacity-50 disabled:cursor-not-allowed"
         >
           <MessageCircle className="mr-2 h-5 w-5" />
-          Continue to WhatsApp
+          {t('quickBooking.whatsappButton')}
         </Button>
 
         <p className="text-xs text-center text-muted-foreground">
-          You'll be redirected to WhatsApp to confirm your booking
+          {t('quickBooking.whatsappNote')}
         </p>
       </CardContent>
     </Card>
