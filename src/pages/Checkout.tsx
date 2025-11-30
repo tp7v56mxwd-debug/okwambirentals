@@ -21,7 +21,6 @@ import * as z from 'zod';
 
 const checkoutSchema = z.object({
   customerName: z.string().min(2, 'Name must be at least 2 characters'),
-  customerEmail: z.string().email('Please enter a valid email'),
   customerPhone: z.string().min(9, 'Please enter a valid phone number'),
   specialRequests: z.string().optional(),
 });
@@ -88,7 +87,7 @@ const Checkout = () => {
             .from('bookings')
             .insert({
               customer_name: data.customerName,
-              customer_email: data.customerEmail,
+              customer_email: null,
               customer_phone: data.customerPhone,
               booking_date: format(details.date!, 'yyyy-MM-dd'),
               booking_time: details.time!,
@@ -109,7 +108,6 @@ const Checkout = () => {
               body: {
                 bookingId: booking.id,
                 customerName: data.customerName,
-                customerEmail: data.customerEmail,
                 customerPhone: data.customerPhone,
                 vehicleType: item.vehicleName,
                 bookingDate: format(details.date!, 'yyyy-MM-dd'),
@@ -144,7 +142,6 @@ const Checkout = () => {
         `${bookingsText}\n\n` +
         `💵 *Total: ${totalPrice.toLocaleString('pt-AO')} Kz*\n\n` +
         `📞 Telefone: ${data.customerPhone}\n` +
-        `📧 Email: ${data.customerEmail}\n` +
         (data.specialRequests ? `📝 Observações: ${data.specialRequests}\n\n` : '\n') +
         `📍 Local: Praia do Mussulo, Luanda\n\n` +
         `Entraremos em contato em breve para confirmar todos os detalhes.\n\n` +
@@ -210,20 +207,6 @@ const Checkout = () => {
                         {errors.customerName && (
                           <p className="text-sm text-destructive mt-1">
                             {errors.customerName.message}
-                          </p>
-                        )}
-                      </div>
-                      <div>
-                        <Label htmlFor="customerEmail">Email *</Label>
-                        <Input
-                          id="customerEmail"
-                          type="email"
-                          {...register('customerEmail')}
-                          placeholder="john@example.com"
-                        />
-                        {errors.customerEmail && (
-                          <p className="text-sm text-destructive mt-1">
-                            {errors.customerEmail.message}
                           </p>
                         )}
                       </div>
