@@ -27,11 +27,11 @@ const LanguageSwitcher = () => {
         <Button
           variant="ghost"
           size="sm"
-          className="gap-2 h-9 px-4 bg-accent/20 hover:bg-accent text-accent-foreground hover:text-accent-foreground border border-accent/30 hover:border-accent transition-all duration-300"
+          className="gap-2 h-9 px-3 text-primary-foreground hover:text-primary-foreground/80 transition-colors"
           aria-label="Change language"
         >
           <Globe className="w-4 h-4" />
-          <span className="font-semibold text-sm uppercase tracking-wide">{i18n.language}</span>
+          <span className="font-semibold text-sm uppercase">{i18n.language}</span>
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-40 bg-background">
@@ -39,12 +39,12 @@ const LanguageSwitcher = () => {
           <DropdownMenuItem
             key={lang.code}
             onClick={() => changeLanguage(lang.code)}
-            className="cursor-pointer hover:bg-accent/20"
+            className="cursor-pointer"
           >
             <span className="mr-2">{lang.flag}</span>
             <span className="flex-1">{lang.label}</span>
             {i18n.language === lang.code && (
-              <Check className="w-4 h-4 text-accent" />
+              <Check className="w-4 h-4 text-primary" />
             )}
           </DropdownMenuItem>
         ))}
