@@ -1,9 +1,26 @@
+import { Waves } from "lucide-react";
+
 const LoadingSpinner = () => {
   return (
-    <div className="flex items-center justify-center p-8">
-      <div className="relative w-12 h-12">
-        <div className="absolute top-0 left-0 w-full h-full border-4 border-primary/20 rounded-full"></div>
-        <div className="absolute top-0 left-0 w-full h-full border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
+    <div className="flex flex-col items-center justify-center min-h-[60vh] gap-6">
+      <div className="relative">
+        {/* Outer glow */}
+        <div className="absolute inset-0 bg-primary/20 blur-2xl rounded-full scale-150" />
+        
+        {/* Logo with pulse animation */}
+        <div className="relative flex items-center justify-center w-20 h-20">
+          <Waves className="w-12 h-12 text-primary animate-pulse" />
+        </div>
+        
+        {/* Spinning ring */}
+        <div className="absolute inset-0 w-20 h-20">
+          <div className="w-full h-full border-2 border-primary/20 rounded-full" />
+          <div className="absolute top-0 left-0 w-full h-full border-2 border-transparent border-t-primary rounded-full animate-spin" />
+        </div>
+      </div>
+      
+      <div className="text-center">
+        <p className="text-sm font-medium text-muted-foreground tracking-wide">Loading...</p>
       </div>
     </div>
   );
