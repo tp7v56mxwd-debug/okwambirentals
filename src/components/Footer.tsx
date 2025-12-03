@@ -28,7 +28,7 @@ const Footer = () => {
       <div className="absolute inset-0 bg-gradient-to-t from-background/10 to-transparent" />
       
       <div className="container mx-auto px-6 lg:px-12 py-16 relative">
-        <div className="flex flex-col md:flex-row gap-12 md:gap-24 mb-12">
+        <div className="flex flex-col md:flex-row justify-between gap-12 mb-12">
           {/* Legal */}
           <div>
             <h3 className="text-sm font-semibold mb-4 tracking-wide">{t('footer.legal')}</h3>
