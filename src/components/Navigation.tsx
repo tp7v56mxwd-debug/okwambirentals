@@ -103,11 +103,10 @@ const Navigation = () => {
           {/* Logo */}
           <button 
             onClick={() => {
-              const element = document.getElementById('hero');
-              if (element) {
-                element.scrollIntoView({ behavior: 'auto' });
-                setIsOpen(false);
-              }
+              navigate('/');
+              setIsOpen(false);
+              // Scroll to top after navigation
+              window.scrollTo({ top: 0, behavior: 'smooth' });
             }} 
             className="flex items-center gap-2 group relative lg:order-first"
             aria-label="Go to homepage"
