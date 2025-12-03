@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { useCart } from '@/contexts/CartContext';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
-import LanguageSwitcher from "./LanguageSwitcher";
+
 import { InfoDialogs, MobileInfoDialogs } from "./InfoDialogs";
 import { useAuth } from '@/hooks/useAuth';
 import {
@@ -147,7 +147,6 @@ const Navigation = () => {
             ))}
             <InfoDialogs />
             <div className="ml-3 pl-3 border-l border-border/50 flex items-center gap-1.5">
-              <LanguageSwitcher />
               <Button
                 variant="ghost"
                 size="icon"
@@ -317,9 +316,6 @@ const Navigation = () => {
               </div>
             </div>
             
-            <div className="px-6 pt-4 mt-2 border-t border-border/20">
-              <LanguageSwitcher />
-            </div>
           </div>
         )}
       </div>
