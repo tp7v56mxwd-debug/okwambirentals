@@ -4,10 +4,14 @@ const WhatsAppButton = () => {
   const phoneNumber = "447477963492"; // TODO: Update to business number
   const message = "Hello! I'm interested in renting a vehicle from Okwambi Rentals.";
 
-  const handleClick = (e: React.MouseEvent) => {
-    e.preventDefault();
-    // Use direct navigation to avoid COOP issues on Safari/iOS
-    window.location.href = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURIComponent(message)}`;
+  const handleClick = () => {
+    const url = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURIComponent(message)}`;
+    // Use window.open with noopener for Safari compatibility
+    const newWindow = window.open(url, '_blank', 'noopener,noreferrer');
+    // Fallback if popup was blocked
+    if (!newWindow) {
+      window.location.href = url;
+    }
   };
 
   return (
