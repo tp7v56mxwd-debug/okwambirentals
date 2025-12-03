@@ -113,7 +113,7 @@ const Navigation = () => {
           >
             <div className="relative">
               <div className="absolute inset-0 bg-primary/20 blur-xl rounded-full group-hover:bg-primary/30 transition-all duration-300" />
-              <Waves className="relative w-8 h-8 text-primary group-hover:scale-110 transition-transform duration-300" />
+              <Waves className="relative w-8 h-8 text-primary group-hover:scale-110 group-hover:animate-wave transition-transform duration-300" />
             </div>
             <div className="relative">
               <span className="relative font-display text-2xl lg:text-3xl font-bold bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent group-hover:from-accent group-hover:via-primary group-hover:to-accent transition-all duration-500 bg-[length:200%_auto] group-hover:bg-right">
