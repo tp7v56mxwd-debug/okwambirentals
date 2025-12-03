@@ -8,14 +8,12 @@ import WhatsAppButton from "@/components/WhatsAppButton";
 import ScrollProgress from "@/components/ScrollProgress";
 import SkipToContent from "@/components/SkipToContent";
 import QuickBookingForm from "@/components/QuickBookingForm";
-import LogoOptions from "@/components/LogoOptions";
 
 const Index = () => {
   return (
     <>
       <SkipToContent />
       <ScrollProgress />
-      <LogoOptions />
       <main id="main-content" className="min-h-screen">
         <Navigation />
         <Hero />
