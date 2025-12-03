@@ -28,40 +28,7 @@ const Footer = () => {
       <div className="absolute inset-0 bg-gradient-to-t from-background/10 to-transparent" />
       
       <div className="container mx-auto px-6 lg:px-12 py-16 relative">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
-          {/* Brand */}
-          <div>
-            <span className="font-display text-xl font-bold tracking-tight">OKWAMBI</span>
-            <p className="text-sm text-primary-foreground/70 mt-3 leading-relaxed">
-              {t('footer.description')}
-            </p>
-            
-            <div className="flex gap-2 mt-6">
-              <a
-                href="https://www.facebook.com/okwambirentals"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-9 h-9 backdrop-blur-sm bg-primary-foreground/10 hover:bg-accent hover:text-accent-foreground flex items-center justify-center transition-all border border-primary-foreground/10"
-                aria-label="Visit our Facebook page"
-              >
-                <Facebook className="w-4 h-4" />
-              </a>
-              <a
-                href="https://instagram.com/okwambirentals/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-9 h-9 backdrop-blur-sm bg-primary-foreground/10 hover:bg-accent hover:text-accent-foreground flex items-center justify-center transition-all border border-primary-foreground/10"
-                aria-label="Visit our Instagram page"
-              >
-                <Instagram className="w-4 h-4" />
-              </a>
-            </div>
-            
-            <div className="mt-6">
-              <LanguageSwitcher />
-            </div>
-          </div>
-
+        <div className="flex flex-col md:flex-row gap-12 md:gap-24 mb-12">
           {/* Legal */}
           <div>
             <h3 className="text-sm font-semibold mb-4 tracking-wide">{t('footer.legal')}</h3>
@@ -112,6 +79,33 @@ const Footer = () => {
                 </a>
               </li>
             </ul>
+          </div>
+
+          {/* Social & Language */}
+          <div>
+            <div className="flex gap-2">
+              <a
+                href="https://www.facebook.com/okwambirentals"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-9 h-9 backdrop-blur-sm bg-primary-foreground/10 hover:bg-accent hover:text-accent-foreground flex items-center justify-center transition-all border border-primary-foreground/10"
+                aria-label="Visit our Facebook page"
+              >
+                <Facebook className="w-4 h-4" />
+              </a>
+              <a
+                href="https://instagram.com/okwambirentals/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-9 h-9 backdrop-blur-sm bg-primary-foreground/10 hover:bg-accent hover:text-accent-foreground flex items-center justify-center transition-all border border-primary-foreground/10"
+                aria-label="Visit our Instagram page"
+              >
+                <Instagram className="w-4 h-4" />
+              </a>
+            </div>
+            <div className="mt-4">
+              <LanguageSwitcher />
+            </div>
           </div>
         </div>
 
