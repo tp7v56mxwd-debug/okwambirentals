@@ -58,7 +58,6 @@ const Footer = () => {
             </div>
             
             <div className="mt-6">
-              <h4 className="text-sm font-semibold mb-3 text-accent tracking-wide">Language</h4>
               <LanguageSwitcher />
             </div>
           </div>
