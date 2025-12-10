@@ -130,7 +130,7 @@ const Checkout = () => {
       const allBookings = results.flat();
 
       // Generate WhatsApp confirmation message
-      const phoneNumber = "447477963492";
+      const phoneNumber = "244951000925";
       const bookingsText = items.map((item, index) => {
         const details = bookingDetails[item.id];
         return `\n${index + 1}. ${item.vehicleName}\n   📅 ${format(details.date!, 'dd/MM/yyyy')} às ${details.time}\n   ⏱️ ${item.duration} minutos\n   💰 ${(item.basePricePerHalfHour * (item.duration / 30)).toLocaleString('pt-AO')} Kz`;
