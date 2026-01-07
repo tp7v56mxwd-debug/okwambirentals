@@ -2,7 +2,7 @@ import { createClient } from 'https://esm.sh/@supabase/supabase-js@2.39.3';
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
-  'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
+  'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type, x-health-secret',
 };
 
 interface HealthCheck {
@@ -25,6 +25,59 @@ Deno.serve(async (req) => {
   }
 
   try {
+    // Verify shared secret for authentication
+    const healthSecret = req.headers.get('x-health-secret');
+    const expectedSecret = Deno.env.get('HEALTH_MONITOR_SECRET');
+    
+    // Also allow requests with valid admin JWT
+    const authHeader = req.headers.get('authorization');
+    let isAuthorized = false;
+    
+    // Check shared secret first (for pg_cron calls)
+    if (expectedSecret && healthSecret === expectedSecret) {
+      isAuthorized = true;
+      console.log('Authorized via shared secret');
+    }
+    
+    // If no shared secret match, check for admin JWT
+    if (!isAuthorized && authHeader) {
+      const token = authHeader.replace('Bearer ', '');
+      const supabaseUrl = Deno.env.get('SUPABASE_URL')!;
+      const supabaseAnonKey = Deno.env.get('SUPABASE_ANON_KEY')!;
+      
+      const authClient = createClient(supabaseUrl, supabaseAnonKey, {
+        global: { headers: { Authorization: `Bearer ${token}` } }
+      });
+      
+      const { data: { user } } = await authClient.auth.getUser();
+      if (user) {
+        // Check admin role
+        const { data: roleData } = await authClient
+          .from('user_roles')
+          .select('role')
+          .eq('user_id', user.id)
+          .eq('role', 'admin')
+          .single();
+        
+        if (roleData) {
+          isAuthorized = true;
+          console.log(`Authorized via admin JWT: ${user.id}`);
+        }
+      }
+    }
+    
+    // If still not authorized, reject
+    if (!isAuthorized) {
+      console.log('Unauthorized health check attempt');
+      return new Response(
+        JSON.stringify({ error: 'Unauthorized' }),
+        { 
+          status: 401, 
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' } 
+        }
+      );
+    }
+
     console.log('Starting health check...');
     
     const supabaseUrl = Deno.env.get('SUPABASE_URL')!;
