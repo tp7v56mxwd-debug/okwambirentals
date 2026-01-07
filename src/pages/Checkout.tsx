@@ -20,9 +20,17 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
 
 const checkoutSchema = z.object({
-  customerName: z.string().min(2, 'Name must be at least 2 characters'),
-  customerPhone: z.string().min(9, 'Please enter a valid phone number'),
-  specialRequests: z.string().optional(),
+  customerName: z.string()
+    .trim()
+    .min(2, 'Name must be at least 2 characters')
+    .max(100, 'Name must be less than 100 characters'),
+  customerPhone: z.string()
+    .trim()
+    .min(9, 'Please enter a valid phone number')
+    .max(20, 'Phone number is too long'),
+  specialRequests: z.string()
+    .max(1000, 'Special requests must be less than 1000 characters')
+    .optional(),
 });
 
 type CheckoutForm = z.infer<typeof checkoutSchema>;
