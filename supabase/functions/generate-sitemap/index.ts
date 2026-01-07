@@ -12,6 +12,28 @@ interface SitemapUrl {
   priority: number;
 }
 
+// Simple in-memory rate limiting (resets when function cold starts)
+const rateLimitMap = new Map<string, { count: number; resetTime: number }>();
+const RATE_LIMIT = 60; // Max 60 requests per hour per IP (generous for SEO crawlers)
+const RATE_LIMIT_WINDOW = 60 * 60 * 1000; // 1 hour in ms
+
+function checkRateLimit(ip: string): boolean {
+  const now = Date.now();
+  const record = rateLimitMap.get(ip);
+  
+  if (!record || now > record.resetTime) {
+    rateLimitMap.set(ip, { count: 1, resetTime: now + RATE_LIMIT_WINDOW });
+    return true;
+  }
+  
+  if (record.count >= RATE_LIMIT) {
+    return false;
+  }
+  
+  record.count++;
+  return true;
+}
+
 Deno.serve(async (req) => {
   // Handle CORS preflight requests
   if (req.method === 'OPTIONS') {
@@ -19,6 +41,22 @@ Deno.serve(async (req) => {
   }
 
   try {
+    // Rate limiting check
+    const clientIP = req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || 
+                     req.headers.get("x-real-ip") || 
+                     "unknown";
+    
+    if (!checkRateLimit(clientIP)) {
+      console.log(`Rate limit exceeded for IP: ${clientIP}`);
+      return new Response(
+        JSON.stringify({ error: "Too many requests. Please try again later." }),
+        {
+          status: 429,
+          headers: { ...corsHeaders, "Content-Type": "application/json" },
+        }
+      );
+    }
+
     console.log('Starting sitemap generation...');
 
     // Initialize Supabase client
