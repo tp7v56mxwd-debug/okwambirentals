@@ -122,31 +122,31 @@ const QuickBookingForm = () => {
       ? `${priceCalculation.formattedTotal} Kz`
       : '';
 
-    let message = `🎉 *Booking Request - Okwambi Rentals*\n\n`;
+    let message = `*Booking Request - Okwambi Rentals*\n\n`;
     
     if (bookingType === "package") {
       const selectedPackage = packageOptions.find(p => p.id === packageType);
       message += `*Package Details:*\n` +
-        `• Package: ${selectedPackage?.name}\n` +
-        `• Date: ${dateText}\n` +
-        `• Time: ${timeText}\n` +
-        `• Duration: ${selectedPackage?.durationLabel}\n` +
-        `• Total Price: ${priceText}\n\n`;
+        `- Package: ${selectedPackage?.name}\n` +
+        `- Date: ${dateText}\n` +
+        `- Time: ${timeText}\n` +
+        `- Duration: ${selectedPackage?.durationLabel}\n` +
+        `- Total Price: ${priceText}\n\n`;
     } else {
       const vehicleText = vehicle.replace(" Premium", "");
       const durationText = durationOptions.find(d => d.value === duration)?.label || `${duration} minutes`;
       message += `*Vehicle Details:*\n` +
-        `• Vehicle: ${vehicleText}\n` +
-        `• Date: ${dateText}\n` +
-        `• Time: ${timeText}\n` +
-        `• Duration: ${durationText}\n` +
-        `• Estimated Total: ${priceText}\n\n`;
+        `- Vehicle: ${vehicleText}\n` +
+        `- Date: ${dateText}\n` +
+        `- Time: ${timeText}\n` +
+        `- Duration: ${durationText}\n` +
+        `- Estimated Total: ${priceText}\n\n`;
     }
 
     message += `*Customer Details:*\n` +
-      `• Name: ${sanitizedName}\n` +
-      `• Phone: ${sanitizedPhone}\n\n` +
-      `📍 Location: Mussulo Peninsula, Luanda\n\n` +
+      `- Name: ${sanitizedName}\n` +
+      `- Phone: ${sanitizedPhone}\n\n` +
+      `Location: Mussulo Peninsula, Luanda\n\n` +
       `Please confirm availability and send payment instructions.`;
     
     console.log("WhatsApp Message:", message);
