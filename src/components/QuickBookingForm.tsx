@@ -150,7 +150,7 @@ const QuickBookingForm = () => {
       `Please confirm availability and send payment instructions.`;
     
     console.log("WhatsApp Message:", message);
-    const whatsappUrl = `https://wa.me/447477963492?text=${encodeURIComponent(message)}`;
+    const whatsappUrl = `https://wa.me/244951000925?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, '_blank');
   };
 

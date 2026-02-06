@@ -107,7 +107,7 @@ const Location = () => {
                 <div>
                   <h3 className="font-display text-lg font-bold text-foreground mb-2">{t('location.phone.title')}</h3>
                   <a 
-                    href="tel:+447477963492" 
+                    href="tel:+244951000925" 
                     className="text-muted-foreground hover:text-foreground transition-colors hover:underline"
                   >
                     {t('location.phone.number')}
