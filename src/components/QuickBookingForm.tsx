@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { MessageCircle, Calculator, Calendar as CalendarIcon, Shield, CheckCircle2, Info } from "lucide-react";
+import { MessageCircle, Calculator, Calendar as CalendarIcon } from "lucide-react";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Calendar } from "@/components/ui/calendar";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
@@ -335,48 +335,7 @@ const QuickBookingForm = () => {
           </Alert>
         )}
 
-        {/* Insurance Information Section */}
-        {priceCalculation && (
-          <Alert className="border-muted bg-muted/30">
-            <Shield className="h-4 w-4 text-foreground" />
-            <AlertDescription>
-              <div className="space-y-3 text-sm">
-                <div className="font-semibold text-foreground">{t('quickBooking.insurance.title')}</div>
-                <p className="text-xs text-muted-foreground">{t('quickBooking.insurance.description')}</p>
-                
-                <div className="space-y-2">
-                  <div className="flex items-start gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
-                    <div>
-                      <span className="font-medium text-foreground">{t('quickBooking.insurance.basic.name')}</span>
-                      <p className="text-xs text-muted-foreground">{t('quickBooking.insurance.basic.description')}</p>
-                    </div>
-                  </div>
-                  
-                  <div className="flex items-start gap-2">
-                    <Info className="w-4 h-4 text-muted-foreground flex-shrink-0 mt-0.5" />
-                    <div>
-                      <span className="font-medium text-foreground">{t('quickBooking.insurance.personal.name')}</span>
-                      <p className="text-xs text-muted-foreground">{t('quickBooking.insurance.personal.description')}</p>
-                    </div>
-                  </div>
-                  
-                  <div className="flex items-start gap-2">
-                    <Info className="w-4 h-4 text-muted-foreground flex-shrink-0 mt-0.5" />
-                    <div>
-                      <span className="font-medium text-foreground">{t('quickBooking.insurance.premium.name')}</span>
-                      <p className="text-xs text-muted-foreground">{t('quickBooking.insurance.premium.description')}</p>
-                    </div>
-                  </div>
-                </div>
-                
-                <p className="text-xs text-muted-foreground italic border-t border-border pt-2 mt-2">
-                  {t('quickBooking.insurance.note')}
-                </p>
-              </div>
-            </AlertDescription>
-          </Alert>
-        )}
+        {/* Customer Details */}
         <div className="space-y-4 pt-4 border-t">
           <div className="space-y-2">
             <Label htmlFor="name">{t('quickBooking.nameLabel')}</Label>

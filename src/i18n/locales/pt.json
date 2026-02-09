@@ -424,23 +424,6 @@
       "baseRate": "Tarifa Base (30 min):",
       "total": "Preço Total:"
     },
-    "insurance": {
-      "title": "Opções de Seguro",
-      "description": "Proteja a sua aventura com os nossos pacotes de seguro",
-      "basic": {
-        "name": "Cobertura Básica",
-        "description": "Incluído - Danos ao veículo e responsabilidade civil"
-      },
-      "personal": {
-        "name": "Acidentes Pessoais",
-        "description": "+10.000 Kz - Despesas médicas e proteção contra lesões"
-      },
-      "premium": {
-        "name": "Proteção Premium",
-        "description": "+25.000 Kz - Cobertura total incluindo roubo e perda total"
-      },
-      "note": "Discuta as opções de seguro no local ou via WhatsApp"
-    },
     "vehicles": {
       "atv": "ATV",
       "jetski": "Jet Ski",
