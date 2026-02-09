@@ -45,7 +45,7 @@ const Hero = () => {
                 backgroundImage: 'linear-gradient(135deg, hsl(var(--foreground)) 0%, hsl(var(--foreground)) 40%, hsl(var(--accent)) 50%, hsl(var(--foreground)) 60%, hsl(var(--foreground)) 100%)'
               }}
             >
-              Experience
+              {t('hero.title')}
             </span>
             <span 
               className="block animate-gradient-wave"
@@ -58,7 +58,7 @@ const Hero = () => {
           </h1>
           
           <p className="text-lg md:text-xl text-foreground font-medium leading-relaxed max-w-xl">
-            Be Wambi, Dare to Be Fearless.
+            {t('hero.subtitle')}
           </p>
         </div>
         
