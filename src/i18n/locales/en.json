@@ -424,6 +424,23 @@
       "baseRate": "Base Rate (30 min):",
       "total": "Total Price:"
     },
+    "insurance": {
+      "title": "Insurance Options",
+      "description": "Protect your adventure with our insurance packages",
+      "basic": {
+        "name": "Basic Coverage",
+        "description": "Included - Vehicle damage & third-party liability"
+      },
+      "personal": {
+        "name": "Personal Accident",
+        "description": "+10,000 Kz - Medical expenses & injury protection"
+      },
+      "premium": {
+        "name": "Premium Protection",
+        "description": "+25,000 Kz - Full coverage including theft & total loss"
+      },
+      "note": "Discuss insurance options on-site or via WhatsApp"
+    },
     "vehicles": {
       "atv": "ATV",
       "jetski": "Jet Ski",
