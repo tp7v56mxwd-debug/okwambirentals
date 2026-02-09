@@ -1,5 +1,4 @@
-import { Button } from "@/components/ui/button";
-import { Menu, X, Waves } from "lucide-react";
+import { Waves } from "lucide-react";
 import { useState, useEffect } from "react";
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
@@ -41,6 +40,15 @@ const Navigation = () => {
     }
   };
 
+  const handleLogoClick = () => {
+    // On mobile: toggle menu. On desktop: go home
+    if (window.innerWidth < 1024) {
+      setIsOpen(!isOpen);
+    } else {
+      navigate('/');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
 
   const navLinks = [
     { id: 'hero', label: t('nav.home') },
@@ -60,15 +68,11 @@ const Navigation = () => {
     >
       <div className="container mx-auto px-6 lg:px-8 relative">
         <div className="flex items-center h-20">
-          {/* Logo - Always on left */}
+          {/* Logo - Toggles menu on mobile, goes home on desktop */}
           <button 
-            onClick={() => {
-              navigate('/');
-              setIsOpen(false);
-              window.scrollTo({ top: 0, behavior: 'smooth' });
-            }} 
+            onClick={handleLogoClick}
             className="flex items-center gap-2 group relative"
-            aria-label="Go to homepage"
+            aria-label={window.innerWidth < 1024 ? "Toggle menu" : "Go to homepage"}
           >
             <div className="relative">
               <div className="absolute inset-0 bg-primary/20 blur-xl rounded-full group-hover:bg-primary/30 transition-all duration-300" />
@@ -80,20 +84,6 @@ const Navigation = () => {
               </span>
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-primary to-accent group-hover:w-full transition-all duration-300" />
             </div>
-          </button>
-
-          {/* Mobile Menu Button - Next to logo */}
-          <button 
-            className="lg:hidden text-foreground p-2.5 hover:bg-primary/10 rounded-xl transition-all duration-300 hover:scale-110 active:scale-95 relative group ml-auto"
-            onClick={() => setIsOpen(!isOpen)}
-            aria-label="Toggle menu"
-          >
-            <span className="absolute inset-0 rounded-xl bg-gradient-to-br from-primary/5 to-accent/5 opacity-0 group-hover:opacity-100 transition-opacity" />
-            {isOpen ? (
-              <X className="w-6 h-6 relative z-10 transition-transform rotate-0 group-hover:rotate-90" />
-            ) : (
-              <Menu className="w-6 h-6 relative z-10" />
-            )}
           </button>
 
           {/* Desktop Menu */}
