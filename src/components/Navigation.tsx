@@ -1,13 +1,11 @@
 import { Waves } from "lucide-react";
 import { useState, useEffect } from "react";
 import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
 
-import { InfoDialogs, MobileInfoDialogs } from "./InfoDialogs";
+import { MobileInfoDialogs } from "./InfoDialogs";
 
 const Navigation = () => {
   const { t } = useTranslation();
-  const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('hero');
@@ -41,13 +39,8 @@ const Navigation = () => {
   };
 
   const handleLogoClick = () => {
-    // On mobile: toggle menu. On desktop: go home
-    if (window.innerWidth < 1024) {
-      setIsOpen(!isOpen);
-    } else {
-      navigate('/');
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
+    // Toggle menu on all devices
+    setIsOpen(!isOpen);
   };
 
   const navLinks = [
@@ -72,7 +65,7 @@ const Navigation = () => {
           <button 
             onClick={handleLogoClick}
             className="flex items-center gap-2 group relative"
-            aria-label={window.innerWidth < 1024 ? "Toggle menu" : "Go to homepage"}
+            aria-label="Toggle menu"
           >
             <div className="relative">
               <div className="absolute inset-0 bg-primary/20 blur-xl rounded-full group-hover:bg-primary/30 transition-all duration-300" />
@@ -86,35 +79,12 @@ const Navigation = () => {
             </div>
           </button>
 
-          {/* Desktop Menu */}
-          <div className="hidden lg:flex items-center gap-1 ml-auto" role="menubar" aria-label="Desktop navigation menu">
-            {navLinks.map((link) => (
-              <button
-                key={link.id}
-                onClick={() => scrollToSection(link.id)}
-                role="menuitem"
-                aria-label={`Navigate to ${link.label}`}
-                aria-current={activeSection === link.id ? 'page' : undefined}
-                className={`relative px-5 py-2.5 text-sm font-semibold tracking-wide transition-all duration-300 group ${
-                  activeSection === link.id
-                    ? 'text-primary'
-                    : 'text-foreground/70 hover:text-foreground'
-                }`}
-              >
-                <span className="relative z-10">{link.label}</span>
-                <span className={`absolute inset-0 rounded-lg bg-primary/10 scale-0 group-hover:scale-100 transition-transform duration-300 ${
-                  activeSection === link.id ? 'scale-100' : ''
-                }`} />
-              </button>
-            ))}
-            <InfoDialogs />
-          </div>
 
         </div>
 
-        {/* Mobile Menu */}
+        {/* Menu - Works on all devices */}
         {isOpen && (
-          <div className="lg:hidden py-4 space-y-1 animate-in fade-in slide-in-from-top-2 duration-300">
+          <div className="py-4 space-y-1 animate-in fade-in slide-in-from-top-2 duration-300">
             <div className="max-h-[70vh] overflow-y-auto px-2">
               {navLinks.map((link, index) => (
                 <button
