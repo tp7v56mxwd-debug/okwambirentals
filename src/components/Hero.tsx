@@ -57,8 +57,8 @@ const Hero = () => {
             </span>
           </h1>
           
-          <p className="text-lg md:text-xl text-muted-foreground leading-relaxed max-w-xl">
-            {t('hero.subtitle')}
+          <p className="text-lg md:text-xl text-foreground font-medium leading-relaxed max-w-xl">
+            Be Wambi, Dare to Be Fearless.
           </p>
         </div>
         

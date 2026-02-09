@@ -32,17 +32,6 @@ const About = () => {
   return (
     <section id="about" className="section-padding bg-muted/30">
       <div ref={ref} className={`container mx-auto px-6 lg:px-12 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-        <div className="max-w-3xl mb-16">
-          <h2 className="font-display text-3xl md:text-4xl font-semibold text-foreground mb-4">
-            {t('about.title1')}
-          </h2>
-          <p className="text-base text-muted-foreground leading-relaxed mb-4">
-            {t('about.description1')}
-          </p>
-          <p className="text-base text-muted-foreground leading-relaxed">
-            {t('about.description2')}
-          </p>
-        </div>
         
         <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
           {features.map((feature, index) => (

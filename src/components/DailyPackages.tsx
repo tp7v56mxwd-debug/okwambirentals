@@ -133,10 +133,7 @@ const DailyPackages = () => {
             variant="outline" 
             size="sm"
             onClick={() => {
-              const element = document.getElementById('quick-booking');
-              if (element) {
-                element.scrollIntoView({ behavior: 'smooth' });
-              }
+              window.open('https://wa.me/244951000925', '_blank');
             }}
           >
             {t('packages.contactUs')}
