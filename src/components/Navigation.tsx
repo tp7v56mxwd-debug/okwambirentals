@@ -1,27 +1,15 @@
 import { Button } from "@/components/ui/button";
-import { Menu, X, Waves, LogIn, Shield, Calendar, LogOut, User, ShoppingCart } from "lucide-react";
+import { Menu, X, Waves, ShoppingCart } from "lucide-react";
 import { useState, useEffect } from "react";
 import { useCart } from '@/contexts/CartContext';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
 import { InfoDialogs, MobileInfoDialogs } from "./InfoDialogs";
-import { useAuth } from '@/hooks/useAuth';
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { supabase } from '@/integrations/supabase/client';
-import { toast } from 'sonner';
 
 const Navigation = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
-  const { user, isAdmin } = useAuth();
   const { totalItems } = useCart();
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -55,18 +43,6 @@ const Navigation = () => {
     }
   };
 
-  const handleLogout = async () => {
-    try {
-      const { error } = await supabase.auth.signOut();
-      if (error) throw error;
-      toast.success('Logged out successfully');
-      navigate('/');
-      setIsOpen(false);
-    } catch (error) {
-      console.error('Error logging out:', error);
-      toast.error('Failed to log out');
-    }
-  };
 
   const navLinks = [
     { id: 'hero', label: t('nav.home') },
@@ -160,48 +136,6 @@ const Navigation = () => {
                   </span>
                 )}
               </Button>
-              {user ? (
-                <DropdownMenu>
-                  <DropdownMenuTrigger asChild>
-                    <Button variant="ghost" size="icon" className="h-9 w-9">
-                      <User className="h-5 w-5" />
-                    </Button>
-                  </DropdownMenuTrigger>
-                  <DropdownMenuContent align="end" className="w-56">
-                    <DropdownMenuLabel>My Account</DropdownMenuLabel>
-                    <DropdownMenuSeparator />
-                    {isAdmin ? (
-                      <DropdownMenuItem onClick={() => navigate('/admin')}>
-                        <Shield className="h-4 w-4 mr-2" />
-                        Admin Dashboard
-                      </DropdownMenuItem>
-                    ) : (
-                      <DropdownMenuItem onClick={() => navigate('/my-bookings')}>
-                        <Calendar className="h-4 w-4 mr-2" />
-                        My Bookings
-                      </DropdownMenuItem>
-                    )}
-                    <DropdownMenuItem onClick={() => navigate('/2fa')}>
-                      <Shield className="h-4 w-4 mr-2" />
-                      Security (2FA)
-                    </DropdownMenuItem>
-                    <DropdownMenuSeparator />
-                    <DropdownMenuItem onClick={handleLogout} className="text-destructive focus:text-destructive">
-                      <LogOut className="h-4 w-4 mr-2" />
-                      Logout
-                    </DropdownMenuItem>
-                  </DropdownMenuContent>
-                </DropdownMenu>
-              ) : (
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  onClick={() => navigate('/auth')}
-                  className="h-9 w-9"
-                >
-                  <LogIn className="h-5 w-5" />
-                </Button>
-              )}
             </div>
           </div>
 
@@ -252,66 +186,6 @@ const Navigation = () => {
                     </span>
                   )}
                 </Button>
-                {user ? (
-                  <>
-                    {isAdmin ? (
-                      <Button
-                        variant="default"
-                        className="w-full"
-                        onClick={() => {
-                          navigate('/admin');
-                          setIsOpen(false);
-                        }}
-                      >
-                        <Shield className="h-4 w-4 mr-2" />
-                        Admin Dashboard
-                      </Button>
-                    ) : (
-                      <Button
-                        variant="default"
-                        className="w-full"
-                        onClick={() => {
-                          navigate('/my-bookings');
-                          setIsOpen(false);
-                        }}
-                      >
-                        <Calendar className="h-4 w-4 mr-2" />
-                        My Bookings
-                      </Button>
-                    )}
-                    <Button
-                      variant="outline"
-                      className="w-full mt-2"
-                      onClick={() => {
-                        navigate('/2fa');
-                        setIsOpen(false);
-                      }}
-                    >
-                      <Shield className="h-4 w-4 mr-2" />
-                      Security (2FA)
-                    </Button>
-                    <Button
-                      variant="outline"
-                      className="w-full text-destructive hover:text-destructive"
-                      onClick={handleLogout}
-                    >
-                      <LogOut className="h-4 w-4 mr-2" />
-                      Logout
-                    </Button>
-                  </>
-                ) : (
-                  <Button
-                    variant="outline"
-                    className="w-full"
-                    onClick={() => {
-                      navigate('/auth');
-                      setIsOpen(false);
-                    }}
-                  >
-                    <LogIn className="h-4 w-4 mr-2" />
-                    Login
-                  </Button>
-                )}
               </div>
             </div>
             
