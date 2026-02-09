@@ -1,7 +1,6 @@
 import { Button } from "@/components/ui/button";
-import { Menu, X, Waves, ShoppingCart } from "lucide-react";
+import { Menu, X, Waves } from "lucide-react";
 import { useState, useEffect } from "react";
-import { useCart } from '@/contexts/CartContext';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
@@ -10,7 +9,6 @@ import { InfoDialogs, MobileInfoDialogs } from "./InfoDialogs";
 const Navigation = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
-  const { totalItems } = useCart();
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('hero');
@@ -121,22 +119,6 @@ const Navigation = () => {
               </button>
             ))}
             <InfoDialogs />
-            <div className="ml-3 pl-3 border-l border-border/50 flex items-center gap-1.5">
-              <Button
-                variant="ghost"
-                size="icon"
-                onClick={() => navigate('/cart')}
-                className="relative h-9 w-9"
-                aria-label="Shopping cart"
-              >
-                <ShoppingCart className="h-5 w-5" />
-                {totalItems > 0 && (
-                  <span className="absolute -top-1 -right-1 bg-primary text-primary-foreground text-xs font-bold rounded-full h-4 w-4 flex items-center justify-center">
-                    {totalItems}
-                  </span>
-                )}
-              </Button>
-            </div>
           </div>
 
         </div>
@@ -168,27 +150,7 @@ const Navigation = () => {
               <div className="mt-4 pt-4 border-t border-border/20">
                 <MobileInfoDialogs onClose={() => setIsOpen(false)} />
               </div>
-              
-              <div className="mt-2 px-2 space-y-2">
-                <Button
-                  variant="default"
-                  className="w-full relative"
-                  onClick={() => {
-                    navigate('/cart');
-                    setIsOpen(false);
-                  }}
-                >
-                  <ShoppingCart className="h-4 w-4 mr-2" />
-                  Cart
-                  {totalItems > 0 && (
-                    <span className="ml-2 bg-primary-foreground text-primary text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">
-                      {totalItems}
-                    </span>
-                  )}
-                </Button>
-              </div>
             </div>
-            
           </div>
         )}
       </div>
